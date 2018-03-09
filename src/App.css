@@ -1,0 +1,48 @@
+@import "./css/style.css";
+@import "./css/colors/main.css";
+@import "./css/responsiveness.css";
+
+
+
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.bannerBackground2{
+  background:url(img/Home.jpg);
+}
+
+.cardStyle {
+  position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e8eef1;
+    border-radius: .25rem;
+    margin-bottom: 30px;
+    margin-top: 33.5px;
+
+}
+.cardHead {
+display: flex;
+-webkit-box-pack: justify;
+justify-content: space-between;
+padding: .85rem .85rem;
+margin-bottom: 0;
+border-bottom: 1px solid #eaeff5;
+border-top: 1px solid #eaeff5;
+
+}
+
+.starBox {
+  padding-left: -30px;
+  margin-left: -160px;
+}
