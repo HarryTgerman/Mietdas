@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom'
 import AccountCards from './AccountCard'
+import Anfragen from './Mitteilungen/Anfragen'
+import AvatarImg from'../../../img/avatar.png'
 
 class Account extends Component{
   constructor(props){
     super(props)
     this.firedata = this.firedata.bind(this)
+    this.loadAnfragen = this.loadAnfragen.bind(this)
     this.state ={
       authenticated: false,
       cards: [],
+      anfragen: [{}],
+      controll: true,
     }
 }
 
@@ -38,10 +43,14 @@ componentWillMount(){
       this.setState(
         {
         authenticated: true,
+        photoUrl: userProfile.photoURL,
         name : userProfile.displayName,
         email : userProfile.email,
         uid : userProfile.uid,
-        },()=>{ this.firedata()}
+      },()=>{ this.firedata();
+              if (this.state.photoUrl == null){this.setState({showPhotoUrl:false})}else {this.setState({showPhotoUrl:true})}
+              this.loadAnfragen();
+      }
     )
 
     } else {
@@ -55,9 +64,39 @@ componentWillMount(){
 }
 
 
-  componentDidMount(){
+  loadAnfragen(){
+    const uid = this.state.uid;
+    firebase.database().ref('app/').child('users/'+uid)
+    .on('value', snap => {
+      if(snap.val().anfragen == null){
+      this.setState({
+        controll: false,
+        anfragen: 0,
+        cardId: snap.val().cardId,
+        url: snap.val().url,
+        name : snap.val().name,
+        nachName: snap.val().nachName,
+        adresse: snap.val().address,
+        geboren: snap.val().geburtsDatum,
+        mobil: snap.val().mobil,
+        telefon: snap.val().number,
 
-  }
+      })
+  }else{
+        this.setState({
+        anfragen: snap.val().anfragen,
+        cardId: snap.val().cardId,
+        url: snap.val().url,
+        name : snap.val().name,
+        nachName: snap.val().nachName,
+        adresse: snap.val().address,
+        geboren: snap.val().geburtsDatum,
+        mobil: snap.val().mobil,
+        telefon: snap.val().number,
+      })
+    }
+  })
+}
 
 
 
@@ -66,7 +105,8 @@ componentWillMount(){
 
 
         render(){
-
+          const { anfragen } = this.state
+          const keys = Object.keys(anfragen)
 
 
           return(
@@ -102,8 +142,10 @@ componentWillMount(){
                         :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
                       </ul>
                       <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                      { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist"><i className="ti-user"></i>{this.state.name}</NavLink></li>)
-                      :(<p></p>)
+                      { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
+                      {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
+                      :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
+                      :(null)
                       }
                       </ul>
                     </div>
@@ -131,26 +173,69 @@ componentWillMount(){
                     <div className="add-listing-box translateY-60 edit-info mrg-bot-25 padd-bot-30 padd-top-25">
                       <div className="listing-box-header">
                         <div className="avater-box">
-                        <img src="assets/img/avatar.jpg" className="img-responsive img-circle edit-avater" alt="" />
+                        { this.state.showPhotoUrl ?(<img src={this.state.photoUrl} className="img-responsive img-circle edit-avater" alt="" />)
+                                                   :(<img src={AvatarImg} className="img-responsive img-circle edit-avater" alt="" />)
+                        }
                         </div>
-                        <h3>Daniel M. Dev</h3>
-                        <p>Account Manager</p>
+                        <h3>{this.state.name}</h3>
                       </div>
                       <div className="row mrg-r-10 mrg-l-10 preview-info">
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                           <label><i className="ti-mobile preview-icon call mrg-r-10"></i>91 258 574 5287</label>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                           <label><i className="ti-email preview-icon email mrg-r-10"></i>support@listinghub@.com</label>
                         </div>
-                        <div className="col-sm-6">
+                        <div className="col-sm-4">
                           <label><i className="ti-gift preview-icon birth mrg-r-10"></i>July 17 1990</label>
                         </div>
-                        <div className="col-sm-6">
-                          <label><i className="ti-world preview-icon web mrg-r-10"></i>Www.listinghub.com</label>
+                      </div>
+                        <div className="container" style={{width: "95%", marginTop:"15px"}}>
+                          <div className="col-md-12 col-sm-12">
+                            <div className="panel-group style-1" id="accordion" role="tablist" aria-multiselectable="true">
+                              <div className="panel panel-default">
+                                <div className="panel-heading" role="tab" id="designing">
+                                  <h4 className="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Anfragen für Ihre Baumaschinen
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="designing">
+                                  <div className="panel-body">
+                                  { this.state.controll ? (keys.map((key) => {
+                                     const anfrage = anfragen[key]
+                                       return(<Anfragen
+                                       anfrage={anfrage} name={anfrage.name} url={anfrage.url}
+                                       cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
+                                       uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
+                                      nummer={anfrage.nummer} email={anfrage.email}
+                                       mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
+                                       )
+                                     }))
+                                     : (<h3>Du Hast keine Neuen Anfragen</h3>)
+                                   }
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="panel panel-default">
+                                <div className="panel-heading" role="tab" id="web-development">
+                                  <h4 className="panel-title">
+                                    <a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      Angefragte Baumaschinen
+                                    </a>
+                                  </h4>
+                                </div>
+                                <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="web-development">
+                                  <div className="panel-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem, dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     {/* End General Information */}
                   </div>
                 </div>
@@ -256,28 +341,7 @@ componentWillMount(){
                           <h4>Follow Us</h4>
                         </div>
                         <div className="preview-info-body">
-                          <ul className="social-info info-list">
-                            <li>
-                              <label><i className="fa fa-facebook"></i></label>
-                              <span>https://www.facebook.com</span>
-                            </li>
-                            <li>
-                              <label><i className="fa fa-twitter"></i></label>
-                              <span>https://www.twitter.com/</span>
-                            </li>
-                            <li>
-                              <label><i className="fa fa-google-plus"></i></label>
-                              <span>https://www.plus.google.com</span>
-                            </li>
-                            <li>
-                              <label><i className="fa fa-linkedin"></i></label>
-                              <span>https://www.linkedin.com</span>
-                            </li>
-                            <li>
-                              <label><i className="fa fa-youtube"></i></label>
-                              <span>https://www.youtube.com</span>
-                            </li>
-                          </ul>
+
                         </div>
                       </div>
                       {/* End Follow Information */}
@@ -285,111 +349,9 @@ componentWillMount(){
                   </div>
                 </div>
 
-                {/* ================ Start Footer ======================= */}
-                <footer className="footer dark-bg">
-                  <div className="row padd-0 mrg-0">
-                    <div className="footer-text">
-                      <div className="col-md-3 col-sm-12 theme-bg">
-                        <div className="footer-widget">
-                          <div className="textwidget">
-                          <h3 className="widgettitle widget-title">Get In Touch</h3>
-                          <p>7744 North Park Place<br/>
-                          San Francisco, CA 714258</p>
-                          <p><strong>Email:</strong> support@listinghub.com</p>
-                          <p>
-                          <strong>Call:</strong> <a href="tel:+774422777">777-444-2222</a>
-                          </p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-5 col-sm-4">
-                        <div className="footer-widget">
-                        <h3 className="widgettitle widget-title">About Us</h3>
-                        <ul className="footer-navigation">
-                          <li><a href="#">Home Version 1</a></li>
-                          <li><a href="#">Home Version 2</a></li>
-                          <li><a href="#">Home Version 3</a></li>
-                          <li><a href="#">Home Version 4</a></li>
-                          <li><a href="#">Listing Detail</a></li>
-                          <li><a href="#">Listing Vertical</a></li>
-                          <li><a href="#">Listing Sidebar</a></li>
-                          <li><a href="#">Vertical Sidebar</a></li>
-                        </ul>
-                        </div>
-                      </div>
-                      <div className="col-md-4 col-sm-6">
-                        <div className="footer-widget">
-                          <h3 className="widgettitle widget-title">Connect Us</h3>
-                          <img src="assets/img/footer-logo.png" alt="Footer logo" className="img-responsive" />
-                          <ul className="footer-social">
-                            <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i className="fa fa-pinterest"></i></a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="footer-copyright">
-                    <p>Copyright@ 2017 Listing Hub Design By <a href="http://www.themezhub.com/" title="Themezhub" target="_blank">Themezhub</a></p>
-                  </div>
-                </footer>
-                {/* ================ End Footer div ======================= */}
 
-                {/* ================== Login & Sign Up Window ================== */}
-                <div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-                  <div className="modal-dialog">
-                    <div className="modal-content">
-                      <div className="modal-body">
-                        <div className="tab" role="tabpanel">
-                        {/* Nav tabs */}
-                        <ul className="nav nav-tabs" role="tablist">
-                          <li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-                          <li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
-                        </ul>
-                        {/* Tab panes */}
-                        <div className="tab-content" id="myModalLabel2">
-                          <div role="tabpanel" className="tab-pane fade in active" id="login">
-                            <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                            <div className="subscribe wow fadeInUp">
-                              <form className="form-inline" method="post">
-                                <div className="col-sm-12">
-                                  <div className="form-group">
-                                    <input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                                    <input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
-                                    <div className="center">
-                                    <button type="submit" id="login-btn" className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
 
-                          <div role="tabpanel" className="tab-pane fade" id="register">
-                          <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                            <form className="form-inline" method="post">
-                              <div className="col-sm-12">
-                                <div className="form-group">
-                                  <input type="text"  name="email" className="form-control" placeholder="Your Name" required=""/>
-                                  <input type="email"  name="email" className="form-control" placeholder="Your Email" required=""/>
-                                  <input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                                  <input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
-                                  <div className="center">
-                                  <button type="submit" id="subscribe" className="btn btn-midium theme-btn btn-radius width-200"> Create Account </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             )
         }

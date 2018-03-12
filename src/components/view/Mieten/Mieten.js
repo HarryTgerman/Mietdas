@@ -40,7 +40,8 @@ class Mieten extends Component{
         } else {
           this.setState({
             authenticated: false,
-          })
+          },()=>{if (this.state.photoUrl == null){this.setState({showPhotoUrl:false})}else {this.setState({showPhotoUrl:true})}}
+          )
         }
       })
 
@@ -142,8 +143,10 @@ whenGeoCode.then(() =>{
                             :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
                           </ul>
                           <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                          { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist"><i className="ti-user"></i>{this.state.name}</NavLink></li>)
-                          :(<p></p>)
+                          { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
+                          {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
+                          :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
+                          :(null)
                           }
                           </ul>
                         </div>
@@ -210,7 +213,7 @@ whenGeoCode.then(() =>{
                     </div>
                     {/* ================ End Search listing With Filter Option  ======================= */}
 
-                  
+
                     {/* ================== Login & Sign Up Window ================== */}
                     <div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                       <div className="modal-dialog">

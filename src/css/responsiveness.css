@@ -9,11 +9,11 @@
 	.form-control.right-br{
 		border-right:1px solid #e4e4e4;
 	}
-	
+
 	body.home-2 .banner p{
 		max-width:85%;
 	}
-	
+
 	.banner-caption .form-control.left-radius{
 	border-radius:50px 0px 0px 50px ;
 	}
@@ -24,7 +24,7 @@
 		margin-bottom: 30px;
 	}
 }
-	
+
 @media only screen  and (min-width : 993px) {
 	ul.nav.navbar-nav.navbar-right>li {
 		position: fixed;
@@ -33,20 +33,20 @@
 		right: 0;
 		padding: 0 !important;
 	}
-	nav.navbar.bootsnav ul.nav > li {
+	.navbar.bootsnav ul.nav > li {
 		padding: 4px 15px;
 	}
-	nav.navbar.bootsnav ul.nav > li > a {
+	navbar.bootsnav ul.nav > li > a {
 		padding: 15px 9px 18px 9px;
 	}
-	body nav.navbar.bootsnav.navbar-transparent ul.nav > li > a.addlist {
-		background:#ff3a72 !important;
+	body .navbar.bootsnav.navbar-transparent ul.nav > li > a.addlist {
+		background:#ff431e !important;
 	}
-	body.home-2 nav.navbar.bootsnav.navbar-transparent ul.nav > li > a.addlist {
+	body.home-2 .navbar.bootsnav.navbar-transparent ul.nav > li > a.addlist {
 		background:transparent !important;
 	}
-	body nav.navbar.bootsnav ul.nav > li > a.addlist {
-		background: #ff3a72 !important;
+	body .navbar.bootsnav ul.nav > li > a.addlist {
+		background: #ff431e !important;
 		color: #ffffff !important;
 		border-radius: 0;
 		padding: 20.5px 35px !important;
@@ -56,7 +56,7 @@
 	.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {
 		margin-left:0px;
 	}
-	
+
 }
 @media only screen  and (min-width : 1024px) {
 	h1 {
@@ -70,16 +70,16 @@
 	}
 	h4 {
 	  font-size:20px;
-	} 
-	
+	}
+
 	h5 {
 	  font-size:17;
 	}
-	
+
 	h6 {
 	  font-size:12;
 	}
-	nav.navbar.bootsnav li.dropdown ul.dropdown-menu {
+	.navbar.bootsnav li.dropdown ul.dropdown-menu {
 		-webkit-box-shadow:0px 0px 15px 1px rgba(113, 106, 202, 0.2);
 		box-shadow:0px 0px 15px 1px rgba(113, 106, 202, 0.2);
 		border-radius:4px;
@@ -89,7 +89,7 @@
 		border:none;
 		border-top:none;
 	}
-	nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a {
+	.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a {
 		display: block;
 		padding: 14px 12px 14px 12px;
 		clear: both;
@@ -97,13 +97,13 @@
 		color: #67757c;
 		border-bottom: 1px solid #f1f6f9;
 	}
-	nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a:hover, nav.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a:focus{
-		color:#ff3a72;
+	.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a:hover, .navbar.bootsnav li.dropdown ul.dropdown-menu > li > a:focus{
+		color:#ff431e;
 	}
-	nav.navbar.bootsnav ul.nav > li > a {
+	.navbar.bootsnav ul.nav > li > a {
     padding: 16.5px 10px 16.5px 10px;
 	}
-	nav.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu.navbar-left li a {
+	.navbar.bootsnav ul.navbar-right li.dropdown ul.dropdown-menu.navbar-left li a {
 		text-align: left;
 	}
 
@@ -125,7 +125,7 @@
 	.banner .form-control .btn.dropdown-toggle.btn-default, .banner .form-control .btn.dropdown-toggle.btn-default:hover, .banner .form-control .btn.dropdown-toggle.btn-default:focus {
     height:70px;
 	}
-	
+
 	i.banner-icon {
     top: 24px;
     font-size: 20px;
@@ -136,7 +136,7 @@
 	.pulse-tag {
 		margin: 5em auto 0 auto;
 	}
-	
+
 	/*------------ Custom Font Style --------------*/
 	.font-50{
 	font-size:50px;
@@ -189,7 +189,7 @@
 }
 
 @media only screen  and (min-width : 1200px) {
-	nav.navbar.bootsnav ul.nav > li > a {
+	.navbar.bootsnav ul.nav > li > a {
 		padding: 15px 9px 18px 9px;
 	}
 
@@ -215,11 +215,11 @@
 
 }
 @media screen and (max-width: 992px) {
-	body.home-2 nav.navbar.bootsnav.navbar-transparent {
+	body.home-2 .navbar.bootsnav.navbar-transparent {
 		background-color: #ffffff;
 		border-bottom: 1px solid rgba(255,255,255,0.10);
 	}
-	nav.navbar.bootsnav .navbar-nav > li > a {
+	.navbar.bootsnav .navbar-nav > li > a {
 		display: block;
 		width: 100%;
 		border-bottom: solid 1px #dde6ef;
@@ -227,11 +227,11 @@
 		margin-bottom: -1px;
 		color: #445461 !important;
 	}
-	nav.navbar.bootsnav .navbar-toggle {
+	.navbar.bootsnav .navbar-toggle {
 		font-size: 20px;
 		top: 8px;
 	}
-	nav.navbar.bootsnav.navbar-fixed .logo-display, nav.navbar.bootsnav.navbar-fixed .logo-scrolled {
+	.navbar.bootsnav.navbar-fixed .logo-display, .navbar.bootsnav.navbar-fixed .logo-scrolled {
 		max-height: 40px;
 	}
 }
@@ -303,7 +303,7 @@
 		font-size: 14px;
 		line-height: 1.7;
 	}
-	
+
 	.verticleilist.listing-shot {
     display: block;
 	}
@@ -376,7 +376,7 @@
 	.single-comment .single-comment {
 		padding-left: 0;
 	}
-	
+
 }
 
 @media screen and (max-width: 479px) {
