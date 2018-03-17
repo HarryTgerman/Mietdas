@@ -6,10 +6,12 @@ import Home from './components/view/Home/Home'
 import Mieten from './components/view/Mieten/Mieten'
 import Logout from './components/Logout/Logout'
 import Account from './components/view/Account/Account'
+import BaumaschinenAnfragen from './components/view/Account/Mitteilungen/BaumaschinenAnfragen'
 import Artikelbearbeiten from './components/view/Account/Artikelbearbeiten/Artikelbearbeiten'
 import MietDetails from './components/view/Mieten/MietDetails/MietDetails'
 import Footer from './components/Footer/Footer'
 import Payment from './components/PaymentMethod/Payment'
+import Vermieten from './components/view/Vermieten/Vermieten'
 
 class Routes extends Component{
   constructor(props){
@@ -29,6 +31,8 @@ class Routes extends Component{
                       <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
                       <Route name= 'details' path='/details/:id' component={MietDetails}/>
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Payment}/>
+                      <Route name= 'baumaschinenAnfragenDetails' path='/baumaschinen_Anfragen/uid:uid/name:name/num:num' component={BaumaschinenAnfragen}/>
+                      <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>
                     </div>
                     <Footer/>
                   </div>

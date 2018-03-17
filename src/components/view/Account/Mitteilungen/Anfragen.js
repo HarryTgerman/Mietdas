@@ -84,10 +84,10 @@ class Anfragen extends Component{
                             </div>
                             <div className="col-md-8 col-sm-8 col-xs-8 pull-right">
                               <div className="col-sm-4">
-                                <button className="theme-btn btn-outlined">Zusagen</button>
+                                <button onClick={this.Zusagen} className="theme-btn btn-outlined">Zusagen</button>
                               </div>
                               <Link to={{
-                                       pathname: `/anfragen_details/${this.props.uid + this.props.num}`,
+                                       pathname: `/baumaschinen_Anfragen/uid=${this.props.uid}/name=${this.props.name}/num=${this.props.num}`,
                                        query: {
                                          name: this.props.name,
                                          url: this.props.url,
@@ -104,11 +104,11 @@ class Anfragen extends Component{
                                        }
                                      }}>
                               <div className="col-sm-4">
-                                <button className="theme-btn btn-outlined">Details</button>
+                                <button  className="theme-btn btn-outlined">Details</button>
                               </div>
                               </Link>
                               <div className="col-sm-4">
-                                <button className="theme-btn btn-outlined">Absagen</button>
+                                <button onClick={this.Absagen} className="theme-btn btn-outlined">Absagen</button>
                               </div>
                             </div>
                           </div>
