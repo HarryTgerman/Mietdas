@@ -3,7 +3,9 @@ import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom'
 import AccountCards from './AccountCard'
 import Anfragen from './Mitteilungen/Anfragen'
-import AvatarImg from'../../../img/avatar.png'
+import AvatarImg from'../../../img/avatar.jpg'
+import AccountImg from'../../../img/account.jpg'
+
 
 class Account extends Component{
   constructor(props){
@@ -48,7 +50,6 @@ componentWillMount(){
         email : userProfile.email,
         uid : userProfile.uid,
       },()=>{ this.firedata();
-              if (this.state.photoUrl == null){this.setState({showPhotoUrl:false})}else {this.setState({showPhotoUrl:true})}
               this.loadAnfragen();
       }
     )
@@ -74,12 +75,11 @@ componentWillMount(){
         anfragen: 0,
         cardId: snap.val().cardId,
         url: snap.val().url,
-        name : snap.val().name,
         nachName: snap.val().nachName,
         adresse: snap.val().address,
         geboren: snap.val().geburtsDatum,
         mobil: snap.val().mobil,
-        telefon: snap.val().number,
+        telefon: snap.val().telefon,
 
       })
   }else{
@@ -87,12 +87,11 @@ componentWillMount(){
         anfragen: snap.val().anfragen,
         cardId: snap.val().cardId,
         url: snap.val().url,
-        name : snap.val().name,
         nachName: snap.val().nachName,
         adresse: snap.val().address,
         geboren: snap.val().geburtsDatum,
         mobil: snap.val().mobil,
-        telefon: snap.val().number,
+        telefon: snap.val().telefon,
       })
     }
   })
@@ -110,7 +109,7 @@ componentWillMount(){
 
 
           return(
-            <div className="wrapper">
+            <div className="home-2 wrapper">
                 {/* Start Navigation */}
                 <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
                   <div style={{paddingBottom: "0"}}  className="container">
@@ -121,8 +120,8 @@ componentWillMount(){
                      {/*Start Header Navigation*/}
                     <div className="navbar-header">
                       <NavLink to="/">
-                        <img src="assets/img/logo.png" className="logo logo-display" alt=""/>
-                        <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                      <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                      <img src="assets/img/logo-white.png" className="logo logo-display" alt=""/>
                       </NavLink>
                     </div>
 
@@ -143,7 +142,7 @@ componentWillMount(){
                       </ul>
                       <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                       { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
-                      {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
+                      {this.state.photoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
                       :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
                       :(null)
                       }
@@ -156,7 +155,7 @@ componentWillMount(){
                 <div className="clearfix"></div>
 
                 {/* Page Title */}
-                <div className="title-transparent page-title" style={{backgroundImage: `url(${'http://via.placeholder.com/1920x850'})`}}>
+                <div className="title-transparent page-title" style={{backgroundImage: `url(${AccountImg})`}}>
                   <div className="container">
                     <div className="title-content">
                     </div>
@@ -173,7 +172,7 @@ componentWillMount(){
                     <div className="add-listing-box translateY-60 edit-info mrg-bot-25 padd-bot-30 padd-top-25">
                       <div className="listing-box-header">
                         <div className="avater-box">
-                        { this.state.showPhotoUrl ?(<img src={this.state.photoUrl} className="img-responsive img-circle edit-avater" alt="" />)
+                        { this.state.url ?(<img src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />)
                                                    :(<img src={AvatarImg} className="img-responsive img-circle edit-avater" alt="" />)
                         }
                         </div>
@@ -181,13 +180,13 @@ componentWillMount(){
                       </div>
                       <div className="row mrg-r-10 mrg-l-10 preview-info">
                         <div className="col-sm-4">
-                          <label><i className="ti-mobile preview-icon call mrg-r-10"></i>91 258 574 5287</label>
+                          <label><i className="ti-mobile preview-icon call mrg-r-10"></i>{this.state.telefon}</label>
                         </div>
                         <div className="col-sm-4">
-                          <label><i className="ti-email preview-icon email mrg-r-10"></i>support@listinghub@.com</label>
+                          <label><i className="ti-email preview-icon email mrg-r-10"></i>{this.state.email}</label>
                         </div>
                         <div className="col-sm-4">
-                          <label><i className="ti-gift preview-icon birth mrg-r-10"></i>July 17 1990</label>
+                          <label><i className="ti-gift preview-icon birth mrg-r-10"></i>{this.state.geboren}</label>
                         </div>
                       </div>
                         <div className="container" style={{width: "95%", marginTop:"15px"}}>
@@ -196,7 +195,7 @@ componentWillMount(){
                               <div className="panel panel-default">
                                 <div className="panel-heading" role="tab" id="designing">
                                   <h4 className="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                       Anfragen für Ihre Baumaschinen
                                     </a>
                                   </h4>
@@ -319,33 +318,42 @@ componentWillMount(){
                       </div>
                       </div>
                     </div>
-                    <div className="col-md-6 col-sm-12 mob-padd-0">
+                    <div className="col-md-12 col-sm-12 mob-padd-0">
                       {/* About Information */}
                       <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-5">
                         <div className="preview-info-header">
-                          <h4>About</h4>
+                          <h4>Miethistory</h4>
                         </div>
                         <div className="preview-info-body">
-                          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi</p>
-                          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti blanditiis praesentium voluptatum deleniti quos dolores et quas molestias excepturi sint occaecati ducimus qui blanditiis praesentium voluptatum deleniti atque.</p>
-                          <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti.</p>
+                          <div className="DetailsTable">
+                            <table className="table">
+                              <thead>
+                                <tr>
+                                  <th>#</th>
+                                  <th>Datum</th>
+                                  <th>Artikel</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>1</td>
+                                  <td>12.12.17</td>
+                                  <td>Bagger 12 t</td>
+                                </tr>
+                                <tr>
+                                  <td>2</td>
+                                  <td>14.12.17</td>
+                                  <td>Bagger 2t</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
                         </div>
                       </div>
                       {/* End About Information */}
                     </div>
 
-                    <div className="col-md-6 col-sm-12 mob-padd-0">
-                      {/* Follow Information */}
-                      <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-5">
-                        <div className="preview-info-header">
-                          <h4>Follow Us</h4>
-                        </div>
-                        <div className="preview-info-body">
 
-                        </div>
-                      </div>
-                      {/* End Follow Information */}
-                    </div>
                   </div>
                 </div>
 

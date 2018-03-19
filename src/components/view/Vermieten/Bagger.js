@@ -29,7 +29,8 @@ onDrop(imageFiles) {
 
  artikelHochladen(event) {
        this.setState({
-         loading: true
+         loading: true,
+         imageUpload: false,
        })
        event.preventDefault();
        const db = firebase.database().ref('app').child('cards').child('baggger');
@@ -72,21 +73,21 @@ onDrop(imageFiles) {
 
 
        const array = []
-       const imageFiles = this.state.imageFiles[0]
+       const imageFiles = this.state.imageFiles
        const keys = Object.keys(imageFiles)
 
        let keysPromises = keys.map(
          key =>
            new Promise((resolve, reject) => {
-             const picture = imageFiles[key];
+             const imageFile = imageFiles[key];
              firebase
                .storage()
                .ref("images")
                .child("artikelimgaes/" + userId)
                .child("artikel/")
                .child(titel)
-               .child(imageFiles.name)
-               .put(imageFiles)
+               .child(imageFile.name)
+               .put(imageFile)
                .then(() => {
                  firebase
                    .storage()
@@ -94,7 +95,7 @@ onDrop(imageFiles) {
                    .child("artikelimgaes/" + userId)
                    .child("artikel/")
                    .child(titel)
-                   .child(imageFiles.name)
+                   .child(imageFile.name)
                    .getDownloadURL()
                    .then(url => {
                      const imgUrl = url;
@@ -103,7 +104,7 @@ onDrop(imageFiles) {
                    });
                });
            })
-          );
+         );
 
        Promise.all(keysPromises).then(() => {
          const pdfUrl = this.state.pdf;

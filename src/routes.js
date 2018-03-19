@@ -12,6 +12,8 @@ import MietDetails from './components/view/Mieten/MietDetails/MietDetails'
 import Footer from './components/Footer/Footer'
 import Payment from './components/PaymentMethod/Payment'
 import Vermieten from './components/view/Vermieten/Vermieten'
+import AccountErstellen from './components/view/AccountErstellen/AccountErstellen'
+
 
 class Routes extends Component{
   constructor(props){
@@ -33,6 +35,7 @@ class Routes extends Component{
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Payment}/>
                       <Route name= 'baumaschinenAnfragenDetails' path='/baumaschinen_Anfragen/uid:uid/name:name/num:num' component={BaumaschinenAnfragen}/>
                       <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>
+                      <Route name= 'AccountErstellen' path='/account-erstellen' component={AccountErstellen}/>
                     </div>
                     <Footer/>
                   </div>

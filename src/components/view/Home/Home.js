@@ -13,6 +13,7 @@ class Home extends Component{
     this.register = this.register.bind(this);
     this.signIn = this.signIn.bind(this);
     this.authWithFacebook= this.authWithFacebook.bind(this);
+    this.registerWithFacebook = this.registerWithFacebook.bind(this);
     this.state = {
        authenticated: false,
        redirect: false,
@@ -84,7 +85,6 @@ signIn(){
 
 register(){
 
-  console.log("HEELLOO");
 
   const email = this.emailInput.value;
   const password = this.createPassword.value;
@@ -113,8 +113,23 @@ register(){
         // An error happened.
       })
 
-    }).then(()=>{ window.location.reload() })
+    })
+    .then(()=>{ this.setState({registerRedirect:true})
+    })
 
+  }
+
+  registerWithFacebook(){
+    let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
+      .then((result, error) => {
+        if (error) {
+          alert(error)
+        } else {
+          this.setState({ authenticated: true})
+        }
+      })
+      whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
+      })
   }
         render(){
           if (this.state.redirect === true) {
@@ -618,7 +633,7 @@ register(){
                                             <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
                                             <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
                                             <div className="center">
-                                            <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
+                                            <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
                                               Log-In mit Facebook
                                             </button>
                                             <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200"> Registriere Dich </button>

@@ -2004,6 +2004,11 @@ color:#f64625;
 }
 .gm-style img.img-responsive {
     max-width: 100% !important;
+
+}
+.edit-avater{
+	height: 118px;
+  width: 118px;
 }
 img.detailsImg {
 		overflow: hidden;
