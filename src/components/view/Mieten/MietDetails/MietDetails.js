@@ -15,26 +15,53 @@ class MietDetails extends Component{
       endDate: "",
     startDate: "",
     focusedInput: "",
-    cardId: this.props.location.state.id,
-    imageUrl: this.props.location.state.snap.imageUrl,
+    loading: false,
     textShort: true,
     vermieterLoading: true,
   }
 }
-  componentDidMount(){
-    if (this.state.numberOfDays == undefined) {this.setState({numberOfDays : "1 Tag", Diff: 1}) }
-    firebase.database().ref().child('app').child('users/' +this.props.location.state.snap.uid)
-    .once('value', snap =>{
-      this.setState({
-        vermieterLoading: false,
-        vermieter: snap.val().name,
-        vermieterUrl: snap.val().url,
+
+
+
+componentWillMount(){
+    const url = this.props.location.pathname;
+    const ref = url.split('/');
+    const cardId = ref[2];
+    const urlPromis =  new Promise ((resolve, reject)=>{
+    firebase.database().ref().child('app').child('cards')
+      .child(cardId)
+      .once('value', snap => {
+          this.setState ({
+            snap: snap.val(),
+            id: snap.key,
+            imageUrl: snap.val().imageUrl
+          },()=>{
+            const images =[{original:this.state.imageUrl, thumbnail:this.state.imageUrl}]
+              this.state.snap.imageArr.map(img =>{
+                images.push({
+                  original: img,
+                  thumbnail: img,
+                })
+              })
+              this.setState({
+                images: images
+              })
+            if (this.state.numberOfDays == undefined) {this.setState({numberOfDays : "1 Tag", Diff: 1}) }
+            firebase.database().ref().child('app').child('users/' +this.state.snap.uid)
+            .once('value', snap =>{
+              this.setState({
+                vermieterLoading: false,
+                vermieter: snap.val().name,
+                vermieterUrl: snap.val().url,
+                loading: true,
+              },resolve())
+            })
+          })
       })
     })
-    firebase.auth().onAuthStateChanged((user)=>{
+
+    urlPromis.then(()=>{firebase.auth().onAuthStateChanged((user)=>{
       const userProfile = firebase.auth().currentUser;
-
-
       if(user){
         this.setState(
           {
@@ -43,36 +70,21 @@ class MietDetails extends Component{
           email : userProfile.email,
           uid : userProfile.uid,
           })
-
       } else {
         this.setState({
           authenticated: false,
         })
       }
     })
-    firebase.database().ref().child('app').child('users/' +this.props.location.state.snap.uid)
-   .once('value', snap =>{
-     this.setState({
-       vermieterLoading: false,
-       vermieter: snap.val().name,
-       vermieterUrl: snap.val().url,
-     })
-   });
+  })
   }
 
 
 
         render(){
-          const images =[{original:this.props.location.state.snap.imageUrl, thumbnail:this.props.location.state.snap.imageUrl}]
-            this.props.location.state.snap.imageArr.map(img =>{
-              images.push({
-                original: img,
-                thumbnail: img,
-              })
-            })
           return(
               <div>
-                		<div className="wrapper">
+                		{this.state.loading ?(<div className="wrapper">
                 			{/* Start Navigation */}
                       <div  className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
                         <div style={{paddingBottom: "0"}}  className="container">
@@ -127,11 +139,11 @@ class MietDetails extends Component{
                 							<div className="detail-wrapper">
                 								<div className="detail-wrapper-body">
                 									<div className="listing-title-bar">
-                										<h3>{this.props.location.state.snap.cardHeading}</h3>
+                										<h3>{this.state.snap.cardHeading}</h3>
                 										<div className="row">
                 											<a href="#listing-location" className="listing-address col-sm-5">
                 												<i className="ti-location-pin mrg-r-5"></i>
-                												{this.props.location.state.snap.ort}
+                												{this.state.snap.ort}
                 											</a>
                 											<div className="rating-box col-sm-5 starBox">
                 												<div className="detail-list-rating">
@@ -146,9 +158,9 @@ class MietDetails extends Component{
                 										</div>
                 									</div>
                                   <figure className="img-holder ">
-                                    <a><ImageGallery items={images} showPlayButton={false} className="detailsImg" alt="News"/></a>
+                                    <a><ImageGallery items={this.state.images} showPlayButton={false} className="detailsImg" alt="News"/></a>
                                     <div class="blog-post-date theme-bg">
-                											{this.props.location.state.snap.cardPreis}€ Pro Tag
+                											{this.state.snap.cardPreis}€ Pro Tag
                 										</div>
                                   </figure>
                 								</div>
@@ -165,31 +177,31 @@ class MietDetails extends Component{
                                         Gewicht
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.gewicht} Tonnen</p>
+                                        <p>{this.state.snap.gewicht} Tonnen</p>
                                       </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Hersetller
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.hersteller}</p>
+                                        <p>{this.state.snap.hersteller}</p>
                                       </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Grabtiefe
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.grabtiefe}</p>
+                                        <p>{this.state.snap.grabtiefe}</p>
                                       </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Transportbreite
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.transportbreite}</p>
+                                        <p>{this.state.snap.transportbreite}</p>
                                       </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Transporthöhe
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.transporthoehe}</p>
+                                        <p>{this.state.snap.transporthoehe}</p>
                                       </div>
                                     </div>
                                   </div>
@@ -207,7 +219,7 @@ class MietDetails extends Component{
                                         Beschreibung
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.cardDesc} </p>
+                                        <p>{this.state.snap.cardDesc} </p>
                                       </div>
                                     </div>
                                   </div>
@@ -225,7 +237,7 @@ class MietDetails extends Component{
                                         Mietbedingungen
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.props.location.state.snap.mietbedingungen} </p>
+                                        <p>{this.state.snap.mietbedingungen} </p>
                                       </div>
                                     </div>
                                   </div>
@@ -309,7 +321,7 @@ class MietDetails extends Component{
                                             var a = moment(startDateString);
                                             var b = moment(endDateString);
                                            const diff =  b.diff(a, 'days');
-                                           var  Gesamtsumme = this.props.location.state.snap.cardPreis * diff ;
+                                           var  Gesamtsumme = this.state.snap.cardPreis * diff ;
                                             this.setState({ endDate, startDate,
                                               startDateString: startDateString,
                                               endDateString: endDateString,
@@ -326,10 +338,10 @@ class MietDetails extends Component{
                                       <div className="widget-boxed-body">
                                         <div className="side-list">
                                           <ul>
-                    												<li>Standort  <span>{this.props.location.state.snap.ort}</span></li>
+                    												<li>Standort  <span>{this.state.snap.ort}</span></li>
                                             <li>Mietdauer  <span>{this.state.numberOfDays}</span></li>
-                    												<li>Ihr Preis <span>{this.props.location.state.snap.cardPreis * this.state.Diff},00€</span></li>
-        												            <li>Gesamtsumme <span>{this.props.location.state.snap.cardPreis * this.state.Diff},00€</span></li>
+                    												<li>Ihr Preis <span>{this.state.snap.cardPreis * this.state.Diff},00€</span></li>
+        												            <li>Gesamtsumme <span>{this.state.snap.cardPreis * this.state.Diff},00€</span></li>
 								                         </ul>
                                         </div>
                                       </div>
@@ -342,7 +354,7 @@ class MietDetails extends Component{
                                                 numberOfDays: this.state.numberOfDays,
                                                 Diff: this.state.Diff,
                                                 Gesamtsumme: this.state.Gesamtsumme,
-                                                snap : this.props.location.state.snap,
+                                                snap : this.state.snap,
                                                 cardId: this.state.cardId}
                                                 }}>
                                       <a href="#" style={{marginTop: "40px"}} className="btn reservation btn-radius theme-btn full-width mrg-top-10">JETZT RESERVIEREN</a>
@@ -410,7 +422,7 @@ class MietDetails extends Component{
                 					</div>
                 				</div>
                 			</div>
-                    </div>
+                    </div>):(<h2>Loading...</h2>)}
               </div>
             )
         }

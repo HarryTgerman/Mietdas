@@ -41,6 +41,14 @@ componentWillMount(){
       })
       }
     })
+    firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid)
+    .once('value', snap => {
+      this.setState({
+        ArtikelOwnerEmail: snap.val().email,
+        telefon: snap.val().telefon,
+        ArtikelOwnerId: this.props.location.query.snap.uid,
+      })
+    })
 }
   Mieten(event){
     event.preventDefault;
@@ -60,11 +68,14 @@ componentWillMount(){
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
+      ArtikelOwnerId: this.state.ArtikelOwnerId,
       uid: this.state.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
       num : num,
       nummer: tefNummer,
+      ArtikelOwnerEmail: this.state.ArtikelOwnerEmail,
+      telefon: this.state.telefon,
       email: email,
       new: true,
     }
@@ -87,6 +98,9 @@ componentWillMount(){
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
+      ArtikelOwnerId: this.state.ArtikelOwnerId,
+      ArtikelOwnerEmail: this.state.ArtikelOwnerEmail,
+      telefon: this.state.telefon,
       uid: this.state.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
