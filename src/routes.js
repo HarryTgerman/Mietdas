@@ -10,10 +10,10 @@ import BaumaschinenAnfragen from './components/view/Account/Mitteilungen/Baumasc
 import Artikelbearbeiten from './components/view/Account/Artikelbearbeiten/Artikelbearbeiten'
 import MietDetails from './components/view/Mieten/MietDetails/MietDetails'
 import Footer from './components/Footer/Footer'
-import Payment from './components/PaymentMethod/Payment'
+import Reservierung from './components/view/Mieten/MietDetails/Reservierung'
 import Vermieten from './components/view/Vermieten/Vermieten'
 import AccountErstellen from './components/view/AccountErstellen/AccountErstellen'
-
+import Payment from './components/PaymentMethod/Payment'
 
 class Routes extends Component{
   constructor(props){
@@ -32,10 +32,11 @@ class Routes extends Component{
                       <Route path='/benutzeraccount' exact component={Account}/>
                       <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
                       <Route name= 'details' path='/details/:id' component={MietDetails}/>
-                      <Route name= 'anfragen' path='/anfragen/:cardId' component={Payment}/>
+                      <Route name= 'anfragen' path='/anfragen/:cardId' component={Reservierung}/>
                       <Route name= 'baumaschinenAnfragenDetails' path='/baumaschinen_Anfragen/uid:uid/name:name/num:num' component={BaumaschinenAnfragen}/>
                       <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>
                       <Route name= 'AccountErstellen' path='/account-erstellen' component={AccountErstellen}/>
+                      <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
                     </div>
                     <Footer/>
                   </div>

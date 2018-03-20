@@ -3,6 +3,7 @@ import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom'
 import AccountCards from './AccountCard'
 import Anfragen from './Mitteilungen/Anfragen'
+import LaufendeAnfragen from './Mitteilungen/LaufendeAnfragen'
 import AvatarImg from'../../../img/avatar.jpg'
 import AccountImg from'../../../img/account.jpg'
 
@@ -16,6 +17,7 @@ class Account extends Component{
       authenticated: false,
       cards: [],
       anfragen: [{}],
+      mitteilungen: [],
       controll: true,
     }
 }
@@ -95,6 +97,23 @@ componentWillMount(){
       })
     }
   })
+  const mitteilung = this.state.mitteilungen;
+    firebase.database().ref().child('app').child('users/').child(this.state.uid)
+    .child('mitteilung').once('value' ,snap => {
+      snap.forEach(childSnapshot => {
+      mitteilung.push ({
+        id: childSnapshot.key,
+        anfrage: childSnapshot.val().anfrage,
+        bestätigt: childSnapshot.val().bestätigt,
+        cardId: childSnapshot.val().cardId,
+
+      })
+      this.setState ({
+        mitteilungen: mitteilung,
+      })
+    })
+  })
+
 }
 
 
@@ -227,7 +246,10 @@ componentWillMount(){
                                 </div>
                                 <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="web-development">
                                   <div className="panel-body">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem, dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                  {this.state.mitteilungen.map((mit)=>{
+                                    return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} uid={this.state.uid}/>)
+                                    })
+                                  }
                                   </div>
                                 </div>
                               </div>
