@@ -8,6 +8,7 @@ import firebase from 'firebase';
 import {Redirect, NavLink, Link} from 'react-router-dom'
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
+import Logo from '../../../../img/logo.png'
 class MietDetails extends Component{
   constructor (props){
   super(props)
@@ -95,8 +96,8 @@ componentWillMount(){
                            {/*Start Header Navigation*/}
                           <div className="navbar-header">
                             <NavLink to="/">
-                              <img src="assets/img/logo.png" className="logo logo-display" alt=""/>
-                              <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                              <img src={Logo} className="logo logo-display" alt=""/>
+                              <img src={Logo} className="logo logo-scrolled" alt=""/>
                             </NavLink>
                           </div>
 
