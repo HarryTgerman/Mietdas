@@ -5,7 +5,7 @@ import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-au
 import {NavLink} from 'react-router-dom'
 import Listing from './Listing/Listing'
 import firebase from 'firebase'
-
+import Logo from '../../../img/logo.png'
 
 class Mieten extends Component{
   constructor(props){
@@ -133,8 +133,8 @@ whenGeoCode.then(() =>{
                          {/*Start Header Navigation*/}
                         <div className="navbar-header">
                           <NavLink to="/">
-                            <img src="assets/img/logo.png" className="logo logo-display" alt=""/>
-                            <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                            <img src={Logo} className="logo logo-display" alt=""/>
+                            <img src={Logo} className="logo logo-scrolled" alt=""/>
                           </NavLink>
                         </div>
 

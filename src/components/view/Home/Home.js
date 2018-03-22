@@ -199,7 +199,7 @@ register(){
                                 <div className="col-md-12 col-sm-12 banner-text">
                                   <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    <form className="form-verticle" >
+                                    <form className="form-verticle formverticle" >
                                       <div className="col-md-4 col-sm-4 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
                                         <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>

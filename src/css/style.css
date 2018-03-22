@@ -1707,8 +1707,12 @@ img.avater-img {
 ========================================================================== */
 /*--- Common Banner Style ------*/
 form.form-verticle {
+	width: 100%;
+    display: inline-block;
+	margin:1em 0
+}
+form.formverticle {
 	padding-left: 200px;
-
 }
 .pulse-tag {
     width: 100%;
