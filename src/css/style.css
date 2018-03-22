@@ -1707,9 +1707,8 @@ img.avater-img {
 ========================================================================== */
 /*--- Common Banner Style ------*/
 form.form-verticle {
-    width: 100%;
-    display: inline-block;
-	margin:1em 0;
+	padding-left: 200px;
+
 }
 .pulse-tag {
     width: 100%;
@@ -2157,8 +2156,9 @@ img.detailsImg {
 }
 
 .home-2 .banner h1 span{
-	opacity:1;
-	color:#ffffff;
+	opacity: 0.9;
+	color: #f64625;
+	text-transform: uppercase;
 }
 
 .home-2 .banner p {
@@ -2352,9 +2352,7 @@ p.listing-location {
 .listing-shot-info.rating i {
     color: #a1acb5;
 }
-.listing-shot-info.rating i.color {
-    color: #FF9800;
-}
+
 .listing-shot-info.rating a.detail-link {
     color: #f64625;
     text-transform: uppercase;
@@ -2948,13 +2946,7 @@ Testimonial Styles
     padding: 0;
     list-style: none;
 }
-.testimonials-2 .testimonial-detail .testimonial-rating li{
-    color: #d3d3d3;
-    display: inline-block;
-}
-.testimonials-2 .testimonial-detail .testimonial-rating li.fa-star{
-    color: #EE5A26;
-}
+
 .testimonials-2 .owl-theme .owl-controls{
     margin-top: 30px;
 }

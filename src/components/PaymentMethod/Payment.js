@@ -8,8 +8,6 @@ import firebase from 'firebase';
 class Payment extends Component{
   constructor(props){
     super(props)
-    this.ArtikelOwnerId = this.props.query.anfrage.uid
-    this.ArtikelOwnerEmail = this.props.query.anfrage.email
     this.state ={
       authenticated: false,
     }

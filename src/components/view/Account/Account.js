@@ -18,7 +18,7 @@ class Account extends Component{
       cards: [],
       anfragen: [{}],
       mitteilungen: [],
-      controll: true,
+      controll: false,
     }
 }
 
@@ -73,7 +73,7 @@ componentWillMount(){
     .on('value', snap => {
       if(snap.val().anfragen == null){
       this.setState({
-        controll: false,
+        controll: true,
         anfragen: 0,
         cardId: snap.val().cardId,
         url: snap.val().url,
@@ -221,17 +221,17 @@ componentWillMount(){
                                 </div>
                                 <div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="designing">
                                   <div className="panel-body">
-                                  { this.state.controll ? (keys.map((key) => {
-                                     const anfrage = anfragen[key]
-                                       return(<Anfragen
-                                       anfrage={anfrage} name={anfrage.name} url={anfrage.url}
-                                       cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
-                                       uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
-                                      nummer={anfrage.nummer} email={anfrage.email}
-                                       mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
-                                       )
-                                     }))
-                                     : (<h3>Du Hast keine Neuen Anfragen</h3>)
+                                  { this.state.controll ? (<h3>Du Hast keine Neuen Anfragen</h3>)
+                                     : (keys.map((key) => {
+                                        const anfrage = anfragen[key]
+                                          return(<Anfragen
+                                          anfrage={anfrage} name={anfrage.name} url={anfrage.url}
+                                          cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
+                                          uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
+                                         nummer={anfrage.nummer} email={anfrage.email}
+                                          mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
+                                          )
+                                        }))
                                    }
                                   </div>
                                 </div>

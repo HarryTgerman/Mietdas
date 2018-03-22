@@ -36,7 +36,13 @@ class Mieten extends Component{
             name : userProfile.displayName,
             email : userProfile.email,
             uid : userProfile.uid,
-            })
+          },()=>{
+            if(this.props.location.query === undefined){
+              return null
+            }else{
+              this.setState({cityValue:this.props.location.query.city},()=>{this.handleFormSubmit()})
+            }
+          })
 
         } else {
           this.setState({
@@ -48,18 +54,21 @@ class Mieten extends Component{
 
     }
 
-  handleFormSubmit = (event) => {
-    const titel = this.titelInput.value;
-    event.preventDefault();
+    handleChange(event) {
+       this.setState({cityValue: event.target.value});
+     }
 
-  let whenGeoCode = geocodeByAddress(titel)
+  handleFormSubmit = () => {
+
+
+  let whenGeoCode = geocodeByAddress(this.state.cityValue)
     .then(results =>{
       const res = results[0]
       this.setState({
         gebiet: res.address_components[1].long_name
       })
     })
-    geocodeByAddress(titel)
+    geocodeByAddress(this.state.cityValue)
     .then(results =>  getLatLng(results[0]))
     .then(latLng =>{
       this.setState({
@@ -71,10 +80,11 @@ class Mieten extends Component{
     .catch(error => console.error('Error', error))
     this.setState({
       gebiet: this.state.address,
-      address: titel
+      address:   this.state.cityValue
     })
-    this.titelInput.value = ""
+
     this.setState({
+        cityValue: "",
         cards: []
       })
 whenGeoCode.then(() =>{
@@ -171,10 +181,10 @@ whenGeoCode.then(() =>{
                               <p>Search by keywords, category, location & filters</p>
                             </div>
 
-                            <form className="form-verticle" onSubmit={this.handleFormSubmit}>
+                            <form className="form-verticle" >
                               <div className="row mrg-0">
                                 <div className="col-md-5 col-sm-5">
-                                  <input type="text" className="form-control left-radius" ref={(input) => { this.titelInput = input; }} placeholder="Keywords.."/>
+                                  <input type="text" className="form-control left-radius" onChange={this.handleChange.bind(this)} placeholder="Keywords.."/>
                                 </div>
 
                                 <div className="col-md-5 col-sm-5 nopadding" >
@@ -184,8 +194,8 @@ whenGeoCode.then(() =>{
                                     <option data-tokens="frosting">Sugar, Spice and all things nice</option>
                                   </select>
                                 </div>
-              					        <div class="col-md-2 col-sm-2" style={{marginLeft: "-30px"}} >
-              						        <button style={{padding: "15px 40px"}} type="Submit" class="btn theme-btn">Search Place</button>
+              					        <div className="col-md-2 col-sm-2" style={{marginLeft: "-30px"}} >
+              						        <button style={{padding: "15px 40px"}} type="button" onClick={this.handleFormSubmit} className="btn theme-btn">Search Place</button>
                                 </div>
 
                               </div>

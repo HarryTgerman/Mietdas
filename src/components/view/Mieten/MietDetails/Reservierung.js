@@ -41,14 +41,7 @@ componentWillMount(){
       })
       }
     })
-    firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid)
-    .once('value', snap => {
-      this.setState({
-        ArtikelOwnerEmail: snap.val().email,
-        telefon: snap.val().telefon,
-        ArtikelOwnerId: this.props.location.query.snap.uid,
-      })
-    })
+
 }
   Mieten(event){
     event.preventDefault;
@@ -68,14 +61,14 @@ componentWillMount(){
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
-      ArtikelOwnerId: this.state.ArtikelOwnerId,
+      ArtikelOwnerId: this.props.location.query.snap.uid,
       uid: this.state.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
       num : num,
       nummer: tefNummer,
-      ArtikelOwnerEmail: this.state.ArtikelOwnerEmail,
-      telefon: this.state.telefon,
+      ArtikelOwnerEmail: this.props.location.query.snap.email,
+      telefon: this.props.location.query.snap.telefon,
       email: email,
       new: true,
     }
@@ -88,7 +81,7 @@ componentWillMount(){
             })
     var currentDate = moment().format("HH-MM")
     const UserRef = firebase.database().ref().child('app')
-    .child('users').child(this.state.uid)
+    .child('users').child(this.props.location.query.snap.uid)
     .child("anfragen/" +this.state.name + num);
     UserRef.set({
       RechnungsAdresse: this.adresseInput.value,
@@ -98,9 +91,9 @@ componentWillMount(){
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
-      ArtikelOwnerId: this.state.ArtikelOwnerId,
-      ArtikelOwnerEmail: this.state.ArtikelOwnerEmail,
-      telefon: this.state.telefon,
+      ArtikelOwnerId: this.props.location.query.snap.uid,
+      ArtikelOwnerEmail: this.props.location.query.snap.email,
+      telefon: this.props.location.query.snap.telefon,
       uid: this.state.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,

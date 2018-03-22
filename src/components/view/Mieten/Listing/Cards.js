@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import firebase from 'firebase'
+import Rating from '../../../StarRating/Rating'
 
 
 
@@ -73,15 +74,10 @@ class  Cards extends Component {
                 </div>
               </div>
             </div>
+
             <div className="listing-shot-info rating">
               <div className="row extra">
-                <div className="col-md-7 col-sm-7 col-xs-6">
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                </div>
+                <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
                   <a href="#" className="detail-link">Open Now</a>
                 </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect,Link} from 'react-router-dom'
 import CountTo from 'react-count-to';
 import firebase from 'firebase'
 
@@ -17,13 +17,19 @@ class Home extends Component{
     this.state = {
        authenticated: false,
        redirect: false,
-       registerRedirect:false
+       registerRedirect:false,
+       selectValue: "",
+       cityValue: "",
     }
 }
 
 
-
-
+handleChange(event) {
+   this.setState({cityValue: event.target.value});
+ }
+ handleChange1(event) {
+    this.setState({selectValue: event.target.value});
+  }
 componentWillMount(){
     this.removeAuthListener = firebase.auth().onAuthStateChanged((user)=>{
       const userProfile = firebase.auth().currentUser;
@@ -45,9 +51,7 @@ componentWillMount(){
 
 
 
-  componentWillUnmount(){
-    this.removeAuthListener();
-  }
+
 
 
 
@@ -137,6 +141,7 @@ register(){
           }else if (this.state.registerRedirect === true) {
             return <Redirect to='/account-erstellen' />
           }
+
           return(
                 <div>
 
@@ -189,29 +194,29 @@ register(){
                            {/*Main Banner Section Start*/}
                           <div className="banner light-opacity bannerBackground2">
                             <div className="container">
+
                               <div className="banner-caption">
                                 <div className="col-md-12 col-sm-12 banner-text">
-                                  <h1>Cooking with fine <span>Wine</span></h1>
+                                  <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    <form className="form-verticle">
+                                    <form className="form-verticle" >
                                       <div className="col-md-4 col-sm-4 no-padd">
-                                        <i className="banner-icon icon-pencil"></i>
-                                        <input type="text" className="form-control left-radius right-br" placeholder="Keywords.."/>
-                                      </div>
-                                      <div className="col-md-3 col-sm-3 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
-                                        <input type="text" className="form-control right-br" placeholder="Location.."/>
+                                        <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
                                       </div>
                                       <div className="col-md-3 col-sm-3 no-padd">
-                                      <i className="banner-icon icon-layers"></i>
-                                          <select className="form-control" data-live-search="true">
-                                            <option data-tokens="ketchup mustard">Choose Category</option>
-                                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+
+                                          <select  onChange={this.handleChange1.bind(this)} className="form-control"  data-live-search="true">
+                                            <option default><i className="banner-icon icon-layers"></i>Wähle Kategorie</option>
+                                            <option value="bagger">Bagger</option>
+                                            <option value="verdichtungstechnik">Verdichtungstechnik</option>
+                                            <option value="anhänger">Anhänger</option>
+                                            <option value="transporter">Transporter</option>
                                           </select>
                                         </div>
                                       <div className="col-md-2 col-sm-2 no-padd">
-                                        <button type="button" className="btn theme-btn btn-default">Search</button>
+                                        <Link to={{pathname: `/mieten/`,query: {city: this.state.cityValue,kategorie: this.state.selectValue}}}>
+                                        <button type="button" className="btn theme-btn btn-default">Suchen</button></Link>
                                       </div>
                                     </form>
 

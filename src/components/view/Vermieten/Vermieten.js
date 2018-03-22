@@ -32,14 +32,13 @@ componentWillMount(){
            .on('value', snapshot => {
              var adresse = snapshot.val().address;
              var ort = snapshot.val().ort;
-             var mobil = snapshot.val().mobil;
+             var telefon = snapshot.val().telefon;
              var festnetz = snapshot.val().number;
 
              this.setState({
                address : adresse,
                ort : ort,
-               mobil: mobil,
-               festnetz: festnetz
+               telefon: telefon,
              },()=>{
              geocodeByAddress(this.state.ort)
             .then(results =>{
@@ -141,7 +140,7 @@ onDrop(imageFiles) {
                     <div className="tab-content tabs">
                       <div role="tabpanel" className="tab-pane fade in active" id="home">
                         <Bagger user={this.state.uid} address={this.state.address}
-                          ort={this.state.ort} mobil={this.state.mobil} festnetz={this.state.festnetz}
+                          ort={this.state.ort} telefon={this.state.mobil} email={this.state.email}
                           bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                       </div>
                       <div role="tabpanel" className="tab-pane fade" id="profile">

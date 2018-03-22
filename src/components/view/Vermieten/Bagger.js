@@ -33,7 +33,7 @@ onDrop(imageFiles) {
          imageUpload: false,
        })
        event.preventDefault();
-       const db = firebase.database().ref('app').child('cards').child('baggger');
+       const db = firebase.database().ref('app').child('cards').child('bagger');
        const userId = this.props.user;
 
        const titel = this.titelInput.value;
@@ -111,6 +111,7 @@ onDrop(imageFiles) {
          const images = this.state.Arr;
          const imageUrl = this.state.Arr[0]
          db.push({
+                  email: this.props.email,
                    hersteller: hersteller,
                    bedienung: bedienung,
                    grabtiefe: grabtiefe,
@@ -125,7 +126,7 @@ onDrop(imageFiles) {
                    ort: this.props.ort,
                    gemietet: 0,
                    cords: this.props.cords,
-                   mobil:this.props.mobil ,
+                   telefon:this.props.telefon ,
                    festnetz: this.props.festnetz,
                    imageArr: images,
                    imageUrl: imageUrl,
