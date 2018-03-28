@@ -36,12 +36,6 @@ class Mieten extends Component{
             name : userProfile.displayName,
             email : userProfile.email,
             uid : userProfile.uid,
-          },()=>{
-            if(this.props.location.query === undefined){
-              return null
-            }else{
-              this.setState({cityValue:this.props.location.query.city},()=>{this.handleFormSubmit()})
-            }
           })
 
         } else {
@@ -52,6 +46,12 @@ class Mieten extends Component{
         }
       })
 
+      if(this.props.location.query === undefined){
+        return null
+      }else{
+        this.setState({cityValue:this.props.location.query.city},()=>{this.handleFormSubmit()})
+      }
+
     }
 
     handleChange(event) {
@@ -60,12 +60,6 @@ class Mieten extends Component{
 
   handleFormSubmit = () => {
 
-  if(this.state.markers && this.state.cards != null){
-    this.setState({
-      markers:[],
-      cards:[]
-    })
-  }
   let whenGeoCode = geocodeByAddress(this.state.cityValue)
     .then(results =>{
       const res = results[0]
