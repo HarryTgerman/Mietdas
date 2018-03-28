@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import AppMap from './Mapcomponent';
 
 
 class HomeMap extends Component{
@@ -13,7 +13,7 @@ class HomeMap extends Component{
               <div>
                 <div className="col-md-4 col-sm-12">
                   <div className="side-full-map">
-                    <div id="home-map"></div>
+                    <AppMap markers={this.props.markers} center={this.props.center} gebiet={this.props.gebiet} position={this.props.position}/>
                   </div>
                 </div>
               </div>

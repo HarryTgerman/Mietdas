@@ -67,10 +67,6 @@ class  Cards extends Component {
             <div className="listing-shot-info">
               <div className="row extra">
                 <div className="col-md-12">
-                  <div className="listing-detail-info">
-                    <span><i className="fa fa-phone" aria-hidden="true"></i> 807-502-5867</span>
-                    <span><i className="fa fa-globe" aria-hidden="true"></i> www.mysitelink.com</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -79,7 +75,7 @@ class  Cards extends Component {
               <div className="row extra">
                 <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                  <a href="#" className="detail-link">Open Now</a>
+                  <a href="#" className="detail-link">Gehe zu</a>
                 </div>
               </div>
             </div>

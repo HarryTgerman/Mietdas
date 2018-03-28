@@ -16,8 +16,8 @@ class Mieten extends Component{
       position: {lat:49.3173858, lng:8.4365679},
       address: "",
       gebiet: "",
-      cards: [
-      ],
+      cards: [],
+      markers : [],
 
     };
     this.onChange = (address) => this.setState({ address })
@@ -60,7 +60,12 @@ class Mieten extends Component{
 
   handleFormSubmit = () => {
 
-
+  if(this.state.markers && this.state.cards != null){
+    this.setState({
+      markers:[],
+      cards:[]
+    })
+  }
   let whenGeoCode = geocodeByAddress(this.state.cityValue)
     .then(results =>{
       const res = results[0]
@@ -80,19 +85,27 @@ class Mieten extends Component{
     .catch(error => console.error('Error', error))
     this.setState({
       gebiet: this.state.address,
-      address:   this.state.cityValue
+      address:   this.state.cityValue,
     })
 
-    this.setState({
-        cityValue: "",
-        cards: []
-      })
 whenGeoCode.then(() =>{
           const previousCards = this.state.cards
+          const previousMarker = this.state.markers;
           firebase.database().ref().child('app').child('cards').orderByChild('gebiet').equalTo(this.state.gebiet)
            .once('value', snap => {
              console.log("hier die Liste", snap.val());
              snap.forEach(childSnapshot =>{
+               previousMarker.push({
+                id: childSnapshot.key,
+                standOrt: childSnapshot.val().ort,
+                cardHeading: childSnapshot.val().cardHeading,
+                cardBewertung: childSnapshot.val().bewertung,
+                cardImage: childSnapshot.val().imageUrl,
+                latitude: childSnapshot.val().cords.lat,
+                longitude: childSnapshot.val().cords.lng,
+                price: childSnapshot.val().cardPreis,
+                key: snap.key,
+                 })
                previousCards.push ({
                  id: childSnapshot.key,
                  cardDesc: childSnapshot.val().cardDesc,
@@ -109,14 +122,85 @@ whenGeoCode.then(() =>{
                  snap: childSnapshot.val(),
                })
                this.setState ({
-                 cards: previousCards
+                 cards: previousCards,
+                 markers: previousMarker
                })
              })
            })
         })
-  }
+}
 
+handleFormSubmit1 = (e) => {
+e.preventDefault();
+if(this.state.markers && this.state.cards != null){
+this.setState({
+  markers:[],
+  cards:[]
+})
+}
+let whenGeoCode = geocodeByAddress(this.state.cityValue)
+.then(results =>{
+  const res = results[0]
+  this.setState({
+    gebiet: res.address_components[1].long_name
+  })
+})
+geocodeByAddress(this.state.cityValue)
+.then(results =>  getLatLng(results[0]))
+.then(latLng =>{
+  this.setState({
+      center: latLng,
+      position: latLng
+  })
+   console.log('Success', latLng)}
+   )
+.catch(error => console.error('Error', error))
+this.setState({
+  gebiet: this.state.address,
+  address:   this.state.cityValue,
+})
 
+whenGeoCode.then(() =>{
+      const previousCards = this.state.cards
+      const previousMarker = this.state.markers;
+      firebase.database().ref().child('app').child('cards').orderByChild('gebiet').equalTo(this.state.gebiet)
+       .once('value', snap => {
+         console.log("hier die Liste", snap.val());
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             cardDesc: childSnapshot.val().cardDesc,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             imageArr: childSnapshot.val().imageArr,
+             gewicht: childSnapshot.val().gewicht,
+             grabtiefe: childSnapshot.val().grabtiefe,
+             transportbreite: childSnapshot.val().transportbreite,
+             transporthoehe: childSnapshot.val().transporthoehe,
+             snap: childSnapshot.val(),
+           })
+           this.setState ({
+             cards: previousCards,
+             markers: previousMarker
+           })
+         })
+       })
+    })
+}
 
         render(){
           return(
@@ -181,12 +265,11 @@ whenGeoCode.then(() =>{
                               <p>Search by keywords, category, location & filters</p>
                             </div>
 
-                            <form className="form-verticle" >
+                            <form className="form-verticle " onSubmit={this.handleFormSubmit1.bind(this)}>
                               <div className="row mrg-0">
                                 <div className="col-md-5 col-sm-5">
-                                  <input type="text" className="form-control left-radius" onChange={this.handleChange.bind(this)} placeholder="Keywords.."/>
+                                  <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleChange.bind(this)} placeholder="Keywords.."/>
                                 </div>
-
                                 <div className="col-md-5 col-sm-5 nopadding" >
                                   <select className="form-control" data-live-search="true">
                                     <option data-tokens="ketchup mustard">Choose Category</option>
@@ -195,9 +278,8 @@ whenGeoCode.then(() =>{
                                   </select>
                                 </div>
               					        <div className="col-md-2 col-sm-2" style={{marginLeft: "-30px"}} >
-              						        <button style={{padding: "15px 40px"}} type="button" onClick={this.handleFormSubmit} className="btn theme-btn">Search Place</button>
+              						        <button style={{padding: "15px 40px"}} type="submit" className="btn theme-btn">Suche</button>
                                 </div>
-
                               </div>
                             </form>
                           </div>
@@ -217,7 +299,7 @@ whenGeoCode.then(() =>{
                         </div>
 
                         {/* Sidebar Map */}
-                            <HomeMap/>
+                            <HomeMap markers={this.state.markers} gebiet={this.state.gebiet} center={this.state.center} position={this.state.position}/>
                             {/*<AppMap center={this.state.center} gebiet={this.state.gebiet} position={this.state.position}/>*/}
 
                       </div>

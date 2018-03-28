@@ -267,40 +267,7 @@ componentWillMount(){
                                 </div>
                               </div>
 
-                							<div className="detail-wrapper">
-                								<div className="detail-wrapper-header">
-                									<h4>Rate & Write Reviews</h4>
-                								</div>
-                								<div className="detail-wrapper-body">
 
-                									<div className="row mrg-bot-10">
-                										<div className="col-md-12">
-                											<div className="rating-opt">
-                												<div   className="jr-ratenode jr-nomal"></div>
-                												<div   className="jr-ratenode jr-nomal "></div>
-                												<div   className="jr-ratenode jr-nomal "></div>
-                												<div   className="jr-ratenode jr-nomal "></div>
-                												<div   className="jr-ratenode jr-nomal "></div>
-                											</div>
-                										</div>
-                									</div>
-
-                									<div className="row">
-                										<div className="col-sm-6">
-                											<input type="text" className="form-control" placeholder="Your Name*"/>
-                										</div>
-                										<div className="col-sm-6">
-                											<input type="email" className="form-control" placeholder="Email Address*"/>
-                										</div>
-                										<div className="col-sm-12">
-                											<textarea className="form-control height-110" placeholder="Tell us your experience..."></textarea>
-                										</div>
-                										<div className="col-sm-12">
-                											<button type="button" className="btn theme-btn">Submit your review</button>
-                										</div>
-                									</div>
-                								</div>
-                							</div>
                 						</div>
                 						{/* End: Listing Detail Wrapper */}
 
@@ -372,57 +339,7 @@ componentWillMount(){
                 			{/* ================ Listing Detail Full Information ======================= */}
 
                 			{/* ================== Login & Sign Up Window ================== */}
-                			<div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-                				<div className="modal-dialog">
-                					<div className="modal-content">
-                						<div className="modal-body">
-                							<div className="tab" role="tabpanel">
-                							{/* Nav tabs */}
-                							<ul className="nav nav-tabs" role="tablist">
-                								<li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-                								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
-                							</ul>
-                							{/* Tab panes */}
-                							<div className="tab-content" id="myModalLabel2">
-                								<div role="tabpanel" className="tab-pane fade in active" id="login">
-                									<img src="assets/img/logo.png" className="img-responsive" alt="" />
-                									<div className="subscribe wow fadeInUp">
-                										<form className="form-inline" method="post">
-                											<div className="col-sm-12">
-                												<div className="form-group">
-                													<input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                													<input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
-                													<div className="center">
-                													<button type="submit" id="login-btn" className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
-                													</div>
-                												</div>
-                											</div>
-                										</form>
-                									</div>
-                								</div>
 
-                								<div role="tabpanel" className="tab-pane fade" id="register">
-                								<img src="assets/img/logo.png" className="img-responsive" alt="" />
-                									<form className="form-inline" method="post">
-                										<div className="col-sm-12">
-                											<div className="form-group">
-                												<input type="text"  name="email" className="form-control" placeholder="Your Name" required=""/>
-                												<input type="email"  name="email" className="form-control" placeholder="Your Email" required=""/>
-                												<input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                												<input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
-                												<div className="center">
-                												<button type="submit" id="subscribe" className="btn btn-midium theme-btn btn-radius width-200"> Create Account </button>
-                												</div>
-                											</div>
-                										</div>
-                									</form>
-                								</div>
-                							</div>
-                							</div>
-                						</div>
-                					</div>
-                				</div>
-                			</div>
                     </div>):(
                       <div className="wrapper">
                   			{/* Start Navigation */}
@@ -595,40 +512,7 @@ componentWillMount(){
                                   </div>
                                 </div>
 
-                  							<div className="detail-wrapper">
-                  								<div className="detail-wrapper-header">
-                  									<h4>Rate & Write Reviews</h4>
-                  								</div>
-                  								<div className="detail-wrapper-body">
-
-                  									<div className="row mrg-bot-10">
-                  										<div className="col-md-12">
-                  											<div className="rating-opt">
-                  												<div   className="jr-ratenode jr-nomal"></div>
-                  												<div   className="jr-ratenode jr-nomal "></div>
-                  												<div   className="jr-ratenode jr-nomal "></div>
-                  												<div   className="jr-ratenode jr-nomal "></div>
-                  												<div   className="jr-ratenode jr-nomal "></div>
-                  											</div>
-                  										</div>
-                  									</div>
-
-                  									<div className="row">
-                  										<div className="col-sm-6">
-                  											<input type="text" className="form-control" placeholder="Your Name*"/>
-                  										</div>
-                  										<div className="col-sm-6">
-                  											<input type="email" className="form-control" placeholder="Email Address*"/>
-                  										</div>
-                  										<div className="col-sm-12">
-                  											<textarea className="form-control height-110" placeholder="Tell us your experience..."></textarea>
-                  										</div>
-                  										<div className="col-sm-12">
-                  											<button type="button" className="btn theme-btn">Submit your review</button>
-                  										</div>
-                  									</div>
-                  								</div>
-                  							</div>
+                  							
                   						</div>
                   						{/* End: Listing Detail Wrapper */}
 
@@ -687,57 +571,7 @@ componentWillMount(){
                   			{/* ================ Listing Detail Full Information ======================= */}
 
                   			{/* ================== Login & Sign Up Window ================== */}
-                  			<div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-                  				<div className="modal-dialog">
-                  					<div className="modal-content">
-                  						<div className="modal-body">
-                  							<div className="tab" role="tabpanel">
-                  							{/* Nav tabs */}
-                  							<ul className="nav nav-tabs" role="tablist">
-                  								<li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-                  								<li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
-                  							</ul>
-                  							{/* Tab panes */}
-                  							<div className="tab-content" id="myModalLabel2">
-                  								<div role="tabpanel" className="tab-pane fade in active" id="login">
-                  									<img src="assets/img/logo.png" className="img-responsive" alt="" />
-                  									<div className="subscribe wow fadeInUp">
-                  										<form className="form-inline" method="post">
-                  											<div className="col-sm-12">
-                  												<div className="form-group">
-                  													<input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                  													<input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
-                  													<div className="center">
-                  													<button type="submit" id="login-btn" className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
-                  													</div>
-                  												</div>
-                  											</div>
-                  										</form>
-                  									</div>
-                  								</div>
 
-                  								<div role="tabpanel" className="tab-pane fade" id="register">
-                  								<img src="assets/img/logo.png" className="img-responsive" alt="" />
-                  									<form className="form-inline" method="post">
-                  										<div className="col-sm-12">
-                  											<div className="form-group">
-                  												<input type="text"  name="email" className="form-control" placeholder="Your Name" required=""/>
-                  												<input type="email"  name="email" className="form-control" placeholder="Your Email" required=""/>
-                  												<input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                  												<input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
-                  												<div className="center">
-                  												<button type="submit" id="subscribe" className="btn btn-midium theme-btn btn-radius width-200"> Create Account </button>
-                  												</div>
-                  											</div>
-                  										</div>
-                  									</form>
-                  								</div>
-                  							</div>
-                  							</div>
-                  						</div>
-                  					</div>
-                  				</div>
-                  			</div>
                       </div>)}
               </div>
             )

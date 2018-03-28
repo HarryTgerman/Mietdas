@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {NavLink, Redirect,Link} from 'react-router-dom'
 import CountTo from 'react-count-to';
 import firebase from 'firebase'
+import Slider from 'react-slick'
 
 const fn = value => <span>{value}</span>
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
@@ -106,18 +107,7 @@ register(){
         // [END_EXCLUDE]
       });
     // ...
-    whenRegister.then(()=>{
-        const user = firebase.auth().currentUser;
-        const name = this.nameInput.value;
-      user.updateProfile({
-        displayName: name,
-      }).then(function() {
-        // Update successful.
-      }).catch(function(error) {
-        // An error happened.
-      })
-
-    })
+    whenRegister
     .then(()=>{ this.setState({registerRedirect:true})
     })
 
@@ -141,8 +131,14 @@ register(){
           }else if (this.state.registerRedirect === true) {
             return <Redirect to='/account-erstellen' />
           }
-
-          return(
+          var slickSettings = {
+              dots: false,
+              infinite: true,
+              speed: 500,
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+                  return(
                 <div>
 
                       <body className="home-2">
@@ -164,7 +160,7 @@ register(){
 
                                {/*Collect the nav links, forms, and other content for toggling*/}
                               <div className="collapse navbar-collapse" id="navbar-menu">
-                                <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
+                                <ul className="nav navbar-nav navbar-center">
 
                                 <li className="dropdown">
                                   <NavLink to="/mieten" >Mieten</NavLink>
@@ -199,7 +195,7 @@ register(){
                                 <div className="col-md-12 col-sm-12 banner-text">
                                   <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    <form className="form-verticle formverticle" >
+                                    <form className="form-verticle formverticle">
                                       <div className="col-md-4 col-sm-4 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
                                         <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
@@ -216,26 +212,10 @@ register(){
                                         </div>
                                       <div className="col-md-2 col-sm-2 no-padd">
                                         <Link to={{pathname: `/mieten/`,query: {city: this.state.cityValue,kategorie: this.state.selectValue}}}>
-                                        <button type="button" className="btn theme-btn btn-default">Suchen</button></Link>
+                                        <button type="submit" className="btn theme-btn btn-default">Suchen</button></Link>
                                       </div>
                                     </form>
 
-                                  <div className="banner-info">
-                                    <div className="row">
-                                      <div className="col-md-4 col-sm-4">
-                                        <i className="ti-location-pin"></i>
-                                        <span>429 Gnatty Creek Road<br/> Bohemia, NY 11716</span>
-                                      </div>
-                                      <div className="col-md-4 col-sm-4">
-                                        <i className="ti-email"></i>
-                                        <span>supportlisting@gmail.com<br/> tlisting@gmail.com</span>
-                                      </div>
-                                      <div className="col-md-4 col-sm-4">
-                                        <i className="ti-headphone"></i>
-                                        <span>+91 256 558 4758<br/> 6952 230 528</span>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -525,7 +505,7 @@ register(){
 
                               <div className="row">
                                 <div className="col-md-12">
-                                  <div id="testimonial-2" className="slick-carousel-2">
+                                 <Slider {...slickSettings}>
                                     <div className="testimonial-detail">
                                       <div className="pic">
                                         <img src="http://via.placeholder.com/80x80" alt=""/>
@@ -589,7 +569,7 @@ register(){
                                         <li className="fa fa-star"></li>
                                       </ul>
                                     </div>
-                                  </div>
+                                  </Slider>
                                 </div>
                               </div>
                             </div>
@@ -634,7 +614,6 @@ register(){
                                       <form className="form-inline"  >
                                         <div className="col-sm-12">
                                           <div className="form-group">
-                                            <input type="text"  name="text" className="form-control" placeholder="Name/Firma" ref={(input) => { this.nameInput = input; }} required=""/>
                                             <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
                                             <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
                                             <div className="center">
