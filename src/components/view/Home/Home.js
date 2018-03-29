@@ -195,7 +195,7 @@ register(){
                                 <div className="col-md-12 col-sm-12 banner-text">
                                   <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    <form className="form-verticle formverticle">
+                                    <form className="formverticle col-sm-12">
                                       <div className="col-md-4 col-sm-4 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
                                         <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
@@ -506,11 +506,11 @@ register(){
                               <div className="row">
                                 <div className="col-md-12">
                                  <Slider {...slickSettings}>
-                                    <div className="testimonial-detail">
+                                    <div className="testimonial-detail col-sm-12">
                                       <div className="pic">
                                         <img src="http://via.placeholder.com/80x80" alt=""/>
                                       </div>
-                                      <p className="description">
+                                      <p className="description col-sm-12">
                                         " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
                                       </p>
                                       <h3 className="testimonial-title">williamson</h3>
@@ -522,11 +522,11 @@ register(){
                                       </ul>
                                     </div>
 
-                                    <div className="testimonial-detail">
+                                    <div className="testimonial-detail col-sm-12">
                                       <div className="pic">
                                         <img src="http://via.placeholder.com/80x80" alt=""/>
                                       </div>
-                                      <p className="description">
+                                      <p className="description col-sm-12">
                                         " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
                                       </p>
                                       <h3 className="testimonial-title">kristiana</h3>
@@ -627,13 +627,13 @@ register(){
                                       </form>
                                     </div>
                                   </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        </body>
+                      </div>
+                    </body>
                 </div>
             )
         }

@@ -127,7 +127,6 @@ onDrop(imageFiles) {
                    gemietet: 0,
                    cords: this.props.cords,
                    telefon:this.props.telefon ,
-                   festnetz: this.props.festnetz,
                    imageArr: images,
                    imageUrl: imageUrl,
                    gebiet: this.props.gebiet,

@@ -2,16 +2,21 @@ import React, {Component} from 'react';
 import HomeMap from './Map/HomeMap'
 import {AppMap} from './Map/Mapcomponent'
 import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
-import {NavLink} from 'react-router-dom'
 import Listing from './Listing/Listing'
 import firebase from 'firebase'
 import Logo from '../../../img/logo.png'
+import {NavLink, Redirect,Link} from 'react-router-dom'
+
+const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
 class Mieten extends Component{
   constructor(props){
     super(props)
     this.Ref = firebase.database().ref().child('app').child('cards');
     this.state = {
+      authenticated: false,
+      redirect: false,
+      registerRedirect:false,
       center: {lat:49.3173858, lng:8.4365679},
       position: {lat:49.3173858, lng:8.4365679},
       address: "",
@@ -57,6 +62,9 @@ class Mieten extends Component{
     handleChange(event) {
        this.setState({cityValue: event.target.value});
      }
+     handleChange2(event) {
+        this.setState({selectValue: event.target.value});
+      }
 
   handleFormSubmit = () => {
 
@@ -85,7 +93,7 @@ class Mieten extends Component{
 whenGeoCode.then(() =>{
           const previousCards = this.state.cards
           const previousMarker = this.state.markers;
-          firebase.database().ref().child('app').child('cards').orderByChild('gebiet').equalTo(this.state.gebiet)
+          firebase.database().ref().child('app').child('cards').child(this.props.location.query.kategorie).orderByChild('gebiet').equalTo(this.state.gebiet)
            .once('value', snap => {
              console.log("hier die Liste", snap.val());
              snap.forEach(childSnapshot =>{
@@ -124,40 +132,40 @@ whenGeoCode.then(() =>{
         })
 }
 
-handleFormSubmit1 = (e) => {
-e.preventDefault();
-if(this.state.markers && this.state.cards != null){
-this.setState({
-  markers:[],
-  cards:[]
-})
-}
-let whenGeoCode = geocodeByAddress(this.state.cityValue)
-.then(results =>{
-  const res = results[0]
-  this.setState({
-    gebiet: res.address_components[1].long_name
+  handleFormSubmit1 = (e) => {
+    e.preventDefault();
+    if(this.state.markers && this.state.cards != null){
+    this.setState({
+      markers:[],
+      cards:[]
+    })
+  }
+  let whenGeoCode = geocodeByAddress(this.state.cityValue)
+  .then(results =>{
+    const res = results[0]
+    this.setState({
+      gebiet: res.address_components[1].long_name
+    })
   })
-})
-geocodeByAddress(this.state.cityValue)
-.then(results =>  getLatLng(results[0]))
-.then(latLng =>{
+  geocodeByAddress(this.state.cityValue)
+  .then(results =>  getLatLng(results[0]))
+  .then(latLng =>{
+    this.setState({
+        center: latLng,
+        position: latLng
+    })
+     console.log('Success', latLng)}
+     )
+  .catch(error => console.error('Error', error))
   this.setState({
-      center: latLng,
-      position: latLng
+    gebiet: this.state.address,
+    address:   this.state.cityValue,
   })
-   console.log('Success', latLng)}
-   )
-.catch(error => console.error('Error', error))
-this.setState({
-  gebiet: this.state.address,
-  address:   this.state.cityValue,
-})
 
 whenGeoCode.then(() =>{
       const previousCards = this.state.cards
       const previousMarker = this.state.markers;
-      firebase.database().ref().child('app').child('cards').orderByChild('gebiet').equalTo(this.state.gebiet)
+      firebase.database().ref().child('app').child('cards').child(this.state.selectValue).orderByChild('gebiet').equalTo(this.state.gebiet)
        .once('value', snap => {
          console.log("hier die Liste", snap.val());
          snap.forEach(childSnapshot =>{
@@ -196,7 +204,82 @@ whenGeoCode.then(() =>{
     })
 }
 
-        render(){
+
+
+authWithFacebook(){
+  let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
+    .then((result, error) => {
+      if (error) {
+        alert(error)
+      } else {
+      }
+    })
+    whenFacebookAuth.then(() =>{ window.location.reload()})
+}
+
+
+signIn(){
+const email = this.userNameInput.value;
+const password = this.passwordInput.value;
+
+let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode === 'auth/wrong-password') {
+          alert('Falsches Passwort');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error)
+      })
+  whenSignIn.then(() =>{ window.location.reload()})
+    }
+
+register(){
+
+
+const email = this.emailInput.value;
+const password = this.createPassword.value;
+let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode === 'auth/weak-password') {
+        alert('Das Password ist zu schwach');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+      // [END_EXCLUDE]
+    });
+  // ...
+  whenRegister
+  .then(()=>{ this.setState({registerRedirect:true})
+  })
+
+}
+
+registerWithFacebook(){
+  let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
+    .then((result, error) => {
+      if (error) {
+        alert(error)
+      } else {
+        this.setState({ authenticated: true})
+      }
+    })
+    whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
+    })
+}
+      render(){
+        if (this.state.redirect === true) {
+          return <Redirect to='/benutzeraccount' />
+        }else if (this.state.registerRedirect === true) {
+          return <Redirect to='/account-erstellen' />
+        }
           return(
               <div>
                 <div>
@@ -261,15 +344,41 @@ whenGeoCode.then(() =>{
 
                             <form className="form-verticle " onSubmit={this.handleFormSubmit1.bind(this)}>
                               <div className="row mrg-0">
-                                <div className="col-md-5 col-sm-5">
-                                  <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleChange.bind(this)} placeholder="Keywords.."/>
+                                <div style={{paddingRight:"0"}}  className="col-md-5 col-sm-5">
+                                  <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
                                 </div>
-                                <div className="col-md-5 col-sm-5 nopadding" >
-                                  <select className="form-control" data-live-search="true">
-                                    <option data-tokens="ketchup mustard">Choose Category</option>
-                                    <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                    <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                                  </select>
+                                <div style={{paddingLeft:"0"}} className="col-md-5 col-sm-5 nopadding" >
+                                <ul className="nav nav-pills nav-stacked" id="stacked-menu">
+                                  <li>
+                                    <a  className="form-control orm-control2 btn dropdown-toggle btn-default  nav-container " data-toggle="collapse" data-parent="#stacked-menu" href="#p1">Kategorien<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a>
+                                    <ul  className="form-control2 nav nav-pills nav-stacked collapse" id="p1">
+                                      <li data-toggle="collapse" data-parent="#p1" href="#pv1">
+                                        <a  className="nav-sub-container">Bagger<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a></li>
+                                        <ul className="nav nav-pills nav-stacked collapse" id="pv1">
+                                          <li><a >Minibagger</a></li>
+                                          <li><a >Radlader</a></li>
+                                          <li><a >Raupenbagger</a></li>
+                                          <li><a >Radbagger</a></li>
+                                        </ul>
+                                        <li data-toggle="collapse" data-parent="#p1" href="#pv2">
+                                          <a className="nav-sub-container">Verdichtungstechnik<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a>
+                                        </li>
+                                        <ul className="nav nav-pills nav-stacked collapse" id="pv2">
+                                          <li><a href="#">Rüttelplatten</a></li>
+                                          <li><a href="#">Stampfer</a></li>
+                                        </ul>
+                                        <li data-toggle="collapse" data-parent="#p1" href="#pv3">
+                                          <a className="nav-sub-container">Anhänger<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a>
+                                        </li>
+                                        <ul className="nav nav-pills nav-stacked collapse" id="pv3">
+                                          <li><a href="#">Baumaschinenanhänger</a></li>
+                                          <li><a href="#">Planenanhänger</a></li>
+                                          <li><a href="#">Kofferanhänger</a></li>
+                                        </ul>
+                                      </ul>
+                                  </li>
+                                </ul>
+
                                 </div>
               					        <div className="col-md-2 col-sm-2" style={{marginLeft: "-30px"}} >
               						        <button style={{padding: "15px 40px"}} type="submit" className="btn theme-btn">Suche</button>
@@ -277,6 +386,7 @@ whenGeoCode.then(() =>{
                               </div>
                             </form>
                           </div>
+
 
                           {/* All Listing */}
                           <div className="row mrg-bot-20">
@@ -307,23 +417,26 @@ whenGeoCode.then(() =>{
                         <div className="modal-content">
                           <div className="modal-body">
                             <div className="tab" role="tabpanel">
-                            {/* Nav tabs */}
+                             {/*Nav tabs*/}
                             <ul className="nav nav-tabs" role="tablist">
-                              <li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Sign In</a></li>
-                              <li role="presentation"><a href="#register" role="tab" data-toggle="tab">Sign Up</a></li>
+                              <li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Log dich ein</a></li>
+                              <li role="presentation"><a href="#register" role="tab" data-toggle="tab">Registriere dich</a></li>
                             </ul>
-                            {/* Tab panes */}
+                             {/*Tab panes*/}
                             <div className="tab-content" id="myModalLabel2">
                               <div role="tabpanel" className="tab-pane fade in active" id="login">
                                 <img src="assets/img/logo.png" className="img-responsive" alt="" />
                                 <div className="subscribe wow fadeInUp">
-                                  <form className="form-inline" method="post">
+                                  <form className="form-inline" >
                                     <div className="col-sm-12">
                                       <div className="form-group">
-                                        <input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                                        <input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
+                                        <input type="email"  name="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input; }} required=""/>
+                                        <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
                                         <div className="center">
-                                        <button type="submit" id="login-btn" className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
+                                        <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
+                                          Log-In mit Facebook
+                                        </button>
+                                        <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
                                         </div>
                                       </div>
                                     </div>
@@ -333,30 +446,31 @@ whenGeoCode.then(() =>{
 
                               <div role="tabpanel" className="tab-pane fade" id="register">
                               <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                                <form className="form-inline" method="post">
+                                <form className="form-inline"  >
                                   <div className="col-sm-12">
                                     <div className="form-group">
-                                      <input type="text"  name="email" className="form-control" placeholder="Your Name" required=""/>
-                                      <input type="email"  name="email" className="form-control" placeholder="Your Email" required=""/>
-                                      <input type="email"  name="email" className="form-control" placeholder="Username" required=""/>
-                                      <input type="password" name="password" className="form-control"  placeholder="Password" required=""/>
+                                      <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
+                                      <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
                                       <div className="center">
-                                      <button type="submit" id="subscribe" className="btn btn-midium theme-btn btn-radius width-200"> Create Account </button>
+                                      <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
+                                        Log-In mit Facebook
+                                      </button>
+                                      <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200"> Registriere Dich </button>
                                       </div>
                                     </div>
                                   </div>
                                 </form>
                               </div>
                             </div>
-                            </div>
                           </div>
                         </div>
                       </div>
-                      </div>
-                      </div>
                     </div>
-                    </div>
-                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
             )

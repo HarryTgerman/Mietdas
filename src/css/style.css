@@ -1716,14 +1716,36 @@ img.avater-img {
        Home Banner Styles
 ========================================================================== */
 /*--- Common Banner Style ------*/
+.form-control2{
+		text-align: left;
+    border: 1px solid #dde6ef;
+    margin-bottom: 10px;
+    box-shadow: none;
+    border-radius: 0;
+    background: #fbfdff;
+    font-size: 15px;
+    color: #445461;
+    font-weight: 400
+}
 form.form-verticle {
 	width: 100%;
     display: inline-block;
 	margin:1em 0
 }
-form.formverticle {
-	padding-left: 200px;
+@media screen and (min-width: 1000px) {
+	form.formverticle {
+			margin-left:  25%;
+	    padding-right:25%;
+	    width: 100%;
+	}
 }
+
+@media screen and (max-width: 320px) {
+	form.formverticle {
+	    width: 80%;
+	}
+}
+
 .pulse-tag {
     width: 100%;
     display: block;

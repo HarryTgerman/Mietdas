@@ -39,9 +39,6 @@ onDrop(imageFiles) {
        const titel = this.titelInput.value;
        const hersteller = this.herstellerInput.value;
        const bedienung = this.bedienungInput.value;
-       const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-       const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-       const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
        const gewicht = this.GewichtdesArtikelsInput.value;
        const preis = this.priceInput.value;
        const desc = this.descInput.value;
@@ -114,9 +111,6 @@ onDrop(imageFiles) {
                   email: this.props.email,
                    hersteller: hersteller,
                    bedienung: bedienung,
-                   grabtiefe: grabtiefe,
-                   transportbreite: transportbreite,
-                   transporthoehe: transporthoehe,
                    cardHeading:titel ,
                    cardPreis: preis,
                    cardDesc: desc,
@@ -127,7 +121,6 @@ onDrop(imageFiles) {
                    gemietet: 0,
                    cords: this.props.cords,
                    telefon:this.props.telefon ,
-                   festnetz: this.props.festnetz,
                    imageArr: images,
                    imageUrl: imageUrl,
                    gebiet: this.props.gebiet,
