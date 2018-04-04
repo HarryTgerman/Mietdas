@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import firebase from 'firebase'
+import Rating from '../../../StarRating/Rating'
 
 
 
@@ -31,15 +32,16 @@ class  Cards extends Component {
 
 
     render(){
-
+      const kategorie = this.props.kategorie+"/";
     return(
 
       <div >
         <div className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
             <Link Link style={{ textDecoration: 'none' }} to={{
-              pathname: `/details/${this.props.id}`,
+              pathname: `/details/search=?${kategorie+this.props.id}`,
             state: {
+            kategorie: this.props.kategorie,
             snap: this.snap,
             cardHeading: this.cardHeading,
             cardDesc: this.cardDesc,
@@ -66,24 +68,15 @@ class  Cards extends Component {
             <div className="listing-shot-info">
               <div className="row extra">
                 <div className="col-md-12">
-                  <div className="listing-detail-info">
-                    <span><i className="fa fa-phone" aria-hidden="true"></i> 807-502-5867</span>
-                    <span><i className="fa fa-globe" aria-hidden="true"></i> www.mysitelink.com</span>
-                  </div>
                 </div>
               </div>
             </div>
+
             <div className="listing-shot-info rating">
               <div className="row extra">
-                <div className="col-md-7 col-sm-7 col-xs-6">
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                </div>
+                <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                  <a href="#" className="detail-link">Open Now</a>
+                  <a href="#" className="detail-link">Gehe zu</a>
                 </div>
               </div>
             </div>

@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink, Redirect,Link} from 'react-router-dom'
 import CountTo from 'react-count-to';
 import firebase from 'firebase'
+import Slider from 'react-slick'
+import Select from 'react-select';
 
 const fn = value => <span>{value}</span>
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
@@ -17,12 +19,19 @@ class Home extends Component{
     this.state = {
        authenticated: false,
        redirect: false,
-       registerRedirect:false
+       registerRedirect:false,
+       selectValue:  { value: '', label: 'wähle Kategorie' },
     }
 }
 
 
-
+handleChange(event) {
+   this.setState({cityValue: event.target.value});
+ }
+ clickLi = (selectValue) => {
+this.setState({ selectValue });
+console.log(`Selected: ${selectValue.label}`);
+}
 
 componentWillMount(){
     this.removeAuthListener = firebase.auth().onAuthStateChanged((user)=>{
@@ -45,9 +54,7 @@ componentWillMount(){
 
 
 
-  componentWillUnmount(){
-    this.removeAuthListener();
-  }
+
 
 
 
@@ -102,18 +109,7 @@ register(){
         // [END_EXCLUDE]
       });
     // ...
-    whenRegister.then(()=>{
-        const user = firebase.auth().currentUser;
-        const name = this.nameInput.value;
-      user.updateProfile({
-        displayName: name,
-      }).then(function() {
-        // Update successful.
-      }).catch(function(error) {
-        // An error happened.
-      })
-
-    })
+    whenRegister
     .then(()=>{ this.setState({registerRedirect:true})
     })
 
@@ -137,7 +133,17 @@ register(){
           }else if (this.state.registerRedirect === true) {
             return <Redirect to='/account-erstellen' />
           }
-          return(
+          var slickSettings = {
+              dots: false,
+              infinite: true,
+              speed: 500,
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+            const { selectedOption } = this.state;
+            const value = selectedOption && selectedOption.value
+
+                  return(
                 <div>
 
                       <body className="home-2">
@@ -159,7 +165,7 @@ register(){
 
                                {/*Collect the nav links, forms, and other content for toggling*/}
                               <div className="collapse navbar-collapse" id="navbar-menu">
-                                <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
+                                <ul className="nav navbar-nav navbar-center">
 
                                 <li className="dropdown">
                                   <NavLink to="/mieten" >Mieten</NavLink>
@@ -189,48 +195,47 @@ register(){
                            {/*Main Banner Section Start*/}
                           <div className="banner light-opacity bannerBackground2">
                             <div className="container">
+
                               <div className="banner-caption">
                                 <div className="col-md-12 col-sm-12 banner-text">
-                                  <h1>Cooking with fine <span>Wine</span></h1>
+                                  <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    <form className="form-verticle">
-                                      <div className="col-md-4 col-sm-4 no-padd">
-                                        <i className="banner-icon icon-pencil"></i>
-                                        <input type="text" className="form-control left-radius right-br" placeholder="Keywords.."/>
-                                      </div>
-                                      <div className="col-md-3 col-sm-3 no-padd">
+                                    <form className="form-verticle col-sm-12">
+                                      <div className="col-md-5 col-sm-5 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
-                                        <input type="text" className="form-control right-br" placeholder="Location.."/>
+                                        <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
                                       </div>
-                                      <div className="col-md-3 col-sm-3 no-padd">
-                                      <i className="banner-icon icon-layers"></i>
-                                          <select className="form-control" data-live-search="true">
-                                            <option data-tokens="ketchup mustard">Choose Category</option>
-                                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                                          </select>
+                                      <div className="col-md-5 col-sm-5 no-padd">
+
+                                      <Select
+
+                                        className="form-control"
+                                          name="form-field-name"
+                                          value={value}
+                                          onChange={this.clickLi.bind(this)}
+                                          placeholder={this.state.selectValue.label}
+                                          options={[
+                                            { value: 'Bagger', label: 'Bagger' },
+                                            { value: 'Bagger', label: 'Minibagger' },
+                                            { value: 'Bagger', label: 'Radlader' },
+                                            { value: 'Bagger', label: 'Raupenbagger' },
+                                            { value: 'Bagger', label: 'Radbagger' },
+                                            { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
+                                            { value: 'verdichtungstechnik', label: 'Stampfer' },
+                                            { value: 'verdichtungstechnik', label: 'Rüttelplatten' },
+                                            { value: 'anhänger', label: 'Anhänger' },
+                                            { value: 'anhänger', label: 'Baumaschinenanhänger' },
+                                            { value: 'anhänger', label: 'Planenanhänger' },
+                                            { value: 'anhänger', label: 'Kofferanhänger' },
+                                          ]}
+                                        />
                                         </div>
                                       <div className="col-md-2 col-sm-2 no-padd">
-                                        <button type="button" className="btn theme-btn btn-default">Search</button>
+                                        <Link to={{pathname: `/mieten/`,query: {city: this.state.cityValue,kategorie: this.state.selectValue.value}}}>
+                                        <button type="submit" className="btn theme-btn btn-default">Suchen</button></Link>
                                       </div>
                                     </form>
 
-                                  <div className="banner-info">
-                                    <div className="row">
-                                      <div className="col-md-4 col-sm-4">
-                                        <i className="ti-location-pin"></i>
-                                        <span>429 Gnatty Creek Road<br/> Bohemia, NY 11716</span>
-                                      </div>
-                                      <div className="col-md-4 col-sm-4">
-                                        <i className="ti-email"></i>
-                                        <span>supportlisting@gmail.com<br/> tlisting@gmail.com</span>
-                                      </div>
-                                      <div className="col-md-4 col-sm-4">
-                                        <i className="ti-headphone"></i>
-                                        <span>+91 256 558 4758<br/> 6952 230 528</span>
-                                      </div>
-                                    </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -239,6 +244,7 @@ register(){
                            {/*Main Banner Section End*/}
 
                            {/*Services Section*/}
+
                           <section className="features">
                             <div className="container">
                               <div className="row">
@@ -271,6 +277,7 @@ register(){
                                 </div>
                               </div>
                             </div>
+
                           </section>
                            {/*End Services Section*/}
 
@@ -520,12 +527,12 @@ register(){
 
                               <div className="row">
                                 <div className="col-md-12">
-                                  <div id="testimonial-2" className="slick-carousel-2">
-                                    <div className="testimonial-detail">
+                                 <Slider {...slickSettings}>
+                                    <div className="testimonial-detail col-sm-12">
                                       <div className="pic">
                                         <img src="http://via.placeholder.com/80x80" alt=""/>
                                       </div>
-                                      <p className="description">
+                                      <p className="description col-sm-12">
                                         " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
                                       </p>
                                       <h3 className="testimonial-title">williamson</h3>
@@ -537,11 +544,11 @@ register(){
                                       </ul>
                                     </div>
 
-                                    <div className="testimonial-detail">
+                                    <div className="testimonial-detail col-sm-12">
                                       <div className="pic">
                                         <img src="http://via.placeholder.com/80x80" alt=""/>
                                       </div>
-                                      <p className="description">
+                                      <p className="description col-sm-12">
                                         " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
                                       </p>
                                       <h3 className="testimonial-title">kristiana</h3>
@@ -584,7 +591,7 @@ register(){
                                         <li className="fa fa-star"></li>
                                       </ul>
                                     </div>
-                                  </div>
+                                  </Slider>
                                 </div>
                               </div>
                             </div>
@@ -629,7 +636,6 @@ register(){
                                       <form className="form-inline"  >
                                         <div className="col-sm-12">
                                           <div className="form-group">
-                                            <input type="text"  name="text" className="form-control" placeholder="Name/Firma" ref={(input) => { this.nameInput = input; }} required=""/>
                                             <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
                                             <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
                                             <div className="center">
@@ -643,13 +649,13 @@ register(){
                                       </form>
                                     </div>
                                   </div>
-                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                        </body>
+                      </div>
+                    </body>
                 </div>
             )
         }

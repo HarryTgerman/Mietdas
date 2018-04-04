@@ -1,0 +1,25 @@
+.rating-stars {
+  position: relative;
+  display: block;
+  text-align: center;
+}
+
+.rating-stars .star {
+  display: inline-block;
+  padding: 0 5px;
+  font-size: 2.5em;
+  color: #ccc;
+
+  transition: 0.1s all ease-in-out;
+  transform: scale(0.8);
+}
+.rating-stars .star:hover,
+.rating-stars .star.semi-active {
+  color: #ffd73e !important;
+  transform: scale(1);
+}
+
+.rating-stars .star.active {
+  color: #FF9800 !important;
+  transform: scale(1);
+}

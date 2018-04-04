@@ -5,22 +5,19 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Bagger extends Component{
+class Anhänger extends Component{
   constructor(props){
     super(props)
-    this.artikelHochladen = this.artikelHochladen.bind(this)
     this.state = {
        authenticated: false,
        redirect: false,
        imageFiles: [],
        pictures: [],
-       showAlert: false,
-       alert: "",
 
     }
 }
 
-c
+
 
 onDrop(imageFiles) {
 
@@ -30,23 +27,18 @@ onDrop(imageFiles) {
  }
 
 
-formControl(event){
-  event.preventDefault();
-
-
-
-}
- artikelHochladen() {
-
-       const db = firebase.database().ref('app').child('cards').child('bagger');
+ artikelHochladen(event) {
+       this.setState({
+         loading: true,
+         imageUpload: false,
+       })
+       event.preventDefault();
+       const db = firebase.database().ref('app').child('cards').child('anhänger');
        const userId = this.props.user;
 
        const titel = this.titelInput.value;
        const hersteller = this.herstellerInput.value;
        const bedienung = this.bedienungInput.value;
-       const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-       const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-       const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
        const gewicht = this.GewichtdesArtikelsInput.value;
        const preis = this.priceInput.value;
        const desc = this.descInput.value;
@@ -119,9 +111,6 @@ formControl(event){
                   email: this.props.email,
                    hersteller: hersteller,
                    bedienung: bedienung,
-                   grabtiefe: grabtiefe,
-                   transportbreite: transportbreite,
-                   transporthoehe: transporthoehe,
                    cardHeading:titel ,
                    cardPreis: preis,
                    cardDesc: desc,
@@ -170,16 +159,10 @@ formControl(event){
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Bagger Inserieren</h3>
+            								<h3>Anhänger Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
-            							<form onSubmit={this.formControl.bind(this)}>
-                            { this.state.showAlert ?
-                               (<div className="alert alert-danger" role="alert">
-                                  <strong>Achtung</strong>{this.state.alert}
-                                </div>)
-                              :(null)
-                            }
+            							<form onSubmit={this.artikelHochladen.bind(this)}>
             								<div className="row mrg-r-10 mrg-l-10">
             									<div className="col-sm-6">
             										<label>Bezeichnung</label>
@@ -197,39 +180,14 @@ formControl(event){
             									</div>
 
 
-                              <div className="col-sm-3">
-            										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
 
-            									<div className="col-sm-3">
-            										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-
-                              <div className="col-sm-3">
-            										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
 
             									<div className="col-sm-6">
             										<label>Gewicht</label>
             										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
             									</div>
 
-                              <div className="col-sm-6">
+                              <div className="col-sm-12">
                                 <label>Preis</label>
                                 <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
@@ -288,4 +246,4 @@ formControl(event){
         }
     }
 
-export default Bagger;
+export default Anhänger;

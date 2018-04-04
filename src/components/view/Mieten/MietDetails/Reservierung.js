@@ -4,6 +4,7 @@ import {NavLink, Redirect} from 'react-router-dom';
 import backgroundImg from '../../../../img/backgroundPayment.jpg';
 import moment from 'moment';
 import diff from 'moment';
+import Logo from '../../../../img/logo.png'
 
 
 class Reservierung extends Component{
@@ -41,6 +42,7 @@ componentWillMount(){
       })
       }
     })
+
 }
   Mieten(event){
     event.preventDefault;
@@ -60,11 +62,14 @@ componentWillMount(){
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
+      ArtikelOwnerId: this.props.location.query.snap.uid,
       uid: this.state.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
       num : num,
       nummer: tefNummer,
+      ArtikelOwnerEmail: this.props.location.query.snap.email,
+      telefon: this.props.location.query.snap.telefon,
       email: email,
       new: true,
     }
@@ -77,7 +82,7 @@ componentWillMount(){
             })
     var currentDate = moment().format("HH-MM")
     const UserRef = firebase.database().ref().child('app')
-    .child('users').child(this.state.uid)
+    .child('users').child(this.props.location.query.snap.uid)
     .child("anfragen/" +this.state.name + num);
     UserRef.set({
       RechnungsAdresse: this.adresseInput.value,
@@ -87,6 +92,9 @@ componentWillMount(){
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
+      ArtikelOwnerId: this.props.location.query.snap.uid,
+      ArtikelOwnerEmail: this.props.location.query.snap.email,
+      telefon: this.props.location.query.snap.telefon,
       uid: this.state.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
@@ -131,8 +139,8 @@ componentWillMount(){
                        {/*Start Header Navigation*/}
                       <div className="navbar-header">
                         <NavLink to="/">
-                          <img src="assets/img/logo.png" className="logo logo-display" alt=""/>
-                          <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                          <img src={Logo} className="logo logo-display" alt=""/>
+                          <img src={Logo} className="logo logo-scrolled" alt=""/>
                         </NavLink>
                       </div>
 
