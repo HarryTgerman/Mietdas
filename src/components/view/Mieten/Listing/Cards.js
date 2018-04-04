@@ -32,15 +32,16 @@ class  Cards extends Component {
 
 
     render(){
-
+      const kategorie = this.props.kategorie+"/";
     return(
 
       <div >
         <div className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
             <Link Link style={{ textDecoration: 'none' }} to={{
-              pathname: `/details/${this.props.id}`,
+              pathname: `/details/search=?${kategorie+this.props.id}`,
             state: {
+            kategorie: this.props.kategorie,
             snap: this.snap,
             cardHeading: this.cardHeading,
             cardDesc: this.cardDesc,

@@ -26,8 +26,8 @@ class MietDetails extends Component{
 
 componentWillMount(){
     const url = this.props.location.pathname;
-    const ref = url.split('/');
-    const cardId = ref[2];
+    const ref = url.split('?');
+    const cardId = ref[1];
     const urlPromis =  new Promise ((resolve, reject)=>{
     firebase.database().ref().child('app').child('cards')
       .child(cardId)
@@ -512,7 +512,7 @@ componentWillMount(){
                                   </div>
                                 </div>
 
-                  							
+
                   						</div>
                   						{/* End: Listing Detail Wrapper */}
 

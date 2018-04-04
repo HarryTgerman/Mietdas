@@ -8,11 +8,14 @@ import Dropzone from 'react-dropzone';
 class Bagger extends Component{
   constructor(props){
     super(props)
+    this.artikelHochladen = this.artikelHochladen.bind(this)
     this.state = {
        authenticated: false,
        redirect: false,
        imageFiles: [],
        pictures: [],
+       showAlert: false,
+       alert: "",
 
     }
 }
@@ -27,12 +30,14 @@ onDrop(imageFiles) {
  }
 
 
- artikelHochladen(event) {
-       this.setState({
-         loading: true,
-         imageUpload: false,
-       })
-       event.preventDefault();
+formControl(event){
+  event.preventDefault();
+
+
+
+}
+ artikelHochladen() {
+
        const db = firebase.database().ref('app').child('cards').child('bagger');
        const userId = this.props.user;
 
@@ -168,7 +173,13 @@ onDrop(imageFiles) {
             								<h3>Bagger Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
-            							<form onSubmit={this.artikelHochladen.bind(this)}>
+            							<form onSubmit={this.formControl.bind(this)}>
+                            { this.state.showAlert ?
+                               (<div className="alert alert-danger" role="alert">
+                                  <strong>Achtung</strong>{this.state.alert}
+                                </div>)
+                              :(null)
+                            }
             								<div className="row mrg-r-10 mrg-l-10">
             									<div className="col-sm-6">
             										<label>Bezeichnung</label>

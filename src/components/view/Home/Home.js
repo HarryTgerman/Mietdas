@@ -3,6 +3,7 @@ import {NavLink, Redirect,Link} from 'react-router-dom'
 import CountTo from 'react-count-to';
 import firebase from 'firebase'
 import Slider from 'react-slick'
+import Select from 'react-select';
 
 const fn = value => <span>{value}</span>
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
@@ -19,8 +20,7 @@ class Home extends Component{
        authenticated: false,
        redirect: false,
        registerRedirect:false,
-       selectValue: "",
-       cityValue: "",
+       selectValue:  { value: '', label: 'wähle Kategorie' },
     }
 }
 
@@ -28,9 +28,11 @@ class Home extends Component{
 handleChange(event) {
    this.setState({cityValue: event.target.value});
  }
- handleChange1(event) {
-    this.setState({selectValue: event.target.value});
-  }
+ clickLi = (selectValue) => {
+this.setState({ selectValue });
+console.log(`Selected: ${selectValue.label}`);
+}
+
 componentWillMount(){
     this.removeAuthListener = firebase.auth().onAuthStateChanged((user)=>{
       const userProfile = firebase.auth().currentUser;
@@ -138,6 +140,9 @@ register(){
               slidesToShow: 1,
               slidesToScroll: 1
             }
+            const { selectedOption } = this.state;
+            const value = selectedOption && selectedOption.value
+
                   return(
                 <div>
 
@@ -195,23 +200,38 @@ register(){
                                 <div className="col-md-12 col-sm-12 banner-text">
                                   <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
                                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                    <form className="formverticle col-sm-12">
-                                      <div className="col-md-4 col-sm-4 no-padd">
+                                    <form className="form-verticle col-sm-12">
+                                      <div className="col-md-5 col-sm-5 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
                                         <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
                                       </div>
-                                      <div className="col-md-3 col-sm-3 no-padd">
+                                      <div className="col-md-5 col-sm-5 no-padd">
 
-                                          <select  onChange={this.handleChange1.bind(this)} className="form-control"  data-live-search="true">
-                                            <option default><i className="banner-icon icon-layers"></i>Wähle Kategorie</option>
-                                            <option value="bagger">Bagger</option>
-                                            <option value="verdichtungstechnik">Verdichtungstechnik</option>
-                                            <option value="anhänger">Anhänger</option>
-                                            <option value="transporter">Transporter</option>
-                                          </select>
+                                      <Select
+
+                                        className="form-control"
+                                          name="form-field-name"
+                                          value={value}
+                                          onChange={this.clickLi.bind(this)}
+                                          placeholder={this.state.selectValue.label}
+                                          options={[
+                                            { value: 'Bagger', label: 'Bagger' },
+                                            { value: 'Bagger', label: 'Minibagger' },
+                                            { value: 'Bagger', label: 'Radlader' },
+                                            { value: 'Bagger', label: 'Raupenbagger' },
+                                            { value: 'Bagger', label: 'Radbagger' },
+                                            { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
+                                            { value: 'verdichtungstechnik', label: 'Stampfer' },
+                                            { value: 'verdichtungstechnik', label: 'Rüttelplatten' },
+                                            { value: 'anhänger', label: 'Anhänger' },
+                                            { value: 'anhänger', label: 'Baumaschinenanhänger' },
+                                            { value: 'anhänger', label: 'Planenanhänger' },
+                                            { value: 'anhänger', label: 'Kofferanhänger' },
+                                          ]}
+                                        />
                                         </div>
                                       <div className="col-md-2 col-sm-2 no-padd">
-                                        <Link to={{pathname: `/mieten/`,query: {city: this.state.cityValue,kategorie: this.state.selectValue}}}>
+                                        <Link to={{pathname: `/mieten/`,query: {city: this.state.cityValue,kategorie: this.state.selectValue.value}}}>
                                         <button type="submit" className="btn theme-btn btn-default">Suchen</button></Link>
                                       </div>
                                     </form>
@@ -224,6 +244,7 @@ register(){
                            {/*Main Banner Section End*/}
 
                            {/*Services Section*/}
+
                           <section className="features">
                             <div className="container">
                               <div className="row">
@@ -256,6 +277,7 @@ register(){
                                 </div>
                               </div>
                             </div>
+
                           </section>
                            {/*End Services Section*/}
 

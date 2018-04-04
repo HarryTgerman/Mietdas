@@ -4,6 +4,7 @@ import {NavLink, Redirect} from 'react-router-dom';
 import backgroundImg from '../../../../img/backgroundPayment.jpg';
 import moment from 'moment';
 import diff from 'moment';
+import Logo from '../../../../img/logo.png'
 
 
 class Reservierung extends Component{
@@ -138,8 +139,8 @@ componentWillMount(){
                        {/*Start Header Navigation*/}
                       <div className="navbar-header">
                         <NavLink to="/">
-                          <img src="assets/img/logo.png" className="logo logo-display" alt=""/>
-                          <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                          <img src={Logo} className="logo logo-display" alt=""/>
+                          <img src={Logo} className="logo logo-scrolled" alt=""/>
                         </NavLink>
                       </div>
 

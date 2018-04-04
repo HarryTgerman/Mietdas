@@ -6,6 +6,7 @@ import Listing from './Listing/Listing'
 import firebase from 'firebase'
 import Logo from '../../../img/logo.png'
 import {NavLink, Redirect,Link} from 'react-router-dom'
+import Select from 'react-select';
 
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
@@ -23,10 +24,11 @@ class Mieten extends Component{
       gebiet: "",
       cards: [],
       markers : [],
-
+      selectValue:  { value: '', label: 'wähle Kategorie' },
     };
     this.onChange = (address) => this.setState({ address })
     }
+
 
 
     componentWillMount(){
@@ -62,9 +64,13 @@ class Mieten extends Component{
     handleChange(event) {
        this.setState({cityValue: event.target.value});
      }
-     handleChange2(event) {
-        this.setState({selectValue: event.target.value});
-      }
+
+
+    clickLi = (selectValue) => {
+   this.setState({ selectValue });
+   console.log(`Selected: ${selectValue.label}`);
+ }
+
 
   handleFormSubmit = () => {
 
@@ -93,12 +99,13 @@ class Mieten extends Component{
 whenGeoCode.then(() =>{
           const previousCards = this.state.cards
           const previousMarker = this.state.markers;
-          firebase.database().ref().child('app').child('cards').child(this.props.location.query.kategorie).orderByChild('gebiet').equalTo(this.state.gebiet)
+          firebase.database().ref().child('app').child('cards')/*.child(this.props.location.query.kategorie)*/.orderByChild('gebiet').equalTo(this.state.gebiet)
            .once('value', snap => {
              console.log("hier die Liste", snap.val());
              snap.forEach(childSnapshot =>{
                previousMarker.push({
                 id: childSnapshot.key,
+                kategorie: childSnapshot.val().kategorie,
                 standOrt: childSnapshot.val().ort,
                 cardHeading: childSnapshot.val().cardHeading,
                 cardBewertung: childSnapshot.val().bewertung,
@@ -109,6 +116,7 @@ whenGeoCode.then(() =>{
                 key: snap.key,
                  })
                previousCards.push ({
+                 kategorie: childSnapshot.val().kategorie,
                  id: childSnapshot.key,
                  cardDesc: childSnapshot.val().cardDesc,
                  cardPreis: childSnapshot.val().cardPreis,
@@ -165,11 +173,12 @@ whenGeoCode.then(() =>{
 whenGeoCode.then(() =>{
       const previousCards = this.state.cards
       const previousMarker = this.state.markers;
-      firebase.database().ref().child('app').child('cards').child(this.state.selectValue).orderByChild('gebiet').equalTo(this.state.gebiet)
+      firebase.database().ref().child('app').child('cards')/*.child(this.state.selectValue.value)*/.orderByChild('gebiet').equalTo(this.state.gebiet)
        .once('value', snap => {
          console.log("hier die Liste", snap.val());
          snap.forEach(childSnapshot =>{
            previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
              id: childSnapshot.key,
              standOrt: childSnapshot.val().ort,
              cardHeading: childSnapshot.val().cardHeading,
@@ -182,6 +191,7 @@ whenGeoCode.then(() =>{
              })
            previousCards.push ({
              id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
              cardDesc: childSnapshot.val().cardDesc,
              cardPreis: childSnapshot.val().cardPreis,
              cardHeading: childSnapshot.val().cardHeading,
@@ -280,6 +290,8 @@ registerWithFacebook(){
         }else if (this.state.registerRedirect === true) {
           return <Redirect to='/account-erstellen' />
         }
+        const { selectedOption } = this.state;
+    const value = selectedOption && selectedOption.value
           return(
               <div>
                 <div>
@@ -348,37 +360,28 @@ registerWithFacebook(){
                                   <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
                                 </div>
                                 <div style={{paddingLeft:"0"}} className="col-md-5 col-sm-5 nopadding" >
-                                <ul className="nav nav-pills nav-stacked" id="stacked-menu">
-                                  <li>
-                                    <a  className="form-control orm-control2 btn dropdown-toggle btn-default  nav-container " data-toggle="collapse" data-parent="#stacked-menu" href="#p1">Kategorien<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a>
-                                    <ul  className="form-control2 nav nav-pills nav-stacked collapse" id="p1">
-                                      <li data-toggle="collapse" data-parent="#p1" href="#pv1">
-                                        <a  className="nav-sub-container">Bagger<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a></li>
-                                        <ul className="nav nav-pills nav-stacked collapse" id="pv1">
-                                          <li><a >Minibagger</a></li>
-                                          <li><a >Radlader</a></li>
-                                          <li><a >Raupenbagger</a></li>
-                                          <li><a >Radbagger</a></li>
-                                        </ul>
-                                        <li data-toggle="collapse" data-parent="#p1" href="#pv2">
-                                          <a className="nav-sub-container">Verdichtungstechnik<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a>
-                                        </li>
-                                        <ul className="nav nav-pills nav-stacked collapse" id="pv2">
-                                          <li><a href="#">Rüttelplatten</a></li>
-                                          <li><a href="#">Stampfer</a></li>
-                                        </ul>
-                                        <li data-toggle="collapse" data-parent="#p1" href="#pv3">
-                                          <a className="nav-sub-container">Anhänger<i stlye={{paddingLeft:"10px",float:"right"}} className="fa fa-arrow-down"></i></a>
-                                        </li>
-                                        <ul className="nav nav-pills nav-stacked collapse" id="pv3">
-                                          <li><a href="#">Baumaschinenanhänger</a></li>
-                                          <li><a href="#">Planenanhänger</a></li>
-                                          <li><a href="#">Kofferanhänger</a></li>
-                                        </ul>
-                                      </ul>
-                                  </li>
-                                </ul>
 
+                                <Select
+                                    className="form-control"
+                                    name="form-field-name"
+                                    value={value}
+                                    onChange={this.clickLi.bind(this)}
+                                    placeholder={this.state.selectValue.label}
+                                    options={[
+                                      { value: 'Bagger', label: 'Bagger' },
+                                      { value: 'Bagger', label: 'Minibagger' },
+                                      { value: 'Bagger', label: 'Radlader' },
+                                      { value: 'Bagger', label: 'Raupenbagger' },
+                                      { value: 'Bagger', label: 'Radbagger' },
+                                      { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
+                                      { value: 'verdichtungstechnik', label: 'Stampfer' },
+                                      { value: 'verdichtungstechnik', label: 'Rüttelplatten' },
+                                      { value: 'anhänger', label: 'Anhänger' },
+                                      { value: 'anhänger', label: 'Baumaschinenanhänger' },
+                                      { value: 'anhänger', label: 'Planenanhänger' },
+                                      { value: 'anhänger', label: 'Kofferanhänger' },
+                                    ]}
+                                  />
                                 </div>
               					        <div className="col-md-2 col-sm-2" style={{marginLeft: "-30px"}} >
               						        <button style={{padding: "15px 40px"}} type="submit" className="btn theme-btn">Suche</button>
@@ -391,13 +394,13 @@ registerWithFacebook(){
                           {/* All Listing */}
                           <div className="row mrg-bot-20">
                             <div className="col-md-12">
-                              <h5>70 result Found</h5>
+                              <h5>{this.state.cards.length} Ergebnisse</h5>
                             </div>
                           </div>
 
-                          <div className="row">
+                          <div  className="row">
                             {/* Single Listing- */}
-                            <Listing gebiet={this.state.gebiet} cards={this.state.cards}/>
+                            <Listing gebiet={this.state.gebiet} cards={this.state.cards} />
                           </div>
 
                         </div>

@@ -1613,6 +1613,21 @@ ol.check-listing > li:before, ul.check-listing > li:before {
     Navigation
 ========================================================================== */
 /*----------- Default Navigation -----------*/
+sidebar-collapse .nav > li > a:hover, .sidebar-collapse .nav > li > a:focus {
+    background: #24324a;
+    color: #e61b55;
+    outline: 0;
+}
+.sidebar-collapse > .nav > li > a {
+    padding: 17px 10px;
+}
+
+.sidebar-collapse .nav > li > a {
+    background: #1d293e;
+    text-shadow: none;
+    color: #91b1c3;
+    text-transform: capitalize !important;
+}
 .navbar-default {
 	background-image: none;
 	background-image: none;
@@ -1716,10 +1731,10 @@ img.avater-img {
        Home Banner Styles
 ========================================================================== */
 /*--- Common Banner Style ------*/
+
 .form-control2{
-		text-align: left;
+		padding-bottom: -20px;
     border: 1px solid #dde6ef;
-    margin-bottom: 10px;
     box-shadow: none;
     border-radius: 0;
     background: #fbfdff;
@@ -1753,12 +1768,11 @@ form.form-verticle {
     text-align: center;
 }
 i.banner-icon {
+		line-height: 0.5;
     position: absolute;
     left: 15px;
-    top: 16px;
     font-size: 16px;
     color: #90969e;
-    z-index: 1;
 }
 a.pulse.btn-banner-link {
     width: 55px;
@@ -2254,10 +2268,15 @@ a.btn.listing-btn {
 }
 /*-------- Banner Search form style ------------*/
 .banner-caption .form-control{
+	height:55px !important;
+}
+.banner-caption .btn-default{
+	height:55px !important;
+}
+.banner-caption .form-control{
 	background:#ffffff;
 	border:none;
 	border-radius:0px 0px 0px 0px ;
-	height:52px;
 	color:#90969e;
 	font-size:15px;
 	width:100%;
@@ -2287,13 +2306,12 @@ a.btn.listing-btn {
 	box-shadow:none;
 	border-radius:0px;
 	padding:0 20px;
-	height:52px;
+	height:50px;
 	width:100%;
 }
 
 .banner-caption .btn-primary{
 	background:#ff431e;
-	height:48px;
 	color:#ffffff;
 	border-radius:0px;
 	border-color:#ff431e;

@@ -143,7 +143,7 @@ withStateHandlers(() => ({
                         </div>
                         <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
                         <Link to={{
-                          pathname: `/details/${marker.id}`,
+                          pathname: `/details/${marker.kategorie +"/"+marker.id}`,
                         }}><a href="#" className="detail-link">gehe zu</a></Link>
                         </div>
                       </div>

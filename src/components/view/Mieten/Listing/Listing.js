@@ -14,13 +14,13 @@ class  Listing extends Component {
 
    render(){
     return(
-          <div>
+          <div style={{minHeight:"500px"}}>
               {this.props.cards.map((card) => {
                 return(<Cards cardHeading={card.cardHeading} cardDesc={card.cardDesc}
                cardPreis={card.cardPreis} id={card.id} bewertung={card.cardBewertung}
                image={card.cardImage} standOrt={card.standOrt} imageArr={card.imageArr}
                gewicht={card.gewicht} grabtiefe={card.grabtiefe} transportbreite={card.transportbreite}
-                transporthoehe={card.transporthoehe} snap={card.snap}/>)
+                transporthoehe={card.transporthoehe} snap={card.snap} kategorie={card.kategorie}/>)
               })
             }
           </div>
