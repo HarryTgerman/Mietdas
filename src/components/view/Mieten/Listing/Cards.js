@@ -24,6 +24,7 @@ class  Cards extends Component {
       this.snap = props.snap;
 
       this.state ={
+        kategorie:"",
         pullRight: true,
         showModal: false,
       }
@@ -32,14 +33,16 @@ class  Cards extends Component {
 
 
     render(){
-      const kategorie = this.props.kategorie+"/";
+
+
+
     return(
 
       <div >
         <div className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
             <Link Link style={{ textDecoration: 'none' }} to={{
-              pathname: `/details/search=?${kategorie+this.props.id}`,
+              pathname: `/details/search=?${this.props.kategorie+"/"+this.props.id}`,
             state: {
             kategorie: this.props.kategorie,
             snap: this.snap,

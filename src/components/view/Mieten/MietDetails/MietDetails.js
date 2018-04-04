@@ -415,7 +415,7 @@ componentWillMount(){
                   										</div>
                   									</div>
                                     <figure className="img-holder ">
-                                      <a><img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2Fimageedit_2_7673268839.jpg?alt=media&token=3f6fc701-309e-42da-a17c-0ca3f573d2a2" style={{height:"470px", width: "710px"}}
+                                      <a><img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2Fdefault-compressor.jpeg?alt=media&token=9b215bff-b052-4976-8e59-9279bfe4be88" style={{height:"470px", width: "710px"}}
                                        className="detailsImg" alt="News"/></a>
                                     </figure>
                   								</div>
