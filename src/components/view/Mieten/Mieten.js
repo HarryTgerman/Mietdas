@@ -99,7 +99,7 @@ class Mieten extends Component{
 whenGeoCode.then(() =>{
           const previousCards = this.state.cards
           const previousMarker = this.state.markers;
-          firebase.database().ref().child('app').child('cards').child(this.props.location.query.kategorie).orderByChild('gebiet').equalTo(this.state.gebiet)
+          firebase.database().ref().child('app').child('cards')/*.child(this.props.location.query.kategorie)*/.orderByChild('gebiet').equalTo(this.state.gebiet)
            .once('value', snap => {
              console.log("hier die Liste", snap.val());
              snap.forEach(childSnapshot =>{
@@ -173,7 +173,7 @@ whenGeoCode.then(() =>{
 whenGeoCode.then(() =>{
       const previousCards = this.state.cards
       const previousMarker = this.state.markers;
-      firebase.database().ref().child('app').child('cards').child(this.state.selectValue.value).orderByChild('gebiet').equalTo(this.state.gebiet)
+      firebase.database().ref().child('app').child('cards')/*.child(this.state.selectValue.value)*/.orderByChild('gebiet').equalTo(this.state.gebiet)
        .once('value', snap => {
          console.log("hier die Liste", snap.val());
          snap.forEach(childSnapshot =>{
