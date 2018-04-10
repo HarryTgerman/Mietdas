@@ -147,7 +147,7 @@ const GettingStartedGoogleMap = compose(
                             </div>
                             <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
                             <Link to={{
-                              pathname: `/details/${props.markers[props.selectedPlace].kategorie +"/"+props.markers[props.selectedPlace].id}`,
+                              pathname: `/details/search=?${props.markers[props.selectedPlace].id}`,
                             }}><a href="#" className="detail-link">gehe zu</a></Link>
                             </div>
                           </div>

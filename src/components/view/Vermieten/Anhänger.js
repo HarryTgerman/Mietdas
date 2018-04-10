@@ -13,6 +13,9 @@ class Anhänger extends Component{
        redirect: false,
        imageFiles: [],
        pictures: [],
+       showAlert: false,
+       alert: "",
+       ret:false,
 
     }
 }
@@ -28,11 +31,54 @@ onDrop(imageFiles) {
 
 
  artikelHochladen(event) {
+       event.preventDefault();
        this.setState({
          loading: true,
          imageUpload: false,
        })
-       event.preventDefault();
+       //Fomconstroll
+       if (this.titelInput.value == "") {
+        const alert = "Geben Sie den Namen des Artikels ein"
+        this.setState({alert: alert, showAlert: true})
+        return 0
+      }
+      if (this.herstellerInput.value == "") {
+        const alert = "Geben Sie den Hersteller des Artikels ein"
+        this.setState({alert: alert, showAlert: true})
+        return 0
+      }
+      if (this.bedienungInput.value == "") {
+        const alert = "Geben Sie Auskunft über die Bedienung"
+        this.setState({alert: alert, showAlert: true})
+        return 0
+      }
+      if (this.priceInput.value == "") {
+      const alert = "Legen Sie einen Preis fest"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+      }
+      if (this.descInput.value == "") {
+      const alert = "Legen Sie einen Beschreibung fest"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+      }
+      if (this.mietbedingungenInput.value == "") {
+      const alert = "Legen Sie ihre Mietbedingungen fest"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+      }
+      if (this.pdfUpload.files[0] == undefined) {
+      const alert = "Laden Sie ein Datenblatt hoch"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+      }
+      if (this.state.imageFiles == []) {
+        const alert = "Laden Sie mindestens ein Bild hoch"
+        this.setState({alert: alert, showAlert: true})
+      }
+      //end Fomcontroll
+
+
        const db = firebase.database().ref('app').child('cards').child('anhänger');
        const userId = this.props.user;
 
@@ -144,6 +190,8 @@ onDrop(imageFiles) {
           if(this.state.redirect === true) {
             return  <Redirect to="/benutzeraccount"/>
           }
+          if(this.state.showAlert === true)
+          {window.scrollTo(0, 0)}
           return(
               <div>
 
@@ -163,6 +211,13 @@ onDrop(imageFiles) {
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
+                          {
+                            this.state.showAlert ?
+                             (<div ref="alert" className="alert alert-danger" role="alert">
+                                <strong>Achtung</strong> {this.state.alert}
+                              </div>)
+                            :(null)
+                          }
             								<div className="row mrg-r-10 mrg-l-10">
             									<div className="col-sm-6">
             										<label>Bezeichnung</label>

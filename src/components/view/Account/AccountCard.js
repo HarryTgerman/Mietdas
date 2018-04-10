@@ -19,7 +19,7 @@ class  AccountCards extends Component {
         <div style={{height: "455px"}}  className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
             <a href="#">
-              <div style={{background: "grey"}} className="listing-shot-img">
+              <div className="listing-shot-img">
                 <img src={this.props.snap.imageUrl}  className="img-responsive" alt=""/>
               </div>
               <div className="listing-shot-caption">

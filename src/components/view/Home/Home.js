@@ -198,8 +198,8 @@ register(){
 
                               <div className="banner-caption">
                                 <div className="col-md-12 col-sm-12 banner-text">
-                                  <h1>Miete jetzt <span stlye={{color: "#ff431e"}}>Baumaschinen</span></h1>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                                  <h1><span stlye={{color: "#ff431e"}}>Baumaschinen</span> in Ihrer Umgebung</h1>
+                                  <p>Mieten Sie Baumaschinen in Ihrer Umgebung.</p>
                                     <form className="form-verticle col-sm-12">
                                       <div className="col-md-5 col-sm-5 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
@@ -250,30 +250,30 @@ register(){
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading">
-                                  <h2>Plan Which in <span>Your Mind</span></h2>
-                                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                                  <h2>Baumaschinen &  <span> Geräte </span></h2>
+                                  <p>>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Günstig.</p>
                                 </div>
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4">
                                 <div className="feature-box">
                                   <span className="ti-map-alt"></span>
-                                  <h4>Find Interesting Place</h4>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  <h4>In Ihrer Nähe</h4>
+                                  <p>Suchen Sie in jedem Umkreis nach benötigten Maschinen & Geräten.</p>
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4">
                                 <div className="feature-box">
                                   <span className="ti-email"></span>
-                                  <h4>Contact a Few Owners</h4>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  <h4>Kontaktaufnahme</h4>
+                                  <p>Setzen Sie sich mit dem Vermieter in Verbindung.</p>
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4">
                                 <div className="feature-box">
                                   <span className="ti-user"></span>
-                                  <h4>Make a Reservation</h4>
-                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                                  <h4>Unkompliziert persönlich</h4>
+                                  <p>Klären Sie die Abholung oder Lieferung Ihrer Maschinen.</p>
                                 </div>
                               </div>
                             </div>
@@ -287,8 +287,8 @@ register(){
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading">
-                                  <h2>Top & Popular <span>Listings</span></h2>
-                                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+                                  <h2>Beliebte <span>Anzeigen</span></h2>
+                                  <p>Ein Auszug der meistvermieteten Maschinen & Geräte.</p>
                                 </div>
                                 </div>
                               </div>
@@ -298,24 +298,15 @@ register(){
                                   <div className="listing-shot grid-style">
                                     <a href="#">
                                       <div className="listing-shot-img">
-                                        <img src="http://via.placeholder.com/800x800" className="img-responsive" alt=""/>
-                                        <span className="like-listing"><i className="fa fa-heart-o" aria-hidden="true"></i></span>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2FBomag%20Platte.jpg?alt=media&token=6c4aa3f6-67d0-47fa-9665-ee432ad5c2a3" className="img-responsive" alt=""/>
+                                        <span className="listing-price">ab 89€</span>
                                       </div>
                                       <div className="listing-shot-caption">
-                                        <h4>Art & Design</h4>
-                                        <p className="listing-location">Bishop Avenue, New York</p>
+                                        <h4>Bomag Rüttelplatte BPR35/60 Diesel</h4>
+                                        <p className="listing-location">67059 Ludwigshafen</p>
                                       </div>
                                     </a>
-                                    <div className="listing-shot-info">
-                                      <div className="row extra">
-                                        <div className="col-md-12">
-                                          <div className="listing-detail-info">
-                                            <span><i className="fa fa-phone" aria-hidden="true"></i> 807-502-5867</span>
-                                            <span><i className="fa fa-globe" aria-hidden="true"></i> www.mysitelink.com</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+
                                     <div className="listing-shot-info rating">
                                       <div className="row extra">
                                         <div className="col-md-7 col-sm-7 col-xs-6">
@@ -326,7 +317,36 @@ register(){
                                           <i className="fa fa-star" aria-hidden="true"></i>
                                         </div>
                                         <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <a href="#" className="detail-link">Open Now</a>
+                                          <a href="#" className="detail-link">gehe zu</a>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div className="col-md-4 col-sm-6">
+                                  <div className="listing-shot grid-style">
+                                    <a href="#">
+                                      <div className="listing-shot-img">
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2FBagger.png?alt=media&token=b5ca1a3d-3092-47aa-8c8a-42ce6221698b" className="img-responsive" alt=""/>
+                                        <span className="listing-price">ab 200€</span>
+                                      </div>
+                                      <div className="listing-shot-caption">
+                                        <h4>Kompaktbagger Takeuchi TB216</h4>
+                                        <p className="listing-location">67346 Speyer</p>
+                                      </div>
+                                    </a>
+
+                                    <div className="listing-shot-info rating">
+                                      <div className="row extra">
+                                        <div className="col-md-7 col-sm-7 col-xs-6">
+                                          <i className="color fa fa-star" aria-hidden="true"></i>
+                                          <i className="color fa fa-star" aria-hidden="true"></i>
+                                          <i className="color fa fa-star" aria-hidden="true"></i>
+                                          <i className="color fa fa-star-half-o" aria-hidden="true"></i>
+                                          <i className="fa fa-star" aria-hidden="true"></i>
+                                        </div>
+                                        <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
+                                          <a href="#" className="detail-link">gehe zu</a>
                                         </div>
                                       </div>
                                     </div>
@@ -337,63 +357,15 @@ register(){
                                   <div className="listing-shot grid-style">
                                     <a href="#">
                                       <div className="listing-shot-img">
-                                        <img src="http://via.placeholder.com/800x800" className="img-responsive" alt=""/>
-                                        <span className="like-listing"><i className="fa fa-heart-o" aria-hidden="true"></i></span>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2FPKW%20Anha%CC%88nger.jpg?alt=media&token=88f95ce4-4607-4912-92b5-da934846e6b7" className="img-responsive" alt=""/>
+                                        <span className="listing-price">ab 120€</span>
                                       </div>
                                       <div className="listing-shot-caption">
-                                        <h4>Education</h4>
-                                        <p className="listing-location">Bishop Avenue, New York</p>
+                                        <h4>Tieflader bis 3t</h4>
+                                        <p className="listing-location">67346 Speyer</p>
                                       </div>
                                     </a>
-                                    <div className="listing-shot-info">
-                                      <div className="row extra">
-                                        <div className="col-md-12">
-                                          <div className="listing-detail-info">
-                                            <span><i className="fa fa-phone" aria-hidden="true"></i> 807-502-5867</span>
-                                            <span><i className="fa fa-globe" aria-hidden="true"></i> www.mysitelink.com</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                    <div className="listing-shot-info rating">
-                                      <div className="row extra">
-                                        <div className="col-md-7 col-sm-7 col-xs-6">
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                                          <i className="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <a href="#" className="detail-link">Open Now</a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
 
-                                <div className="col-md-4 col-sm-6">
-                                  <div className="listing-shot grid-style">
-                                    <a href="#">
-                                      <div className="listing-shot-img">
-                                        <img src="http://via.placeholder.com/800x800" className="img-responsive" alt=""/>
-                                        <span className="like-listing"><i className="fa fa-heart-o" aria-hidden="true"></i></span>
-                                      </div>
-                                      <div className="listing-shot-caption">
-                                        <h4>Documentary</h4>
-                                        <p className="listing-location">Bishop Avenue, New York</p>
-                                      </div>
-                                    </a>
-                                    <div className="listing-shot-info">
-                                      <div className="row extra">
-                                        <div className="col-md-12">
-                                          <div className="listing-detail-info">
-                                            <span><i className="fa fa-phone" aria-hidden="true"></i> 807-502-5867</span>
-                                            <span><i className="fa fa-globe" aria-hidden="true"></i> www.mysitelink.com</span>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
                                     <div className="listing-shot-info rating">
                                       <div className="row extra">
                                         <div className="col-md-7 col-sm-7 col-xs-6">
@@ -404,7 +376,7 @@ register(){
                                           <i className="fa fa-star" aria-hidden="true"></i>
                                         </div>
                                         <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <a href="#" className="detail-link">Open Now</a>
+                                          <a href="#" className="detail-link">gehe zu</a>
                                         </div>
                                       </div>
                                     </div>
@@ -425,34 +397,26 @@ register(){
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Discover greates places</a>
+                                      <a href="#">Vermiete deine Maschinen in deiner Umgebung</a>
                                     </h3>
-                                    <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum.
-                                    </p>
+
                                   </div>
-                                  <div className="read">
-                                    <a href="#">+</a>
-                                  </div>
+
                                 </div>
                               </div>
 
                               <div className="col-md-4 col-sm-6">
                                 <div className="service-box">
                                   <div className="service-icon">
-                                    <i className="ti-share"></i>
+                                    <i className="ti-mobile"></i>
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Discover greates places</a>
+                                      <a href="#">Unkomplizierte verwaltung über dein Smartphone</a>
                                     </h3>
-                                    <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum.
-                                    </p>
+
                                   </div>
-                                  <div className="read">
-                                    <a href="#">+</a>
-                                  </div>
+
                                 </div>
                               </div>
 
@@ -463,140 +427,18 @@ register(){
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Discover greates places</a>
+                                      <a href="#">Inserieren Sie Ihre Maschinen und Ihr Werkzeug</a>
                                     </h3>
-                                    <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, velit nec luctus dictum.
-                                    </p>
+
                                   </div>
-                                  <div className="read">
-                                    <a href="#">+</a>
-                                  </div>
+
                                 </div>
                               </div>
                             </div>
                           </section>
                            {/*End Features Section*/}
 
-                           {/*Counter Section*/}
-                          <section className="company-state theme-overlap bannerBackground1" >
-                            <div className="container-fluid">
-                              <div className="col-md-3 col-sm-6">
-                                <div className="work-count">
-                                  <span className="theme-cl icon icon-trophy"></span>
-                                  <span className="counter"><CountTo to={40} speed={5555}>{fn}</CountTo></span> <span className="counter-incr">+</span>
-                                  <p>Awards Winning</p>
-                                </div>
-                              </div>
-                              <div className="col-md-3 col-sm-6">
-                                <div className="work-count">
-                                  <span className="theme-cl icon icon-layers"></span>
-                                  <span className="counter"><CountTo to={10034} speed={5555}>{fn}</CountTo></span> <span className="counter-incr">+</span>
-                                  <p>Done Projects</p>
-                                </div>
-                              </div>
-                              <div className="col-md-3 col-sm-6">
-                                <div className="work-count">
-                                  <span className="theme-cl icon icon-happy"></span>
-                                  <span className="counter"><CountTo to={3490} speed={5555}>{fn}</CountTo></span> <span className="counter-incr">+</span>
-                                  <p>Happy Clients</p>
-                                </div>
-                              </div>
-                              <div className="col-md-3 col-sm-6">
-                                <div className="work-count">
-                                  <span className="theme-cl icon icon-dial"></span>
-                                  <span className="counter"><CountTo to={1000000} speed={5555}>{fn}</CountTo></span> <span className="counter-incr">+</span>
-                                  <p>Cups Of Cofee</p>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                          {/*End Counter Section*/}
 
-                          {/*Testimonial Section*/}
-                          <section className="testimonials-2">
-                            <div className="container">
-                              <div className="row">
-                                <div className="col-md-10 col-md-offset-1">
-                                <div className="heading">
-                                  <h2>What Say <span>Our Customers</span></h2>
-                                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-                                </div>
-                                </div>
-                              </div>
-
-                              <div className="row">
-                                <div className="col-md-12">
-                                 <Slider {...slickSettings}>
-                                    <div className="testimonial-detail col-sm-12">
-                                      <div className="pic">
-                                        <img src="http://via.placeholder.com/80x80" alt=""/>
-                                      </div>
-                                      <p className="description col-sm-12">
-                                        " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
-                                      </p>
-                                      <h3 className="testimonial-title">williamson</h3>
-                                      <span className="post">Web Developer</span>
-                                      <ul className="testimonial-rating">
-                                        <li className="fa fa-star-o"></li>
-                                        <li className="fa fa-star-o"></li>
-                                        <li className="fa fa-star"></li>
-                                      </ul>
-                                    </div>
-
-                                    <div className="testimonial-detail col-sm-12">
-                                      <div className="pic">
-                                        <img src="http://via.placeholder.com/80x80" alt=""/>
-                                      </div>
-                                      <p className="description col-sm-12">
-                                        " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
-                                      </p>
-                                      <h3 className="testimonial-title">kristiana</h3>
-                                      <span className="post">Web Designer</span>
-                                      <ul className="testimonial-rating">
-                                        <li className="fa fa-star-o"></li>
-                                        <li className="fa fa-star"></li>
-                                        <li className="fa fa-star"></li>
-                                      </ul>
-                                    </div>
-
-                                    <div className="testimonial-detail">
-                                      <div className="pic">
-                                        <img src="http://via.placeholder.com/80x80" alt=""/>
-                                      </div>
-                                      <p className="description">
-                                        " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
-                                      </p>
-                                      <h3 className="testimonial-title">kristiana</h3>
-                                      <span className="post">Web Designer</span>
-                                      <ul className="testimonial-rating">
-                                        <li className="fa fa-star-o"></li>
-                                        <li className="fa fa-star"></li>
-                                        <li className="fa fa-star"></li>
-                                      </ul>
-                                    </div>
-
-                                    <div className="testimonial-detail">
-                                      <div className="pic">
-                                        <img src="http://via.placeholder.com/80x80" alt=""/>
-                                      </div>
-                                      <p className="description">
-                                        " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi eligendi facilis itaque minus non odio, quaerat ullam unde voluptatum? "
-                                      </p>
-                                      <h3 className="testimonial-title">kristiana</h3>
-                                      <span className="post">Web Designer</span>
-                                      <ul className="testimonial-rating">
-                                        <li className="fa fa-star-o"></li>
-                                        <li className="fa fa-star"></li>
-                                        <li className="fa fa-star"></li>
-                                      </ul>
-                                    </div>
-                                  </Slider>
-                                </div>
-                              </div>
-                            </div>
-                          </section>
-                           {/*End Testimonial Section*/}
 
                            {/*================== Login & Sign Up Window ==================*/}
                           <div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">

@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-
+import Logo from '../../img/logo.png'
 
 
 class Footer extends Component{
@@ -18,12 +18,12 @@ class Footer extends Component{
                       <div className="col-md-3 col-sm-12 theme-bg">
                         <div className="footer-widget">
                           <div className="textwidget">
-                          <h3 className="widgettitle widget-title">Get In Touch</h3>
-                          <p>7744 North Park Place<br/>
-                          San Francisco, CA 714258</p>
-                          <p><strong>Email:</strong> support@listinghub.com</p>
+                          <h3 className="widgettitle widget-title">Kontaktieren Sie uns</h3>
+                          <p>67346 Speyer<br/>
+                          Keplerstraße 10</p>
+                          <p><strong>Email:</strong> support@mietdas.de</p>
                           <p>
-                          <strong>Call:</strong> <a href="tel:+774422777">777-444-2222</a>
+                          <strong>Telefon:</strong> <a>017645636770</a>
                           </p>
                           </div>
                         </div>
@@ -32,21 +32,18 @@ class Footer extends Component{
                         <div className="footer-widget">
                         <h3 className="widgettitle widget-title">About Us</h3>
                         <ul className="footer-navigation">
-                          <li><a href="#">Home Version 1</a></li>
-                          <li><a href="#">Home Version 2</a></li>
-                          <li><a href="#">Home Version 3</a></li>
-                          <li><a href="#">Home Version 4</a></li>
-                          <li><a href="#">Listing Detail</a></li>
-                          <li><a href="#">Listing Vertical</a></li>
-                          <li><a href="#">Listing Sidebar</a></li>
-                          <li><a href="#">Vertical Sidebar</a></li>
+                          <li><a href="/">Home</a></li>
+                          <li><a href="/mieten">Mieten</a></li>
+                          <li><a href="/vermieten">Vermieten</a></li>
+                          <li><a href="vermieten">Home Version 3</a></li>
+                          <li><a href="/benutzeraccount">BenutzerProfil</a></li>
                         </ul>
                         </div>
                       </div>
                       <div className="col-md-4 col-sm-6">
                         <div className="footer-widget">
-                          <h3 className="widgettitle widget-title">Connect Us</h3>
-                          <img src="assets/img/footer-logo.png" alt="Footer logo" className="img-responsive" />
+                          <h3 className="widgettitle widget-title">folge uns</h3>
+                          <img src={Logo} alt="Footer logo" className="img-responsive" />
                           <ul className="footer-social">
                             <li><a href="#"><i className="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
@@ -59,7 +56,7 @@ class Footer extends Component{
                     </div>
                   </div>
                   <div className="footer-copyright">
-                    <p>Copyright@ 2017 Listing Hub Design By <a href="http://www.themezhub.com/" title="Themezhub" target="_blank">Themezhub</a></p>
+                    <p>Copyright@ 2018 Mietdas Speyer</p>
                   </div>
                 </footer>
               </div>

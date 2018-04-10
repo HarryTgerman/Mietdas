@@ -21,6 +21,7 @@ class Anfragen extends Component{
   }
 
   Zusagen(){
+    alert('Sie haben '+ this.props.name+ ' zugesagt ' +this.props.cardHeading + ' im Zeitraum von '+this.props.mietbeginn + " - " +this.props.mietende+" zu vermieten")
     const num = this.props.name + this.props.num
     firebase.database().ref().child('app').child('users/' + this.props.uid)
     .child('mitteilung').child(this.props.name + this.props.num)

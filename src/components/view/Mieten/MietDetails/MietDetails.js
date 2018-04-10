@@ -9,6 +9,7 @@ import {Redirect, NavLink, Link} from 'react-router-dom'
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import Logo from '../../../../img/logo.png'
+
 class MietDetails extends Component{
   constructor (props){
   super(props)
