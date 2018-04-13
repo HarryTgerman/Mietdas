@@ -57,9 +57,9 @@ createUserProfil(event){
     const bundesLand = this.bundeslandInput.value;
     var user = firebase.auth().currentUser;
 
-      firebase.storage().ref('images').child('pimgaes/'+userId).child('pimage').put(userImage)
+      firebase.storage().ref('images/pimgaes/').child(userId).child('pimage').put(userImage)
       .then(()=>{
-      firebase.storage().ref('images').child('pimgaes/'+userId).child('pimage')
+      firebase.storage().ref('images/pimgaes/').child(userId).child('pimage')
       .getDownloadURL().then((url) => {
         const Url = url
         this.Ref.child(userId).update({
@@ -118,6 +118,7 @@ handleChange(event){
           if(this.state.redirect === true){
                 return  <Redirect to="/benutzeraccount"/>
               };
+          let profiel = this.profilePic
           return(
               <div className="home-2">
                 <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
