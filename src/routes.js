@@ -31,7 +31,7 @@ class Routes extends Component{
                       <Route path='/logout' exact component={Logout}/>
                       <Route path='/benutzeraccount' exact component={Account}/>
                       <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
-                      <Route name= 'details' path='/details/search=?:id' component={MietDetails}/>
+                      <Route name= 'details' path='/details/search=?:id/:id' component={MietDetails}/>
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Reservierung}/>
                       <Route name= 'baumaschinenAnfragenDetails' path='/baumaschinen_Anfragen/uid:uid/name:name/num:num' component={BaumaschinenAnfragen}/>
                       <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>

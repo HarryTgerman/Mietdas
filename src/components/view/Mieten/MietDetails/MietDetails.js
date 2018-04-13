@@ -63,6 +63,7 @@ componentWillMount(){
     })
 
     urlPromis.then(()=>{firebase.auth().onAuthStateChanged((user)=>{
+
       const userProfile = firebase.auth().currentUser;
       if(user){
         this.setState(
@@ -187,23 +188,42 @@ componentWillMount(){
                                       <div className="col-sm-5 col-md-5">
                                         <p>{this.state.snap.hersteller}</p>
                                       </div>
+                                      <div>
+                                      {this.state.snap.grabtiefe?
+                                      (<React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Grabtiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.grabtiefe}</p>
+                                        </div>
+                                      </React.Fragment>
+                                      ):(null)}
+                                      {this.state.snap.transportbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Transportbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.transportbreite}</p>
+                                        </div>
+                                      </React.Fragment>
+                                      ):(null)}
+                                      {this.state.snap.transporthoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Transporthöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.transporthoehe}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
-                                        Grabtiefe
+                                        Datenblatt
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.grabtiefe}</p>
-                                      </div>
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Transportbreite
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.transportbreite}</p>
-                                      </div>
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Transporthöhe
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.transporthoehe}</p>
+                                        <a href={this.state.snap.pdf}>klicke hier</a>
                                       </div>
                                     </div>
                                   </div>

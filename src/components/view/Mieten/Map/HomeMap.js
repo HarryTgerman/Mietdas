@@ -11,7 +11,7 @@ class HomeMap extends Component{
         render(){
           return(
               <div>
-                <div className="col-md-4 col-sm-12">
+                <div className="col-md-4 hidden-sm hidden-xs">
                   <div className="side-full-map">
                     <AppMap markers={this.props.markers} center={this.props.center} gebiet={this.props.gebiet} position={this.props.position}/>
                   </div>

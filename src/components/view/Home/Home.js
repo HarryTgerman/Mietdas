@@ -4,6 +4,9 @@ import CountTo from 'react-count-to';
 import firebase from 'firebase'
 import Slider from 'react-slick'
 import Select from 'react-select';
+import Logo from'../../../img/logo.png'
+import LogoWhite from'../../../img/logo-white.png'
+
 
 const fn = value => <span>{value}</span>
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
@@ -21,6 +24,9 @@ class Home extends Component{
        redirect: false,
        registerRedirect:false,
        selectValue:  { value: '', label: 'wähle Kategorie' },
+       showAlert: false,
+       alert: "",
+       kat:false,
     }
 }
 
@@ -127,6 +133,16 @@ register(){
       whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
       })
   }
+
+handleSubmit(event){
+  event.preventDefault();
+if (this.state.selectValue.value == "") {
+    const alert = "wählen Sie ein Kategorie aus"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+  }else {this.setState({kat:true})}
+}
+
         render(){
           if (this.state.redirect === true) {
             return <Redirect to='/benutzeraccount' />
@@ -142,7 +158,9 @@ register(){
             }
             const { selectedOption } = this.state;
             const value = selectedOption && selectedOption.value
-
+            if (this.state.kat === true){
+               return <Redirect to={{pathname: "/mieten", query: {city: this.state.cityValue,kategorie: this.state.selectValue.value}}}/>
+            }
                   return(
                 <div>
 
@@ -158,8 +176,8 @@ register(){
                                {/*Start Header Navigation*/}
                               <div className="navbar-header">
                                 <NavLink to="/">
-                                  <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
-                                  <img src="assets/img/logo-white.png" className="logo logo-display" alt=""/>
+                                  <img src={Logo} className="logo logo-scrolled" alt=""/>
+                                  <img src={LogoWhite} className="logo logo-display" alt=""/>
                                 </NavLink>
                               </div>
 
@@ -200,7 +218,14 @@ register(){
                                 <div className="col-md-12 col-sm-12 banner-text">
                                   <h1><span stlye={{color: "#ff431e"}}>Baumaschinen</span> in Ihrer Umgebung</h1>
                                   <p>Mieten Sie Baumaschinen in Ihrer Umgebung.</p>
-                                    <form className="form-verticle col-sm-12">
+                                    <form className="form-verticle col-sm-12" onSubmit={this.handleSubmit.bind(this)}>
+                                    {
+                                      this.state.showAlert ?
+                                       (<div ref="alert" className="alert alert-danger" role="alert">
+                                          <strong>Achtung</strong> {this.state.alert}
+                                        </div>)
+                                      :(null)
+                                    }
                                       <div className="col-md-5 col-sm-5 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
                                         <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
@@ -215,11 +240,11 @@ register(){
                                           onChange={this.clickLi.bind(this)}
                                           placeholder={this.state.selectValue.label}
                                           options={[
-                                            { value: 'Bagger', label: 'Bagger' },
-                                            { value: 'Bagger', label: 'Minibagger' },
-                                            { value: 'Bagger', label: 'Radlader' },
-                                            { value: 'Bagger', label: 'Raupenbagger' },
-                                            { value: 'Bagger', label: 'Radbagger' },
+                                            { value: 'bagger', label: 'Bagger' },
+                                            { value: 'bagger', label: 'Minibagger' },
+                                            { value: 'bagger', label: 'Radlader' },
+                                            { value: 'bagger', label: 'Raupenbagger' },
+                                            { value: 'bagger', label: 'Radbagger' },
                                             { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
                                             { value: 'verdichtungstechnik', label: 'Stampfer' },
                                             { value: 'verdichtungstechnik', label: 'Rüttelplatten' },
@@ -231,8 +256,8 @@ register(){
                                         />
                                         </div>
                                       <div className="col-md-2 col-sm-2 no-padd">
-                                        <Link to={{pathname: `/mieten/`,query: {city: this.state.cityValue,kategorie: this.state.selectValue.value}}}>
-                                        <button type="submit" className="btn theme-btn btn-default">Suchen</button></Link>
+
+                                        <button type="submit" className="btn theme-btn btn-default">Suchen</button>
                                       </div>
                                     </form>
 

@@ -150,36 +150,57 @@ onDrop(imageFiles) {
          );
 
        Promise.all(keysPromises).then(() => {
-         const pdfUrl = this.state.pdf;
-         const images = this.state.Arr;
-         const imageUrl = this.state.Arr[0]
-         db.push({
-                  email: this.props.email,
-                   hersteller: hersteller,
-                   bedienung: bedienung,
-                   cardHeading:titel ,
-                   cardPreis: preis,
-                   cardDesc: desc,
-                   mietbedingungen: Mietbedingungen,
-                   gewicht: gewicht,
-                   address: this.props.address,
-                   ort: this.props.ort,
-                   gemietet: 0,
-                   cords: this.props.cords,
-                   telefon:this.props.telefon ,
-                   imageArr: images,
-                   imageUrl: imageUrl,
-                   gebiet: this.props.gebiet,
-                   bundesland: this.props.bundesland,
-                   uid: userId,
-                   vermieter: this.props.vermieter,
+         firebase
+        .storage()
+        .ref("pdf")
+        .child(userId)
+        .child(titel)
+        .child(Pdf.name)
+        .put(Pdf)
+        .then(() => {
+          firebase
+            .storage()
+            .ref("pdf")
+            .child(userId)
+            .child(titel)
+            .child(Pdf.name)
+            .getDownloadURL()
+            .then(url => {
+              const pdfUrl = url;
+              const images = this.state.Arr;
+              const imageUrl = this.state.Arr[0]
+              db.push({
+                        kategorie:"anhänger",
+                       pdf: url,
+                       email: this.props.email,
+                        hersteller: hersteller,
+                        bedienung: bedienung,
+                        cardHeading:titel ,
+                        cardPreis: preis,
+                        cardDesc: desc,
+                        mietbedingungen: Mietbedingungen,
+                        gewicht: gewicht,
+                        address: this.props.address,
+                        ort: this.props.ort,
+                        gemietet: 0,
+                        cords: this.props.cords,
+                        telefon:this.props.telefon ,
+                        imageArr: images,
+                        imageUrl: imageUrl,
+                        gebiet: this.props.gebiet,
+                        bundesland: this.props.bundesland,
+                        uid: userId,
+                        vermieter: this.props.vermieter,
 
-                 })
-                 this.setState({
-                   loading: false,
-                   redirect: true
-                 })
-               })
+                      })
+                      this.setState({
+                        loading: false,
+                        redirect: true
+                      })
+                    })
+            })
+          })
+
 
 
        }

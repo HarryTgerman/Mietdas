@@ -1912,7 +1912,7 @@ color:#f64625;
 	text-transform:capitalize;
 	line-height: 1.8;
 }
-.banner .no-padd{
+ .no-padd{
 	padding:0 0px;
 }
 .banner .btn {
@@ -2360,7 +2360,7 @@ listing design
 
 .grid-style .listing-shot-img  img{
 	width: 100%;
-	max-height: 300px;
+	max-height: 250px;
 	position: relative;
     overflow: hidden;
 }

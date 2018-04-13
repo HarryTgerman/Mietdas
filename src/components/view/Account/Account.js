@@ -6,6 +6,8 @@ import Anfragen from './Mitteilungen/Anfragen'
 import LaufendeAnfragen from './Mitteilungen/LaufendeAnfragen'
 import AvatarImg from'../../../img/avatar.jpg'
 import AccountImg from'../../../img/account.jpg'
+import Logo from'../../../img/logo.png'
+import LogoWhite from'../../../img/logo-white.png'
 
 
 class Account extends Component{
@@ -139,8 +141,8 @@ componentWillMount(){
                      {/*Start Header Navigation*/}
                     <div className="navbar-header">
                       <NavLink to="/">
-                      <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
-                      <img src="assets/img/logo-white.png" className="logo logo-display" alt=""/>
+                      <img src={Logo} className="logo logo-scrolled" alt=""/>
+                      <img src={LogoWhite} className="logo logo-display" alt=""/>
                       </NavLink>
                     </div>
 

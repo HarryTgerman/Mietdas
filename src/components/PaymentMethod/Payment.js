@@ -8,6 +8,8 @@ import PaypalExpressBtn from 'react-paypal-express-checkout';
 import StripeCheckout from 'react-stripe-checkout';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+import Logo from'../../img/logo.png'
+import LogoWhite from'../../img/logo-white.png'
 
 let total = null;
 class Payment extends Component{
@@ -159,8 +161,8 @@ class Payment extends Component{
                   {/*Start Header Navigation*/}
                 <div className="navbar-header">
                   <NavLink to="/">
-                    <img src="assets/img/logo.png" className="logo logo-display" alt=""/>
-                    <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                    <img src={Logo} className="logo logo-display" alt=""/>
+                    <img src={Logo} className="logo logo-scrolled" alt=""/>
                   </NavLink>
                 </div>
 

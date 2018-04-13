@@ -72,76 +72,83 @@ class Mieten extends Component{
  }
 
 
-  handleFormSubmit = () => {
+ handleFormSubmit = () => {
 
-  let whenGeoCode = geocodeByAddress(this.state.cityValue)
-    .then(results =>{
-      const res = results[0]
-      this.setState({
-        gebiet: res.address_components[1].long_name
-      })
-    })
-    geocodeByAddress(this.state.cityValue)
-    .then(results =>  getLatLng(results[0]))
-    .then(latLng =>{
-      this.setState({
-          center: latLng,
-          position: latLng
-      })
-       console.log('Success', latLng)}
-       )
-    .catch(error => console.error('Error', error))
-    this.setState({
-      gebiet: this.state.address,
-      address:   this.state.cityValue,
-    })
+ let whenGeoCode = geocodeByAddress(this.state.cityValue)
+   .then(results =>{
+     const res = results[0]
+     this.setState({
+       gebiet: res.address_components[1].long_name
+     })
+   })
+   geocodeByAddress(this.state.cityValue)
+   .then(results =>  getLatLng(results[0]))
+   .then(latLng =>{
+     this.setState({
+         center: latLng,
+         position: latLng
+     })
+      console.log('Success', latLng)}
+      )
+   .catch(error => console.error('Error', error))
+   this.setState({
+     gebiet: this.state.address,
+     address:   this.state.cityValue,
+   })
+
 
 whenGeoCode.then(() =>{
-          const previousCards = this.state.cards
-          const previousMarker = this.state.markers;
-          firebase.database().ref().child('app').child('cards')/*.child(this.props.location.query.kategorie)*/.orderByChild('gebiet').equalTo(this.state.gebiet)
-           .once('value', snap => {
-             console.log("hier die Liste", snap.val());
-             snap.forEach(childSnapshot =>{
-               previousMarker.push({
-                id: childSnapshot.key,
+         const previousCards = this.state.cards
+         const previousMarker = this.state.markers;
+         firebase.database().ref().child('app').child('cards').child(this.props.location.query.kategorie).orderByChild('gebiet').equalTo(this.state.gebiet)
+          .once('value', snap => {
+            console.log("hier die Liste", snap.val());
+            snap.forEach(childSnapshot =>{
+              previousMarker.push({
+               id: childSnapshot.key,
+               kategorie: childSnapshot.val().kategorie,
+               standOrt: childSnapshot.val().ort,
+               cardHeading: childSnapshot.val().cardHeading,
+               cardBewertung: childSnapshot.val().bewertung,
+               cardImage: childSnapshot.val().imageUrl,
+               latitude: childSnapshot.val().cords.lat,
+               longitude: childSnapshot.val().cords.lng,
+               price: childSnapshot.val().cardPreis,
+               key: snap.key,
+                })
+              previousCards.push ({
                 kategorie: childSnapshot.val().kategorie,
-                standOrt: childSnapshot.val().ort,
+                id: childSnapshot.key,
+                cardDesc: childSnapshot.val().cardDesc,
+                cardPreis: childSnapshot.val().cardPreis,
                 cardHeading: childSnapshot.val().cardHeading,
                 cardBewertung: childSnapshot.val().bewertung,
                 cardImage: childSnapshot.val().imageUrl,
-                latitude: childSnapshot.val().cords.lat,
-                longitude: childSnapshot.val().cords.lng,
-                price: childSnapshot.val().cardPreis,
-                key: snap.key,
-                 })
-               previousCards.push ({
-                 kategorie: childSnapshot.val().kategorie,
-                 id: childSnapshot.key,
-                 cardDesc: childSnapshot.val().cardDesc,
-                 cardPreis: childSnapshot.val().cardPreis,
-                 cardHeading: childSnapshot.val().cardHeading,
-                 cardBewertung: childSnapshot.val().bewertung,
-                 cardImage: childSnapshot.val().imageUrl,
-                 standOrt: childSnapshot.val().ort,
-                 imageArr: childSnapshot.val().imageArr,
-                 gewicht: childSnapshot.val().gewicht,
-                 grabtiefe: childSnapshot.val().grabtiefe,
-                 transportbreite: childSnapshot.val().transportbreite,
-                 transporthoehe: childSnapshot.val().transporthoehe,
-                 snap: childSnapshot.val(),
-               })
-               this.setState ({
-                 cards: previousCards,
-                 markers: previousMarker
-               })
-             })
-           })
-        })
+                standOrt: childSnapshot.val().ort,
+                imageArr: childSnapshot.val().imageArr,
+                gewicht: childSnapshot.val().gewicht,
+                grabtiefe: childSnapshot.val().grabtiefe,
+                transportbreite: childSnapshot.val().transportbreite,
+                transporthoehe: childSnapshot.val().transporthoehe,
+                snap: childSnapshot.val(),
+              })
+              this.setState ({
+                cards: previousCards,
+                markers: previousMarker
+              })
+            })
+          })
+       })
 }
 
   handleFormSubmit1 = (e) => {
     e.preventDefault();
+    if (this.state.selectValue.value == "") {
+        const alert = "wählen Sie ein Kategorie aus"
+        this.setState({alert: alert, showAlert: true})
+        return 0
+      }else {this.setState({alert: "", showAlert: false})}
+
     if(this.state.markers && this.state.cards != null){
     this.setState({
       markers:[],
@@ -161,9 +168,8 @@ whenGeoCode.then(() =>{
     this.setState({
         center: latLng,
         position: latLng
+        })
     })
-     console.log('Success', latLng)}
-     )
   .catch(error => console.error('Error', error))
   this.setState({
     gebiet: this.state.address,
@@ -173,9 +179,8 @@ whenGeoCode.then(() =>{
 whenGeoCode.then(() =>{
       const previousCards = this.state.cards
       const previousMarker = this.state.markers;
-      firebase.database().ref().child('app').child('cards')/*.child(this.state.selectValue.value)*/.orderByChild('gebiet').equalTo(this.state.gebiet)
+      firebase.database().ref().child('app').child('cards').child(this.state.selectValue.value).orderByChild('gebiet').equalTo(this.state.gebiet)
        .once('value', snap => {
-         console.log("hier die Liste", snap.val());
          snap.forEach(childSnapshot =>{
            previousMarker.push({
              kategorie: childSnapshot.val().kategorie,
@@ -349,17 +354,24 @@ registerWithFacebook(){
                           {/* Filter Option */}
                           <div className="row">
 
-                            <div s className="col-md-12 col-sm-12 nopadding">
-                              <h3>What are you looking For?</h3>
-                              <p>Search by keywords, category, location & filters</p>
+                            <div s className="col-md-12 col-sm-12 no-padd">
+                              <h3>Finde deine Baumaschinen deiner Umgebung</h3>
+                              <p>Suche nach Ort und Kategorie</p>
                             </div>
 
                             <form className="form-verticle " onSubmit={this.handleFormSubmit1.bind(this)}>
+                            {
+                              this.state.showAlert ?
+                               (<div ref="alert" className="alert alert-danger" role="alert">
+                                  <strong>Achtung</strong> {this.state.alert}
+                                </div>)
+                              :(null)
+                            }
                               <div className="row mrg-0">
-                                <div style={{paddingRight:"0"}}  className="col-md-5 col-sm-5">
+                                <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                                   <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
                                 </div>
-                                <div style={{paddingLeft:"0"}} className="col-md-5 col-sm-5 nopadding" >
+                                <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
 
                                 <Select
                                     className="form-control"
@@ -368,11 +380,11 @@ registerWithFacebook(){
                                     onChange={this.clickLi.bind(this)}
                                     placeholder={this.state.selectValue.label}
                                     options={[
-                                      { value: 'Bagger', label: 'Bagger' },
-                                      { value: 'Bagger', label: 'Minibagger' },
-                                      { value: 'Bagger', label: 'Radlader' },
-                                      { value: 'Bagger', label: 'Raupenbagger' },
-                                      { value: 'Bagger', label: 'Radbagger' },
+                                      { value: 'bagger', label: 'Bagger' },
+                                      { value: 'bagger', label: 'Minibagger' },
+                                      { value: 'bagger', label: 'Radlader' },
+                                      { value: 'bagger', label: 'Raupenbagger' },
+                                      { value: 'bagger', label: 'Radbagger' },
                                       { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
                                       { value: 'verdichtungstechnik', label: 'Stampfer' },
                                       { value: 'verdichtungstechnik', label: 'Rüttelplatten' },
@@ -383,8 +395,8 @@ registerWithFacebook(){
                                     ]}
                                   />
                                 </div>
-              					        <div className="col-md-2 col-sm-2" style={{marginLeft: "-30px"}} >
-              						        <button style={{padding: "15px 40px"}} type="submit" className="btn theme-btn">Suche</button>
+              					        <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
+              						        <button style={{padding: "15px 40px", width: "100%"}} type="submit" className="btn theme-btn">Suche</button>
                                 </div>
                               </div>
                             </form>

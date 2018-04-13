@@ -47,7 +47,6 @@ class Anfragen extends Component{
               <div className="col-sm-12" style={{transition: "all .7s cubic-bezier(.25,.46,.45,.94)", overflow: "hidden"}}>
                   <div className="col-md-12 col-sm-12">
                     <div className="verticleilist listing-shot">
-                      <span className="featured-listing"></span>
                       <a className="listing-item">
                         <div className="listing-shot-img">
                           <img src={this.props.url} className="img-responsive" alt=""/>
@@ -57,7 +56,6 @@ class Anfragen extends Component{
 
                       <div className="verticle-listing-caption">
 
-                        <span className="like-listing"><i className="fa fa-heart-o" aria-hidden="true"></i></span>
                         <div className="listing-shot-caption">
                           <h4>{this.props.cardHeading}</h4>
                         </div>
@@ -80,8 +78,7 @@ class Anfragen extends Component{
                               <i className="color fa fa-star" aria-hidden="true"></i>
                               <i className="color fa fa-star" aria-hidden="true"></i>
                               <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                              <i className="fa fa-star" aria-hidden="true"></i>
-                              <span>27 Reviews</span>
+                              <span> 27 Reviews</span>
                             </div>
                             <div className="col-md-8 col-sm-8 col-xs-8 pull-right">
                               <div className="col-sm-4">
