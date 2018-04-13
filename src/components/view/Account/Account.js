@@ -4,10 +4,11 @@ import {Redirect, NavLink} from 'react-router-dom'
 import AccountCards from './AccountCard'
 import Anfragen from './Mitteilungen/Anfragen'
 import LaufendeAnfragen from './Mitteilungen/LaufendeAnfragen'
-import AvatarImg from'../../../img/avatar.jpg'
 import AccountImg from'../../../img/account.jpg'
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
+import ProfilView from './ProfilView/ProfilView'
+import AvatarImg from'../../../img/avatar.jpg'
 
 
 class Account extends Component{
@@ -17,15 +18,13 @@ class Account extends Component{
     this.loadAnfragen = this.loadAnfragen.bind(this)
     this.state ={
       authenticated: false,
-      cards: [],
       anfragen: [{}],
-      mitteilungen: [],
       controll: false,
     }
 }
 
 firedata() {
-  const previousCards = this.state.cards;
+  const previousCards = [];
   firebase.database().ref().child('app').child('cards')
     .orderByChild('uid').equalTo(this.state.uid)
     .once('value', snap => {
@@ -99,7 +98,7 @@ componentWillMount(){
       })
     }
   })
-  const mitteilung = this.state.mitteilungen;
+  const mitteilung = [];
     firebase.database().ref().child('app').child('users/').child(this.state.uid)
     .child('mitteilung').once('value' ,snap => {
       snap.forEach(childSnapshot => {
@@ -175,216 +174,131 @@ componentWillMount(){
                 {/* End Navigation */}
                 <div className="clearfix"></div>
 
-                {/* Page Title */}
-                <div className="title-transparent page-title" style={{backgroundImage: `url(${AccountImg})`}}>
-                  <div className="container">
-                    <div className="title-content">
-                    </div>
+              <div className="title-transparent page-title" style={{backgroundImage: `url(${AccountImg})`, marginBottom:"-50px"}}>
+                <div className="container">
+                  <div className="title-content">
                   </div>
                 </div>
-                <div className="clearfix"></div>
-                {/* Page Title */}
+              </div>
+              <div className="clearfix"></div>
+              {/* Tab Style 1 */}
+              <div className="container">
+                <div className="tab style-2" role="tabpanel">
+                  {/* Nav tabs */}
+                  <ul className="nav nav-tabs" role="tablist">
+                    <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Übersicht Anfragen</a></li>
+                    <li role="presentation"><a href="#meineAnfragen" aria-controls="meineAnfragen" role="tab" data-toggle="tab">meine Anfragen</a></li>
+                    <li role="presentation"><a href="#meinGerätepark" aria-controls="meinGerätepark" role="tab" data-toggle="tab">mein Gerätepark</a></li>
+                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
+                    <li role="presentation"><a href="#nachrichten" aria-controls="nachrichten" role="tab" data-toggle="tab">Nachrichten</a></li>
 
-                <div className="padd-0">
-                  <div className="container">
+                  </ul>
+                  {/* Tab panes */}
+                  <div className="tab-content tabs">
+                    <div role="tabpanel" className="tab-pane fade in active" id="home">
+                    { this.state.controll ? (<h3>Du hast keine Neuen Anfragen</h3>)
+                                  : (keys.map((key) => {
+                                     const anfrage = anfragen[key]
+                                       return(<Anfragen
+                                       anfrage={anfrage} name={anfrage.name} url={anfrage.url}
+                                       cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
+                                       uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
+                                      nummer={anfrage.nummer} email={anfrage.email}
+                                       mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
+                                       )
+                                     }))
+                    }
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="meineAnfragen">
+                    {this.state.mitteilungen?(this.state.mitteilungen.map((mit)=>{
+                                  return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} uid={this.state.uid}/>)
+                                })):(<h3>Du hast keine laufenden Anfragen</h3>)
+                    }
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="meinGerätepark">
+                    {this.state.cards?(this.state.cards.map((card) => {
+                             return(<AccountCards snap={card.snap} cardId={card.id}/>)
+                           })):(<h3>Du hast keine Geräte inseriert</h3>)
+                       }
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="profile">
+                      <div className="container">
 
-                    {/* General Information */}
-
-                    <div className="add-listing-box translateY-60 edit-info mrg-bot-25 padd-bot-30 padd-top-25">
-                      <div className="listing-box-header">
-                        <div className="avater-box">
-                        { this.state.url ?(<img src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />)
-                                                   :(<img src={AvatarImg} className="img-responsive img-circle edit-avater" alt="" />)
-                        }
-                        </div>
-                        <h3>{this.state.name}</h3>
-                      </div>
-                      <div className="row mrg-r-10 mrg-l-10 preview-info">
-                        <div className="col-sm-4">
-                          <label><i className="ti-mobile preview-icon call mrg-r-10"></i>{this.state.telefon}</label>
-                        </div>
-                        <div className="col-sm-4">
-                          <label><i className="ti-email preview-icon email mrg-r-10"></i>{this.state.email}</label>
-                        </div>
-                        <div className="col-sm-4">
-                          <label><i className="ti-gift preview-icon birth mrg-r-10"></i>{this.state.geboren}</label>
-                        </div>
-                      </div>
-                        <div className="container" style={{width: "95%", marginTop:"15px"}}>
-                          <div className="col-md-12 col-sm-12">
-                            <div className="panel-group style-1" id="accordion" role="tablist" aria-multiselectable="true">
-                              <div className="panel panel-default">
-                                <div className="panel-heading" role="tab" id="designing">
-                                  <h4 className="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                      Anfragen für Ihre Baumaschinen
-                                    </a>
-                                  </h4>
-                                </div>
-                                <div id="collapseOne" className="panel-collapse collapse in" role="tabpanel" aria-labelledby="designing">
-                                  <div className="panel-body">
-                                  { this.state.controll ? (<h3>Du Hast keine Neuen Anfragen</h3>)
-                                     : (keys.map((key) => {
-                                        const anfrage = anfragen[key]
-                                          return(<Anfragen
-                                          anfrage={anfrage} name={anfrage.name} url={anfrage.url}
-                                          cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
-                                          uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
-                                         nummer={anfrage.nummer} email={anfrage.email}
-                                          mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
-                                          )
-                                        }))
-                                   }
-                                  </div>
+                         {/* General Information */}
+                         <button style={{float:"right", marginRight:"50px", marginBottom:"40px"}} className="btn theme-btn">Profil bearbeiten</button>
+                         <div className=" edit-info">
+                           <div className="listing-box-header">
+                             <div className="avater-box">
+                             { this.state.url ?(<img style={{height:"120px",width:"120px"}} src={this.state.url} className="img-responsive img-circle" alt="" />)
+                                                        :(<img style={{height:"120px",width:"120px"}}  src={AvatarImg} className="img-responsive img-circle " alt="" />)
+                             }
+                             </div>
+                           </div>
+                         </div>
+                          <div className="col-md-12 col-sm-12 mob-padd-0">
+                            {/* Basic Information */}
+                            <div className="edit-info">
+                              <div className="col-md-4 col-sm-12">
+                                <h4>Kontaktdaten</h4>
+                                <div className="preview-info-body">
+                                  <ul className="info-list">
+                                    <li>
+                                      <label><i className="ti-email preview-icon new mrg-r-10"></i>{this.state.email}</label>
+                                    </li>
+                                    <li>
+                                      <label><i className="ti-mobile preview-icon new mrg-r-10"></i>{this.state.telefon}</label>
+                                    </li>
+                                  </ul>
                                 </div>
                               </div>
-                              <div className="panel panel-default">
-                                <div className="panel-heading" role="tab" id="web-development">
-                                  <h4 className="panel-title">
-                                    <a className="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                      Angefragte Baumaschinen
-                                    </a>
-                                  </h4>
+                              <div className="col-md-4 col-sm-12">
+                                <h4>Zahlungsdaten</h4>
+                                <div className="preview-info-body">
+                                  <ul className="info-list">
+                                    <li>
+                                        <label><i className="ti-credit-card preview-icon birth mrg-r-10"></i>Iban</label>
+                                    </li>
+                                  </ul>
                                 </div>
-                                <div id="collapseTwo" className="panel-collapse collapse" role="tabpanel" aria-labelledby="web-development">
-                                  <div className="panel-body">
-                                  {this.state.mitteilungen.map((mit)=>{
-                                    return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} uid={this.state.uid}/>)
-                                    })
-                                  }
-                                  </div>
+                              </div>
+                              <div className="col-md-4 col-sm-12">
+                                <h4>Persönliche Daten</h4>
+                                <div className="preview-info-body">
+                                  <ul className="info-list">
+                                    <li>
+                                      <label><i className="ti-user preview-icon call mrg-r-10"></i>{this.state.name}</label>
+                                    </li>
+                                    <li>
+                                      <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: Speyer</label>
+                                    </li>
+                                    <li>
+                                      <label><i className="ti-info preview-icon call mrg-r-10"></i>Plz: 132112342</label>
+                                    </li>
+                                    <li>
+                                    <label><i className="ti-home preview-icon call mrg-r-10"></i>Straße: Keplerstr 10</label>
+                                    </li>
+                                  </ul>
                                 </div>
                               </div>
                             </div>
+                            {/* End Basic Information */}
                           </div>
-                        </div>
+                         {/* End General Information */}
                       </div>
-                    {/* End General Information */}
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="nachrichten">
+                      ad jkfah dfjas kfhs kdfhak dhös
+                    </div>
                   </div>
                 </div>
-
-                <div className="padd-top-0">
-                  <div className="container">
-                    <div className="col-md-6 col-sm-12 mob-padd-0">
-                      {/* Basic Information */}
-                      <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-5">
-                        <div className="preview-info-header">
-                          <h4>Basic Info</h4>
-                        </div>
-                        <div className="preview-info-body">
-                          <ul className="info-list">
-                            <li>
-                              <label>Name:</label>
-                              <span>Daniel Deve</span>
-                            </li>
-                            <li>
-                              <label>Company:</label>
-                              <span>Info Soft Ltd</span>
-                            </li>
-                            <li>
-                              <label>Designation:</label>
-                              <span>Account Manager</span>
-                            </li>
-                            <li>
-                              <label>Birth:</label>
-                              <span>July 15 1990</span>
-                            </li>
-                            <li>
-                              <label>Age:</label>
-                              <span>22 Year</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      {/* End Basic Information */}
-                    </div>
-
-                    <div className="col-md-6 col-sm-12 mob-padd-0">
-                      {/* Address Information */}
-                      <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-5">
-                        <div className="preview-info-header">
-                          <h4>Basic Info</h4>
-                        </div>
-                        <div className="preview-info-body">
-                          <ul className="info-list">
-                            <li>
-                              <label>Phone:</label>
-                              <span>91 258 758 6584</span>
-                            </li>
-                            <li>
-                              <label>Email:</label>
-                              <span>support@listinghub.com</span>
-                            </li>
-                            <li>
-                              <label>State:</label>
-                              <span>Punjab</span>
-                            </li>
-                            <li>
-                              <label>Country:</label>
-                              <span>India</span>
-                            </li>
-                            <li>
-                              <label>Address:</label>
-                              <span>1126 Sunrise Road, NV 89107</span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      {/* End Address Information */}
-                    </div>
-                    <div className="padd-top-20">
-                      <div className="container">
-                        <div className="row">
-                            {this.state.cards.map((card) => {
-                                return(<AccountCards snap={card.snap} cardId={card.id}/>)
-                              })
-                          }
-                      </div>
-                      </div>
-                    </div>
-                    <div className="col-md-12 col-sm-12 mob-padd-0">
-                      {/* About Information */}
-                      <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-5">
-                        <div className="preview-info-header">
-                          <h4>Miethistory</h4>
-                        </div>
-                        <div className="preview-info-body">
-                          <div className="DetailsTable">
-                            <table className="table">
-                              <thead>
-                                <tr>
-                                  <th>#</th>
-                                  <th>Datum</th>
-                                  <th>Artikel</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>1</td>
-                                  <td>12.12.17</td>
-                                  <td>Bagger 12 t</td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>14.12.17</td>
-                                  <td>Bagger 2t</td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                      {/* End About Information */}
-                    </div>
-
-
-                  </div>
-                </div>
+            </div>
+          </div>
 
 
 
 
-              </div>
+
+
             )
         }
     }

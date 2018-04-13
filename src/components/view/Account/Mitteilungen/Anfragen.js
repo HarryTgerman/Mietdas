@@ -70,16 +70,10 @@ class Anfragen extends Component{
                             </div>
                           </div>
                         </div>
-
-                        <div className="listing-shot-info rating">
+                        <br/>
+                        <div style={{marginBottom:"20px"}} className="listing-shot-info rating">
                           <div className="row extra">
-                            <div className="col-md-7 col-sm-7 col-xs-6">
-                              <i className="color fa fa-star" aria-hidden="true"></i>
-                              <i className="color fa fa-star" aria-hidden="true"></i>
-                              <i className="color fa fa-star" aria-hidden="true"></i>
-                              <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                              <span> 27 Reviews</span>
-                            </div>
+
                             <div className="col-md-8 col-sm-8 col-xs-8 pull-right">
                               <div className="col-sm-4">
                                 <button onClick={this.Zusagen} className="theme-btn btn-outlined">Zusagen</button>
