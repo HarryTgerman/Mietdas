@@ -29,6 +29,7 @@ firebase.database().ref().child('app/users/').child(this.state.uid).child('messa
   })
 })
 }
+
 componentWillMount(){
     this.removeAuthListener = firebase.auth().onAuthStateChanged((user)=>{
       const userProfile = firebase.auth().currentUser;
@@ -41,15 +42,19 @@ componentWillMount(){
         })
         firebase.database().ref().child('app/users/').child(this.state.uid).child('messages')
         .on('value', snap=>{
-          console.log(snap.val());
-          let name = snap.val().name
-           let time =snap.val().time
-           let date =snap.val().date;
-          this.setState({
-            SenderName:name,
-            time: time,
-            date: date,
-          })
+          if(snap.val() !== null){
+            console.log('hier der snap', snap.val());
+             let name = snap.val().name
+             let time =snap.val().time
+             let date =snap.val().date;
+            this.setState({
+              SenderName:name,
+              time: time,
+              date: date,
+            })
+          }else{
+            console.log('snap ist null');
+          }
         })
       } else {
         this.setState({
