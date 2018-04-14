@@ -71,7 +71,7 @@ componentWillMount(){
       var Time = moment().format("HH-MM")
       var Date = moment().format("DD-MM-YY")
     const message = this.messageInput.value;
-      firebase.database().ref().child('app').child('users').child(this.state.uid).child()
+      firebase.database().ref().child('app').child('users').child(this.state.uid)
       .child(this.state.nameRef).child("nachricht")
       .push({msg: message,
             name: this.state.name,

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import {Redirect, NavLink,BrowserRouter, Route, withProps} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 import AccountCards from './AccountCard'
 import Anfragen from './Mitteilungen/Anfragen'
 import LaufendeAnfragen from './Mitteilungen/LaufendeAnfragen'
@@ -9,7 +9,7 @@ import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
 import AvatarImg from'../../../img/avatar.jpg'
 import Chat from './Mitteilungen/Chat'
-
+import EditProfile from './EditProfile/EditProfile'
 class Account extends Component{
   constructor(props){
     super(props)
@@ -19,6 +19,7 @@ class Account extends Component{
       authenticated: false,
       anfragen: [{}],
       controll: false,
+      editProfile: false,
     }
 }
 
@@ -117,7 +118,11 @@ componentWillMount(){
 }
 
 
-
+editProfile() {
+		this.setState((prevState)=>{
+			return {editProfile: !prevState.editProfile};
+		});
+	}
 
 
 
@@ -221,67 +226,75 @@ componentWillMount(){
                        }
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="profile">
-                      <div className="container">
-
+                      <div >
+                          <button type="button" onClick={this.editProfile.bind(this)} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">
+                          {this.state.editProfile ?("Zurück"):("Profil bearbeiten")}</button>
                          {/* General Information */}
-                         <button style={{float:"right", marginRight:"50px", marginBottom:"40px"}} className="btn theme-btn">Profil bearbeiten</button>
-                         <div className=" edit-info">
-                           <div className="listing-box-header">
-                             <div className="avater-box">
-                             { this.state.url ?(<img style={{height:"130px",width:"130px"}} src={this.state.url} className="img-responsive img-circle" alt="" />)
-                                                        :(<img style={{height:"130px",width:"130px"}}  src={AvatarImg} className="img-responsive img-circle " alt="" />)
-                             }
+                         {this.state.editProfile ?(<div><EditProfile uid={this.state.uid}/></div>)
+                     :(<div className="container">
+
+                         <div className="col-md-10 translateY-60 col-sm-12 col-md-offset-1">
+                           <div className="  edit-info mrg-bot-25 padd-bot-30 padd-top-25">
+                             <div className=" edit-info">
+                               <div className="listing-box-header">
+                                 <div className="avater-box">
+                                 { this.state.url ?(<img style={{height:"130px",width:"130px"}} src={this.state.url} className="img-responsive img-circle" alt="" />)
+                                                            :(<img style={{height:"130px",width:"130px"}}  src={AvatarImg} className="img-responsive img-circle " alt="" />)
+                                 }
+                                 </div>
+                               </div>
                              </div>
-                           </div>
-                         </div>
-                          <div className="col-md-12 col-sm-12 mob-padd-0">
-                            {/* Basic Information */}
-                            <div className="edit-info">
-                              <div className="col-md-4 col-sm-12">
-                                <h4>Kontaktdaten</h4>
-                                <div className="preview-info-body">
-                                  <ul className="info-list">
-                                    <li>
-                                      <label><i className="ti-email preview-icon new mrg-r-10"></i>{this.state.email}</label>
-                                    </li>
-                                    <li>
-                                      <label><i className="ti-mobile preview-icon new mrg-r-10"></i>{this.state.telefon}</label>
-                                    </li>
-                                  </ul>
+                              <div className="col-md-12 col-sm-12 mob-padd-0">
+                                {/* Basic Information */}
+                                <div className="edit-info">
+                                  <div className="col-md-4 col-sm-12">
+                                    <h4>Kontaktdaten</h4>
+                                    <div className="preview-info-body">
+                                      <ul className="info-list">
+                                        <li>
+                                          <label><i className="ti-email preview-icon new mrg-r-10"></i>{this.state.email}</label>
+                                        </li>
+                                        <li>
+                                          <label><i className="ti-mobile preview-icon new mrg-r-10"></i>{this.state.telefon}</label>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <div className="col-md-4 col-sm-12">
+                                    <h4>Zahlungsdaten</h4>
+                                    <div className="preview-info-body">
+                                      <ul className="info-list">
+                                        <li>
+                                            <label><i className="ti-credit-card preview-icon birth mrg-r-10"></i>Iban</label>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <div className="col-md-4 col-sm-12">
+                                    <h4>Persönliche Daten</h4>
+                                    <div className="preview-info-body">
+                                      <ul className="info-list">
+                                        <li>
+                                          <label><i className="ti-user preview-icon call mrg-r-10"></i>{this.state.name}</label>
+                                        </li>
+                                        <li>
+                                          <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: Speyer</label>
+                                        </li>
+                                        <li>
+                                          <label><i className="ti-info preview-icon call mrg-r-10"></i>Plz: 132112342</label>
+                                        </li>
+                                        <li>
+                                        <label><i className="ti-home preview-icon call mrg-r-10"></i>Straße: Keplerstr 10</label>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="col-md-4 col-sm-12">
-                                <h4>Zahlungsdaten</h4>
-                                <div className="preview-info-body">
-                                  <ul className="info-list">
-                                    <li>
-                                        <label><i className="ti-credit-card preview-icon birth mrg-r-10"></i>Iban</label>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </div>
-                              <div className="col-md-4 col-sm-12">
-                                <h4>Persönliche Daten</h4>
-                                <div className="preview-info-body">
-                                  <ul className="info-list">
-                                    <li>
-                                      <label><i className="ti-user preview-icon call mrg-r-10"></i>{this.state.name}</label>
-                                    </li>
-                                    <li>
-                                      <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: Speyer</label>
-                                    </li>
-                                    <li>
-                                      <label><i className="ti-info preview-icon call mrg-r-10"></i>Plz: 132112342</label>
-                                    </li>
-                                    <li>
-                                    <label><i className="ti-home preview-icon call mrg-r-10"></i>Straße: Keplerstr 10</label>
-                                    </li>
-                                  </ul>
-                                </div>
+                                {/* End Basic Information */}
                               </div>
                             </div>
-                            {/* End Basic Information */}
                           </div>
+                        </div>)}
                          {/* End General Information */}
                       </div>
                     </div>
