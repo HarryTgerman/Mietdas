@@ -178,7 +178,7 @@ handleChange(event){
                         <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-25">
                           <div className="listing-box-header">
                             <div className="avater-box">
-                            <img src={this.state.avatarImg } stlye={{}} className="img-responsive img-circle edit-avater" alt="" />
+                            <img src={this.state.avatarImg } style={{height:"130px",width:"130px"}} className="img-responsive img-circle edit-avater" alt="" />
                             <div style={{marginLeft:"11px"}} className="upload-btn-wrapper">
                               <button className="btn theme-btn">Profilbild</button>
                               <input type="file" name="myfile"   ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>

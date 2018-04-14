@@ -48,7 +48,7 @@ componentWillMount(){
     event.preventDefault;
     const tefNummer = this.numberInput.value;
     const email = this.emailInput.value;
-    const messageI = this.messageInput.value;
+    const message = this.messageInput.value;
     const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
     const endDate = moment(this.props.location.query.endDate).format("DD-MM-YYYY");
     const num = Math.floor((Math.random() * 5000) + 1)
@@ -80,7 +80,8 @@ componentWillMount(){
               cardId: this.props.location.query.cardId,
               anfrage: anfObj,
             })
-    var currentDate = moment().format("HH-MM")
+    var Time = moment().format("HH-MM")
+    var Date = moment().format("DD-MM-YY")
     const UserRef = firebase.database().ref().child('app')
     .child('users').child(this.props.location.query.snap.uid)
     .child("anfragen/" +this.state.name + num);
@@ -99,10 +100,26 @@ componentWillMount(){
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
       num : num,
-      nachricht: {msg:messageI,date: currentDate},
       nummer: tefNummer,
       email: email,
       new: true,
+    })
+
+    firebase.database().ref().child('app').child('users/' + this.state.uid).child('/messages/').push({
+      new: true,
+      message:{message: message, name: this.state.name,
+      time: Time,
+      date: Date,
+      senderUid: this.state.uid,
+      receiverUid:this.props.location.query.snap.uid}
+    })
+    firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid).child('/messages/').push({
+      new: true,
+      message: {message: message, name: this.state.name,
+      time: Time,
+      date: Date,
+      senderUid: this.state.uid,
+      receiverUid:this.props.location.query.snap.uid}
     })
     this.setState({
       redirectProfile: true
@@ -216,7 +233,7 @@ componentWillMount(){
                               </div>
                             </div>
                             <div className="col-sm-12">
-                              <label>Adresse</label>
+                              <label>Nachricht</label>
                               <textarea type="textarea" ref={(input) => { this.messageInput = input; }} value={this.state.value} onChange={this.handleChange}  className="form-control"/>
                             </div>
                             <div className="col-sm-6">

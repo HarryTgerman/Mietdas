@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
-import {Redirect, NavLink} from 'react-router-dom'
+import {Redirect, NavLink,BrowserRouter, Route, withProps} from 'react-router-dom'
 import AccountCards from './AccountCard'
 import Anfragen from './Mitteilungen/Anfragen'
 import LaufendeAnfragen from './Mitteilungen/LaufendeAnfragen'
 import AccountImg from'../../../img/account.jpg'
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
-import ProfilView from './ProfilView/ProfilView'
 import AvatarImg from'../../../img/avatar.jpg'
-
+import Chat from './Mitteilungen/Chat'
 
 class Account extends Component{
   constructor(props){
@@ -229,8 +228,8 @@ componentWillMount(){
                          <div className=" edit-info">
                            <div className="listing-box-header">
                              <div className="avater-box">
-                             { this.state.url ?(<img style={{height:"120px",width:"120px"}} src={this.state.url} className="img-responsive img-circle" alt="" />)
-                                                        :(<img style={{height:"120px",width:"120px"}}  src={AvatarImg} className="img-responsive img-circle " alt="" />)
+                             { this.state.url ?(<img style={{height:"130px",width:"130px"}} src={this.state.url} className="img-responsive img-circle" alt="" />)
+                                                        :(<img style={{height:"130px",width:"130px"}}  src={AvatarImg} className="img-responsive img-circle " alt="" />)
                              }
                              </div>
                            </div>
@@ -287,7 +286,7 @@ componentWillMount(){
                       </div>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="nachrichten">
-                      ad jkfah dfjas kfhs kdfhak dhös
+                      <Chat/>
                     </div>
                   </div>
                 </div>
