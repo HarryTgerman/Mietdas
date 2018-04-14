@@ -95,7 +95,7 @@ handleChange(event){
                             </div>
                             <div className="col-sm-6">
                               <label>City</label>
-                              <select data-placeholder="Choose City" className="form-control chosen-select" tabindex="2">
+                              <select data-placeholder="Choose City" className="form-control chosen-select" tabIndex="2">
                                 <option>New York</option>
                                 <option>Los Angeles</option>
                                 <option>Chicago</option>
@@ -104,7 +104,7 @@ handleChange(event){
                             </div>
                             <div className="col-sm-6">
                               <label>State</label>
-                              <select data-placeholder="Choose State" className="form-control chosen-select" tabindex="2">
+                              <select data-placeholder="Choose State" className="form-control chosen-select" tabIndex="2">
                                 <option>New York</option>
                                 <option>Los Angeles</option>
                                 <option>Chicago</option>
