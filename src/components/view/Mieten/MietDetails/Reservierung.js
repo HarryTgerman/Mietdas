@@ -107,19 +107,20 @@ componentWillMount(){
 
     firebase.database().ref().child('app').child('users/' + this.state.uid).child('/messages/').push({
       new: true,
+      senderUid: this.state.uid,
+      receiverUid:this.props.location.query.snap.uid,
       message:{message: message, name: this.state.name,
       time: Time,
-      date: Date,
-      senderUid: this.state.uid,
-      receiverUid:this.props.location.query.snap.uid}
+      date: Date}
+
     })
     firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid).child('/messages/').push({
       new: true,
+      senderUid: this.state.uid,
+      receiverUid:this.props.location.query.snap.uid,
       message: {message: message, name: this.state.name,
       time: Time,
-      date: Date,
-      senderUid: this.state.uid,
-      receiverUid:this.props.location.query.snap.uid}
+      date: Date}
     })
     this.setState({
       redirectProfile: true

@@ -8,7 +8,7 @@ import AccountImg from'../../../img/account.jpg'
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
 import AvatarImg from'../../../img/avatar.jpg'
-import Chat from './Mitteilungen/Chat'
+import Chat from './Mitteilungen/Chat/Chat'
 import EditProfile from './EditProfile/EditProfile'
 class Account extends Component{
   constructor(props){
