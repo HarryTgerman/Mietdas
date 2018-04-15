@@ -90,39 +90,73 @@ componentWillMount(){
           const keys = Object.keys(message)
 
           return(
-              <div>
+            <div id="wrapper">
 
-                      <div className="chat">
-                      {keys.map((key)=>{
-                        const msg = message[key]
-                        return(
-                          <div className="chatContainer">
-                          <p>{this.state.SenderName} {this.state.time} {this.state.date}</p>
-                            <a style={{float: "left"}}>{msg.name}</a>
-                            <br/>
-                            <p>{msg.msg}</p>
-                            <span className="time-right">{msg.date}</span>
-                            </div>)
-                          })
-                        }
+              <div id="page-wrapper" >
+                 <div class="row bg-title">
+                  <div class="">
+                    <h4>Nachrichten</h4>
+                  </div>
+                </div>
 
-
-                        <div className="chatContainer darker">
-                          <a style={{float: "right"}}>{this.state.yName}</a>
-                          <br/>
-                          <p>Hey! Im fine. Thanks for asking!</p>
-                          <span className="time-left">11:01</span>
+                <div id="page-inner">
+                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <div class="left-box">
+                            <select class="form-control input-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            </select>
+                          </div>
+                          <div class="right-box">
+                            <div class="filter-search-box text-right">
+                              <input type="search" class="form-control input-sm" placeholder=""/>
+                            </div>
+                          </div>
                         </div>
+                        <div class="inbox-message">
+                          <ul>
+                            <li>
+                              <a href="chatting.html">
+                                <div class="message-avatar">
+                                  <img src="assets/img/img-1.jpg" alt=""/>
+                                </div>
+                                <div class="message-body">
+                                  <div class="message-body-heading">
+                                    <h5>Daniel Dock <span class="unread">ungelesen</span></h5>
+                                    <span>7 hours ago</span>
+                                  </div>
+                                  <p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
+                                </div>
+                              </a>
+                            </li>
 
+                            <li>
+                              <a href="chatting.html">
+                                <div class="message-avatar">
+                                  <img src="assets/img/img-3.jpg" alt=""/>
+                                </div>
+                                <div class="message-body">
+                                  <div class="message-body-heading">
+                                    <h5>Daniel Dock <span class="pending">gelesen</span></h5>
+                                    <span>7 hours ago</span>
+                                  </div>
+                                  <p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
+                                </div>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
                       </div>
-                      <div className="bottomChatt">
-                      <form onSubmit={this.sendMessage}>
-                        <input ref={(input) => { this.messageInput = input; }} type="text" />
-                        <button type="submit">SENDEN</button>
-                      </form>
                     </div>
-
+                  </div>
+                </div>
               </div>
+            </div>
             )
         }
     }

@@ -11,7 +11,13 @@
 @import "./css/responsiveness.css";
 @import "./css/Rating/rating.css";
 
+@import "./css/font-awesome.css";
+@import "./css/line-font.css";
+@import "./css/dropzone.css";
 
+@import "./css/bootstrap-wysihtml5.css";
+@import "./css/styleMessage.css"; 
+@import "./css/custom.css";
 
 
 
