@@ -7,7 +7,7 @@
 @import "./css/bootstrap/bootsnav.css";
 @import "./css/bootstrap/bootstrap-select.min.css";
 @import "./css/bootstrap/bootstrap-theme.css";
-
+@import "./css/themify-icons.css";
 @import '~react-select/dist/react-select.css';
 
 @import "./css/style.css";

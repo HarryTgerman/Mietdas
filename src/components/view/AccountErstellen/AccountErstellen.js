@@ -42,6 +42,21 @@ componentWillMount(){
 }
 createUserProfil(event){
     event.preventDefault()
+    if (this.nameInput.value == "") {
+     const alert = "Geben Sie Ihren Namen ein"
+     this.setState({alert: alert, showAlert: true})
+     return 0
+   }
+   if (this.emailInput.value == "") {
+     const alert = "Geben Sie ihre Email ein"
+     this.setState({alert: alert, showAlert: true})
+     return 0
+   }
+   if (this.dateInput.value == "") {
+     const alert = "Geben Sie Ihr Geburtsdatum ein"
+     this.setState({alert: alert, showAlert: true})
+     return 0
+   }
     const name = this.nameInput.value;
     const email = this.emailInput.value;
     const date = this.dateInput.value;
@@ -115,10 +130,13 @@ handleChange(event){
 }
 
         render(){
+
           if(this.state.redirect === true){
                 return  <Redirect to="/benutzeraccount"/>
               };
           let profiel = this.profilePic
+          if(this.state.showAlert === true)
+          {window.scrollTo(0, 0)}
           return(
               <div className="home-2">
                 <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
@@ -177,6 +195,13 @@ handleChange(event){
                         {/* General Information */}
                         <div className="add-listing-box edit-info mrg-bot-25 padd-bot-30 padd-top-25">
                           <div className="listing-box-header">
+                          {
+                            this.state.showAlert ?
+                             (<div ref="alert" className="alert alert-danger" role="alert">
+                                <strong>Achtung</strong> {this.state.alert}
+                              </div>)
+                            :(null)
+                          }
                             <div className="avater-box">
                             <img src={this.state.avatarImg } style={{height:"130px",width:"130px"}} className="img-responsive img-circle edit-avater" alt="" />
                             <div style={{marginLeft:"11px"}} className="upload-btn-wrapper">

@@ -276,7 +276,7 @@ if (this.state.selectValue.value == "") {
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading">
                                   <h2>Baumaschinen &  <span> Geräte </span></h2>
-                                  <p>>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Günstig.</p>
+                                  <p>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Günstig.</p>
                                 </div>
                                 </div>
                               </div>
@@ -422,7 +422,7 @@ if (this.state.selectValue.value == "") {
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Vermiete deine Maschinen in deiner Umgebung</a>
+                                      <a href="#">Vermieten Sie Ihre Maschinen in Ihrer Umgebung</a>
                                     </h3>
 
                                   </div>
@@ -437,7 +437,7 @@ if (this.state.selectValue.value == "") {
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Unkomplizierte verwaltung über dein Smartphone</a>
+                                      <a href="#">Unkomplizierte verwaltung für Ihr Smartphone</a>
                                     </h3>
 
                                   </div>

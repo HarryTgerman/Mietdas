@@ -20,6 +20,7 @@ class Account extends Component{
       anfragen: [{}],
       controll: false,
       editProfile: false,
+      messages: [{}]
     }
 }
 
@@ -66,6 +67,7 @@ componentWillMount(){
   })
 
 }
+
 
 
   loadAnfragen(){
@@ -299,7 +301,7 @@ editProfile() {
                       </div>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="nachrichten">
-                      <Chat/>
+                      <Chat />
                     </div>
                   </div>
                 </div>

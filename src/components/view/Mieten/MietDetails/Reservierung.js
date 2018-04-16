@@ -52,7 +52,11 @@ componentWillMount(){
     const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
     const endDate = moment(this.props.location.query.endDate).format("DD-MM-YYYY");
     const num = Math.floor((Math.random() * 5000) + 1)
-
+    let randomeKey = ""
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < 28; i++){
+    randomeKey += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
 
     const anfObj = {
       RechnungsAdresse: this.adresseInput.value,
@@ -109,18 +113,22 @@ componentWillMount(){
       new: true,
       senderUid: this.state.uid,
       receiverUid:this.props.location.query.snap.uid,
-      message:{message: message, name: this.state.name,
-      time: Time,
-      date: Date}
-
+      message:{randomeKey:{message: message,
+                          name: this.state.name,
+                          time: Time,
+                          date: Date}
+              }
     })
-    firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid).child('/messages/').push({
+    firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid).child('/messages/')
+    .push({
       new: true,
       senderUid: this.state.uid,
       receiverUid:this.props.location.query.snap.uid,
-      message: {message: message, name: this.state.name,
-      time: Time,
-      date: Date}
+      message:{randomeKey:{message: message,
+                          name: this.state.name,
+                          time: Time,
+                          date: Date}
+              }
     })
     this.setState({
       redirectProfile: true

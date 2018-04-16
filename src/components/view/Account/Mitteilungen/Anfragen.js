@@ -10,7 +10,6 @@ class Anfragen extends Component{
     super(props)
     this.Details = this.Details.bind(this);
     this.Zusagen = this.Zusagen.bind(this);
-    this.Absagen = this.Absagen.bind(this);
   }
 
   Details(){
@@ -100,7 +99,7 @@ class Anfragen extends Component{
                               </div>
                               </Link>
                               <div className="col-sm-4">
-                                <button onClick={this.Absagen} className="theme-btn btn-outlined">Absagen</button>
+                                <button onClick={this.Absagen.bind(this)} className="theme-btn btn-outlined">Absagen</button>
                               </div>
                             </div>
                           </div>

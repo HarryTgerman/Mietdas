@@ -5,12 +5,13 @@ import ChatContainer from './ChatContainer'
 class Chat extends Component{
   constructor(props){
     super(props)
-    this.sendMessage = this.sendMessage.bind(this);
+    this.getChatData= this.getChatData.bind(this)
     this.state ={
       authenticated: false,
       controll: true,
       loaded:false,
-      messages: [{}],
+      messages: [],
+      chatMessages:[],
       showInbox: true,
     }
 }
@@ -29,20 +30,23 @@ componentWillMount(){
           email : userProfile.email,
           uid : userProfile.uid,
         })
-        firebase.database().ref().child('app/users/').child(this.state.uid).child('messages')
-        .on('value', snap=>{
+        firebase.database().ref().child('app/users/').child(this.state.uid).child('messages').orderByKey()
+        .on('child_added', snap=>{
           if(snap.val() !== null){
-             snap.forEach(childSnapshot => {
-               messages.push({
-               read: childSnapshot.val().read,
-               SenderName:childSnapshot.val().name,
-               time: childSnapshot.val().time,
-               date: childSnapshot.val().date,
-               message: childSnapshot.val().message,
-               key: childSnapshot.key,
-             })
-           })
-       this.setState({messages: messages, loaded:true})
+
+               const message = {
+               senderUid: snap.val().senderUid,
+               uid: this.state.uid,
+               read: snap.val().read,
+               SenderName:snap.val().name,
+               time: snap.val().time,
+               date: snap.val().date,
+               message: snap.val().message,
+               key: snap.key,
+             }
+
+           this.setState(prevState =>({messages: [message, ...prevState.messages]}))
+
        }else{
          console.log('snap ist null');
        }
@@ -62,20 +66,25 @@ componentWillMount(){
 
   }
 
-  sendMessage(event){
-    event.preventDefault()
-    if(this.messageInput.value != ""){
-      var Time = moment().format("HH-MM")
-      var Date = moment().format("DD-MM-YY")
-    const message = this.messageInput.value;
-      firebase.database().ref().child('app').child('users').child(this.state.uid)
-      .child(this.state.nameRef).child("nachricht")
-      .push({msg: message,
-            name: this.state.name,
-            date: Date})
-      .then(()=>{this.messageInput.value = null})
-    }
-  }
+getChatData(data){
+  let query = data
+  let chatMessages = []
+  firebase.database().ref().child('app/users/').child(this.state.uid).child('messages').
+  child(query).child('message')
+    .orderByKey()
+    .limitToLast(50)
+    .on('child_added', snap=>{
+    const message = { msg: snap.val().msg,
+    name: snap.val().name,
+    date: snap.val().date,
+    time:snap.val().time,
+    time: snap.val().time,
+    key: snap.key,};
+
+  this.setState(prevState =>({chatMessages: [message, ...prevState.chatMessages]}))
+    })
+
+}
 
         render(){
             let { messages } = this.state
@@ -102,7 +111,7 @@ componentWillMount(){
 
                                   {this.state.messages.map((msg)=>{
                                     return(
-                                    <li onClick={()=>{this.setState({data:msg, showInbox:false})}}>
+                                    <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:false},this.getChatData(msg.key))}}>
                                       <a>
                                         <div  className="message-avatar">
                                           <img src="assets/img/img-3.jpg" alt=""/>
@@ -125,8 +134,9 @@ componentWillMount(){
                     </div>
                     <div  className="col-md-12 col-sm-12 message_section" id="messageView">
                       <div  className="row">
-                      {this.state.showInbox?(null):(<button type="button" onClick={()=>{this.setState({showInbox:true, data: null})}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachricht Anzeigen</button>)} 
-                        <ChatContainer data={this.state.data}/>
+                      {this.state.showInbox?(null):(
+                        <button type="button" onClick={()=>{this.setState({showInbox:true, data: null})}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachricht Anzeigen</button>)}
+                        <ChatContainer data={this.state.data} chatMessages={this.state.chatMessages} uid={this.state.uid} name={this.state.name}/>
                       </div>
                 </div>
 
@@ -135,14 +145,7 @@ componentWillMount(){
 
 
 
-                    <div  className="message_write">
-                    <textarea  className="form-control" placeholder="type a message"></textarea>
-                    <div  className="clearfix"></div>
-                    <div  className="chat_bottom"><a href="#"  className="pull-left upload_btn"><i  className="fa fa-cloud-upload" aria-hidden="true"></i>
-                    Add Files</a>
-                    <a href="#"  className="pull-right btn btn-success">
-                    Send</a></div>
-                   </div>
+
                 </div>
               </div>
 

@@ -362,24 +362,8 @@ nav.navbar.navbar-default.navbar-fixed.white.bootsnav.shadow.on.menu-center.no-f
     border-radius: 0px;
     box-shadow: none;
 }
-.btn.btn-primary {
-    border: 1px solid #ff3a72;
-    border-radius: 0px;
-    width: 100%;
-    height: 46px;
-    background: #ff3a72;
-    text-transform: capitalize;
-    font-size: 16px;
-}
-.btn.btn-primary:hover, .btn.btn-primary:focus{
-    border: 1px solid #ff3a72;
-    border-radius: 0px;
-    width: 100%;
-    height: 46px;
-    background: #ff3a72;
-    text-transform: capitalize;
-    font-size: 16px;
-}
+
+
 .btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default:active.focus, .btn-default:active:focus, .btn-default:active:hover, .open>.dropdown-toggle.btn-default.focus, .open>.dropdown-toggle.btn-default:focus, .open>.dropdown-toggle.btn-default:hover {
     color: #333;
     background-color: transparent;
