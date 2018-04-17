@@ -14,7 +14,9 @@ class ChatContainer extends Component{
 
 sendMessage(event){
   event.preventDefault()
-
+  firebase.database().ref().child('app/messages/').child(this.props.data.key).update({
+    read:false
+  })
   let name = this.props.name;
   if(this.messageInput.value != ""){
     var Time = moment().format("HH:MM")
@@ -34,14 +36,13 @@ sendMessage(event){
         render(){
 
 
-
           return(
               <div>
               {this.props.data?(
             <div>
               <div  className="chat_area">
                 <ul  className="list-unstyled" id="chat-scroll">
-                  {this.props.chatMessages.slice(0).reverse().map((msg)=>{
+                  {this.props.chatMessages.map((msg)=>{
                     if(msg.name == this.props.name)
                     {return(
                     <li  key={msg.key} className="pull-right col-sm-12 col-md-12  clearfix">

@@ -112,6 +112,8 @@ componentWillMount(){
     firebase.database().ref().child('app').child('messages').push({
       senderUid: this.props.location.query.snap.uid,
       receiverUid:this.state.uid,
+      name: this.state.name,
+      read: false,
       message:{firstMessge:{message: message,
                           name: this.state.name,
                           time: Time,

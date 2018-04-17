@@ -70,6 +70,9 @@ componentWillMount(){
 getChatData(data){
   let query = data
   let chatMessages = []
+  firebase.database().ref().child('app/messages/').child(query).update({
+    read:true
+  })
   firebase.database().ref().child('app/messages/').child(query).child('message')
     .orderByKey()
     .limitToLast(50)
@@ -78,17 +81,21 @@ getChatData(data){
     msg: snap.val().message,
     name: snap.val().name,
     date: snap.val().date,
+    read: snap.val().read,
     time:snap.val().time,
+    messages: snap.val().message,
     key: snap.key,};
-
   this.setState(prevState =>({chatMessages: [message, ...prevState.chatMessages]}))
     })
 
 }
 
         render(){
-            let { messages } = this.state
-            let keys = Object.keys(messages)
+          var now  = moment().format();
+          var then = "02/09/2013 14:20:30";
+
+
+
 
           return(
             //chat Übersicht
@@ -110,6 +117,7 @@ getChatData(data){
                           <ul>
 
                                   {this.state.messages.map((msg)=>{
+                                    let lastMessage= msg.message[Object.keys(msg.message)[Object.keys(msg.message).length - 1]]
                                     return(
                                     <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:false},this.getChatData(msg.key))}}>
                                       <a>
@@ -119,9 +127,16 @@ getChatData(data){
                                         <div  className="message-body">
                                           <div  className="message-body-heading">
                                             <h5>{msg.SenderName}{msg.read ? (<span  className="pending">gelesen</span>):<span  className="unread">ungelesen</span>}</h5>
-                                            <span>7 hours ago</span>
+
                                           </div>
-                                          <p>Hier ist die Message</p>
+                                          {
+                                            ()=>{var then = this.msg.date + " " + this.msg.time
+                                            var ms = moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"DD/MM/YYYY HH:mm:ss"));
+                                            var d = moment.duration(ms);
+                                            var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")
+                                              return (<span>{s} Stunden {d} Tage her></span>)}
+                                          }
+                                          <p>{lastMessage.message}</p>
                                         </div>
                                       </a>
                                     </li>)
