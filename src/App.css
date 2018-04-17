@@ -60,3 +60,7 @@ border-top: 1px solid #eaeff5;
   padding-left: -30px;
   margin-left: -160px;
 }
+
+.errorMessage{
+  color: red;
+}

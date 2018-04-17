@@ -27,6 +27,16 @@ componentWillMount(){
         name : userProfile.displayName,
         email : userProfile.email,
         uid : userProfile.uid,
+        isError: true,
+        vornameError: "",
+        emailError: "",
+        telefonError: "",
+        geburtstagError: "",
+        strasseError: "",
+        stadtError: "",
+        plzError: "",
+        bundeslandError: "",
+        landError: ""
       },()=>{if (this.state.photoUrl == null){this.setState({showPhotoUrl:false})}else {this.setState({showPhotoUrl:true})}
             }
     )
@@ -40,23 +50,95 @@ componentWillMount(){
   })
 
 }
+
+
+  checkName =() =>{
+    if (this.nameInput.value.length < 4 ){
+      const error = "Geben Sie bitte Ihren Namen ein"
+      this.setState({vornameError: error, isError: true})
+    }else{
+      this.setState({vornameError: '', isError: false})
+    }
+  }
+
+ checkNummer = () =>{
+   if (this.nummerInput.value.length < 11){
+     const error = "Ihre Telefonnummer muss mindestens 11 Ziffern haben"
+     this.setState({telefonError: error, isError: true})
+   }else{
+     this.setState({telefonError: '', isError: false})
+   }
+ }
+
+  checkGeburtstag = () =>{
+    if (this.dateInput.value.length < 10){
+      const error = "Bitte geben Sie Ihr Gebrutsdatum im diesem Format 'TT.MM.JJJ' ein";
+      this.setState({geburtstagError: error, isError: true})
+   }else{
+      this.setState({geburtstagError: '', isError: false})
+    }
+  }
+
+  checkStrasse = () =>{
+    if (this.straßeInput.value.length < 3){
+      const error = "Bitte geben Sie Ihre Strasse ein";
+      this.setState({strasseError: error, isError: true})
+   }else{
+      this.setState({strasseError: '', isError: false})
+    }
+  }
+
+  checkStadt = () =>{
+    if (this.stadtInput.value.length < 3){
+      const error = "Bitte geben Sie Ihre Stadt ein";
+      this.setState({stadtError: error, isError: true})
+   }else{
+      this.setState({stadtError: '', isError: false})
+    }
+  }
+
+  checkPlz = () =>{
+    if (this.plzInput.value.length < 5){
+      const error = "Bitte geben Sie Ihre PLZ ein. Eine Postleitzahl hat mindestens 5 Ziffern.";
+      this.setState({plzError: error, isError: true})
+   }else{
+      this.setState({plzError: '', isError: false})
+    }
+  }
+
+  checkBundesland = () =>{
+    if (this.bundeslandInput.value.length < 2){
+      const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
+      this.setState({bundeslandError: error, isError: true})
+   }else{
+      this.setState({bundeslandError: '', isError: false})
+    }
+  }
+
+  checkLand = () =>{
+    if (this.landInput.value.length < 2){
+      const error = "Bitte geben Sie Ihr Land ein.";
+      this.setState({landError: error, isError: true})
+   }else{
+      this.setState({landError: '', isError: false})
+    }
+  }
+
+
+
+
 createUserProfil(event){
     event.preventDefault()
-    if (this.nameInput.value == "") {
-     const alert = "Geben Sie Ihren Namen ein"
-     this.setState({alert: alert, showAlert: true})
-     return 0
-   }
-   if (this.emailInput.value == "") {
-     const alert = "Geben Sie ihre Email ein"
-     this.setState({alert: alert, showAlert: true})
-     return 0
-   }
-   if (this.dateInput.value == "") {
-     const alert = "Geben Sie Ihr Geburtsdatum ein"
-     this.setState({alert: alert, showAlert: true})
-     return 0
-   }
+
+    this.checkName();
+    this.checkNummer();
+    this.checkGeburtstag();
+    this.checkStrasse();
+    this.checkStadt();
+    this.checkPlz();
+    this.checkBundesland();
+    this.checkLand();
+
     const name = this.nameInput.value;
     const email = this.emailInput.value;
     const date = this.dateInput.value;
@@ -72,6 +154,10 @@ createUserProfil(event){
     const bundesLand = this.bundeslandInput.value;
     var user = firebase.auth().currentUser;
 
+    if(this.state.isError){
+      const alert = "Bitte füllen Sie alle Felder richtig aus."
+      this.setState({alert: alert, showAlert: true})
+    }else{
       firebase.storage().ref('images/pimgaes/').child(userId).child('pimage').put(userImage)
       .then(()=>{
       firebase.storage().ref('images/pimgaes/').child(userId).child('pimage')
@@ -111,12 +197,9 @@ createUserProfil(event){
           })
         })
 
+    }
+
 }
-
-
-
-
-
 
 handleChange(event){
   event.preventDefault()
@@ -215,19 +298,23 @@ handleChange(event){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-6">
                                 <label>Name/Firma</label>
-                                <input type="text" ref={(input) => { this.nameInput = input; }} className="form-control" value={this.state.name}/>
+                                <input type="text" ref={(input) => { this.nameInput = input; }} onChange={this.checkName} className="form-control" value={this.state.name}/>
+                                <p className="errorMessage">{this.state.vornameError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Email</label>
-                                <input type="text" ref={(input) => { this.emailInput = input; }} className="form-control" value={this.state.email}/>
+                                <input type="text" ref={(input) => { this.emailInput = input; }} className="form-control" value={this.state.email} disabled/>
+                                <p className="errorMessage">{this.state.emailError}</p>
                               </div>
                               <div className="col-sm-6">
-                                <label>Nummer</label>
-                                <input type="text" className="form-control" ref={(input) => { this.nummerInput = input; }} placeholder="Telefon Nummer"/>
+                                <label>Telefonnummer</label>
+                                <input type="text" className="form-control" ref={(input) => { this.nummerInput = input; }} onChange={this.checkNummer} placeholder="Telefon Nummer"/>
+                                <p className="errorMessage">{this.state.telefonError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Geburtstag</label>
-                                <input type="text" ref={(input) => { this.dateInput = input; }} placeholder="TT.MM.JJJJ" className="form-control"/>
+                                <input type="text" ref={(input) => { this.dateInput = input; }} onChange={this.checkGeburtstag} placeholder="TT.MM.JJJJ" className="form-control"/>
+                                <p className="errorMessage">{this.state.geburtstagError}</p>
                               </div>
                             </div>
                           </form>
@@ -245,27 +332,32 @@ handleChange(event){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-6">
                                 <label>Straße</label>
-                                <input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} placeholder="Straße Nummer"/>
+                                <input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse} placeholder="Straße Nummer"/>
+                                <p className="errorMessage">{this.state.strasseError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Rechnungsadresse</label>
-                                <input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} placeholder="Vollständige Adresse"/>
+                                <input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} onChange={this.checkRechnungsAdresse} placeholder="Vollständige Adresse"/>
                               </div>
                               <div className="col-sm-6">
                                 <label>Stadt</label>
-                                <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} placeholder="Stadt"/>
+                                <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt} placeholder="Stadt"/>
+                                <p className="errorMessage">{this.state.stadtError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>PLZ</label>
-                                <input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} placeholder="Postleitzahl"/>
+                                <input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz} placeholder="Postleitzahl"/>
+                                <p className="errorMessage">{this.state.plzError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Bundesland</label>
-                                <input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} placeholder="Bundesland"/>
+                                <input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} onChange={this.checkBundesland} placeholder="Bundesland"/>
+                                <p className="errorMessage">{this.state.bundeslandError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Land</label>
-                                <input type="text" className="form-control" ref={(input) => { this.landInput = input; }} placeholder="Deutschland"/>
+                                <input type="text" className="form-control" ref={(input) => { this.landInput = input; }} onChange={this.checkLand} placeholder="Deutschland"/>
+                                <p className="errorMessage">{this.state.landError}</p>
                               </div>
                             </div>
                           </form>
