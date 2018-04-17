@@ -5,6 +5,7 @@ import ChatContainer from './ChatContainer'
 class Chat extends Component{
   constructor(props){
     super(props)
+    this.getChats = this.getChats.bind(this)
     this.getChatData= this.getChatData.bind(this)
     this.state ={
       authenticated: false,
@@ -17,7 +18,50 @@ class Chat extends Component{
 }
 
 
+getChats(){
+  firebase.database().ref().child('app/').child('messages').orderByChild('receiverUid').equalTo(this.state.uid)
+  .once('child_added', snap=>{
 
+    if(snap.val() !== null){
+         const message = {
+         senderUid: snap.val().senderUid,
+         uid: this.state.uid,
+         read: snap.val().read,
+         SenderName:snap.val().name,
+         time: snap.val().time,
+         date: snap.val().date,
+         message: snap.val().message,
+         key: snap.key,
+       }
+
+     this.setState(prevState =>({messages: [message, ...prevState.messages]}))
+
+ }else{
+   console.log('snap ist null');
+ }
+})
+firebase.database().ref().child('app/').child('messages').orderByChild('senderUid').equalTo(this.state.uid)
+.on('child_added', snap=>{
+
+if(snap.val() !== null){
+     const message = {
+     senderUid: snap.val().senderUid,
+     uid: this.state.uid,
+     read: snap.val().read,
+     SenderName:snap.val().name,
+     time: snap.val().time,
+     date: snap.val().date,
+     message: snap.val().message,
+     key: snap.key,
+   }
+
+ this.setState(prevState =>({messages: [message, ...prevState.messages]}))
+
+}else{
+console.log('snap ist null');
+}
+})
+}
 
 componentWillMount(){
     let messages = []
@@ -29,28 +73,7 @@ componentWillMount(){
           name : userProfile.displayName,
           email : userProfile.email,
           uid : userProfile.uid,
-        })
-        firebase.database().ref().child('app/').child('messages').orderByChild('receiverUid').equalTo(this.state.uid)
-        .on('child_added', snap=>{
-
-          if(snap.val() !== null){
-               const message = {
-               senderUid: snap.val().senderUid,
-               uid: this.state.uid,
-               read: snap.val().read,
-               SenderName:snap.val().name,
-               time: snap.val().time,
-               date: snap.val().date,
-               message: snap.val().message,
-               key: snap.key,
-             }
-
-           this.setState(prevState =>({messages: [message, ...prevState.messages]}))
-
-       }else{
-         console.log('snap ist null');
-       }
-    })
+        },this.getChats)
 
 
       } else {
@@ -91,8 +114,6 @@ getChatData(data){
 }
 
         render(){
-          var now  = moment().format();
-          var then = "02/09/2013 14:20:30";
 
 
 
@@ -118,6 +139,8 @@ getChatData(data){
 
                                   {this.state.messages.map((msg)=>{
                                     let lastMessage= msg.message[Object.keys(msg.message)[Object.keys(msg.message).length - 1]]
+                                    let start = lastMessage.date +" "+lastMessage.time,
+                                    hours = moment(start, "DD-MM-YY, hh:mm").fromNow()
                                     return(
                                     <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:false},this.getChatData(msg.key))}}>
                                       <a>
@@ -125,18 +148,13 @@ getChatData(data){
                                           <img src="assets/img/img-3.jpg" alt=""/>
                                         </div>
                                         <div  className="message-body">
+                                        <span className="pull-right">{hours}</span>
+
                                           <div  className="message-body-heading">
                                             <h5>{msg.SenderName}{msg.read ? (<span  className="pending">gelesen</span>):<span  className="unread">ungelesen</span>}</h5>
-
                                           </div>
-                                          {
-                                            ()=>{var then = this.msg.date + " " + this.msg.time
-                                            var ms = moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"DD/MM/YYYY HH:mm:ss"));
-                                            var d = moment.duration(ms);
-                                            var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss")
-                                              return (<span>{s} Stunden {d} Tage her></span>)}
-                                          }
                                           <p>{lastMessage.message}</p>
+
                                         </div>
                                       </a>
                                     </li>)
@@ -150,7 +168,7 @@ getChatData(data){
                     <div  className="col-md-12 col-sm-12 message_section" id="messageView">
                       <div  className="row">
                       {this.state.showInbox?(null):(
-                        <button type="button" onClick={()=>{this.setState({showInbox:true, data: null})}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachricht Anzeigen</button>)}
+                        <button type="button" onClick={()=>{this.setState({showInbox:true, data: null, chatMessages: [], messages: []},this.getChats)}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachricht Anzeigen</button>)}
                         <ChatContainer data={this.state.data} chatMessages={this.state.chatMessages} uid={this.state.uid} name={this.state.name}/>
                       </div>
                 </div>

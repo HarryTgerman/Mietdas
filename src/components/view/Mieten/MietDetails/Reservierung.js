@@ -84,7 +84,7 @@ componentWillMount(){
               cardId: this.props.location.query.cardId,
               anfrage: anfObj,
             })
-    var Time = moment().format("HH-MM")
+    var Time = moment().format("HH:MM")
     var Date = moment().format("DD-MM-YY")
     const UserRef = firebase.database().ref().child('app')
     .child('users').child(this.props.location.query.snap.uid)
@@ -114,7 +114,7 @@ componentWillMount(){
       receiverUid:this.state.uid,
       name: this.state.name,
       read: false,
-      message:{firstMessge:{message: message,
+      message:{"-AAAAAAAAAAAAAAAAAAAA":{message: message,
                           name: this.state.name,
                           time: Time,
                           date: Date}

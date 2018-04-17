@@ -42,7 +42,7 @@ sendMessage(event){
             <div>
               <div  className="chat_area">
                 <ul  className="list-unstyled" id="chat-scroll">
-                  {this.props.chatMessages.map((msg)=>{
+                  {this.props.chatMessages.slice(0).reverse().map((msg)=>{
                     if(msg.name == this.props.name)
                     {return(
                     <li  key={msg.key} className="pull-right col-sm-12 col-md-12  clearfix">
