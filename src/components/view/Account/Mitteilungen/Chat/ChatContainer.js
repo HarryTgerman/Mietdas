@@ -20,13 +20,14 @@ sendMessage(event){
     var Time = moment().format("HH:MM")
     var Date = moment().format("DD-MM-YY")
     let message = this.messageInput.value;
-    firebase.database().ref().child('app').child('users').child(this.props.uid).child('messages').child(this.props.data.key)
-    .child('message').push({
-      msg: message,
+    firebase.database().ref().child('app').child('messages').child(this.props.data.key).child('message')
+    .push({
+      message: message,
       name: name,
       date: Date,
       time: Time
     })
+
     .then(()=>{this.messageInput.value = null})
   }
 }
@@ -40,10 +41,10 @@ sendMessage(event){
             <div>
               <div  className="chat_area">
                 <ul  className="list-unstyled" id="chat-scroll">
-                  {this.props.chatMessages.map((msg)=>{
+                  {this.props.chatMessages.slice(0).reverse().map((msg)=>{
                     if(msg.name == this.props.name)
                     {return(
-                    <li  className="left clearfix">
+                    <li  key={msg.key} className="pull-right col-sm-12 col-md-12  clearfix">
                      <div  className="pull-right chat-body1 clearfix">
                        <p>{msg.name}: {msg.msg}</p>
                        <div  className="chat_time pull-right">{msg.time}</div>
@@ -51,10 +52,10 @@ sendMessage(event){
                    </li>)}
                    else{
                      return(
-                       <li  className="left clearfix">
+                       <li  key={msg.key} className="pull-left col-sm-12 col-md-12  clearfix">
                         <div  className="pull-left chat-body1 clearfix">
                           <p>{msg.name}: {msg.msg}</p>
-                          <div  className="chat_time ">{msg.time}</div>
+                          <div  className="chat_time pull-left">{msg.time}</div>
                         </div>
                       </li>
                      )

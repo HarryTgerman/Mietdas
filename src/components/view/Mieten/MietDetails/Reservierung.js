@@ -18,7 +18,7 @@ class Reservierung extends Component{
       redirectProfile: false,
       rabatt: false,
       originalSumme: this.props.location.query.Gesamtsumme,
-      value: "Sehr geehrter Vermieter. Ich möchte gerne den Artikel im angegebenen Zeitraum anmieten. Bitte bestätigen Sie meine Anfrage!",
+      value: "Sehr geehrter Vermieter. Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätigen Sie meine Anfrage!",
     }
 }
 handleChange(event) {
@@ -109,27 +109,16 @@ componentWillMount(){
       new: true,
     })
 
-    firebase.database().ref().child('app').child('users/' + this.state.uid).child('/messages/').push({
-      new: true,
-      senderUid: this.state.uid,
-      receiverUid:this.props.location.query.snap.uid,
-      message:{randomeKey:{message: message,
+    firebase.database().ref().child('app').child('messages').push({
+      senderUid: this.props.location.query.snap.uid,
+      receiverUid:this.state.uid,
+      message:{firstMessge:{message: message,
                           name: this.state.name,
                           time: Time,
                           date: Date}
               }
     })
-    firebase.database().ref().child('app').child('users/' + this.props.location.query.snap.uid).child('/messages/')
-    .push({
-      new: true,
-      senderUid: this.state.uid,
-      receiverUid:this.props.location.query.snap.uid,
-      message:{randomeKey:{message: message,
-                          name: this.state.name,
-                          time: Time,
-                          date: Date}
-              }
-    })
+
     this.setState({
       redirectProfile: true
     })

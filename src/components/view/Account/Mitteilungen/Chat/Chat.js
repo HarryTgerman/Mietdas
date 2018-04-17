@@ -30,10 +30,10 @@ componentWillMount(){
           email : userProfile.email,
           uid : userProfile.uid,
         })
-        firebase.database().ref().child('app/users/').child(this.state.uid).child('messages').orderByKey()
+        firebase.database().ref().child('app/').child('messages').orderByChild('receiverUid').equalTo(this.state.uid)
         .on('child_added', snap=>{
-          if(snap.val() !== null){
 
+          if(snap.val() !== null){
                const message = {
                senderUid: snap.val().senderUid,
                uid: this.state.uid,
@@ -50,7 +50,8 @@ componentWillMount(){
        }else{
          console.log('snap ist null');
        }
-     })
+    })
+
 
       } else {
         this.setState({
@@ -69,16 +70,15 @@ componentWillMount(){
 getChatData(data){
   let query = data
   let chatMessages = []
-  firebase.database().ref().child('app/users/').child(this.state.uid).child('messages').
-  child(query).child('message')
+  firebase.database().ref().child('app/messages/').child(query).child('message')
     .orderByKey()
     .limitToLast(50)
     .on('child_added', snap=>{
-    const message = { msg: snap.val().msg,
+    const message = {
+    msg: snap.val().message,
     name: snap.val().name,
     date: snap.val().date,
     time:snap.val().time,
-    time: snap.val().time,
     key: snap.key,};
 
   this.setState(prevState =>({chatMessages: [message, ...prevState.chatMessages]}))
