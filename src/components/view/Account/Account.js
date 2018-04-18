@@ -46,6 +46,7 @@ componentWillMount(){
 
 
     if(user){
+      console.log(userProfile, 'aus account.js')
       this.setState(
         {
         authenticated: true,
@@ -74,31 +75,34 @@ componentWillMount(){
     const uid = this.state.uid;
     firebase.database().ref('app/').child('users/'+uid)
     .on('value', snap => {
-      if(snap.val().anfragen == null){
-      this.setState({
-        controll: true,
-        anfragen: 0,
-        cardId: snap.val().cardId,
-        url: snap.val().url,
-        nachName: snap.val().nachName,
-        adresse: snap.val().address,
-        geboren: snap.val().geburtsDatum,
-        mobil: snap.val().mobil,
-        telefon: snap.val().telefon,
+        if(snap.val()){
+          if(snap.val().anfragen == null){
+          this.setState({
+            controll: true,
+            anfragen: 0,
+            cardId: snap.val().cardId,
+            url: snap.val().url,
+            nachName: snap.val().nachName,
+            adresse: snap.val().address,
+            geboren: snap.val().geburtsDatum,
+            mobil: snap.val().mobil,
+            telefon: snap.val().telefon,
 
-      })
-  }else{
-        this.setState({
-        anfragen: snap.val().anfragen,
-        cardId: snap.val().cardId,
-        url: snap.val().url,
-        nachName: snap.val().nachName,
-        adresse: snap.val().address,
-        geboren: snap.val().geburtsDatum,
-        mobil: snap.val().mobil,
-        telefon: snap.val().telefon,
-      })
-    }
+          })
+      }else{
+            this.setState({
+            anfragen: snap.val().anfragen,
+            cardId: snap.val().cardId,
+            url: snap.val().url,
+            nachName: snap.val().nachName,
+            adresse: snap.val().address,
+            geboren: snap.val().geburtsDatum,
+            mobil: snap.val().mobil,
+            telefon: snap.val().telefon,
+          })
+        }
+      }
+
   })
   const mitteilung = [];
     firebase.database().ref().child('app').child('users/').child(this.state.uid)
