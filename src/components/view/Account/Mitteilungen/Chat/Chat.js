@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import firebase from 'firebase'
 import moment from 'moment'
 import ChatContainer from './ChatContainer'
+import {Redirect} from 'react-router-dom'
 class Chat extends Component{
   constructor(props){
     super(props)
@@ -41,7 +42,7 @@ getChats(){
  }
 })
 firebase.database().ref().child('app/').child('messages').orderByChild('senderUid').equalTo(this.state.uid)
-.on('child_added', snap=>{
+.once('child_added', snap=>{
 
 if(snap.val() !== null){
      const message = {
@@ -76,14 +77,6 @@ componentWillMount(){
         },this.getChats)
 
 
-      } else {
-        this.setState({
-          authenticated: false,
-        },
-        ()=>{
-          this.urlData();
-          if (this.state.photoUrl == null){this.setState({showPhotoUrl:false})}else {this.setState({showPhotoUrl:true})}}
-        )
       }
     })
 
@@ -114,8 +107,6 @@ getChatData(data){
 }
 
         render(){
-
-
 
 
           return(

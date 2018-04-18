@@ -17,15 +17,88 @@ componentDidMount(){
     let url = snap.val().url
     let email = snap.val().email
     let name = snap.val().name
+    let telefon = snap.val().telefon
+    let geburtsdatum = snap.val().geburtsDatum
+    let adresse = snap.val().address
+    let straße = snap.val().straße
+    let plz = snap.val().plz
+    let stadt = snap.val().stadt
+    let bundesLand = snap.val().bundesLand
+
+
 
     this.setState({
-      url: url,
+      bundesLand:bundesLand,
+      adresse: adresse,
+      straße: straße,
+      plz: plz,
+      stadt: stadt,
+      geburtsDatum:geburtsdatum,
+      telefon: telefon,
+      avatarImg: url,
       email:email,
       name:name,
       loading: false,
     })
   })
 }
+
+handleChangeName(event) {
+   this.setState({name: event.target.value});
+ }
+ handleChangeEmail(event) {
+    this.setState({email: event.target.value});
+  }
+  handleChangeTelefon(event) {
+     this.setState({telefon: event.target.value});
+   }
+   handleChangeGeburtsDatum(event) {
+      this.setState({geburtsDatum: event.target.value});
+    }
+    checkStrasse (e) {
+      if (this.straßeInput.value.length < 3){
+        const error = "Bitte geben Sie Ihre Strasse ein";
+        this.setState({strasseError: error, isError: true,straße: e.target.value})
+     }else{
+        this.setState({strasseError: '', isError: false, straße: e.target.value})
+      }
+    }
+
+    checkStadt(e) {
+      if (this.stadtInput.value.length < 3){
+        const error = "Bitte geben Sie Ihre Stadt ein";
+        this.setState({stadtError: error, isError: true,stadt: e.target.value})
+     }else{
+        this.setState({stadtError: '', isError: false, stadt: e.target.value})
+      }
+    }
+
+    checkPlz(e) {
+      if (this.plzInput.value.length < 5){
+        const error = "Bitte geben Sie Ihre PLZ ein. Eine Postleitzahl hat mindestens 5 Ziffern.";
+        this.setState({plzError: error, isError: true,plz: e.target.value})
+     }else{
+        this.setState({plzError: '', isError: false, plz: e.target.value})
+      }
+    }
+
+    checkBundesland (e) {
+      if (this.bundeslandInput.value.length < 2){
+        const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
+        this.setState({bundeslandError: error, isError: true,bundesLand: e.target.value})
+     }else{
+        this.setState({bundeslandError: '', isError: false,bundesLand: e.target.value})
+      }
+    }
+    checkRechnungsAdresse(e) {
+      if (this.bundeslandInput.value.length < 2){
+        const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
+        this.setState({bundeslandError: error, isError: true,adresse: e.target.value})
+     }else{
+        this.setState({bundeslandError: '', isError: false,adresse: e.target.value})
+      }
+    }
+
 
 handleChange(event){
   event.preventDefault()
@@ -47,7 +120,7 @@ handleChange(event){
                       <div className="  edit-info mrg-bot-25 padd-bot-30 padd-top-25">
                         <div className="listing-box-header">
                           <div className="avater-box">
-                          <img style={{height:"130px" ,width:"130px"}} src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />
+                          <img style={{height:"130px" ,width:"130px"}} src={this.state.avatarImg} className="img-responsive img-circle edit-avater" alt="" />
                           <div style={{marginLeft:"11px"}} className="upload-btn-wrapper">
                             <button className="btn theme-btn">Profilbild</button>
                             <input type="file" name="myfile"   ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
@@ -59,237 +132,71 @@ handleChange(event){
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-sm-6">
                               <label>Name</label>
-                              <input type="text" className="form-control" value="Daniel Deve"/>
+                              <input type="text" className="form-control" onChange={this.handleChangeName.bind(this)} value={this.state.name}/>
                             </div>
                             <div className="col-sm-6">
                               <label>Email</label>
-                              <input type="text" className="form-control" value="support@listinghub.com"/>
+                              <input type="text" className="form-control" onChange={this.handleChangeEmail.bind(this)} value={this.state.email}/>
                             </div>
                             <div className="col-sm-6">
-                              <label>Phone</label>
-                              <input type="text" className="form-control" value="91 258 587 4123"/>
+                              <label>Telefon</label>
+                              <input type="text" className="form-control" onChange={this.handleChangeTelefon.bind(this)} value={this.state.telefon}/>
                             </div>
                             <div className="col-sm-6">
-                              <label>DOB</label>
-                              <input type="text" data-lang="en" data-format="F S, Y" data-default-date="11-13-2018" data-fx-mobile="true" data-theme="my-style" data-large-default="true" className="datedropper form-control"/>
+                              <label>Geburtsdatum</label>
+                              <input type="text" className="form-control" onChange={this.handleChangeGeburtsDatum.bind(this)} value={this.state.geburtsDatum}/>
                             </div>
                           </div>
                         </form>
                       </div>
 
-                      <div className="  add-location mrg-bot-25 padd-bot-30 padd-top-25">
+                      <div className=" add-location mrg-bot-25 padd-bot-30 padd-top-25">
                         <div className="listing-box-header">
                           <i className="ti-location-pin theme-cl"></i>
-                          <h3>Edit Location</h3>
-                          <p>Write Address Information about your listing Location</p>
+                          <h3>Standort Informationen</h3>
+                          <p>Firmensitz oder Standort der Maschienen</p>
                         </div>
                         <form>
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-sm-6">
-                              <label>Address</label>
-                              <input type="text" className="form-control" value=" 1126 Sunrise Road, NV 89107"/>
+                              <label>Straße</label>
+                              <input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse.bind(this)} value={this.state.straße}/>
+                              <p className="errorMessage">{this.state.strasseError}</p>
                             </div>
                             <div className="col-sm-6">
-                              <label>Temporary Address</label>
-                              <input type="text" className="form-control" value=" 1126 Sunrise Road, NV 89107"/>
+                              <label>Rechnungsadresse</label>
+                              <input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} onChange={this.checkRechnungsAdresse.bind(this)} value={this.state.adresse} />
                             </div>
                             <div className="col-sm-6">
-                              <label>City</label>
-                              <select data-placeholder="Choose City" className="form-control chosen-select" tabIndex="2">
-                                <option>New York</option>
-                                <option>Los Angeles</option>
-                                <option>Chicago</option>
-                                <option>Phoenix</option>
-                              </select>
+                              <label>Stadt</label>
+                              <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt.bind(this)} value={this.state.stadt} />
+                              <p className="errorMessage">{this.state.stadtError}</p>
                             </div>
                             <div className="col-sm-6">
-                              <label>State</label>
-                              <select data-placeholder="Choose State" className="form-control chosen-select" tabIndex="2">
-                                <option>New York</option>
-                                <option>Los Angeles</option>
-                                <option>Chicago</option>
-                                <option>Phoenix</option>
-                              </select>
+                              <label>PLZ</label>
+                              <input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz.bind(this)} value={this.state.plz}/>
+                              <p className="errorMessage">{this.state.plzError}</p>
                             </div>
-                            <div className="col-sm-6">
-                              <label>Country</label>
-                              <input type="text" className="form-control" value="India"/>
-                            </div>
-                            <div className="col-sm-6">
-                              <label>Zip-Code</label>
-                              <input type="text" className="form-control" value="2582 452 258"/>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-
-                      <div className="  full-detail mrg-bot-25 padd-bot-30 padd-top-25">
-                        <div className="listing-box-header">
-                          <i className="ti-write theme-cl"></i>
-                          <h3>Full Details</h3>
-                          <p>Write full detail information about listing Owner</p>
-                        </div>
-                        <form>
-                          <div className="row mrg-r-10 mrg-l-10">
-                            <div className="col-sm-6">
-                              <label>Owner Name</label>
-                              <input type="text" className="form-control"  value="Daniel Deve"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label>Website</label>
-                              <input type="text" className="form-control"  value="http://Www.listing.com"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label>Owner Designation</label>
-                              <input type="text" className="form-control"  value="Account Manager"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label>Company</label>
-                              <input type="text" className="form-control"  value="Info Soft Ltd"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label><i className="fa fa-facebook mrg-r-5" aria-hidden="true"></i>Facebook Link</label>
-                              <input type="text" className="form-control" value="https://www.facebook.com"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label><i className="fa fa-twitter mrg-r-5" aria-hidden="true"></i>Twitter User</label>
-                              <input type="text" className="form-control" value="https://www.twitter.com/"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label><i className="fa fa-google-plus mrg-r-5" aria-hidden="true"></i>Google Plus</label>
-                              <input type="text" className="form-control" value="https://www.twitter.com/"/>
-                            </div>
-
-                            <div className="col-sm-6">
-                              <label><i className="fa fa-linkedin-square mrg-r-5" aria-hidden="true"></i>Linked In</label>
-                              <input type="text" className="form-control" value="https://www.twitter.com/"/>
-                            </div>
-
                             <div className="col-sm-12">
-                              <label>Description</label>
-                              <textarea className="h-100 form-control"></textarea>
+                              <label>Bundesland</label>
+                              <input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} onChange={this.checkBundesland.bind(this)} value={this.state.bundesLand} />
+                              <p className="errorMessage">{this.state.bundeslandError}</p>
                             </div>
-
                           </div>
                         </form>
                       </div>
 
-                      <div className="  amenities mrg-bot-25 padd-bot-30 padd-top-25">
-                        <div className="listing-box-header">
-                          <i className="ti-gift theme-cl"></i>
-                          <h3>Amenities</h3>
-                          <p>Write something general information about your listing</p>
-                        </div>
-                        <form>
-                          <div className="row mrg-r-10 mrg-l-10">
-                            <div className="col-sm-4">
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select1" Checked/>
-                                <label for="select1"></label>
-                                Alarm system
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select2"/>
-                                <label for="select2"></label>
-                                Depanneur in building
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select3" Checked/>
-                                <label for="select3"></label>
-                                Onsite management
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select4"/>
-                                <label for="select4"></label>
-                                Janitor
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select5" Checked/>
-                                <label for="select5"></label>
-                                Security cameras
-                              </span>
-                            </div>
-
-                            <div className="col-sm-4">
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select6" Checked/>
-                                <label for="select6"></label>
-                                dLaundry room in building
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select7"/>
-                                <label for="select7"></label>
-                                Door attendant
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select8" Checked/>
-                                <label for="select8"></label>
-                                Street parking
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select9" Checked/>
-                                <label for="select9"></label>
-                                Intercom
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select10"/>
-                                <label for="select10"></label>
-                                Attached garage
-                              </span>
-                            </div>
-
-                            <div className="col-sm-4">
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select11"/>
-                                <label for="select11"></label>
-                                Elevator
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select12" Checked/>
-                                <label for="select12"></label>
-                                Wheelchair accessible
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select13" Checked/>
-                                <label for="select13"></label>
-                                Heating
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select14"/>
-                                <label for="select14"></label>
-                                Hot water
-                              </span>
-                              <span className="custom-checkbox d-block">
-                                <input type="checkbox" id="select15"/>
-                                <label for="select15"></label>
-                                Electricity
-                              </span>
-                            </div>
-
-                          </div>
-                        </form>
-                      </div>
 
                       <div className="  opening-day mrg-bot-25 padd-bot-30 padd-top-25">
                         <div className="listing-box-header">
                           <i className="ti-wallet theme-cl"></i>
-                          <h3>Bank Accountd</h3>
-                          <p>Remember, Your Password should not be easy and common</p>
+                          <h3>Bank Daten</h3>
+                          <p>Füllen Sie Ihre Bankdaten </p>
                         </div>
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-md-12">
                               <div className="pull-right">
-                                <span className="custom-checkbox">
-                                  <input type="checkbox" id="select16"/>
-                                  <label for="select16"></label>
-                                  Remember
-                                </span>
+
                               </div>
                               <form>
                                 <div className="row mrg-0">
@@ -331,29 +238,7 @@ handleChange(event){
                       </div>
 
 
-                      <div className="  opening-day mrg-bot-25 padd-bot-30 padd-top-25">
-                        <div className="listing-box-header">
-                          <i className="ti-lock theme-cl"></i>
-                          <h3>Change Password</h3>
-                          <p>Remember, Your Password should not be easy and common</p>
-                        </div>
-                        <form>
-                          <div className="row mrg-r-10 mrg-l-10">
-                            <div className="col-sm-6">
-                              <label>Old Password</label>
-                              <input type="text" className="form-control" value="*********"/>
-                            </div>
 
-                            <div className="col-sm-6">
-                              <label>New Password</label>
-                              <input type="text" className="form-control" value="*********"/>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                      <div className="text-center">
-                        <a href="#" className="btn theme-btn" title="Submit Listing">Update Profile</a>
-                      </div>
                     </div>
                   </div>
                 </section>)}

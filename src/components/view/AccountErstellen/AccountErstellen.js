@@ -152,7 +152,7 @@ createUserProfil(event){
     const userId = this.state.uid;
     const land = this.landInput.value;
     const bundesLand = this.bundeslandInput.value;
-    var user = firebase.auth().currentUser;
+    const user = firebase.auth().currentUser;
 
     if(this.state.isError){
       const alert = "Bitte füllen Sie alle Felder richtig aus."
@@ -164,6 +164,7 @@ createUserProfil(event){
       .getDownloadURL().then((url) => {
         const Url = url
         this.Ref.child(userId).update({
+                          bankAccount: false,
                           name: name,
                           email: email,
                           url : Url,
@@ -172,6 +173,7 @@ createUserProfil(event){
                           straße: straße,
                           stadt: stadt,
                           plz:plz,
+                          address: adresse,
                           land: land,
                           bundesLand: bundesLand,
                           ort: ort,

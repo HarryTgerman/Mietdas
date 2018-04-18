@@ -8,7 +8,6 @@ import Logo from '../../../img/logo.png'
 import {NavLink, Redirect,Link} from 'react-router-dom'
 import Select from 'react-select';
 
-const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
 class Mieten extends Component{
   constructor(props){
@@ -52,12 +51,8 @@ class Mieten extends Component{
           )
         }
       })
+      if(this.props.location.pathname.length > 8){this.handleFormSubmit()}
 
-      if(this.props.location.query === undefined){
-        return null
-      }else{
-        this.setState({cityValue:this.props.location.query.city},()=>{this.handleFormSubmit()})
-      }
 
     }
 
@@ -73,15 +68,19 @@ class Mieten extends Component{
 
 
  handleFormSubmit = () => {
-
- let whenGeoCode = geocodeByAddress(this.state.cityValue)
+   const url = this.props.location.pathname;
+   const ref = url.split('=');
+   const strCity = ref[1];
+   const city = strCity.replace(/\/type/i, "")
+   const type = ref[2]
+   let whenGeoCode = geocodeByAddress(city)
    .then(results =>{
      const res = results[0]
      this.setState({
        gebiet: res.address_components[1].long_name
      })
    })
-   geocodeByAddress(this.state.cityValue)
+   geocodeByAddress(city)
    .then(results =>  getLatLng(results[0]))
    .then(latLng =>{
      this.setState({
@@ -100,7 +99,7 @@ class Mieten extends Component{
 whenGeoCode.then(() =>{
          const previousCards = this.state.cards
          const previousMarker = this.state.markers;
-         firebase.database().ref().child('app').child('cards').child(this.props.location.query.kategorie).orderByChild('gebiet').equalTo(this.state.gebiet)
+         firebase.database().ref().child('app').child('cards').child(type).orderByChild('gebiet').equalTo(this.state.gebiet)
           .once('value', snap => {
             console.log("hier die Liste", snap.val());
             snap.forEach(childSnapshot =>{
@@ -221,74 +220,7 @@ whenGeoCode.then(() =>{
 
 
 
-authWithFacebook(){
-  let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
-    .then((result, error) => {
-      if (error) {
-        alert(error)
-      } else {
-      }
-    })
-    whenFacebookAuth.then(() =>{ window.location.reload()})
-}
 
-
-signIn(){
-const email = this.userNameInput.value;
-const password = this.passwordInput.value;
-
-let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode === 'auth/wrong-password') {
-          alert('Falsches Passwort');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error)
-      })
-  whenSignIn.then(() =>{ window.location.reload()})
-    }
-
-register(){
-
-
-const email = this.emailInput.value;
-const password = this.createPassword.value;
-let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-      var errorMessage = error.message;
-      // [START_EXCLUDE]
-      if (errorCode === 'auth/weak-password') {
-        alert('Das Password ist zu schwach');
-      } else {
-        alert(errorMessage);
-      }
-      console.log(error);
-      // [END_EXCLUDE]
-    });
-  // ...
-  whenRegister
-  .then(()=>{ this.setState({registerRedirect:true})
-  })
-
-}
-
-registerWithFacebook(){
-  let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
-    .then((result, error) => {
-      if (error) {
-        alert(error)
-      } else {
-        this.setState({ authenticated: true})
-      }
-    })
-    whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
-    })
-}
       render(){
         if (this.state.redirect === true) {
           return <Redirect to='/benutzeraccount' />
@@ -329,7 +261,7 @@ registerWithFacebook(){
                             {this.state.authenticated ?(<li className="dropdown">
                                 <NavLink to="/logout" >Logout</NavLink>
                               </li>)
-                            :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
+                            :(<li><a  href="javascript:void(1)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
                           </ul>
                           <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                           { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
@@ -427,61 +359,7 @@ registerWithFacebook(){
 
 
                     {/* ================== Login & Sign Up Window ================== */}
-                    <div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-                      <div className="modal-dialog">
-                        <div className="modal-content">
-                          <div className="modal-body">
-                            <div className="tab" role="tabpanel">
-                             {/*Nav tabs*/}
-                            <ul className="nav nav-tabs" role="tablist">
-                              <li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Log dich ein</a></li>
-                              <li role="presentation"><a href="#register" role="tab" data-toggle="tab">Registriere dich</a></li>
-                            </ul>
-                             {/*Tab panes*/}
-                            <div className="tab-content" id="myModalLabel2">
-                              <div role="tabpanel" className="tab-pane fade in active" id="login">
-                                <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                                <div className="subscribe wow fadeInUp">
-                                  <form className="form-inline" >
-                                    <div className="col-sm-12">
-                                      <div className="form-group">
-                                        <input type="email"  name="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input; }} required=""/>
-                                        <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
-                                        <div className="center">
-                                        <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
-                                          Log-In mit Facebook
-                                        </button>
-                                        <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                              </div>
 
-                              <div role="tabpanel" className="tab-pane fade" id="register">
-                              <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                                <form className="form-inline"  >
-                                  <div className="col-sm-12">
-                                    <div className="form-group">
-                                      <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
-                                      <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
-                                      <div className="center">
-                                      <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
-                                        Log-In mit Facebook
-                                      </button>
-                                      <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200"> Registriere Dich </button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </form>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>

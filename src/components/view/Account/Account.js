@@ -17,34 +17,16 @@ class Account extends Component{
     this.loadAnfragen = this.loadAnfragen.bind(this)
     this.state ={
       authenticated: false,
+      redirect: false,
       anfragen: [{}],
       controll: false,
       editProfile: false,
       messages: [{}]
     }
 }
-
-firedata() {
-  const previousCards = [];
-  firebase.database().ref().child('app').child('cards')
-    .orderByChild('uid').equalTo(this.state.uid)
-    .once('value', snap => {
-      snap.forEach(childSnapshot => {
-        previousCards.push ({
-          id: childSnapshot.key,
-          snap: childSnapshot.val()
-        })
-        this.setState ({
-          cards: previousCards,
-        })
-      })
-    })
-  }
 componentWillMount(){
   firebase.auth().onAuthStateChanged((user)=>{
     const userProfile = firebase.auth().currentUser;
-
-
     if(user){
       console.log(userProfile, 'aus account.js')
       this.setState(
@@ -62,12 +44,29 @@ componentWillMount(){
     } else {
       this.setState({
         authenticated: false,
+        redirect: true,
       })
-      return <Redirect to="/"/>
     }
   })
 
 }
+firedata() {
+  const previousCards = [];
+  firebase.database().ref().child('app').child('cards')
+    .orderByChild('uid').equalTo(this.state.uid)
+    .once('value', snap => {
+      snap.forEach(childSnapshot => {
+        previousCards.push ({
+          id: childSnapshot.key,
+          snap: childSnapshot.val()
+        })
+        this.setState ({
+          cards: previousCards,
+        })
+      })
+    })
+  }
+
 
 
 
@@ -137,7 +136,9 @@ editProfile() {
           const { anfragen } = this.state
           const keys = Object.keys(anfragen)
 
-
+          if(this.state.redirect === true){
+            return (<Redirect to="/"/>)
+          }
           return(
             <div className="home-2 wrapper">
                 {/* Start Navigation */}
@@ -168,7 +169,7 @@ editProfile() {
                         {this.state.authenticated ?(<li className="dropdown">
                             <NavLink to="/logout" >Logout</NavLink>
                           </li>)
-                        :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
+                        :(null)}
                       </ul>
                       <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
                       { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
@@ -236,7 +237,7 @@ editProfile() {
                           <button type="button" onClick={this.editProfile.bind(this)} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">
                           {this.state.editProfile ?("Zurück"):("Profil bearbeiten")}</button>
                          {/* General Information */}
-                         {this.state.editProfile ?(<div><EditProfile uid={this.state.uid}/></div>)
+                         {this.state.editProfile ?(<div><EditProfile uid={this.state.uid} name={this.state.name}/></div>)
                      :(<div className="container">
 
                          <div className="col-md-10 translateY-60 col-sm-12 col-md-offset-1">

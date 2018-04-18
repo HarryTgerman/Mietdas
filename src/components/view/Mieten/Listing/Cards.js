@@ -42,7 +42,7 @@ class  Cards extends Component {
         <div className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
             <Link Link style={{ textDecoration: 'none' }} to={{
-              pathname: `/details/search=?${this.props.kategorie+"/"+this.props.id}`,
+              pathname: `/details/search=${this.props.kategorie+"/"+this.props.id}`,
             state: {
             kategorie: this.props.kategorie,
             snap: this.snap,

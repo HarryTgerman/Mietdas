@@ -9,16 +9,11 @@ import LogoWhite from'../../../img/logo-white.png'
 
 
 const fn = value => <span>{value}</span>
-const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
 class Home extends Component{
 
   constructor(props){
     super(props)
-    this.register = this.register.bind(this);
-    this.signIn = this.signIn.bind(this);
-    this.authWithFacebook= this.authWithFacebook.bind(this);
-    this.registerWithFacebook = this.registerWithFacebook.bind(this);
     this.state = {
        authenticated: false,
        redirect: false,
@@ -64,75 +59,7 @@ componentWillMount(){
 
 
 
-  authWithFacebook(){
-    let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
-      .then((result, error) => {
-        if (error) {
-          alert(error)
-        } else {
-          this.setState({ authenticated: true})
-        }
-      })
-      whenFacebookAuth.then(() =>{ window.location.reload()})
-  }
 
-
-signIn(){
-  const email = this.userNameInput.value;
-  const password = this.passwordInput.value;
-
-  let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          // [START_EXCLUDE]
-          if (errorCode === 'auth/wrong-password') {
-            alert('Falsches Passwort');
-          } else {
-            alert(errorMessage);
-          }
-          console.log(error)
-        })
-    whenSignIn.then(() =>{ window.location.reload()})
-      }
-
-register(){
-
-
-  const email = this.emailInput.value;
-  const password = this.createPassword.value;
-  let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode === 'auth/weak-password') {
-          alert('Das Password ist zu schwach');
-        } else {
-          alert(errorMessage);
-        }
-        console.log(error);
-        // [END_EXCLUDE]
-      });
-    // ...
-    whenRegister
-    .then(()=>{ this.setState({registerRedirect:true})
-    })
-
-  }
-
-  registerWithFacebook(){
-    let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
-      .then((result, error) => {
-        if (error) {
-          alert(error)
-        } else {
-          this.setState({ authenticated: true})
-        }
-      })
-      whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
-      })
-  }
 
 handleSubmit(event){
   event.preventDefault();
@@ -159,8 +86,8 @@ if (this.state.selectValue.value == "") {
             const { selectedOption } = this.state;
             const value = selectedOption && selectedOption.value
             if (this.state.kat === true){
-               return <Redirect to={{pathname: "/mieten", query: {city: this.state.cityValue,kategorie: this.state.selectValue.value}}}/>
-            }
+               return <Redirect to={{pathname: `/mieten/city=${this.state.cityValue+"/type="+this.state.selectValue.value+"/"}`}}/>
+              }
                   return(
                 <div>
 
@@ -466,61 +393,7 @@ if (this.state.selectValue.value == "") {
 
 
                            {/*================== Login & Sign Up Window ==================*/}
-                          <div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-                            <div className="modal-dialog">
-                              <div className="modal-content">
-                                <div className="modal-body">
-                                  <div className="tab" role="tabpanel">
-                                   {/*Nav tabs*/}
-                                  <ul className="nav nav-tabs" role="tablist">
-                                    <li role="presentation" className="active"><a href="#login" role="tab" data-toggle="tab">Log dich ein</a></li>
-                                    <li role="presentation"><a href="#register" role="tab" data-toggle="tab">Registriere dich</a></li>
-                                  </ul>
-                                   {/*Tab panes*/}
-                                  <div className="tab-content" id="myModalLabel2">
-                                    <div role="tabpanel" className="tab-pane fade in active" id="login">
-                                      <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                                      <div className="subscribe wow fadeInUp">
-                                        <form className="form-inline" >
-                                          <div className="col-sm-12">
-                                            <div className="form-group">
-                                              <input type="email"  name="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input; }} required=""/>
-                                              <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
-                                              <div className="center">
-                                              <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
-                                                Log-In mit Facebook
-                                              </button>
-                                              <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </form>
-                                      </div>
-                                    </div>
 
-                                    <div role="tabpanel" className="tab-pane fade" id="register">
-                                    <img src="assets/img/logo.png" className="img-responsive" alt="" />
-                                      <form className="form-inline"  >
-                                        <div className="col-sm-12">
-                                          <div className="form-group">
-                                            <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
-                                            <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
-                                            <div className="center">
-                                            <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
-                                              Log-In mit Facebook
-                                            </button>
-                                            <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200"> Registriere Dich </button>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </body>
                 </div>

@@ -14,10 +14,9 @@ class Reservierung extends Component{
     this.state={
       authenticated: false,
       redirect: false,
-      detailsRedirect: false,
       redirectProfile: false,
       rabatt: false,
-      originalSumme: this.props.location.query.Gesamtsumme,
+      Gesamtsumme: this.props.location.query.Gesamtsumme,
       value: "Sehr geehrter Vermieter. Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätigen Sie meine Anfrage!",
     }
 }
@@ -39,7 +38,9 @@ componentWillMount(){
     } else {
       this.setState({
         authenticated: false,
+        redirect:true,
       })
+
       }
     })
 
@@ -162,20 +163,17 @@ loadUser(){
 
   }
         render(){
-          if(this.state.redirect == true) {
-            alert("Sie müssen sich zuerst einloggen oder registeren")
-              return  <Redirect to="/"/>
-          }
-          if(this.state.redirectProfile == true) {
+
+          if(this.state.redirectProfile === true) {
               return  <Redirect to="/benutzeraccount"/>
             }
-        const Rabatt = this.props.location.query.Gesamtsumme*0.25;
+            if(this.state.redirect === true) {
+              alert("Sie müssen sich zuerst einloggen oder registeren")
+                return  <Redirect  to={{pathname:`${this.props.location.query.browserHistory}`}}/>
+            }
         const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
         const endDate = moment(this.props.location.query.endDate).format("DD-MM-YYYY");
-        if(this.props.location.query.numberOfDays < 5){
-          this.state.rabatt = false;
-        }else{this.state.rabatt = true;
-           this.props.location.query.Gesamtsumme = this.state.originalSumme/1.25}
+
           return(
               <div>
                 <div className="wrapper">
@@ -252,7 +250,7 @@ loadUser(){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-12">
                                 <label>Name</label>
-                                <input ref={(input) => { this.nameInput = input; }} type="text" value={this.state.nachName} className="form-control" disabled/>
+                                <input ref={(input) => { this.nameInput = input; }} type="text" value={this.state.name} className="form-control" disabled/>
                               </div>
                               <div className="col-sm-12">
                                 <label>Email</label>
@@ -316,8 +314,7 @@ loadUser(){
                               <div className="booking-price-detail side-list no-border">
                                 <h5>Kosten</h5>
                                 <ul>
-                                  <li>{this.props.location.query.numberOfDays}<strong className="pull-right">{this.state.originalSumme}€</strong></li>
-                                  <li>Rabatt( ab 5 Tagen){this.state.rabatt ?(<strong className="pull-right">{this.props.location.query.Gesamtsumme*0.25}€</strong>):(<strong className="pull-right">0€</strong>)}</li>
+                                  <li>{this.props.location.query.numberOfDays}<strong className="pull-right">{this.state.Gesamtsumme}€</strong></li>
                                 </ul>
                               </div>
 

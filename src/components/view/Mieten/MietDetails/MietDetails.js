@@ -10,6 +10,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import Logo from '../../../../img/logo.png'
 
+
 class MietDetails extends Component{
   constructor (props){
   super(props)
@@ -27,7 +28,7 @@ class MietDetails extends Component{
 
 componentWillMount(){
     const url = this.props.location.pathname;
-    const ref = url.split('?');
+    const ref = url.split('=');
     const cardId = ref[1];
     const urlPromis =  new Promise ((resolve, reject)=>{
     firebase.database().ref().child('app').child('cards')
@@ -84,7 +85,9 @@ componentWillMount(){
 
 
 
+
         render(){
+          let path = this.props.location.pathname
           return(
               <div>
                 		{this.state.loading ?(<div className="wrapper">
@@ -113,15 +116,17 @@ componentWillMount(){
                             <li className="dropdown">
                               <NavLink to="/vermieten" >Vermieten</NavLink>
                             </li>
-                              {this.state.authenticated ?(<li className="dropdown">
-                                  <NavLink to="/logout" >Logout</NavLink>
-                                </li>)
-                              :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                            </ul>
-                            <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                            { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist"><i className="ti-user"></i>{this.state.name}</NavLink></li>)
-                            :(<p></p>)
-                            }
+                            {this.state.authenticated ?(<li className="dropdown">
+                                <NavLink to="/logout" >Logout</NavLink>
+                              </li>)
+                            :(<li><a  href="javascript:void(2)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
+                          </ul>
+                          <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                          { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
+                          {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
+                          :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
+                          :(null)
+                          }
                             </ul>
                           </div>
                            {/*.navbar-collapse*/}
@@ -344,6 +349,7 @@ componentWillMount(){
                                                 Diff: this.state.Diff,
                                                 Gesamtsumme: this.state.Gesamtsumme,
                                                 snap : this.state.snap,
+                                                browserHistory: path,
                                                 cardId: this.state.cardId}
                                                 }}>
                                       <a href="#" style={{marginTop: "40px"}} className="btn reservation btn-radius theme-btn full-width mrg-top-10">JETZT RESERVIEREN</a>
