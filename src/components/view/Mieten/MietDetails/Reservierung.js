@@ -27,12 +27,13 @@ componentWillMount(){
   firebase.auth().onAuthStateChanged((user)=>{
     const userProfile = firebase.auth().currentUser;
     if(user){
+
       this.setState(
         {
         authenticated: true,
-        name : userProfile.displayName,
+        name : userProfile.name,
         email : userProfile.email,
-        uid : userProfile.uid,
+        uid : userProfile.uid
         })
         this.loadUser();
     } else {
@@ -51,31 +52,32 @@ loadUser(){
     firebase.database().ref('app/').child('users/'+uid)
     .on('value', snap => {
         if(snap.val()){
+          console.log('this is snap', snap.val());
           if(snap.val().anfragen == null){
           this.setState({
             controll: true,
             anfragen: 0,
             cardId: snap.val().cardId,
             url: snap.val().url,
-            nachName: snap.val().nachName,
-            adresse: snap.val().address,
+            name: snap.val().name,
+            adresse: snap.val().adresse,
             geboren: snap.val().geburtsDatum,
             mobil: snap.val().mobil,
             telefon: snap.val().telefon,
-
           })
       }else{
             this.setState({
             anfragen: snap.val().anfragen,
             cardId: snap.val().cardId,
             url: snap.val().url,
-            nachName: snap.val().nachName,
-            adresse: snap.val().address,
+            name: snap.val().name,
+            adresse: snap.val().adresse,
             geboren: snap.val().geburtsDatum,
             mobil: snap.val().mobil,
             telefon: snap.val().telefon,
           })
         }
+
       }
 
   })
@@ -250,15 +252,15 @@ loadUser(){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-12">
                                 <label>Name</label>
-                                <input ref={(input) => { this.nameInput = input; }} type="text" value={this.state.name} className="form-control" disabled/>
+                                <input ref={(input) => { this.nameInput = input; }} type="text" value={this.state.name} className="form-control" />
                               </div>
                               <div className="col-sm-12">
                                 <label>Email</label>
-                                <input ref={(input) => { this.emailInput = input; }} value={this.state.email} type="email" className="form-control" disabled/>
+                                <input ref={(input) => { this.emailInput = input; }} value={this.state.email} type="email" className="form-control" />
                               </div>
                               <div className="col-sm-12">
                                 <label>Telefon</label>
-                                <input type="text" ref={(input) => { this.numberInput = input; }} value={this.state.telefon} className="form-control" disabled/>
+                                <input type="text" ref={(input) => { this.numberInput = input; }} value={this.state.telefon} className="form-control" />
                               </div>
                               <div className="col-sm-12">
                                 <label>Adresse</label>
