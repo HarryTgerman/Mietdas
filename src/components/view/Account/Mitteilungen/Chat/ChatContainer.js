@@ -40,7 +40,7 @@ sendMessage(event){
               <div>
               {this.props.data?(
             <div>
-              <div  className="chat_area">
+              <div  className="row chat_area">
                 <ul  className="list-unstyled" id="chat-scroll">
                   {this.props.chatMessages.slice(0).reverse().map((msg)=>{
                     if(msg.name == this.props.name)

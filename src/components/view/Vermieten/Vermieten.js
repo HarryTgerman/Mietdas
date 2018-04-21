@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom';
-import Bagger from './Bagger'
+import Minibagger from './Minibagger'
 import Verdichtungstechnik from './Verdichtungstechnik'
 import Anhänger from './Anhänger'
 
@@ -140,7 +140,7 @@ onDrop(imageFiles) {
                   {/* Tab panes */}
                   <div className="tab-content tabs">
                     <div role="tabpanel" className="tab-pane fade in active" id="home">
-                      <Bagger user={this.state.uid} address={this.state.address}
+                      <Minibagger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>

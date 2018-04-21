@@ -73,7 +73,7 @@ class Anfragen extends Component{
                         <div style={{marginBottom:"20px"}} className="listing-shot-info rating">
                           <div className="row extra">
 
-                            <div className="col-md-8 col-sm-8 col-xs-8 pull-right">
+                            <div className="row pull-right">
                               <div className="col-sm-4">
                                 <button onClick={this.Zusagen} className="theme-btn btn-outlined">Zusagen</button>
                               </div>

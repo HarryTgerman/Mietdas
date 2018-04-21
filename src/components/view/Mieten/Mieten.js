@@ -75,31 +75,35 @@ class Mieten extends Component{
    const type = ref[2]
    let whenGeoCode = geocodeByAddress(city)
    .then(results =>{
+     getLatLng(results[0])
+     .then(latLng =>{
+       this.setState({
+           center: latLng,
+           position: latLng
+           })
+       })
+     .catch(error => console.error('Error', error))
+     this.setState({
+       gebiet: this.state.address,
+       address:   this.state.cityValue,
+     })
      const res = results[0]
+     let arr =  res.formatted_address.split(",")
+     let ort = arr[0]
+
+     console.log(results[0]);
      this.setState({
-       gebiet: res.address_components[1].long_name
+       ort: ort,
+       gebiet: res.address_components[1].long_name,
      })
-   })
-   geocodeByAddress(city)
-   .then(results =>  getLatLng(results[0]))
-   .then(latLng =>{
-     this.setState({
-         center: latLng,
-         position: latLng
-     })
-      console.log('Success', latLng)}
-      )
-   .catch(error => console.error('Error', error))
-   this.setState({
-     gebiet: this.state.address,
-     address:   this.state.cityValue,
    })
 
 
 whenGeoCode.then(() =>{
          const previousCards = this.state.cards
          const previousMarker = this.state.markers;
-         firebase.database().ref().child('app').child('cards').child(type).orderByChild('gebiet').equalTo(this.state.gebiet)
+         let lat = this.state.center.lat - 0.1
+         firebase.database().ref().child('app').child('cards').child(type).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
           .once('value', snap => {
             console.log("hier die Liste", snap.val());
             snap.forEach(childSnapshot =>{
@@ -156,29 +160,35 @@ whenGeoCode.then(() =>{
   }
   let whenGeoCode = geocodeByAddress(this.state.cityValue)
   .then(results =>{
+    getLatLng(results[0])
+    .then(latLng =>{
+      this.setState({
+          center: latLng,
+          position: latLng
+          })
+      })
+    .catch(error => console.error('Error', error))
+    this.setState({
+      gebiet: this.state.address,
+      address:   this.state.cityValue,
+    })
     const res = results[0]
+    let arr =  res.formatted_address.split(",")
+    let ort = arr[0]
+
+    console.log(results[0]);
     this.setState({
-      gebiet: res.address_components[1].long_name
+      ort: ort,
+      gebiet: res.address_components[1].long_name,
     })
   })
-  geocodeByAddress(this.state.cityValue)
-  .then(results =>  getLatLng(results[0]))
-  .then(latLng =>{
-    this.setState({
-        center: latLng,
-        position: latLng
-        })
-    })
-  .catch(error => console.error('Error', error))
-  this.setState({
-    gebiet: this.state.address,
-    address:   this.state.cityValue,
-  })
+
 
 whenGeoCode.then(() =>{
       const previousCards = this.state.cards
       const previousMarker = this.state.markers;
-      firebase.database().ref().child('app').child('cards').child(this.state.selectValue.value).orderByChild('gebiet').equalTo(this.state.gebiet)
+      let lat = this.state.center.lat - 0.1
+      firebase.database().ref().child('app').child('cards').child(this.state.selectValue.value).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
        .once('value', snap => {
          snap.forEach(childSnapshot =>{
            previousMarker.push({

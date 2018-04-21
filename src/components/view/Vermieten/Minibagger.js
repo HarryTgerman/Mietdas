@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Bagger extends Component{
+class Minibagger extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -356,4 +356,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Bagger;
+export default Minibagger;

@@ -25,6 +25,7 @@ class Payment extends Component{
 
 
 
+
   componentWillMount(){
     firebase.auth().onAuthStateChanged((user)=>{
       const userProfile = firebase.auth().currentUser;
@@ -51,101 +52,21 @@ class Payment extends Component{
    total = nextProps.location.query.anfrage.umsatz;
  }
 
-  onToken = (token) => {
-    console.log('Token', token);
-    fetch('http://localhost:4000/stripe', {
-      'method': 'POST',
-      'Content-Type': 'application/json',
-      'body': JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      });
-    });
-  }
 
+requestHandler(paymentToken){
+  firebase.database().ref('app').child('payments').push(paymentToken)
+}
   render(){
-    const onSuccess = (payment) => {
-        // Congratulation, it came here means everything's fine!
-        const query = this.state.name+this.props.location.query.anfrage.num
-        const db = firebase.database().ref('app/').child('users/'+this.state.uid).child('mitteilung').child(query).child('anfrage');
-        db.update({
-          gemietet:true
-        })
-        db.child('payment').set({
-          paymentMethod: 'paypal',
-          address: payment.address,
-          paid: payment.paid,
-          email: payment.email,
-          payerID: payment.payerID,
-          paymentID: payment.paymentID,
-          paymentToken: payment.paymentToken,
-          returnUrl: payment.returnUrl,
-        });
-        firebase.database().ref('app/').child('users/'+this.state.uid).child('miethistory')
-        .push({
-          zeitraum:this.props.location.query.anfrage.mietbeginn +" - "+this.props.location.query.anfrage.mietende,
-          umsatz:this.props.location.query.anfrage.umsatz,
-          artikel:this.props.location.query.anfrage.cardHeading,
-          vermieter: this.props.location.query.anfrage.uid,
-          mieter: this.state.uid
-        })
-          firebase.database().ref('app/').child('payments')
-          .push({
-            zeitraum:this.props.location.query.anfrage.mietbeginn +" - "+this.props.location.query.anfrage.mietende,
-            umsatz:this.props.location.query.anfrage.umsatz,
-            artikel:this.props.location.query.anfrage.cardHeading,
-            vermieter: this.props.location.query.uid,
-            mieter: this.state.uid
-          })
-            console.log("The payment was succeeded!", payment);
-            confirmAlert({
-              title: 'Herzlichen Glückwunsch',
-              message: 'Der Bezahlvorgang war erfolgreich',
-              buttons: [
-                {
-                  label: 'OK',
-                }
-              ]
-            })
-            // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
-    }
 
-    const onCancel = (data) => {
-        console.log('The payment was cancelled!', data);
-        confirmAlert({
-          title: 'Cancelled',
-          message: 'Der Bezahlvorgang wurde abgebrochen',
-          buttons: [
-            {
-              label: 'OK',
-            }
-          ]
-        })
-    }
+    // The form element to encrypt
+var form    = document.getElementById('adyen-encrypted-form');
+// The public key
+var key     =   "your key as retrieved from the Adyen Customer Area Web Service User page";
+// Form and encryption options. See adyen.encrypt.simple.html for details
+var options = {};
+// Bind encryption to the form
+window.adyen.encrypt.createEncryptedForm( form, key, options);
 
-    const onError = (err) => {
-        console.log("Error!", err);
-        confirmAlert({
-          title: 'Oops!',
-          message: 'Bezahlvorgang konnte nicht ausgeführt werden',
-          buttons: [
-            {
-              label: 'OK',
-            }
-          ]
-        })
-    }
-    let env = 'sandbox'; // you can set here to 'production' for production
-    let currency = 'EUR'; // or you can set this value from your props or state
-
-    console.log('Price--->', this.state.price);
-
-
-    const client = {
-        sandbox:    'ASVxgdRzY-cvLI2L_FebsoY13jw7WcKcejImqgtkqOCZd_75lhGtWkRaZdZR9mO1ew5X0sDj6ff6aK2o',
-        production: 'Azu.agFazBhPwZk8zKunBXtnXCpaAuorx.BueZUpOEALXd95tl0-burj',
-    }
     return(
         <div>
           <div className="wrapper">
@@ -223,67 +144,19 @@ class Payment extends Component{
                       <div className="payment-card">
 
 
-                          <PaypalExpressBtn env={env} client={client} currency={currency} total={total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} />
-                          {/* <div className="payment-card-body">
-                            <div className="row mrg-r-10 mrg-l-10">
-                              <div className="col-sm-6">
-                                <label>PayPal Name</label>
-                                <input type="text" className="form-control"/>
-                              </div>
-                              <div className="col-sm-6">
-                                <label>PayPal Email</label>
-                                <input type="email" className="form-control"/>
-                              </div>
-                              <div className="col-sm-6">
-                                <label>Phone No.</label>
-                                <input type="email" className="form-control"/>
-                              </div>
-                              <div className="col-sm-6">
-                                <label>Have A Coupon Code?</label>
-                                <input type="email" className="form-control"/>
-                              </div>
-                            </div>
-                          </div> */}
 
-
-                          <StripeCheckout
-                            name="Mietdas"
-                            amount={99999}
-                            currency="EUR"
-                            email="kungfupo124@gmail.com"
-                            token={this.onToken}
-                            stripeKey="pk_test_vdzRSLPDWixdLrN8sUpshLtF"
-                          />
-                          {/* <div className="payment-card-body">
-                              <div className="row mrg-r-10 mrg-l-10">
-                              <div className="col-sm-6">
-                                <label>Card Holder Name</label>
-                                <input type="text" className="form-control" placeholder="Daniel Singh"/>
-                              </div>
-                              <div className="col-sm-6">
-                                <label>Card No.</label>
-                                <input type="email" className="form-control" placeholder="1235 4785 4758 1458"/>
-                              </div>
-                            </div>
-                            <div className="row mrg-r-10 mrg-l-10">
-                              <div className="col-sm-4 col-md-4">
-                                <label>Expire Month</label>
-                                <input type="text" className="form-control" placeholder="07"/>
-                              </div>
-                              <div className="col-sm-4 col-md-4">
-                                <label>Expire Year</label>
-                                <input type="email" className="form-control" placeholder="2020"/>
-                              </div>
-                              <div className="col-sm-4 col-md-4">
-                                <label>CCV Code</label>
-                                <input type="email" className="form-control" placeholder="258"/>
-                              </div>
-                            </div>
-                          </div> */}
                           </div>
-                      {/* <div className="text-left">
-                        <a href="#" className="btn theme-btn" title="Submit Listing">Confirm Now</a>
-                      </div>  */}
+
+
+                      <form method="POST" action="https://test.adyen.com/hpp/skipDetails.shtml" id="adyen-encrypted-form">
+                          <input type="text" size="20" data-encrypted-name="number"/>
+                          <input type="text" size="20" data-encrypted-name="holderName"/>
+                          <input type="text" size="2" data-encrypted-name="expiryMonth"/>
+                          <input type="text" size="4" data-encrypted-name="expiryYear"/>
+                          <input type="text" size="4" data-encrypted-name="cvc"/>
+                          <input type="hidden" value="[generate this server side]" data-encrypted-name="generationtime"/>
+                          <input type="submit" value="Pay"/>
+                      </form>
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,7 @@
   "dependencies": {
     "babel-loader": "^7.1.4",
     "firebase": "^4.10.1",
+    "firebase-functions": "^1.0.1",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
     "react": "^16.2.0",
