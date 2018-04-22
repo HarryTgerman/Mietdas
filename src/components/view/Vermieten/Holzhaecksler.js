@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Minibagger extends Component{
+class Holzhaecksler extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -72,21 +72,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.BreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.HoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.RechweitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Reichweite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -112,7 +97,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('minibagger');
+        const db = firebase.database().ref('app').child('cards').child('holzhaecksler');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
@@ -121,9 +106,6 @@ onDrop(imageFiles) {
         const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
         const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const breite = this.BreitedesArtikelsInput.value;
-        const hoehe = this.HoehedesArtikelsInput.value;
-        const reichweite = this.RechweitedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
@@ -190,7 +172,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"minibagger",
+                         kategorie:"holzhaecksler",
                          pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
@@ -254,7 +236,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Minibagger Inserieren</h3>
+            								<h3>Holzhäcksler Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -274,7 +256,7 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Yanmar" />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
             									</div>
 
             									<div className="col-sm-6">
@@ -282,54 +264,38 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
 
-                              <div className="col-sm-6">
-                                <label>Gewicht</label>
-                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Breite</label>
-                                <input type="text" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Höhe</label>
-                                <input type="text" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-
-                              <div className="col-sm-6">
-                                <label>Reichweite</label>
-                                <input type="text" className="form-control" ref={(input) => { this.RechweitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
 
                               <div className="col-sm-3">
             										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in mm"/>
+            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in mm"/>
+                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
             									</div>
 
             									<div className="col-sm-3">
             										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
+            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in mm"/>
+                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
             									</div>
 
                               <div className="col-sm-3">
             										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in mm"/>
+                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
             									</div>
 
+            									<div className="col-sm-6">
+            										<label>Gewicht</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+            									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
@@ -390,4 +356,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Minibagger;
+export default Holzhaecksler;
