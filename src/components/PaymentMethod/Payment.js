@@ -60,12 +60,18 @@ requestHandler(paymentToken){
 
     // The form element to encrypt
 var form    = document.getElementById('adyen-encrypted-form');
-// The public key
-var key     =   "your key as retrieved from the Adyen Customer Area Web Service User page";
-// Form and encryption options. See adyen.encrypt.simple.html for details
-var options = {};
-// Bind encryption to the form
-window.adyen.encrypt.createEncryptedForm( form, key, options);
+  // The public key
+var key = "10001|C4B9DCF30853F90459D47B5CDDE9031AA0B63A22A48D87DFD264C67917E405F6BEEF46E68B857103B868EF69E6AF30FED1F49F877795A5DB72427BD24F106C8A484D266DCB0688C5B4138FC48B8CA65416F9F48E7BE48CA155AD32063467E9027461479905340AFC07BB721EE937B46CC6C5FB35A81C9F44CFF620862D3CDDF57C9496C25A218198A5081C9BDCDFA339F7444158179C8F141E319C006AFC370EDB3C7A28FBA55909CE663B8CE4BC733931C35E72F53D539BE19F8CACAB85062734269FD923EC49B77451F38991CF26689CFEAE3E26802A7F626914A752154C1C3784EBFD5E49CCA98601304E1140C4FE2C609E2703973D777643C61937B4EA95";
+  // Form and encryption options. See adyen.encrypt.simple.html for details
+var options = {"name" : "My-Adyen-Form",
+    "enableValidations" : true,
+    "submitButtonAlwaysEnabled": false,
+    "numberIgnoreNonNumeric" : true,
+    "fieldNameAttribute" : "data-encrypted-name",
+    "cvcIgnoreBins" : "6703",
+    "fourDigitCvcForBins" : "34,37"};
+  // Bind encryption to the form
+var cseInstance = window.adyen.encrypt.createEncryption(key, options)
 
     return(
         <div>
@@ -148,7 +154,7 @@ window.adyen.encrypt.createEncryptedForm( form, key, options);
                           </div>
 
 
-                      <form method="POST" action="https://test.adyen.com/hpp/skipDetails.shtml" id="adyen-encrypted-form">
+                      <form method="POST" action="handlder" id="adyen-encrypted-form">
                           <input type="text" size="20" data-encrypted-name="number"/>
                           <input type="text" size="20" data-encrypted-name="holderName"/>
                           <input type="text" size="2" data-encrypted-name="expiryMonth"/>

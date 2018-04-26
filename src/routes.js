@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, withProps} from 'react-router-dom';
+import {BrowserRouter, Route, withProps ,Redirect} from 'react-router-dom';
 import firebase from 'firebase'
 import Logo from'./img/logo.png'
 
@@ -26,6 +26,10 @@ class Routes extends Component{
     this.signIn = this.signIn.bind(this);
     this.authWithFacebook= this.authWithFacebook.bind(this);
     this.registerWithFacebook = this.registerWithFacebook.bind(this);
+    this.state= {
+      registerRedirect: false,
+      forgottPw: false,
+    }
 }
 
 authWithFacebook(){
@@ -80,7 +84,8 @@ let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, passwor
     });
   // ...
   whenRegister
-  .then(()=>{ this.setState({registerRedirect:true})
+  .then(()=>{
+     this.setState({registerRedirect:true})
   })
 
 }
@@ -97,7 +102,22 @@ registerWithFacebook(){
     whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
     })
 }
+
+sendPwReset(){
+  var auth = firebase.auth();
+  var email = this.userNameInput.value
+  auth.sendPasswordResetEmail(email).then(function() {
+    alert('Email wurde versendet')
+}).then(()=>{
+  this.setState({forgottPw:false})
+}).catch(function(error) {
+  alert(error)
+});
+}
         render(){
+         if (this.state.registerRedirect === true) {
+          return <Redirect to='/account-erstellen' />
+        }
           return(
                 <BrowserRouter>
                   <div >
@@ -132,14 +152,20 @@ registerWithFacebook(){
                                     <form className="form-inline" >
                                       <div className="col-sm-12">
                                         <div className="form-group">
+                                          {this.state.forgottPw
+                                        ?(<div className="center">
+                                          <input type="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input = input; }} required=""/>
+                                          <button type="button" onClick={this.sendPwReset.bind(this)}  className="btn btn-midium theme-btn btn-radius width-200"> Pw zurücksetzen </button></div>)
+                                        :(<div>
                                           <input type="email"  name="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input; }} required=""/>
                                           <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
-                                          <div className="center">
+                                          <a className="forgottPW" onClick={()=>{this.setState({forgottPw : true})}} >Passwort vergessen ?</a>
+                                          <div style={{marginTop:"10px"}} className="center">
                                           <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
                                             Log-In mit Facebook
                                           </button>
                                           <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
-                                          </div>
+                                          </div></div>)}
                                         </div>
                                       </div>
                                     </form>

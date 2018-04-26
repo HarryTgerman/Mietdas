@@ -19,6 +19,12 @@ componentWillMount(){
     const userProfile = firebase.auth().currentUser;
 
 
+    userProfile.sendEmailVerification().then(function() {
+      alert('Es wurde eine bestätiguns Email an Sie versendet')
+    }).catch(function(error) {
+      // An error happened.
+    })
+
     if(user){
       this.setState(
         {

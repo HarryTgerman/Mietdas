@@ -8,6 +8,8 @@
     "firebase-functions": "^1.0.1",
     "lodash": "^4.17.5",
     "moment": "^2.21.0",
+    "nodemailer": "^4.6.4",
+    "nodemailer-express-handlebars": "^3.0.0",
     "react": "^16.2.0",
     "react-confirm-alert": "^2.0.2",
     "react-count-to": "^0.10.0",

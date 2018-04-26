@@ -11,9 +11,7 @@ class LaufendeAnfragen extends Component{
     }
 }
 
-componentWillMount(){
 
-}
 
         render(){
           return(

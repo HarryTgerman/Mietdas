@@ -161,7 +161,6 @@ componentWillMount(){
                 													<i className="fa fa-star"></i>
                 													<i className="fa fa-star"></i>
                 												</div>
-                												<a href="#" className="detail-rating-count">47 Rating</a>
                 											</div>
                 										</div>
                 									</div>
@@ -437,7 +436,6 @@ componentWillMount(){
                   													<i className="fa fa-star"></i>
                   													<i className="fa fa-star"></i>
                   												</div>
-                  												<a href="#" className="detail-rating-count">47 Rating</a>
                   											</div>
                   										</div>
                   									</div>

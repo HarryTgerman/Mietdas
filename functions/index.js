@@ -1,13 +1,47 @@
 const functions = require('firebase-functions');
+const nodemailer = require('nodemailer');
+const hbs = require('nodemailer-express-handlebars')
 
-exports.makeNewMessage = functions.database.ref('app/messages/{wildCard}/message/{wildcardMessge}')
-    .onCreate((snapshot, context) => {
-      // Grab the current value of what was written to the Realtime Database.
-      const original = snapshot.val().message;
-      console.log('Uppercasing', context.params, original);
 
-      // You must return a Promise when performing asynchronous tasks inside a Functions such as
-      // writing to the Firebase Realtime Database.
-      // Setting an "uppercase" sibling in the Realtime Database returns a Promise.
-      return snapshot.ref.parent.parent.parent.parent.child('newmessage').push(original);
-    });
+exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfragen/{wildcardMessge}')
+.onCreate((snapshot, context) => {
+  let sendToMail =snapshot.val().ArtikelOwnerEmail
+  let name = snapshot.val().name;
+  let article = snapshot.val().cardHeading;
+  let von = snapshot.val().mietbeginn;
+  let bis = snapshot.val().mietende;
+
+
+  const transporter = nodemailer.createTransport({
+     service: 'gmail',
+     auth: {
+            user: 'support@mietdas.de',
+            pass: '.>?-C4Ry.c:tqQ2Q'
+        }
+    })
+    transporter.use('compile',hbs({
+      viewPath: './emailTemplate',
+      extName: '.hbs'
+    }))
+
+    const mailOptions = {
+      from: 'NoReply@MietDas <support@mietdas.de>', // sender address
+      to: sendToMail, // list of receivers
+      subject: 'Sie haben eine neue Anfrage',
+      template: 'index',
+      context: {
+        name: name,
+        article: article,
+        von: von,
+        bis: bis,
+      }
+      };
+
+    return transporter.sendMail(mailOptions, function (err, info) {
+         if(err)
+           console.log(err)
+         else
+           console.log(info);
+      });
+
+})
