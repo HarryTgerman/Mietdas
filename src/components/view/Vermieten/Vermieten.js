@@ -164,51 +164,55 @@ onDrop(imageFiles) {
                 <div className="tab style-2" role="tabpanel">
                   {/* Nav tabs */}
 
-                  <div className="nav nav-tabs" role="tablist">
-                    <div className="dropdown">
-                       <button className="btn btn-default nav " type="button" data-toggle="dropdown">Bagger
-                       <span className="caret"></span></button>
-                       <ul className="dropdown-menu">
-                         <li role="presentation" className=""><a href="#minibagger" aria-controls="minibagger" role="tab" data-toggle="tab">Minibagger</a></li>
-                         <li role="presentation" className=""><a href="#kompaktbagger" aria-controls="kompaktbagger" role="tab" data-toggle="tab">Kompaktbagger</a></li>
-                         <li role="presentation" className=""><a href="#raupenbagger" aria-controls="raupenbagger" role="tab" data-toggle="tab">Raupenbagger</a></li>
-                         <li role="presentation" className=""><a href="#mobilbagger" aria-controls="mobilbagger" role="tab" data-toggle="tab">Mobilbagger</a></li>
-                       </ul>
-                     </div>
-
-                     <div className="dropdown">
-                        <button className="btn btn-default btn btn-default nav" type="button" data-toggle="dropdown">Anhänger
-                        <span className="caret"></span></button>
-                        <ul className="dropdown-menu">
-                          <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Anhänger</a></li>
-                          <li role="presentation" className=""><a href="#kippanhänger" aria-controls="kippanhänger" role="tab" data-toggle="tab">Kippanhänger</a></li>
-                          <li role="presentation" className=""><a href="#motorradanhänger" aria-controls="motorradanhänger" role="tab" data-toggle="tab">Motorradanhänger</a></li>
-                          <li role="presentation" className=""><a href="#planenanhänger" aria-controls="planenanhänger" role="tab" data-toggle="tab">Planenanhänger</a></li>
-                          <li role="presentation" className=""><a href="#autotransportanhänger" aria-controls="autotransportanhänger" role="tab" data-toggle="tab">Autotransportanhänger</a></li>
-                          <li role="presentation" className=""><a href="#tieflader" aria-controls="tieflader" role="tab" data-toggle="tab">Tieflader</a></li>
-                        </ul>
+                  <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                      <div class="navbar-header">
+                        <a class="navbar-brand" href=""></a>
                       </div>
+                      <ul class="nav nav-tabs">
 
-                      <div className="dropdown">
-                         <button className="btn btn-default btn btn-default nav" type="button" data-toggle="dropdown">Baugeräte
-                         <span className="caret"></span></button>
-                         <ul className="dropdown-menu">
-                           <li role="presentation" className=""><a href="#stampfer" aria-controls="stampfer" role="tab" data-toggle="tab">Stampfer</a></li>
-                           <li role="presentation" className=""><a href="#vibrationsplatte" aria-controls="vibrationsplatte" role="tab" data-toggle="tab">Vibrationsplatte</a></li>
-                           <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Verdichtungstechnik</a></li>
-                         </ul>
-                       </div>
-
-                       <div className="dropdown">
-                          <button className="btn btn-default btn btn-default nav" type="button" data-toggle="dropdown">Fahrzeuge
-                          <span className="caret"></span></button>
-                          <ul className="dropdown-menu">
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bagger
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation" className="dropdown"><a href="#minibagger" aria-controls="minibagger" role="tab" data-toggle="tab">Minibagger</a></li>
+                            <li role="presentation" className="dropdown"><a href="#kompaktbagger" aria-controls="kompaktbagger" role="tab" data-toggle="tab">Kompaktbagger</a></li>
+                            <li role="presentation" className="dropdown"><a href="#raupenbagger" aria-controls="raupenbagger" role="tab" data-toggle="tab">Raupenbagger</a></li>
+                            <li role="presentation" className="dropdown"><a href="#mobilbagger" aria-controls="mobilbagger" role="tab" data-toggle="tab">Mobilbagger</a></li>
+                          </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Anhänger
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Anhänger</a></li>
+                            <li role="presentation" className=""><a href="#kippanhänger" aria-controls="kippanhänger" role="tab" data-toggle="tab">Kippanhänger</a></li>
+                            <li role="presentation" className=""><a href="#motorradanhänger" aria-controls="motorradanhänger" role="tab" data-toggle="tab">Motorradanhänger</a></li>
+                            <li role="presentation" className=""><a href="#planenanhänger" aria-controls="planenanhänger" role="tab" data-toggle="tab">Planenanhänger</a></li>
+                            <li role="presentation" className=""><a href="#autotransportanhänger" aria-controls="autotransportanhänger" role="tab" data-toggle="tab">Autotransportanhänger</a></li>
+                            <li role="presentation" className=""><a href="#tieflader" aria-controls="tieflader" role="tab" data-toggle="tab">Tieflader</a></li>
+                          </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Baugeräte
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation" className=""><a href="#stampfer" aria-controls="stampfer" role="tab" data-toggle="tab">Stampfer</a></li>
+                            <li role="presentation" className=""><a href="#vibrationsplatte" aria-controls="vibrationsplatte" role="tab" data-toggle="tab">Vibrationsplatte</a></li>
+                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Verdichtungstechnik</a></li>
+                           </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Fahrzeuge
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
                             <li role="presentation" className=""><a href="#radlader" aria-controls="radlader" role="tab" data-toggle="tab">Radlader</a></li>
                             <li role="presentation" className=""><a href="#umzugstransporter" aria-controls="umzugstransporter" role="tab" data-toggle="tab">Umzugstransporter</a></li>
-                          </ul>
-                        </div>
-
-                  </div>
+                         </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
 
                   {/* Tab panes */}
                   <div className="tab-content tabs">
