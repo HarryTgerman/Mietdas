@@ -72,6 +72,21 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.ArbeitsbreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Arbeitsbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.RuettelkraftdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Rüttelkraft"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.KraftstoffdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Kraftstoff"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -106,6 +121,9 @@ onDrop(imageFiles) {
         const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
         const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
+        const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
+        const kraftstoff = this.KraftstoffdesArtikelsInput.value;
+        const ruettelkraft = this.RuettelkraftdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
@@ -185,6 +203,9 @@ onDrop(imageFiles) {
                          cardDesc: desc,
                          mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
+                         arbeitsbreite: arbeitsbreite,
+                         kraftstoff: kraftstoff,
+                         ruettelkraft: ruettelkraft,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -256,7 +277,7 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Ammann" />
             									</div>
 
             									<div className="col-sm-6">
@@ -264,37 +285,51 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
 
+                              <div className="col-sm-6">
+                                <label>Gewicht</label>
+                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Arbeitsbreite</label>
+                                <input type="text" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Kraftstoff</label>
+                                <input type="text" className="form-control" ref={(input) => { this.KraftstoffdesArtikelsInput = input}} placeholder="Bsp: Benzin"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Rüttelkraft</label>
+                                <input type="text" className="form-control" ref={(input) => { this.RuettelkraftdesArtikelsInput = input}} placeholder="in kN"/>
+                              </div>
 
                               <div className="col-sm-3">
             										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
+            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
+                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in mm"/>
             									</div>
 
             									<div className="col-sm-3">
             										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
+            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
+                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-3">
             										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
+            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">

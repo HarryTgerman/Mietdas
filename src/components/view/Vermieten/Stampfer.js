@@ -57,6 +57,21 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
+    if (this.GewichtdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über das Gewicht"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.ArbeitsbreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Arbeitsbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.KraftstoffdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Kraftstoff"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
     const alert = "Geben Sie Auskunft über die Grabtiefe"
     this.setState({alert: alert, showAlert: true})
@@ -64,11 +79,6 @@ onDrop(imageFiles) {
     }
     if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
     const alert = "Geben Sie Auskunft über die Transporthöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -106,6 +116,8 @@ onDrop(imageFiles) {
         const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
         const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
+        const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
+        const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
@@ -185,6 +197,8 @@ onDrop(imageFiles) {
                          cardDesc: desc,
                          mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
+                         arbeitsbreite: arbeitsbreite,
+                         kraftstoff: kraftstoff,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -256,7 +270,7 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Ammann" />
             									</div>
 
             									<div className="col-sm-6">
@@ -264,6 +278,20 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
 
+                              <div className="col-sm-6">
+                                <label>Gewicht</label>
+                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Arbeitsbreite</label>
+                                <input type="text" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Kraftstoff</label>
+                                <input type="text" className="form-control" ref={(input) => { this.KraftstoffdesArtikelsInput = input}} placeholder="Bsp: Benzin"/>
+                              </div>
 
                               <div className="col-sm-3">
             										<label>Grabtiefe</label>
@@ -290,11 +318,6 @@ onDrop(imageFiles) {
                               <div className="col-sm-3">
                                 <label>bis</label>
                                 <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
             									</div>
 
                               <div className="col-sm-6">

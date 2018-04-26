@@ -52,23 +52,88 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
-    }
-    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Grabtiefe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.LaengedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Länge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.BreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.HoehedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.LaengeDerLadeflaechedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Länge der Ladefläche"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.BreiteDerLadeflaechedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite der Ladefläche"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.HoeheDerLadeflaechedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe der Ladefläche"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.LaderaumvolumendesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über das Laderaumvolumen"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.LeergewichtdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über das Leergewicht"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.GesamtgewichtdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.NutzlastdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Nutzlast"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.StzplaetzedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Sitzplätze"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.LeistungdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Leistung des Fahrzeugs"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.AnhaengelastUngebremstdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Anhängelast ungebremst"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.AnhaengelastGebremstdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Anhängelast gebremst"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.StützlastdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Stützlast"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.FührerscheinklassedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Führerscheinklasse"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -101,11 +166,22 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
+        const laenge = this.LaengedesArtikelsInput.value;
+        const breite = this.BreitedesArtikelsInput.value;
+        const hoehe = this.HoehedesArtikelsInput.value;
+        const laengeDerLadeflaeche = this.LaengeDerLadeflaechedesArtikelsInput.value;
+        const breiteDerLadeflaeche = this.BreiteDerLadeflaechedesArtikelsInput.value;
+        const hoeheDerLadeflaeche = this.HoeheDerLadeflaechedesArtikelsInput.value;
+        const laderaumvolumen = this.LaderaumvolumendesArtikelsInput.value;
+        const leerGewicht = this.LeergewichtdesArtikelsInput.value;
+        const gesamtGewicht = this.GesamtgewichtdesArtikelsInput.value;
+        const sitzplaetze = this.StzplaetzedesArtikelsInput.value;
+        const leistung = this.LeistungdesArtikelsInput.value;
+        const anhaengerlastUngebremst = this.AnhaengelastUngebremstdesArtikelsInput.value;
+        const anhaengerlastGebremst = this.AnhaengelastGebremstdesArtikelsInput.value;
+        const stuetzlast = this.StützlastdesArtikelsInput.value;
+        const fuehrerschein = this.FührerscheinklassedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
@@ -176,15 +252,26 @@ onDrop(imageFiles) {
                          pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-                         grabtiefe: grabtiefe,
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
                          mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
+                         laenge: laenge,
+                         breite: breite,
+                         hoehe: hoehe,
+                         laengeDerLadeflaeche: laengeDerLadeflaeche,
+                         breiteDerLadeflaeche: breiteDerLadeflaeche,
+                         hoeheDerLadeflaeche: hoeheDerLadeflaeche,
+                         laderaumvolumen: laderaumvolumen,
+                         leerGewicht: leerGewicht,
+                         gesamtGewicht: gesamtGewicht,
+                         sitzplaetze: sitzplaetze,
+                         leistung: leistung,
+                         anhaengerlastUngebremst: anhaengerlastUngebremst,
+                         anhaengerlastGebremst: anhaengerlastGebremst,
+                         stuetzlast: stuetzlast,
+                         fuehrerschein: fuehrerschein,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -259,43 +346,91 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
             									</div>
 
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Gewicht</label>
+                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
 
+                              <div className="col-sm-6">
+                                <label>Länge</label>
+                                <input type="text" className="form-control" ref={(input) => { this.LaengedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
 
-                              <div className="col-sm-3">
-            										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Breite</label>
+                                <input type="text" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
 
-            									<div className="col-sm-3">
-            										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Höhe</label>
+                                <input type="text" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
 
-                              <div className="col-sm-3">
-            										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Länge der Ladefläche</label>
+                                <input type="text" className="form-control" ref={(input) => { this.LaengeDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
 
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Breite der Ladefläche</label>
+                                <input type="text" className="form-control" ref={(input) => { this.BreiteDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Höhe der Ladefläche</label>
+                                <input type="text" className="form-control" ref={(input) => { this.HoeheDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Laderaumvolumen</label>
+                                <input type="text" className="form-control" ref={(input) => { this.LaderaumvolumendesArtikelsInput = input}} placeholder="in m3"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Leergewicht</label>
+                                <input type="text" className="form-control" ref={(input) => { this.LaderaumvolumendesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>zulässiges Gesamtgewicht</label>
+                                <input type="text" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Nutzlast</label>
+                                <input type="text" className="form-control" ref={(input) => { this.NutzlastdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Sitzplätze</label>
+                                <input type="text" className="form-control" ref={(input) => { this.StzplaetzedesArtikelsInput = input}} placeholder="Bsp: 3"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Leistung</label>
+                                <input type="text" className="form-control" ref={(input) => { this.LeistungdesArtikelsInput = input}} placeholder="in KW/PS"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Anhängelast ungebremst</label>
+                                <input type="text" className="form-control" ref={(input) => { this.AnhaengelastUngebremstdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Anhängelast gebremst</label>
+                                <input type="text" className="form-control" ref={(input) => { this.AnhaengelastGebremstdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Stützlast</label>
+                                <input type="text" className="form-control" ref={(input) => { this.StützlastdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Führerscheinklasse</label>
+                                <input type="text" className="form-control" ref={(input) => { this.FührerscheinklassedesArtikelsInput = input}} placeholder="Bsp: B/BE"/>
+                              </div>
+
 
                               <div className="col-sm-6">
                                 <label>Preis</label>

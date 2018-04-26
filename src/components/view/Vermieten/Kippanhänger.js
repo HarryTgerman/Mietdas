@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Trennschleifer extends Component{
+class Kippanhänger extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -57,18 +57,68 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Grabtiefe"
+    if (this.GesamtgewichtdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    if (this.NutzlastdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Nutzlast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
+    if (this.AuflaufbremsedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Auflaufbremse"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.GesamthoeheLadeboarddesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Gesamthöhe (Ladeboardwand)"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.GesamthoeheSpriegeldesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Gesamthöhe (inkl. Spriegel)"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.GesamtbreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Gesamtbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.GesamtlaengedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Gesamtlänge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.InnenhoehedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Innenhöhe (Ladeboardwandhöhe)"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.InnenladehoehedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Innenladehöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.InnenbreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Innenbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.InnenlaengedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Innenlänge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.LadehoehedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Ladehöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.HundertkmhdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die 100 km/h Zulassung"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -97,15 +147,24 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('trennschleifer');
+        const db = firebase.database().ref('app').child('cards').child('kippanhänger');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
         const bedienung = this.bedienungInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
-        const gewicht = this.GewichtdesArtikelsInput.value;
+        const gesamtgewicht = this.gesamtgewichtdesArtikelsInput.value;
+        const nutzlast = this.NutzlastdesArtikelsInput.value;
+        const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
+        const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
+        const gesamthoeheSpriegel = this.GesamthoeheSpriegeldesArtikelsInput.value;
+        const gesamtbreite = this.GesamtbreitedesArtikelsInput.value;
+        const gesamtlaenge = this.GesamtlaengedesArtikelsInput.value;
+        const innenhoehe = this.InnenhoehedesArtikelsInput.value;
+        const innenladehoehe = this.InnenladehoehedesArtikelsInput.value;
+        const innenbreite = this.InnenbreitedesArtikelsInput.value;
+        const innenlaenge = this.InnenlaengedesArtikelsInput.value;
+        const ladehoehe = this.LadehoehedesArtikelsInput.value;
+        const hundertkmh = this.HundertkmhdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
@@ -172,19 +231,29 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"trennschleifer",
+                         kategorie:"kippanhänger",
                          pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
-                         grabtiefe: grabtiefe,
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
                          mietbedingungen: Mietbedingungen,
-                         gewicht: gewicht,
+                         gesamtgewicht: gesamtgewicht,
+                         nutzlast: nutzlast,
+                         auflaufbremse: auflaufbremse,
+                         gesamthoeheLadeboard: gesamthoeheLadeboard,
+                         gesamthoeheSpriegel: gesamthoeheSpriegel,
+                         gesamtbreite: gesamtbreite,
+                         gesamtlaenge: gesamtlaenge,
+                         innenhoehe: innenhoehe,
+                         innenladehoehe: innenladehoehe,
+                         innenbreite: innenbreite,
+                         innenlaenge: innenlaenge,
+                         ladehoehe: ladehoehe,
+                         hundertkmh: hundertkmh,
+                         mietbedingungen: Mietbedingungen,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -236,7 +305,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Trennschleifer Inserieren</h3>
+            								<h3>Kippanhänger Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -264,37 +333,69 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
 
-
-                              <div className="col-sm-3">
-            										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
-
-            									<div className="col-sm-3">
-            										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-
-                              <div className="col-sm-3">
-            										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-
             									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+            										<label>zulässiges Gesamtgewicht</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Nutzlast</label>
+            										<input type="text" className="form-control" ref={(input) => { this.NutzlastdesArtikelsInput = input}} placeholder="in kg"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Auflaufbremse</label>
+            										<input type="text" className="form-control" ref={(input) => { this.AuflaufbremsedesArtikelsInput = input}} placeholder="Ja/Nein"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label> Gesamthöhe (Ladeboardwand)</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Gesamthöhe (inkl. Spriegel)</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GesamthoeheSpriegeldesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Gesamtbreite</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Gesamtlänge</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Innenhöhe (Ladeboardwandhöhe)</label>
+            										<input type="text" className="form-control" ref={(input) => { this.InnenhoehedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Innenladehöhe</label>
+            										<input type="text" className="form-control" ref={(input) => { this.InnenladehoehedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Innenbreite</label>
+            										<input type="text" className="form-control" ref={(input) => { this.InnenbreitedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Innenlänge</label>
+            										<input type="text" className="form-control" ref={(input) => { this.InnenlaengedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Ladehöhe</label>
+            										<input type="text" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label> 100 km/h Zulassung</label>
+            										<input type="text" className="form-control" ref={(input) => { this.HundertkmhdesArtikelsInput = input}} placeholder="Ja/Nein"/>
             									</div>
 
                               <div className="col-sm-6">
@@ -356,4 +457,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Trennschleifer;
+export default Kippanhänger;

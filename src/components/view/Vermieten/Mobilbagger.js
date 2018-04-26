@@ -92,6 +92,11 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.SchuetthoehedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Schütthöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
