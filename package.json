@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-loader": "^7.1.4",
+    "cors": "^2.8.4",
     "firebase": "^4.10.1",
     "firebase-functions": "^1.0.1",
     "lodash": "^4.17.5",
@@ -25,7 +27,8 @@
     "react-scripts": "1.1.1",
     "react-select": "^1.2.1",
     "react-slick": "^0.22.3",
-    "react-stripe-checkout": "^2.6.3"
+    "react-stripe-checkout": "^2.6.3",
+    "request": "^2.85.0"
   },
   "scripts": {
     "start": "react-scripts start",

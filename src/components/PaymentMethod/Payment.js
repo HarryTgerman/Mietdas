@@ -4,12 +4,15 @@ import CreditPng from '../../img/credit.png';
 import {NavLink, Redirect} from 'react-router-dom';
 import backgroundImg from '../../img/backgroundPayment.jpg';
 import firebase from 'firebase';
-import PaypalExpressBtn from 'react-paypal-express-checkout';
 import StripeCheckout from 'react-stripe-checkout';
 import { confirmAlert } from 'react-confirm-alert'; // Import
-import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 import Logo from'../../img/logo.png'
 import LogoWhite from'../../img/logo-white.png'
+import axios from 'axios'
+import request from 'request';
+
+
+
 
 let total = null;
 class Payment extends Component{
@@ -53,9 +56,36 @@ class Payment extends Component{
  }
 
 
-requestHandler(paymentToken){
-  firebase.database().ref('app').child('payments').push(paymentToken)
+requestHandler(e){
+  e.preventDefault
+  let config = {
+  headers: {
+  "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
+  "Content-Type": "application/json"
+  }
 }
+
+let data = {
+      "additionalData": {
+          "card.encrypted.json":"adyenjs_0_1_4p1$..."
+      },
+
+      "amount" : {
+          "value" : 10000,
+          "currency" : "EUR"
+      },
+
+      "reference" : "Your Reference Here",
+      "merchantAccount" : "TestMerchant"
+  }
+
+
+axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log(res.data);})
+
+
+}
+
+
   render(){
 
     // The form element to encrypt
@@ -71,7 +101,7 @@ var options = {"name" : "My-Adyen-Form",
     "cvcIgnoreBins" : "6703",
     "fourDigitCvcForBins" : "34,37"};
   // Bind encryption to the form
-var cseInstance = window.adyen.encrypt.createEncryption(key, options)
+var cseInstance = window.adyen.encrypt.createEncryption(key, options, form)
 
     return(
         <div>
@@ -154,12 +184,12 @@ var cseInstance = window.adyen.encrypt.createEncryption(key, options)
                           </div>
 
 
-                      <form method="POST" action="handlder" id="adyen-encrypted-form">
-                          <input type="text" size="20" data-encrypted-name="number"/>
-                          <input type="text" size="20" data-encrypted-name="holderName"/>
-                          <input type="text" size="2" data-encrypted-name="expiryMonth"/>
-                          <input type="text" size="4" data-encrypted-name="expiryYear"/>
-                          <input type="text" size="4" data-encrypted-name="cvc"/>
+                      <form onSubmit={this.requestHandler.bind(this)}  id="adyen-encrypted-form">
+                          <input type="text" size="20" data-encrypted-name="number" placeholder="number"/>
+                          <input type="text" size="20" data-encrypted-name="holderName" placeholder="holderName"/>
+                          <input type="text" size="2" data-encrypted-name="expiryMonth" placeholder="expiryMonth"/>
+                          <input type="text" size="4" data-encrypted-name="expiryYear" placeholder="expiryYear"/>
+                          <input type="text" size="4" data-encrypted-name="cvc" placeholder="cvc"/>
                           <input type="hidden" value="[generate this server side]" data-encrypted-name="generationtime"/>
                           <input type="submit" value="Pay"/>
                       </form>

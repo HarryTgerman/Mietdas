@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const nodemailer = require('nodemailer');
-const hbs = require('nodemailer-express-handlebars')
-
+const hbs = ('nodemailer-express-handlebars')
+const request = require('request');
 
 exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfragen/{wildcardMessge}')
 .onCreate((snapshot, context) => {
@@ -45,3 +45,49 @@ exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfra
       });
 
 })
+
+
+
+
+
+
+exports.AdyenEntcrypt =  () => {
+  // Set the headers
+  let headers = {
+      "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
+      "Content-Type": "application/json"
+  }
+
+  // Configure the request
+  let options = {
+      url: 'https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise',
+      method: 'POST',
+      headers: headers,
+      form: {
+          "additionalData": {
+              'card.encrypted.json' :"adyenjs_0_1_4p1$..."
+          },
+
+          'amount' : {
+              'value' : 10000,
+              'currency' : "EUR"
+          },
+
+          'reference' : "Your Reference Here",
+          'merchantAccount' : "TestMerchant"
+      }
+  }
+
+     request(options, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+          // Print out the response body
+          console.log(body)
+      }
+  })
+  reso{
+  "pspReference": "8814689190961342",
+  "resultCode": "Authorised",
+  "authCode": "83152"
+}
+
+}
