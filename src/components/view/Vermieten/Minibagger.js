@@ -287,7 +287,7 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
-                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">

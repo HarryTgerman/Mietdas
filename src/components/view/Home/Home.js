@@ -167,18 +167,19 @@ if (this.state.selectValue.value == "") {
                                           onChange={this.clickLi.bind(this)}
                                           placeholder={this.state.selectValue.label}
                                           options={[
-                                            { value: 'bagger', label: 'Bagger' },
                                             { value: 'bagger', label: 'Minibagger' },
-                                            { value: 'bagger', label: 'Radlader' },
+                                            { value: 'bagger', label: 'Kompaktbagger' },
                                             { value: 'bagger', label: 'Raupenbagger' },
-                                            { value: 'bagger', label: 'Radbagger' },
-                                            { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
-                                            { value: 'verdichtungstechnik', label: 'Stampfer' },
-                                            { value: 'verdichtungstechnik', label: 'Rüttelplatten' },
+                                            { value: 'bagger', label: 'Mobilbagger' },
+                                            { value: 'bagger', label: 'Radlader' },
+                                            { value: 'baugeräte', label: 'Verdichtungstechnik' },
+                                            { value: 'baugeräte', label: 'Stampfer' },
+                                            { value: 'baugeräte', label: 'Vibrationsplatte' },
                                             { value: 'anhänger', label: 'Anhänger' },
-                                            { value: 'anhänger', label: 'Baumaschinenanhänger' },
+                                            { value: 'anhänger', label: 'Kippanhänger' },
                                             { value: 'anhänger', label: 'Planenanhänger' },
-                                            { value: 'anhänger', label: 'Kofferanhänger' },
+                                            { value: 'anhänger', label: 'Autotransportanhänger' },
+                                            { value: 'anhänger', label: 'Tieflader' },
                                           ]}
                                         />
                                         </div>

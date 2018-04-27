@@ -184,15 +184,65 @@ componentWillMount(){
                                         Gewicht
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.gewicht} Tonnen</p>
+                                        <p>{this.state.snap.gewicht} Kilogramm</p>
                                       </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
-                                        Hersetller
+                                        Hersteller
                                       </div>
                                       <div className="col-sm-5 col-md-5">
                                         <p>{this.state.snap.hersteller}</p>
                                       </div>
                                       <div>
+                                        {this.state.snap.laenge?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Länge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.laenge}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.breite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Breite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.breite}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.hoehe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Höhe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.hoehe}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.reichweite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Reichweite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.reichweite}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schuetthoehe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schütthöhe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.schuetthoehe}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
                                       {this.state.snap.grabtiefe?
                                       (<React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
@@ -220,6 +270,267 @@ componentWillMount(){
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.transporthoehe}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtgewicht?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtgewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamtgewicht}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.nutzlast?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Nutzlast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.nutzlast}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.auflaufbremse?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Auflaufbremse
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.auflaufbremse}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamthoeheLadeboard?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe Ladeboard
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamthoeheLadeboard}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamthoeheSpriegel?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe Spriegel
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamthoeheSpriegel}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamtbreite}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtlaenge?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamtlaenge}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenhoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenhöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.innenhoehe}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenladehoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.innenladehoehe}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.innenbreite}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenlaenge?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.innenlaenge}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.ladehöhe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Ladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.ladehöhe}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.hundertkmh?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          100 km/h Zulassung
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.hundertkmh}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.arbeitsbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Arbeitsbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.arbeitsbreite}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.kraftstoff?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Kraftstoff
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.kraftstoff}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.ruettelkraft?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Rüttelkraft
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.ruettelkraft}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.schaufelinhalt?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schaufelinhalt
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.schaufelinhalt}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.laengeDerLadeflaeche?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Länge der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.laengeDerLadeflaeche}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.breiteDerLadeflaeche?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Breite der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.breiteDerLadeflaeche}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.hoeheDerLadeflaeche?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Höhe der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.hoeheDerLadeflaeche}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.laderaumvolumen?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Laderaumvolumen
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.laderaumvolumen}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.leerGewicht?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Leergewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.leerGewicht}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtGewicht?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtgewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamtGewicht}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.sitzplaetze?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Sitzplätze
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.sitzplaetze}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.leistung?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Leistung in PS/KW
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.leistung}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.anhaengerlastUngebremst?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Ungebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.anhaengerlastUngebremst}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.anhaengerlastGebremst?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Gebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.anhaengerlastGebremst}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.stuetzlast?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Stützlast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.stuetzlast}</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.fuehrerschein?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Führerscheinklasse
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.fuehrerschein}</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       </div>
@@ -422,11 +733,11 @@ componentWillMount(){
                   							<div className="detail-wrapper">
                   								<div className="detail-wrapper-body">
                   									<div className="listing-title-bar">
-                  										<h3>loading Data... </h3>
+                  										<h3>lade Daten... </h3>
                   										<div className="row">
                   											<a href="#listing-location" className="listing-address col-sm-5">
                   												<i className="ti-location-pin mrg-r-5"></i>
-                  												loading Data...
+                  												lade Daten...
                   											</a>
                   											<div className="rating-box col-sm-5 starBox">
                   												<div className="detail-list-rating">
@@ -457,31 +768,229 @@ componentWillMount(){
                                           Gewicht
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>loading Data...</p>
+                                          <p>lade Daten...</p>
                                         </div>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Hersetller
+                                          Hersteller
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>loading Data... </p>
+                                          <p>lade Daten... </p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Länge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Breite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Höhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Reichweite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schütthöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtgewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Nutzlast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Auflaufbremse
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe Ladeboard
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe Spriegel
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenhöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Ladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          100 km/h Zulassung
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Arbeitsbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Rüttelkraft
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Kraftstoff
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schaufelinhalt
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Länge der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Breite der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Höhe der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Laderaumvolumen
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Leergewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Sitzplätze
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Leistung in PS/KW
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Ungebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Gebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Stützlast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Führerscheinklasse 
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
                                         </div>
                                         <div className="detailsCategory col-sm-5 col-md-5">
                                           Grabtiefe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>loading Data... </p>
+                                          <p>lade Daten... </p>
                                         </div>
                                         <div className="detailsCategory col-sm-5 col-md-5">
                                           Transportbreite
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>loading Data... </p>
+                                          <p>lade Daten... </p>
                                         </div>
                                         <div className="detailsCategory col-sm-5 col-md-5">
                                           Transporthöhe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>loading Data... </p>
+                                          <p>lade Daten... </p>
                                         </div>
                                       </div>
                                     </div>
@@ -499,7 +1008,7 @@ componentWillMount(){
                                           Beschreibung
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>loading Data... </p>
+                                          <p>lade Daten... </p>
                                         </div>
                                       </div>
                                     </div>
@@ -517,7 +1026,7 @@ componentWillMount(){
                                           Mietbedingungen
                                         </div>
                                       <div className="col-sm-5 col-md-5">
-                                          <p>loading Data...</p>
+                                          <p>lade Daten...</p>
                                         </div>
                                       </div>
                                     </div>
