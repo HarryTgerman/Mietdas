@@ -230,8 +230,13 @@ onDrop(imageFiles) {
                          loading: false,
                          redirect: true
                        })
+<<<<<<< HEAD
 
            })
+=======
+                     })
+            
+>>>>>>> ce9072b4ea8e04bf913f0ff36b0fc0b3c4ada323
 
 
 

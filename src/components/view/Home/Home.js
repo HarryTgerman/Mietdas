@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {NavLink, Redirect,Link} from 'react-router-dom'
-import CountTo from 'react-count-to';
 import firebase from 'firebase'
 import Slider from 'react-slick'
 import Select from 'react-select';
