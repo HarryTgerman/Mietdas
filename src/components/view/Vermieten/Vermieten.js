@@ -66,7 +66,7 @@ componentWillMount(){
          this.auth.child(this.state.uid)
            .on('value', snapshot => {
 
-             if(snapshot.val()){var adresse = snapshot.val().address;
+             if(snapshot.val()){var adresse = snapshot.val().adresse;
              var ort = snapshot.val().ort;
              var telefon = snapshot.val().telefon;
              console.log(snapshot.val());
