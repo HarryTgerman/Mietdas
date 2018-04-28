@@ -84,10 +84,6 @@ exports.AdyenEntcrypt =  () => {
           console.log(body)
       }
   })
-  reso{
-  "pspReference": "8814689190961342",
-  "resultCode": "Authorised",
-  "authCode": "83152"
-}
+
 
 }

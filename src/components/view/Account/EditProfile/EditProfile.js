@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import firebase from 'firebase'
+import {Redirect} from 'react-router-dom'
 
 
 class EditProfile extends Component{
@@ -7,13 +8,21 @@ class EditProfile extends Component{
   constructor(props){
     super(props)
     this.state={
-      loading: true
+      loading: true,
+      redirect: true
+
     }
 }
 
 componentDidMount(){
   firebase.database().ref().child("app/users").child(this.props.uid)
   .once('value', snap=>{
+    if(!snap.val()){
+      this.setState({
+        redirect: true
+      })
+      return 0;
+    }
     let url = snap.val().url
     let email = snap.val().email
     let name = snap.val().name
@@ -112,6 +121,7 @@ handleChange(event){
 }
 
         render(){
+          if (this.state.redirect === true){return <Redirect to="/account-erstellen"/>}
           return(
               <div>
                 {this.state.loading?(<h1>Lade Daten</h1>):(<section className="padd-0">

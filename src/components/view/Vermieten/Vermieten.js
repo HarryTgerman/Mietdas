@@ -46,6 +46,7 @@ class Vermieten extends Component{
     this.state = {
        authenticated: false,
        redirect: false,
+       accoutDataRedirect: false
     }
 }
 
@@ -64,7 +65,8 @@ componentWillMount(){
       },()=>{
          this.auth.child(this.state.uid)
            .on('value', snapshot => {
-             var adresse = snapshot.val().address;
+
+             if(snapshot.val()){var adresse = snapshot.val().address;
              var ort = snapshot.val().ort;
              var telefon = snapshot.val().telefon;
              console.log(snapshot.val());
@@ -90,7 +92,11 @@ componentWillMount(){
                  })
                }
              )
-           })
+           })}else{
+             this.setState({
+               accoutDataRedirect: true
+             })
+           }
          })
       }
     )
@@ -118,6 +124,11 @@ onDrop(imageFiles) {
             alert('Sie müssen sich zuerst Registrieren')
             return  <Redirect to="/"/>
           }
+          if(this.state.accoutDataRedirect === true){
+            alert('Sie müssen Ihre Daten ergänzen')
+            return <Redirect to='/account-erstellen' />
+            }
+
           return(
               <div>
                 <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">

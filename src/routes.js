@@ -37,6 +37,7 @@ authWithFacebook(){
     .then((result, error) => {
       if (error) {
         alert(error)
+        return 0;
       } else {
         this.setState({ authenticated: true})
       }
@@ -56,8 +57,10 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
         // [START_EXCLUDE]
         if (errorCode === 'auth/wrong-password') {
           alert('Falsches Passwort');
+          return 0;
         } else {
           alert(errorMessage);
+          return 0;
         }
         console.log(error)
       })
@@ -76,15 +79,24 @@ let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, passwor
       // [START_EXCLUDE]
       if (errorCode === 'auth/weak-password') {
         alert('Das Password ist zu schwach');
+        return 0;
       } else {
         alert(errorMessage);
+        return 0;
       }
       console.log(error);
       // [END_EXCLUDE]
     });
+
   // ...
   whenRegister
   .then(()=>{
+     const userProfile = firebase.auth().currentUser
+    userProfile.sendEmailVerification().then(function() {
+      alert('Es wurde eine bestätigungs Email an Sie versendet')
+    }).catch(function(error) {
+      // An error happened.
+    })
      this.setState({registerRedirect:true})
   })
 
@@ -95,7 +107,14 @@ registerWithFacebook(){
     .then((result, error) => {
       if (error) {
         alert(error)
+        return 0;
       } else {
+        const userProfile = firebase.auth().currentUser
+        userProfile.sendEmailVerification().then(function() {
+          alert('Es wurde eine bestätigungs Email an Sie versendet')
+        }).catch(function(error) {
+          // An error happened.
+        })
         this.setState({ authenticated: true})
       }
     })
@@ -115,9 +134,7 @@ sendPwReset(){
 });
 }
         render(){
-         if (this.state.registerRedirect === true) {
-          return <Redirect to='/account-erstellen' />
-        }
+
           return(
                 <BrowserRouter>
                   <div >
@@ -133,8 +150,11 @@ sendPwReset(){
                       <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>
                       <Route name= 'AccountErstellen' path='/account-erstellen' component={AccountErstellen}/>
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
+                      {this.state.registerRedirect ?
+                        (<Redirect to='/account-erstellen' />):(null)
+                      }
                     </div>
-                    <div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+                  { this.state.registerRedirect ?(null):(<div className="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
                       <div className="modal-dialog">
                         <div className="modal-content">
                           <div className="modal-body">
@@ -165,6 +185,7 @@ sendPwReset(){
                                             Log-In mit Facebook
                                           </button>
                                           <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
+
                                           </div></div>)}
                                         </div>
                                       </div>
@@ -194,7 +215,7 @@ sendPwReset(){
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div>)}
                     <Footer/>
                   </div>
                 </BrowserRouter>

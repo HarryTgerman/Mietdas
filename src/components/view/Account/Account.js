@@ -19,7 +19,6 @@ class Account extends Component{
       authenticated: false,
       redirect: false,
       anfragen: [{}],
-      controll: false,
       editProfile: false,
       messages: [{}]
     }
@@ -77,15 +76,8 @@ firedata() {
         if(snap.val()){
           if(snap.val().anfragen == null){
           this.setState({
-            controll: true,
-            anfragen: 0,
-            cardId: snap.val().cardId,
-            url: snap.val().url,
-            nachName: snap.val().nachName,
-            adresse: snap.val().address,
-            geboren: snap.val().geburtsDatum,
-            mobil: snap.val().mobil,
-            telefon: snap.val().telefon,
+            anfragen: false,
+
 
           })
       }else{
@@ -207,7 +199,7 @@ editProfile() {
                   {/* Tab panes */}
                   <div className="tab-content tabs">
                     <div role="tabpanel" className="tab-pane fade in active" id="home">
-                    { this.state.controll ? (<h3>Du hast keine Neuen Anfragen</h3>)
+                    { this.state.anfragen ? (<h3>Du hast keine neuen Anfragen</h3>)
                                   : (keys.map((key) => {
                                      const anfrage = anfragen[key]
                                        return(<Anfragen
