@@ -152,11 +152,6 @@ onDrop(imageFiles) {
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
 
-
-        const Pdf = this.pdfUpload.files[0]
-
-
-
         const timeInMs = Date.now();
 
 
@@ -195,28 +190,11 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
-          firebase
-         .storage()
-         .ref("pdf")
-         .child(userId)
-         .child(titel)
-         .child(Pdf.name)
-         .put(Pdf)
-         .then(() => {
-           firebase
-             .storage()
-             .ref("pdf")
-             .child(userId)
-             .child(titel)
-             .child(Pdf.name)
-             .getDownloadURL()
-             .then(url => {
-               const pdfUrl = url;
+
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"anhänger",
-                         pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
                          cardHeading:titel ,

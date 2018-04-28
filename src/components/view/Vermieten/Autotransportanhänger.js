@@ -19,7 +19,7 @@ class Autotransportanhänger extends Component{
     }
 }
 
-
+c
 
 onDrop(imageFiles) {
 
@@ -41,6 +41,7 @@ onDrop(imageFiles) {
        imageUpload: false,
 
      })
+
      if (this.titelInput.value == "") {
       const alert = "Geben Sie den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
@@ -126,16 +127,11 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-<<<<<<< HEAD
-
-
-=======
     if (this.pdfUpload.files[0] == undefined) {
     const alert = "Laden Sie ein Datenblatt hoch"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
->>>>>>> d42a314aa2027357b5e1dc07de76aaea86d115b1
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -145,12 +141,7 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-<<<<<<< HEAD
-        const bedienung = this.bedienungInput.value;
-        const gesamtgewicht = this.GesamtgewichtdesArtikelsInput.value;
-=======
         const gesamtgewicht = this.gesamtgewichtdesArtikelsInput.value;
->>>>>>> d42a314aa2027357b5e1dc07de76aaea86d115b1
         const nutzlast = this.NutzlastdesArtikelsInput.value;
         const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
         const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
@@ -209,45 +200,6 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
-<<<<<<< HEAD
-          if(this.pdfUpload == undefined){
-           const images = this.state.Arr;
-           const imageUrl = this.state.Arr[0]
-           db.push({
-                     kategorie:"autotransportanhänger",
-                     email: this.props.email,
-                     hersteller: hersteller,
-                     bedienung: bedienung,
-                     cardHeading:titel ,
-                     cardPreis: preis,
-                     cardDesc: desc,
-                     mietbedingungen: Mietbedingungen,
-                     gesamtgewicht: gesamtgewicht,
-                     nutzlast: nutzlast,
-                     auflaufbremse: auflaufbremse,
-                     gesamthoeheLadeboard: gesamthoeheLadeboard,
-                     gesamthoeheSpriegel: gesamthoeheSpriegel,
-                     gesamtbreite: gesamtbreite,
-                     gesamtlaenge: gesamtlaenge,
-                     innenhoehe: innenhoehe,
-                     innenladehoehe: innenladehoehe,
-                     innenbreite: innenbreite,
-                     innenlaenge: innenlaenge,
-                     ladehoehe: ladehoehe,
-                     hundertkmh: hundertkmh,
-                     mietbedingungen: Mietbedingungen,
-                     address: this.props.address,
-                     ort: this.props.ort,
-                     gemietet: 0,
-                     cords: this.props.cords,
-                     telefon:this.props.telefon ,
-                     imageArr: images,
-                     imageUrl: imageUrl,
-                     gebiet: this.props.gebiet,
-                     bundesland: this.props.bundesland,
-                     uid: userId,
-                     vermieter: this.props.vermieter,
-=======
           firebase
          .storage()
          .ref("pdf")
@@ -299,80 +251,14 @@ onDrop(imageFiles) {
                          bundesland: this.props.bundesland,
                          uid: userId,
                          vermieter: this.props.vermieter,
->>>>>>> d42a314aa2027357b5e1dc07de76aaea86d115b1
 
-                   })
-                   this.setState({
-                     loading: false,
-                     redirect: true
-                   })
-
-          }
-          else{
-           firebase
-           .storage()
-           .ref("pdf")
-           .child(userId)
-           .child(titel)
-           .child(Pdf.name)
-           .put(Pdf)
-           .then(() => {
-             firebase
-               .storage()
-               .ref("pdf")
-               .child(userId)
-               .child(titel)
-               .child(Pdf.name)
-               .getDownloadURL()
-               .then(url => {
-                 const pdfUrl = url;
-                 const images = this.state.Arr;
-                 const imageUrl = this.state.Arr[0]
-                 db.push({
-                           kategorie:"autotransportanhänger",
-                           pdf: url,
-                           email: this.props.email,
-                           hersteller: hersteller,
-                           bedienung: bedienung,
-                           cardHeading:titel ,
-                           cardPreis: preis,
-                           cardDesc: desc,
-                           mietbedingungen: Mietbedingungen,
-                           gesamtgewicht: gesamtgewicht,
-                           nutzlast: nutzlast,
-                           auflaufbremse: auflaufbremse,
-                           gesamthoeheLadeboard: gesamthoeheLadeboard,
-                           gesamthoeheSpriegel: gesamthoeheSpriegel,
-                           gesamtbreite: gesamtbreite,
-                           gesamtlaenge: gesamtlaenge,
-                           innenhoehe: innenhoehe,
-                           innenladehoehe: innenladehoehe,
-                           innenbreite: innenbreite,
-                           innenlaenge: innenlaenge,
-                           ladehoehe: ladehoehe,
-                           hundertkmh: hundertkmh,
-                           mietbedingungen: Mietbedingungen,
-                           address: this.props.address,
-                           ort: this.props.ort,
-                           gemietet: 0,
-                           cords: this.props.cords,
-                           telefon:this.props.telefon ,
-                           imageArr: images,
-                           imageUrl: imageUrl,
-                           gebiet: this.props.gebiet,
-                           bundesland: this.props.bundesland,
-                           uid: userId,
-                           vermieter: this.props.vermieter,
-
-                         })
-                         this.setState({
-                           loading: false,
-                           redirect: true
-                         })
+                       })
+                       this.setState({
+                         loading: false,
+                         redirect: true
                        })
                      })
-                    }
-
+                   })
            })
 
 
