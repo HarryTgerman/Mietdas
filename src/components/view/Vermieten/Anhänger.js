@@ -136,7 +136,7 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const gesamtgewicht = this.gesamtgewichtdesArtikelsInput.value;
+        const gesamtgewicht = this.GesamtgewichtdesArtikelsInput.value;
         const nutzlast = this.NutzlastdesArtikelsInput.value;
         const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
         const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
@@ -230,8 +230,7 @@ onDrop(imageFiles) {
                          loading: false,
                          redirect: true
                        })
-                     })
-                   })
+
            })
 
 

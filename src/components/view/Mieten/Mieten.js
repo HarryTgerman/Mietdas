@@ -322,19 +322,19 @@ whenGeoCode.then(() =>{
                                     onChange={this.clickLi.bind(this)}
                                     placeholder={this.state.selectValue.label}
                                     options={[
-                                      { value: 'bagger', label: 'Minibagger' },
-                                      { value: 'bagger', label: 'Kompaktbagger' },
-                                      { value: 'bagger', label: 'Raupenbagger' },
-                                      { value: 'bagger', label: 'Mobilbagger' },
-                                      { value: 'bagger', label: 'Radlader' },
-                                      { value: 'baugeräte', label: 'Verdichtungstechnik' },
-                                      { value: 'baugeräte', label: 'Stampfer' },
-                                      { value: 'baugeräte', label: 'Vibrationsplatte' },
+                                      { value: 'minibagger', label: 'Minibagger' },
+                                      { value: 'kompaktbagger', label: 'Kompaktbagger' },
+                                      { value: 'raupenbagger', label: 'Raupenbagger' },
+                                      { value: 'mobilbagger', label: 'Mobilbagger' },
+                                      { value: 'radlader', label: 'Radlader' },
+                                      { value: 'verdichtungstechnik', label: 'Verdichtungstechnik' },
+                                      { value: 'stampfer', label: 'Stampfer' },
+                                      { value: 'vibrationsplatte', label: 'Vibrationsplatte' },
                                       { value: 'anhänger', label: 'Anhänger' },
-                                      { value: 'anhänger', label: 'Kippanhänger' },
-                                      { value: 'anhänger', label: 'Planenanhänger' },
-                                      { value: 'anhänger', label: 'Autotransportanhänger' },
-                                      { value: 'anhänger', label: 'Tieflader' },
+                                      { value: 'kippanhänger', label: 'Kippanhänger' },
+                                      { value: 'planenanhänger', label: 'Planenanhänger' },
+                                      { value: 'autotransportanhänger', label: 'Autotransportanhänger' },
+                                      { value: 'tieflader', label: 'Tieflader' },
                                     ]}
                                   />
                                 </div>

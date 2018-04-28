@@ -102,11 +102,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -127,9 +122,6 @@ onDrop(imageFiles) {
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
-
-        const Pdf = this.pdfUpload.files[0]
-
 
 
         const timeInMs = Date.now();
@@ -170,28 +162,10 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
-          firebase
-         .storage()
-         .ref("pdf")
-         .child(userId)
-         .child(titel)
-         .child(Pdf.name)
-         .put(Pdf)
-         .then(() => {
-           firebase
-             .storage()
-             .ref("pdf")
-             .child(userId)
-             .child(titel)
-             .child(Pdf.name)
-             .getDownloadURL()
-             .then(url => {
-               const pdfUrl = url;
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"vibrationsplatte",
-                         pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
@@ -224,14 +198,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-                   })
-           })
-
-
-
-
-
-       }
+   }
 
 
 
@@ -368,12 +335,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
