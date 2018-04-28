@@ -51,7 +51,7 @@ componentWillMount(){
 }
 firedata() {
   const previousCards = [];
-  firebase.database().ref().child('app').child('cards')
+  firebase.database().ref().child('app').child('cards/')
     .orderByChild('uid').equalTo(this.state.uid)
     .once('value', snap => {
       snap.forEach(childSnapshot => {

@@ -4,12 +4,9 @@ import CreditPng from '../../img/credit.png';
 import {NavLink, Redirect} from 'react-router-dom';
 import backgroundImg from '../../img/backgroundPayment.jpg';
 import firebase from 'firebase';
-import StripeCheckout from 'react-stripe-checkout';
-import { confirmAlert } from 'react-confirm-alert'; // Import
 import Logo from'../../img/logo.png'
 import LogoWhite from'../../img/logo-white.png'
 import axios from 'axios'
-import request from 'request';
 
 
 

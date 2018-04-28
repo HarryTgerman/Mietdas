@@ -231,8 +231,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-                   })
-           })
+            
 
 
 
