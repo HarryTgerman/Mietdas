@@ -77,8 +77,6 @@ firedata() {
           if(snap.val().anfragen == null){
           this.setState({
             anfragen: false,
-
-
           })
       }else{
             this.setState({
@@ -199,17 +197,17 @@ editProfile() {
                   {/* Tab panes */}
                   <div className="tab-content tabs">
                     <div role="tabpanel" className="tab-pane fade in active" id="home">
-                    { this.state.anfragen ? (<h3>Du hast keine neuen Anfragen</h3>)
-                                  : (keys.map((key) => {
-                                     const anfrage = anfragen[key]
-                                       return(<Anfragen
-                                       anfrage={anfrage} name={anfrage.name} url={anfrage.url}
-                                       cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
-                                       uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
-                                      nummer={anfrage.nummer} email={anfrage.email}
-                                       mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
-                                       )
-                                     }))
+                    { this.state.anfragen ? (keys.map((key) => {
+                       const anfrage = anfragen[key]
+                         return(<Anfragen
+                         anfrage={anfrage} name={anfrage.name} url={anfrage.url}
+                         cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
+                         uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
+                        nummer={anfrage.nummer} email={anfrage.email}
+                         mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
+                         )
+                       })
+                      ) : (<h3>Du hast keine neuen Anfragen</h3>)
                     }
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="meineAnfragen">
