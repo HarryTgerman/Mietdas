@@ -52,28 +52,13 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
-    }
-    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
+    if (this.grapTiefeVonInput.value) {
     const alert = "Geben Sie Auskunft über die Grabtiefe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.LaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Länge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -84,11 +69,6 @@ onDrop(imageFiles) {
     }
     if (this.HoehedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Höhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.RechweitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Reichweite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -107,11 +87,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.pdfUpload.files[0] == undefined) {
     const alert = "Laden Sie ein Datenblatt hoch"
     this.setState({alert: alert, showAlert: true})
@@ -126,19 +101,13 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
+        const grabtiefe = this.grapTiefeVonInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const laenge = this.LaengedesArtikelsInput.value;
         const breite = this.BreitedesArtikelsInput.value;
         const hoehe = this.HoehedesArtikelsInput.value;
         const schuetthoehe = this.SchuetthoehedesArtikelsInput.value;
-        const reichweite = this.RechweitedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const Pdf = this.pdfUpload.files[0]
 
@@ -206,20 +175,14 @@ onDrop(imageFiles) {
                          pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
                          grabtiefe: grabtiefe,
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
-                         laenge: laenge,
                          breite: breite,
-                         hoehe:hoehe,
+                         hoehe: hoehe,
                          schuetthoehe: schuetthoehe,
-                         reichweite: reichweite,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -291,22 +254,12 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Komatsu" />
-            									</div>
-
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Yanmar" />
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
                                 <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Länge</label>
-                                <input type="text" className="form-control" ref={(input) => { this.LaengedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
@@ -319,44 +272,16 @@ onDrop(imageFiles) {
                                 <input type="text" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
-
                               <div className="col-sm-6">
                                 <label>Schütthöhe</label>
                                 <input type="text" className="form-control" ref={(input) => { this.SchuetthoehedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
+
                               <div className="col-sm-6">
-                                <label>Reichweite</label>
-                                <input type="text" className="form-control" ref={(input) => { this.RechweitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-                              <div className="col-sm-3">
             										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in mm"/>
+            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
             									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in mm"/>
-            									</div>
-
-            									<div className="col-sm-3">
-            										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-
-                              <div className="col-sm-3">
-            										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
@@ -368,10 +293,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>

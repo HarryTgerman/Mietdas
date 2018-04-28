@@ -51,11 +51,6 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
-    }
     if (this.GesamtgewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
     this.setState({alert: alert, showAlert: true})
@@ -131,8 +126,16 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+<<<<<<< HEAD
 
 
+=======
+    if (this.pdfUpload.files[0] == undefined) {
+    const alert = "Laden Sie ein Datenblatt hoch"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+>>>>>>> d42a314aa2027357b5e1dc07de76aaea86d115b1
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -142,8 +145,12 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+<<<<<<< HEAD
         const bedienung = this.bedienungInput.value;
         const gesamtgewicht = this.GesamtgewichtdesArtikelsInput.value;
+=======
+        const gesamtgewicht = this.gesamtgewichtdesArtikelsInput.value;
+>>>>>>> d42a314aa2027357b5e1dc07de76aaea86d115b1
         const nutzlast = this.NutzlastdesArtikelsInput.value;
         const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
         const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
@@ -158,7 +165,7 @@ onDrop(imageFiles) {
         const hundertkmh = this.HundertkmhdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
+
 
         const Pdf = this.pdfUpload.files[0]
 
@@ -202,6 +209,7 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
+<<<<<<< HEAD
           if(this.pdfUpload == undefined){
            const images = this.state.Arr;
            const imageUrl = this.state.Arr[0]
@@ -239,6 +247,59 @@ onDrop(imageFiles) {
                      bundesland: this.props.bundesland,
                      uid: userId,
                      vermieter: this.props.vermieter,
+=======
+          firebase
+         .storage()
+         .ref("pdf")
+         .child(userId)
+         .child(titel)
+         .child(Pdf.name)
+         .put(Pdf)
+         .then(() => {
+           firebase
+             .storage()
+             .ref("pdf")
+             .child(userId)
+             .child(titel)
+             .child(Pdf.name)
+             .getDownloadURL()
+             .then(url => {
+               const pdfUrl = url;
+               const images = this.state.Arr;
+               const imageUrl = this.state.Arr[0]
+               db.push({
+                         kategorie:"autotransportanhänger",
+                         pdf: url,
+                         email: this.props.email,
+                         hersteller: hersteller,
+                         cardHeading:titel ,
+                         cardPreis: preis,
+                         cardDesc: desc,
+                         gesamtgewicht: gesamtgewicht,
+                         nutzlast: nutzlast,
+                         auflaufbremse: auflaufbremse,
+                         gesamthoeheLadeboard: gesamthoeheLadeboard,
+                         gesamthoeheSpriegel: gesamthoeheSpriegel,
+                         gesamtbreite: gesamtbreite,
+                         gesamtlaenge: gesamtlaenge,
+                         innenhoehe: innenhoehe,
+                         innenladehoehe: innenladehoehe,
+                         innenbreite: innenbreite,
+                         innenlaenge: innenlaenge,
+                         ladehoehe: ladehoehe,
+                         hundertkmh: hundertkmh,
+                         address: this.props.address,
+                         ort: this.props.ort,
+                         gemietet: 0,
+                         cords: this.props.cords,
+                         telefon:this.props.telefon ,
+                         imageArr: images,
+                         imageUrl: imageUrl,
+                         gebiet: this.props.gebiet,
+                         bundesland: this.props.bundesland,
+                         uid: userId,
+                         vermieter: this.props.vermieter,
+>>>>>>> d42a314aa2027357b5e1dc07de76aaea86d115b1
 
                    })
                    this.setState({
@@ -368,11 +429,6 @@ onDrop(imageFiles) {
             									</div>
 
             									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
-
-            									<div className="col-sm-6">
             										<label>zulässiges Gesamtgewicht</label>
             										<input type="text" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
@@ -447,10 +503,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>

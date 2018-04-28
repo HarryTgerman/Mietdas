@@ -52,11 +52,6 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
-    }
     if (this.GesamtgewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
     this.setState({alert: alert, showAlert: true})
@@ -132,11 +127,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.pdfUpload.files[0] == undefined) {
     const alert = "Laden Sie ein Datenblatt hoch"
     this.setState({alert: alert, showAlert: true})
@@ -151,7 +141,6 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
         const gesamtgewicht = this.gesamtgewichtdesArtikelsInput.value;
         const nutzlast = this.NutzlastdesArtikelsInput.value;
         const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
@@ -167,7 +156,7 @@ onDrop(imageFiles) {
         const hundertkmh = this.HundertkmhdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
+
 
         const Pdf = this.pdfUpload.files[0]
 
@@ -235,11 +224,9 @@ onDrop(imageFiles) {
                          pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gesamtgewicht: gesamtgewicht,
                          nutzlast: nutzlast,
                          auflaufbremse: auflaufbremse,
@@ -253,7 +240,6 @@ onDrop(imageFiles) {
                          innenlaenge: innenlaenge,
                          ladehoehe: ladehoehe,
                          hundertkmh: hundertkmh,
-                         mietbedingungen: Mietbedingungen,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -326,11 +312,6 @@ onDrop(imageFiles) {
             									<div className="col-sm-6">
             										<label>Hersteler</label>
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
-            									</div>
-
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
 
             									<div className="col-sm-6">
@@ -408,10 +389,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
