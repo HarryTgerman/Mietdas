@@ -17,7 +17,7 @@ class EditProfile extends Component{
 componentDidMount(){
   firebase.database().ref().child("app/users").child(this.props.uid)
   .once('value', snap=>{
-    if(!snap.val()){
+    if(snap.val() === null){
       this.setState({
         redirect: true
       })
@@ -28,7 +28,7 @@ componentDidMount(){
     let name = snap.val().name
     let telefon = snap.val().telefon
     let geburtsdatum = snap.val().geburtsDatum
-    let adresse = snap.val().address
+    let adresse = snap.val().adresse
     let straße = snap.val().straße
     let plz = snap.val().plz
     let stadt = snap.val().stadt
