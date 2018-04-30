@@ -146,7 +146,6 @@ onDrop(imageFiles) {
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"mobilbagger",
-                         pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
                          grabtiefe: grabtiefe,
