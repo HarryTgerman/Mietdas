@@ -4,6 +4,7 @@ import firebase from 'firebase'
 import Logo from'./img/logo.png'
 import ReCAPTCHA from 'react-google-recaptcha';
 import request from 'request';
+import Q from 'bluebird';
 
 
 import Home from './components/view/Home/Home'
@@ -25,6 +26,7 @@ const facebookProvider = new firebase.auth.FacebookAuthProvider()
 
 
 class Routes extends Component{
+
   constructor(props){
     super(props)
     this.register = this.register.bind(this);
@@ -42,34 +44,10 @@ class Routes extends Component{
 
 onChange(response) {
     this.setState({
-        isCaptcha: true
+         isCaptcha: true
     });
 }
 
-verifyHumanity(req) {
-const recaptchaResponse = req.body['g-recaptcha-response'];
-
-request.post('https://www.google.com/recaptcha/api/siteverify', {
-form: {
-  secret: '6LeEWlYUAAAAAPW3leTdfXbBJg7vZ23l6k1gllUP',
-  response: recaptchaResponse,
-  remoteip: req.connection.remoteAddress
-}
-}, (err, httpResponse, body)=>{
-if (err) {
-  console.log(err);
-} else {
-  const r = JSON.parse(body);
-  if (r.success) {
-    console.log(r.success);
-  } else {
-  //  console.log(new Error());
-  }
-}
-});
-
-return;
-}
 
 
 
@@ -87,7 +65,7 @@ authWithFacebook(){
 }
 
 
-signIn(){
+signIn(req, res){
 const email = this.userNameInput.value;
 const password = this.passwordInput.value;
 
@@ -110,37 +88,41 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
 
 register(){
 
+if(this.state.isCaptcha){
 
-const email = this.emailInput.value;
-const password = this.createPassword.value;
-let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-      var errorMessage = error.message;
-      // [START_EXCLUDE]
-      if (errorCode === 'auth/weak-password') {
-        alert('Das Password ist zu schwach');
-        return 0;
-      } else {
-        alert(errorMessage);
-        return 0;
-      }
-      console.log(error);
-      // [END_EXCLUDE]
-    });
+  const email = this.emailInput.value;
+  const password = this.createPassword.value;
+  let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+        var errorMessage = error.message;
+        // [START_EXCLUDE]
+        if (errorCode === 'auth/weak-password') {
+          alert('Das Password ist zu schwach');
+          return 0;
+        } else {
+          alert(errorMessage);
+          return 0;
+        }
+        console.log(error);
+        // [END_EXCLUDE]
+      });
 
-  // ...
-  whenRegister
-  .then(()=>{
-     const userProfile = firebase.auth().currentUser
-    userProfile.sendEmailVerification().then(function() {
-      alert('Es wurde eine bestätigungs Email an Sie versendet')
-    }).catch(function(error) {
-      // An error happened.
+    // ...
+    whenRegister
+    .then(()=>{
+       const userProfile = firebase.auth().currentUser
+      userProfile.sendEmailVerification().then(function() {
+        alert('Es wurde eine bestätigungs Email an Sie versendet')
+      }).catch(function(error) {
+        // An error happened.
+      })
+       this.setState({registerRedirect:true})
     })
-     this.setState({registerRedirect:true})
-  })
 
+ }else{
+   alert("biite bestätige das du kein Roboter bist")
+ }
 }
 
 registerWithFacebook(){
