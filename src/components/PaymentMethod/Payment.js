@@ -5,13 +5,22 @@ import {NavLink, Redirect} from 'react-router-dom';
 import backgroundImg from '../../img/backgroundPayment.jpg';
 import firebase from 'firebase';
 import Logo from'../../img/logo.png'
+import moment from 'moment'
 import LogoWhite from'../../img/logo-white.png'
 import axios from 'axios'
 
 
 
 
-let total = null;
+// The form element to encrypt
+var form    = document.getElementById('adyen-encrypted-form');
+// The public key
+var key = "10001|C4B9DCF30853F90459D47B5CDDE9031AA0B63A22A48D87DFD264C67917E405F6BEEF46E68B857103B868EF69E6AF30FED1F49F877795A5DB72427BD24F106C8A484D266DCB0688C5B4138FC48B8CA65416F9F48E7BE48CA155AD32063467E9027461479905340AFC07BB721EE937B46CC6C5FB35A81C9F44CFF620862D3CDDF57C9496C25A218198A5081C9BDCDFA339F7444158179C8F141E319C006AFC370EDB3C7A28FBA55909CE663B8CE4BC733931C35E72F53D539BE19F8CACAB85062734269FD923EC49B77451F38991CF26689CFEAE3E26802A7F626914A752154C1C3784EBFD5E49CCA98601304E1140C4FE2C609E2703973D777643C61937B4EA95";
+// Form and encryption options. See adyen.encrypt.simple.html for details
+var options = {};
+// Bind encryption to the form
+var cseInstance = window.adyen.encrypt.createEncryption(key, options, form)
+
 class Payment extends Component{
   constructor(props){
     super(props)
@@ -49,22 +58,23 @@ class Payment extends Component{
   }
   componentWillUpdate(nextProps, nextState) {
    console.log('Will update', nextProps);
-   total = nextProps.location.query.anfrage.umsatz;
  }
 
 
 requestHandler(e){
   e.preventDefault
   let config = {
+  authorization: {
+    "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
+  },
   headers: {
-  "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
   "Content-Type": "application/json"
   }
 }
 
 let data = {
       "additionalData": {
-          "card.encrypted.json":"adyenjs_0_1_4p1$..."
+          "card.encrypted.json":cseInstance,
       },
 
       "amount" : {
@@ -77,7 +87,7 @@ let data = {
   }
 
 
-axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log(res.data);})
+axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log(res, 'Das ist die Response');})
 
 
 }
@@ -85,21 +95,7 @@ axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data,
 
   render(){
 
-    // The form element to encrypt
-var form    = document.getElementById('adyen-encrypted-form');
-  // The public key
-var key = "10001|C4B9DCF30853F90459D47B5CDDE9031AA0B63A22A48D87DFD264C67917E405F6BEEF46E68B857103B868EF69E6AF30FED1F49F877795A5DB72427BD24F106C8A484D266DCB0688C5B4138FC48B8CA65416F9F48E7BE48CA155AD32063467E9027461479905340AFC07BB721EE937B46CC6C5FB35A81C9F44CFF620862D3CDDF57C9496C25A218198A5081C9BDCDFA339F7444158179C8F141E319C006AFC370EDB3C7A28FBA55909CE663B8CE4BC733931C35E72F53D539BE19F8CACAB85062734269FD923EC49B77451F38991CF26689CFEAE3E26802A7F626914A752154C1C3784EBFD5E49CCA98601304E1140C4FE2C609E2703973D777643C61937B4EA95";
-  // Form and encryption options. See adyen.encrypt.simple.html for details
-var options = {"name" : "My-Adyen-Form",
-    "enableValidations" : true,
-    "submitButtonAlwaysEnabled": false,
-    "numberIgnoreNonNumeric" : true,
-    "fieldNameAttribute" : "data-encrypted-name",
-    "cvcIgnoreBins" : "6703",
-    "fourDigitCvcForBins" : "34,37"};
-  // Bind encryption to the form
-var cseInstance = window.adyen.encrypt.createEncryption(key, options, form)
-
+let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
     return(
         <div>
           <div className="wrapper">
@@ -184,10 +180,10 @@ var cseInstance = window.adyen.encrypt.createEncryption(key, options, form)
                       <form onSubmit={this.requestHandler.bind(this)}  id="adyen-encrypted-form">
                           <input type="text" size="20" data-encrypted-name="number" placeholder="number"/>
                           <input type="text" size="20" data-encrypted-name="holderName" placeholder="holderName"/>
-                          <input type="text" size="2" data-encrypted-name="expiryMonth" placeholder="expiryMonth"/>
-                          <input type="text" size="4" data-encrypted-name="expiryYear" placeholder="expiryYear"/>
-                          <input type="text" size="4" data-encrypted-name="cvc" placeholder="cvc"/>
-                          <input type="hidden" value="[generate this server side]" data-encrypted-name="generationtime"/>
+                          <input type="text" size="20" data-encrypted-name="expiryMonth" placeholder="expiryMonth"/>
+                          <input type="text" size="14" data-encrypted-name="expiryYear" placeholder="expiryYear"/>
+                          <input type="text" size="14" data-encrypted-name="cvc" placeholder="cvc"/>
+                          <input type="hidden" value={timeStemp} data-encrypted-name="generationtime"/>
                           <input type="submit" value="Pay"/>
                       </form>
                     </div>
@@ -198,37 +194,7 @@ var cseInstance = window.adyen.encrypt.createEncryption(key, options, form)
                 <div className="col-md-4 col-sm-12">
                   <div className="widget-boxed padd-0">
                     {/* Booking listing or Space */}
-                    <div className="listing-shot grid-style no-shadow border-0 mrg-0">
-                      <a href="#">
-                        <div className="listing-shot-img">
-                          <img src={this.props.location.query.anfrage.url} className="img-responsive" alt=""/>
-                          <span className="like-listing"><i className="fa fa-heart-o" aria-hidden="true"></i></span>
-                        </div>
-                        <div className="listing-shot-caption">
-                          <h4>{this.props.location.query.anfrage.cardHeading}</h4>
-                          <p className="listing-location">{this.props.location.query.anfrage.adresse}</p>
-                        </div>
-                      </a>
-                    </div>
-                    {/* Booking listing or Space Price */}
-                    <div className="booking-price padd-15">
-                      <h4 className="mrg-bot-20">Zusammenfassung</h4>
-                      {/* Days of rent */}
-                      <div className="booking-price-detail side-list no-border">
-                        <h5>Zeitraum</h5>
-                        <ul>
-                          <li>Ab<strong className="pull-right">{this.props.location.query.anfrage.mietbeginn}</strong></li>
-                          <li>Bis<strong className="pull-right">{this.props.location.query.anfrage.mietende}</strong></li>
-                          <li>{this.props.location.query.anfrage.tage}</li>
-                        </ul>
-                      </div>
-                      {/* Total Cost */}
-                      <div className="booking-price-detail side-list no-border">
-                        <ul>
-                          <li>Endpreis<strong className="theme-cl pull-right">{this.props.location.query.anfrage.umsatz}€</strong></li>
-                        </ul>
-                      </div>
-                    </div>
+
                   </div>
                 </div>
               </div>

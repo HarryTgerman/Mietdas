@@ -131,7 +131,7 @@ getChatData(data){
                                   {this.state.messages.map((msg)=>{
                                     let lastMessage= msg.message[Object.keys(msg.message)[Object.keys(msg.message).length - 1]]
                                     let start = lastMessage.date +" "+lastMessage.time,
-                                    hours = moment(start, "DD-MM-YY, hh:mm").fromNow()
+                                    hours = moment(start, "DD-MM-YY,hh:mm").fromNow()
                                     return(
                                     <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:false},this.getChatData(msg.key))}}>
                                       <a>

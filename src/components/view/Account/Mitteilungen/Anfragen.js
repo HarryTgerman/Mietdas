@@ -36,9 +36,9 @@ class Anfragen extends Component{
     firebase.database().ref().child('app').child('users/' + this.props.uid)
     .child('anfragen').child(num)
     .remove()
-    this.setState({
-      redirect : true
-    })
+    firebase.database().ref().child('app').child('users/' + this.props.anfrage.uid)
+    .child('mitteilung').child(num)
+    .remove()
   }
 
         render(){

@@ -19,7 +19,7 @@ sendMessage(event){
   })
   let name = this.props.name;
   if(this.messageInput.value != ""){
-    var Time = moment().format("HH:MM")
+    var Time = moment().format("HH:mm")
     var Date = moment().format("DD-MM-YY")
     let message = this.messageInput.value;
     firebase.database().ref().child('app').child('messages').child(this.props.data.key).child('message')

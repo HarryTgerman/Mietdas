@@ -1,7 +1,9 @@
 const functions = require('firebase-functions');
 const nodemailer = require('nodemailer');
-const hbs = ('nodemailer-express-handlebars')
-const request = require('request');
+const xoauth2 = require('xoauth2');
++const nodemailer = require('nodemailer');
++const hbs = require('nodemailer-express-handlebars')
+
 
 exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfragen/{wildcardMessge}')
 .onCreate((snapshot, context) => {
@@ -14,9 +16,12 @@ exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfra
 
   const transporter = nodemailer.createTransport({
      service: 'gmail',
-     auth: {
+     auth: {xoauth2: xoauth2.createXOAuth2Generator({
             user: 'support@mietdas.de',
-            pass: '.>?-C4Ry.c:tqQ2Q'
+            clientId: '153684144787-i6lneuuequuf6ob4o82956ior38svklu.apps.googleusercontent.com',
+            clientSecret: 'rAGQ0V5zQAol8IvaGC1iahqd',
+            refreshToken: '1/eylspJXcm3Yfr7NxBjOrKmL9BNfJUWYGgogZ_Us5X_s',
+            })
         }
     })
     transporter.use('compile',hbs({
@@ -45,45 +50,3 @@ exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfra
       });
 
 })
-
-
-
-
-
-
-exports.AdyenEntcrypt =  () => {
-  // Set the headers
-  let headers = {
-      "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
-      "Content-Type": "application/json"
-  }
-
-  // Configure the request
-  let options = {
-      url: 'https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise',
-      method: 'POST',
-      headers: headers,
-      form: {
-          "additionalData": {
-              'card.encrypted.json' :"adyenjs_0_1_4p1$..."
-          },
-
-          'amount' : {
-              'value' : 10000,
-              'currency' : "EUR"
-          },
-
-          'reference' : "Your Reference Here",
-          'merchantAccount' : "TestMerchant"
-      }
-  }
-
-     request(options, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-          // Print out the response body
-          console.log(body)
-      }
-  })
-
-
-}
