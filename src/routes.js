@@ -88,41 +88,48 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
 
 register(){
 
-if(this.state.isCaptcha){
+  if(this.createPassword.value.length > 8){
 
-  const email = this.emailInput.value;
-  const password = this.createPassword.value;
-  let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode === 'auth/weak-password') {
-          alert('Das Password ist zu schwach');
-          return 0;
-        } else {
-          alert(errorMessage);
-          return 0;
-        }
-        console.log(error);
-        // [END_EXCLUDE]
-      });
+    if(this.state.isCaptcha){
 
-    // ...
-    whenRegister
-    .then(()=>{
-       const userProfile = firebase.auth().currentUser
-      userProfile.sendEmailVerification().then(function() {
-        alert('Es wurde eine bestätigungs Email an Sie versendet')
-      }).catch(function(error) {
-        // An error happened.
+    const email = this.emailInput.value;
+    const password = this.createPassword.value;
+
+
+    let whenRegister = firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+          var errorMessage = error.message;
+          // [START_EXCLUDE]
+          if (errorCode === 'auth/weak-password') {
+            alert('Das Password ist zu schwach');
+            return 0;
+          } else {
+            alert(errorMessage);
+            return 0;
+          }
+          console.log(error);
+          // [END_EXCLUDE]
+        });
+
+      // ...
+      whenRegister
+      .then(()=>{
+         const userProfile = firebase.auth().currentUser
+        userProfile.sendEmailVerification().then(function() {
+          alert('Es wurde eine bestätigungs Email an Sie versendet')
+        }).catch(function(error) {
+          // An error happened.
+        })
+         this.setState({registerRedirect:true})
       })
-       this.setState({registerRedirect:true})
-    })
+    }else{
+      alert("biite bestätige das du kein Roboter bist")
+    }
 
- }else{
-   alert("biite bestätige das du kein Roboter bist")
- }
+  }else{
+    alert("Ihr Passwort muss mehr als 8 Zeichen lang sein")
+  }
 }
 
 registerWithFacebook(){
@@ -202,10 +209,6 @@ sendPwReset(){
                                         :(<div>
                                           <input type="email"  name="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input; }} required=""/>
                                           <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
-                                            <ReCAPTCHA
-                                            ref="recaptcha"
-                                            sitekey="6LeEWlYUAAAAAOITMgxX0pcih46KC23uxTQQwD72"
-                                            onChange={this.onChange.bind(this)}/>
                                           <a className="forgottPW" onClick={()=>{this.setState({forgottPw : true})}} >Passwort vergessen ?</a>
                                           <div style={{marginTop:"10px"}} className="center">
                                           <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
