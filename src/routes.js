@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {BrowserRouter, Route, withProps ,Redirect} from 'react-router-dom';
 import firebase from 'firebase'
 import Logo from'./img/logo.png'
+import ReCAPTCHA from 'react-google-recaptcha';
+import request from 'request';
 
 
 import Home from './components/view/Home/Home'
@@ -17,7 +19,10 @@ import AccountErstellen from './components/view/AccountErstellen/AccountErstelle
 import Payment from './components/PaymentMethod/Payment'
 
 
+
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
+
+
 
 class Routes extends Component{
   constructor(props){
@@ -29,8 +34,44 @@ class Routes extends Component{
     this.state= {
       registerRedirect: false,
       forgottPw: false,
+      isCaptcha: false
     }
 }
+
+
+
+onChange(response) {
+    this.setState({
+        isCaptcha: true
+    });
+}
+
+verifyHumanity(req) {
+const recaptchaResponse = req.body['g-recaptcha-response'];
+
+request.post('https://www.google.com/recaptcha/api/siteverify', {
+form: {
+  secret: '6LeEWlYUAAAAAPW3leTdfXbBJg7vZ23l6k1gllUP',
+  response: recaptchaResponse,
+  remoteip: req.connection.remoteAddress
+}
+}, (err, httpResponse, body)=>{
+if (err) {
+  console.log(err);
+} else {
+  const r = JSON.parse(body);
+  if (r.success) {
+    console.log(r.success);
+  } else {
+  //  console.log(new Error());
+  }
+}
+});
+
+return;
+}
+
+
 
 authWithFacebook(){
   let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
@@ -179,6 +220,10 @@ sendPwReset(){
                                         :(<div>
                                           <input type="email"  name="email" className="form-control" placeholder="E-mail"  ref={(input) => { this.userNameInput = input; }} required=""/>
                                           <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
+                                            <ReCAPTCHA
+                                            ref="recaptcha"
+                                            sitekey="6LeEWlYUAAAAAOITMgxX0pcih46KC23uxTQQwD72"
+                                            onChange={this.onChange.bind(this)}/>
                                           <a className="forgottPW" onClick={()=>{this.setState({forgottPw : true})}} >Passwort vergessen ?</a>
                                           <div style={{marginTop:"10px"}} className="center">
                                           <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
@@ -201,6 +246,10 @@ sendPwReset(){
                                         <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
                                         <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
                                         <div className="center">
+                                          <ReCAPTCHA
+                                          ref="recaptcha"
+                                          sitekey="6LeEWlYUAAAAAOITMgxX0pcih46KC23uxTQQwD72"
+                                          onChange={this.onChange.bind(this)}/>
                                         <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
                                           Log-In mit Facebook
                                         </button>
