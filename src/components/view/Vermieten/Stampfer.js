@@ -247,12 +247,12 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
-                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Arbeitsbreite</label>
-                                <input type="text" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
@@ -262,34 +262,34 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-3">
             										<label>Grabtiefe</label>
-            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
+            										<input type="number"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
+                                <input type="number"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
             									</div>
 
             									<div className="col-sm-3">
             										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
+            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
+                                <input type="number" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
             									</div>
 
                               <div className="col-sm-3">
             										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
+            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
             									</div>
                               <div className="col-sm-3">
                                 <label>bis</label>
-                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
+                                <input type="number" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">

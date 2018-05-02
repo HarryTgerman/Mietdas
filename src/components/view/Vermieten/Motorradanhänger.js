@@ -282,12 +282,12 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>zulässiges Gesamtgewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Nutzlast</label>
-            										<input type="text" className="form-control" ref={(input) => { this.NutzlastdesArtikelsInput = input}} placeholder="in kg"/>
+            										<input type="number" className="form-control" ref={(input) => { this.NutzlastdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
@@ -297,47 +297,47 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
             										<label> Gesamthöhe (Ladeboardwand)</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Gesamthöhe (inkl. Spriegel)</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GesamthoeheSpriegeldesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GesamthoeheSpriegeldesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Gesamtbreite</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Gesamtlänge</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Innenhöhe (Ladeboardwandhöhe)</label>
-            										<input type="text" className="form-control" ref={(input) => { this.InnenhoehedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.InnenhoehedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Innenladehöhe</label>
-            										<input type="text" className="form-control" ref={(input) => { this.InnenladehoehedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.InnenladehoehedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Innenbreite</label>
-            										<input type="text" className="form-control" ref={(input) => { this.InnenbreitedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.InnenbreitedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Innenlänge</label>
-            										<input type="text" className="form-control" ref={(input) => { this.InnenlaengedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.InnenlaengedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
             										<label>Ladehöhe</label>
-            										<input type="text" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in mm"/>
+            										<input type="number" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
@@ -347,7 +347,7 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">

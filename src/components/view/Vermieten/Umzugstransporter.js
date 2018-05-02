@@ -315,82 +315,82 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
-                                <input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Länge</label>
-                                <input type="text" className="form-control" ref={(input) => { this.LaengedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.LaengedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Breite</label>
-                                <input type="text" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Höhe</label>
-                                <input type="text" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Länge der Ladefläche</label>
-                                <input type="text" className="form-control" ref={(input) => { this.LaengeDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.LaengeDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Breite der Ladefläche</label>
-                                <input type="text" className="form-control" ref={(input) => { this.BreiteDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.BreiteDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Höhe der Ladefläche</label>
-                                <input type="text" className="form-control" ref={(input) => { this.HoeheDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                                <input type="number" className="form-control" ref={(input) => { this.HoeheDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Laderaumvolumen</label>
-                                <input type="text" className="form-control" ref={(input) => { this.LaderaumvolumendesArtikelsInput = input}} placeholder="in m3"/>
+                                <input type="number" className="form-control" ref={(input) => { this.LaderaumvolumendesArtikelsInput = input}} placeholder="in m3"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Leergewicht</label>
-                                <input type="text" className="form-control" ref={(input) => { this.LeergewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.LeergewichtdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>zulässiges Gesamtgewicht</label>
-                                <input type="text" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.GesamtgewichtdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Nutzlast</label>
-                                <input type="text" className="form-control" ref={(input) => { this.NutzlastdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.NutzlastdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Sitzplätze</label>
-                                <input type="text" className="form-control" ref={(input) => { this.StzplaetzedesArtikelsInput = input}} placeholder="Bsp: 3"/>
+                                <input type="number" className="form-control" ref={(input) => { this.StzplaetzedesArtikelsInput = input}} placeholder="Bsp: 3"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Leistung</label>
-                                <input type="text" className="form-control" ref={(input) => { this.LeistungdesArtikelsInput = input}} placeholder="in KW/PS"/>
+                                <input type="number" className="form-control" ref={(input) => { this.LeistungdesArtikelsInput = input}} placeholder="in KW/PS"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Anhängelast ungebremst</label>
-                                <input type="text" className="form-control" ref={(input) => { this.AnhaengelastUngebremstdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.AnhaengelastUngebremstdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Anhängelast gebremst</label>
-                                <input type="text" className="form-control" ref={(input) => { this.AnhaengelastGebremstdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.AnhaengelastGebremstdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
                                 <label>Stützlast</label>
-                                <input type="text" className="form-control" ref={(input) => { this.StützlastdesArtikelsInput = input}} placeholder="in kg"/>
+                                <input type="number" className="form-control" ref={(input) => { this.StützlastdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">
@@ -401,7 +401,7 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -435,7 +435,7 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                              
+
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
