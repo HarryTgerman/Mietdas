@@ -8,6 +8,7 @@
     "babel-loader": "^7.1.4",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "firebase": "^4.10.1",
@@ -33,9 +34,15 @@
     "request": "^2.85.0"
   },
   "scripts": {
+    "startBackend": "node server.js",
+    "server": "nodemon ./Backend/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+   "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
   }
 }
