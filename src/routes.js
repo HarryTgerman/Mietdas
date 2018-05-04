@@ -42,10 +42,28 @@ class Routes extends Component{
 
 
 
-onChange(response) {
-    this.setState({
-         isCaptcha: true
-    });
+checkCaptcha() {
+
+  const captcha = document.querySelector('#g-recaptcha-response').value;
+  
+  fetch('/subscribe', {
+        method:'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-type':'application/json'
+        },
+        body:JSON.stringify({captcha: captcha})
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if(data.msg == "Captcha passed"){
+              this.setState({
+                   isCaptcha: true
+              });
+        };
+      });
+
 }
 
 
@@ -234,7 +252,7 @@ sendPwReset(){
                                           <ReCAPTCHA
                                           ref="recaptcha"
                                           sitekey="6LeEWlYUAAAAAOITMgxX0pcih46KC23uxTQQwD72"
-                                          onChange={this.onChange.bind(this)}/>
+                                          onChange={this.checkCaptcha.bind(this)}/>
                                         <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
                                           Log-In mit Facebook
                                         </button>

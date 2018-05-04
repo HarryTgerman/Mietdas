@@ -1,15 +1,45 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const request = require('request');
 
 const app = express();
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
 const port = 5000;
 
 app.listen(port, () => console.log(`server started on port ${port}`));
 
-app.get('/api/payment', (req,res) => {
+
+app.post('/subscribe', (req, res) => {
+
+  // Secret Key
+  const secretKey = '6LeEWlYUAAAAAPW3leTdfXbBJg7vZ23l6k1gllUP';
+
+  // Verify URL
+  const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
+
+  request(verifyUrl, (err, response, body) => {
+    body = JSON.parse(body);
+    console.log(body);
+
+
+    if(body.success !== undefined && !body.success){
+      return res.json({"success": false, "msg":"Failed captcha verification"});
+    }
+
+    return res.json({"success": true, "msg":"Captcha passed"});
+  });
+});
+
+
+
+app.post('/api/payment', (req,res) => {
   console.log(req);
 });
 
-handlePayment(){
+handlePayment = () => {
 
   let config = {
   authorization: {
