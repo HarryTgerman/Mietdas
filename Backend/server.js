@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
+import axios from 'axios'
 
 const app = express();
 
@@ -35,12 +36,9 @@ app.post('/subscribe', (req, res) => {
 
 
 
-app.post('/api/payment', (req,res) => {
+app.post('/payment', (req,res) => {
+
   console.log(req);
-});
-
-handlePayment = () => {
-
   let config = {
   authorization: {
     "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
@@ -66,4 +64,4 @@ handlePayment = () => {
 
   axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log(res, 'Das ist die Response');}, (err)=>{console.log(err, 'Das ist der Error');})
 
-}
+});
