@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const request = require('request');
-import axios from 'axios'
+const axios = require('axios')
 
 const app = express();
 
@@ -48,9 +48,20 @@ app.post('/payment', (req,res) => {
   }
   }
 
+
+  var cardData = {
+        number : '2223 0000 4841 0010',
+        cvc : '737',
+        holderName : 'Harry Trippel',
+        expiryMonth : '10',
+        expiryYear : '2020',
+        generationtime : '2018-05-05T08:48:29.292+02:00'
+                          // 2017-07-17T13:42:40.428+01:00
+    };
+
   let data = {
       "additionalData": {
-          "card.encrypted.json":cseInstance,
+        "card.encrypted.json":cseInstance.encrypt(cardData),
       },
 
       "amount" : {
@@ -59,7 +70,7 @@ app.post('/payment', (req,res) => {
       },
 
       "reference" : "Your Reference Here",
-      "merchantAccount" : "TestMerchant"
+      "merchantAccount" : "MietDasCOM"
   }
 
   axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log(res, 'Das ist die Response');}, (err)=>{console.log(err, 'Das ist der Error');})

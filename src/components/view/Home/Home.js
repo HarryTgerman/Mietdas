@@ -7,6 +7,7 @@ import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
 
 
+
 const fn = value => <span>{value}</span>
 
 class Home extends Component{
