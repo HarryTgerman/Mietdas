@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Abbruchhammer extends Component{
+class Stromerzeuger extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -18,8 +18,6 @@ class Abbruchhammer extends Component{
 
     }
 }
-
-c
 
 onDrop(imageFiles) {
 
@@ -88,7 +86,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('abbruchhammer');
+        const db = firebase.database().ref('app').child('cards').child('stromerzeuger');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
@@ -144,8 +142,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"abbruchhammer",
-
+                         kategorie:"stromerzeuger",
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
@@ -204,7 +201,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Abbruchhammer Inserieren</h3>
+            								<h3>Stromerzeuger Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -299,4 +296,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Abbruchhammer;
+export default Stromerzeuger;

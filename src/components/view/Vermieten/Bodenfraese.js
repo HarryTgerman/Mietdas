@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Abbruchhammer extends Component{
+class Bodenfraese extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -88,7 +88,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('abbruchhammer');
+        const db = firebase.database().ref('app').child('cards').child('bodenfraese');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
@@ -144,7 +144,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"abbruchhammer",
+                         kategorie:"bodenfraese",
 
                          email: this.props.email,
                          hersteller: hersteller,
@@ -204,7 +204,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Abbruchhammer Inserieren</h3>
+            								<h3>Bodenfräse Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -233,7 +233,32 @@ onDrop(imageFiles) {
             									</div>
 
 
+                              <div className="col-sm-3">
+            										<label>Grabtiefe</label>
+            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
+            									</div>
+                              <div className="col-sm-3">
+                                <label>bis</label>
+                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
+            									</div>
 
+            									<div className="col-sm-3">
+            										<label>Transportbreite</label>
+            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+                              <div className="col-sm-3">
+                                <label>bis</label>
+                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+
+                              <div className="col-sm-3">
+            										<label>Transporthöhe</label>
+            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+                              <div className="col-sm-3">
+                                <label>bis</label>
+                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
+            									</div>
 
             									<div className="col-sm-6">
             										<label>Gewicht</label>
@@ -299,4 +324,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Abbruchhammer;
+export default Bodenfraese;

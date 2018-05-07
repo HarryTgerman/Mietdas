@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Abbruchhammer extends Component{
+class Vibrationswalze extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -57,12 +57,22 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.ArbeitsbreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Arbeitsbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.KraftstoffdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Kraftstoff"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -78,29 +88,21 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('abbruchhammer');
+        const db = firebase.database().ref('app').child('cards').child('vibrationswalze');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
-        const gewicht = this.GewichtdesArtikelsInput.value;
+        const bedienung = this.bedienungInput.value;        const gewicht = this.GewichtdesArtikelsInput.value;
+        const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
+        const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
-
-        const Pdf = this.pdfUpload.files[0]
-
-
 
         const timeInMs = Date.now();
 
@@ -144,8 +146,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"abbruchhammer",
-
+                         kategorie:"vibrationswalze",
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
@@ -154,6 +155,8 @@ onDrop(imageFiles) {
                          cardDesc: desc,
                          mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
+                         arbeitsbreite: arbeitsbreite,
+                         kraftstoff: kraftstoff,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -172,12 +175,6 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-
-
-
-
-
-
        }
 
 
@@ -204,7 +201,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Abbruchhammer Inserieren</h3>
+            								<h3>Vibrationswalze Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -224,7 +221,7 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Ammann" />
             									</div>
 
             									<div className="col-sm-6">
@@ -232,17 +229,26 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
 
+                              <div className="col-sm-6">
+                                <label>Gewicht</label>
+                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
 
+                              <div className="col-sm-6">
+                                <label>Arbeitsbreite</label>
+                                <input type="number" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
 
+                              <div className="col-sm-6">
+                                <label>Kraftstoff</label>
+                                <input type="text" className="form-control" ref={(input) => { this.KraftstoffdesArtikelsInput = input}} placeholder="Bsp: Benzin"/>
+                              </div>
 
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
-            									</div>
+                            
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -276,12 +282,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
@@ -299,4 +299,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Abbruchhammer;
+export default Vibrationswalze;

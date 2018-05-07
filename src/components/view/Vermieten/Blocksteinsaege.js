@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Abbruchhammer extends Component{
+class Blocksteinsaege extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -19,8 +19,6 @@ class Abbruchhammer extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({
@@ -28,12 +26,7 @@ onDrop(imageFiles) {
    })
  }
 
-
-
-
-
-
- artikelHochladen(event) {
+artikelHochladen(event) {
 
    event.preventDefault();
      this.setState({
@@ -52,12 +45,26 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
+    if (this.transporthoeheVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
     }
-
+    if (this.transportbreiteVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transportbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnittlaengeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnittlänge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnitttiefe.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnitttiefe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -78,32 +85,24 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('abbruchhammer');
+        const db = firebase.database().ref('app').child('cards').child('blocksteinsaege');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
         const bedienung = this.bedienungInput.value;
+        const schnittlaenge = this.schnittlaengeInput.value;
+        const schnitttiefe = this.schnitttiefeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
 
-        const Pdf = this.pdfUpload.files[0]
-
-
-
         const timeInMs = Date.now();
-
 
         const array = []
         const imageFiles = this.state.imageFiles
@@ -144,11 +143,11 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"abbruchhammer",
-
+                         kategorie:"blocksteinsaege",
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
+                         schnittlaenge: schnittlaenge,
+                         schnitttiefe: schnitttiefe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -172,13 +171,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-
-
-
-
-
-
-       }
+               }
 
 
 
@@ -204,7 +197,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Abbruchhammer Inserieren</h3>
+            								<h3>Blocksteinsäge Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -224,20 +217,28 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Norton" />
             									</div>
 
             									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
+            										<label>Transportbreite</label>
+            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
-
-
-
-
+                              <div className="col-sm-6">
+            										<label>Transporthöhe</label>
+            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+                              <div className="col-sm-6">
+            										<label>Schnittlänge</label>
+            										<input type="text" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+                              <div className="col-sm-6">
+            										<label>Schnitttiefe</label>
+            										<input type="text" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
             									<div className="col-sm-6">
             										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
@@ -276,12 +277,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
@@ -299,4 +294,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Abbruchhammer;
+export default Blocksteinsaege;

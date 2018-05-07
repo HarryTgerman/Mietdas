@@ -15,6 +15,8 @@ app.listen(port, () => console.log(`server started on port ${port}`));
 
 app.post('/subscribe', (req, res) => {
 
+  console.log('hallo ....');
+
   // Secret Key
   const secretKey = '6LeEWlYUAAAAAPW3leTdfXbBJg7vZ23l6k1gllUP';
 
@@ -38,6 +40,7 @@ app.post('/subscribe', (req, res) => {
 
 app.post('/payment', (req,res) => {
 
+<<<<<<< HEAD
   console.log(req);
   let config = {
   
@@ -46,33 +49,36 @@ app.post('/payment', (req,res) => {
 },auth: {
       username: "ws@Company.MietDas",
       password: "2BK!+FIi>N3(uXt[2yCZ@4~s8"
+=======
+  console.log('hallo ....', req);
+
+ let config = {
+  headers: {
+    'Accept': 'application/json, text/plain, */*',
+    'Content-type':'application/json'
+  },
+  auth: {
+      username: "ws@Company.MietDas",
+      password: "wzqbjgtdu3fK"
+>>>>>>> fc803903fb976031cae837ec342150ff4755c3d4
   }
+}
 
-
-  var cardData = {
-        number : '2223 0000 4841 0010',
-        cvc : '737',
-        holderName : 'Harry Trippel',
-        expiryMonth : '10',
-        expiryYear : '2020',
-        generationtime : '2018-05-05T08:48:29.292+02:00'
-                          // 2017-07-17T13:42:40.428+01:00
-    };
 
   let data = {
       "additionalData": {
-        "card.encrypted.json":cseInstance.encrypt(cardData),
-      },
+        "card.encrypted.json": req.body.encryptedInstance
+            },
 
       "amount" : {
           "value" : 10000,
           "currency" : "EUR"
       },
 
-      "reference" : "Your Reference Here",
+      "reference" : "test Überweisung",
       "merchantAccount" : "MietDasCOM"
   }
 
-  axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log(res, 'Das ist die Response');}, (err)=>{console.log(err, 'Das ist der Error');})
+  axios.post('https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise', data, config).then((res)=>{console.log('Das ist die Response', res);}, (err)=>{console.log('Das ist der Error', err);})
 
 });
