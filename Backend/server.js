@@ -40,12 +40,12 @@ app.post('/payment', (req,res) => {
 
   console.log(req);
   let config = {
-  authorization: {
-    "ws@Company.MietDas":"2BK!+FIi>N3(uXt[2yCZ@4~s8",
-  },
+  
   headers: {
   "Content-Type": "application/json"
-  }
+},auth: {
+      username: "ws@Company.MietDas",
+      password: "2BK!+FIi>N3(uXt[2yCZ@4~s8"
   }
 
 

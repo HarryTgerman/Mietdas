@@ -52,7 +52,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.grapTiefeVonInput.value) {
+    if (this.grapTiefeVonInput.value == "") {
     const alert = "Geben Sie Auskunft über die Grabtiefe"
     this.setState({alert: alert, showAlert: true})
     return 0

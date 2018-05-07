@@ -50,9 +50,13 @@ componentWillMount(){
 
 }
 firedata() {
+  let array = ["minibagger","kompaktbagger","raupenbagger","mobilbagger","radlader",
+              "verdichtungstechnik","stampfer","vibrationsplatte","anhänger",
+              "kippanhänger","planenanhänger","autotransportanhänger","tieflader",]
   const previousCards = [];
-  firebase.database().ref().child('app').child('cards/{wildcard}')
-  firebase.database().ref().child('app').child('cards/')
+  array.map((i) =>
+  {
+    firebase.database().ref().child('app').child('cards/'+i)
     .orderByChild('uid').equalTo(this.state.uid)
     .once('value', snap => {
       snap.forEach(childSnapshot => {
@@ -60,11 +64,12 @@ firedata() {
           id: childSnapshot.key,
           snap: childSnapshot.val()
         })
-        this.setState ({
-          cards: previousCards,
-        })
       })
     })
+  })
+  this.setState ({
+    cards: previousCards,
+  })
   }
 
 

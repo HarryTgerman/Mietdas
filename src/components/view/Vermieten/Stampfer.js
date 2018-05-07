@@ -72,16 +72,7 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Grabtiefe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -107,9 +98,6 @@ onDrop(imageFiles) {
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
         const bedienung = this.bedienungInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
@@ -163,9 +151,6 @@ onDrop(imageFiles) {
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
-                         grabtiefe: grabtiefe,
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -260,32 +245,7 @@ onDrop(imageFiles) {
                                 <input type="text" className="form-control" ref={(input) => { this.KraftstoffdesArtikelsInput = input}} placeholder="Bsp: Benzin"/>
                               </div>
 
-                              <div className="col-sm-3">
-            										<label>Grabtiefe</label>
-            										<input type="number"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
-            									</div>
 
-            									<div className="col-sm-3">
-            										<label>Transportbreite</label>
-            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-
-                              <div className="col-sm-3">
-            										<label>Transporthöhe</label>
-            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
-            									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
