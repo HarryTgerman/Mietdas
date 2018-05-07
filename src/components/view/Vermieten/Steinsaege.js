@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Kompaktbagger extends Component{
+class Steinsaege extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -26,12 +26,7 @@ onDrop(imageFiles) {
    })
  }
 
-
-
-
-
-
- artikelHochladen(event) {
+artikelHochladen(event) {
 
    event.preventDefault();
      this.setState({
@@ -50,28 +45,28 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.grapTiefeVonInput.value) {
-    const alert = "Geben Sie Auskunft über die Grabtiefe"
+    if (this.transporthoeheVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.transportbreiteVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transportbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnittlaengeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnittlänge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnitttiefe.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnitttiefe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.BreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.HoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.SchuetthoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schütthöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -85,25 +80,32 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.mietbedingungenInput.value == "") {
+    const alert = "Legen Sie ihre Mietbedingungen fest"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('kompaktbagger');
+        const db = firebase.database().ref('app').child('cards').child('steinsaege');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+        const bedienung = this.bedienungInput.value;
         const grabtiefe = this.grapTiefeVonInput.value;
+        const transportbreite = this.transportbreiteVonInput.value;
+        const transporthoehe = this.transporthoeheVonInput.value;
+        const schnittlaenge = this.schnittlaengeInput.value;
+        const schnitttiefe = this.schnitttiefeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const breite = this.BreitedesArtikelsInput.value;
-        const hoehe = this.HoehedesArtikelsInput.value;
-        const schuetthoehe = this.SchuetthoehedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
+        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const timeInMs = Date.now();
-
 
         const array = []
         const imageFiles = this.state.imageFiles
@@ -140,20 +142,22 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
+
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"kompaktbagger",
+                         kategorie:"steinsaege",
                          email: this.props.email,
                          hersteller: hersteller,
-                         grabtiefe: grabtiefe,
+                         transportbreite: transportbreite,
+                         transporthoehe: transporthoehe,
+                         schnittlaenge: schnittlaenge,
+                         schnitttiefe: schnitttiefe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
+                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
-                         breite: breite,
-                         hoehe: hoehe,
-                         schuetthoehe: schuetthoehe,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -172,7 +176,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-     }
+               }
 
 
 
@@ -198,7 +202,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Kompaktbagger Inserieren</h3>
+            								<h3>Steinsäge Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -218,38 +222,33 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Yanmar" />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Norton" />
             									</div>
 
+            									<div className="col-sm-6">
+            										<label>Transportbreite</label>
+            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
+            									</div>
                               <div className="col-sm-6">
-                                <label>Gewicht</label>
-                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
-                              </div>
-
+            										<label>Transporthöhe</label>
+            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
                               <div className="col-sm-6">
-                                <label>Breite</label>
-                                <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
+            										<label>Schnittlänge</label>
+            										<input type="text" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
                               <div className="col-sm-6">
-                                <label>Höhe</label>
-                                <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Schütthöhe</label>
-                                <input type="number" className="form-control" ref={(input) => { this.SchuetthoehedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-
-                              <div className="col-sm-6">
-            										<label>Grabtiefe</label>
-            										<input type="number"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
+            										<label>Schnitttiefe</label>
+            										<input type="text" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+            									<div className="col-sm-6">
+            										<label>Gewicht</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -257,6 +256,10 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
+                              <div className="col-sm-12">
+            										<label>Mietbedingungen</label>
+            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
+            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
@@ -296,4 +299,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Kompaktbagger;
+export default Steinsaege;

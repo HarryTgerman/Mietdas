@@ -19,8 +19,6 @@ class Minibagger extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({

@@ -6,35 +6,39 @@ import Minibagger from './Minibagger'
 import Kompaktbagger from './Kompaktbagger'
 import Raupenbagger from './Raupenbagger'
 import Mobilbagger from './Mobilbagger'
-//import Raddumper from './Raddumper'
-//import Kettendumper from './Kettendumper'
+import Raddumper from './Raddumper'
+import Kettendumper from './Kettendumper'
 import Radlader from './Radlader'
 import Stampfer from './Stampfer'
 import Vibrationsplatte from './Vibrationsplatte'
 import Kippanhänger from './Kippanhänger'
 import Motorradanhänger from './Motorradanhänger'
-//import Stromerzeuger from './Stromerzeuger'
-//import Bodenfraese from './Bodenfraese'
-//import Holzhaecksler from './Holzhaecksler'
-//import Kompressor from './Kompressor'
-//import SteinTischseage from './SteinTischseage'
-//import BausteinBandseage from './BausteinBandseage'
-//import Blocksteinsaege from './Blocksteinsaege'
-//import Fugenschneider from './Fugenschneider'
-//import Trennschleifer from './Trennschleifer'
-//import MaterialContainer from './MaterialContainer'
-//import Pritschenwagen from './Pritschenwagen'
+import Stromerzeuger from './Stromerzeuger'
+import Bodenfraese from './Bodenfraese'
+import Holzhaecksler from './Holzhaecksler'
+import Kompressor from './Kompressor'
+import SteinTischseage from './SteinTischseage'
+import BausteinBandseage from './BausteinBandseage'
+import Blocksteinsaege from './Blocksteinsaege'
+import Fugenschneider from './Fugenschneider'
+import Trennschleifer from './Trennschleifer'
+import MaterialContainer from './MaterialContainer'
+import Pritschenwagen from './Pritschenwagen'
 import Umzugstransporter from './Umzugstransporter'
 import Planenanhänger from './Planenanhänger'
 import Autotransportanhänger from './Autotransportanhänger'
-//import Betonglaeter from './Betonglaeter'
-//import Bohrhammer from './Bohrhammer'
-//import Abbruchhammer from './Abbruchhammer'
-//import Erdbohrgeraet from './Erdbohrgeraet'
-//import Kernbohrmaschiene from './Kernbohrmaschiene'
+import Betonglaeter from './Betonglaeter'
+import Bohrhammer from './Bohrhammer'
+import Abbruchhammer from './Abbruchhammer'
+import Erdbohrgeraet from './Erdbohrgeraet'
+import Kernbohrmaschiene from './Kernbohrmaschiene'
 import Tieflader from './Tieflader'
 import Verdichtungstechnik from './Verdichtungstechnik'
 import Anhänger from './Anhänger'
+import Grabenwalze from './Grabenwalze'
+import Vibrationswalze from './Vibrationswalze'
+import Betoninnenruettler from './Betoninnenruettler'
+import Steinsaege from './Steinsaege'
 
 import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
 
@@ -205,10 +209,26 @@ onDrop(imageFiles) {
                           </ul>
                         </li>
                         <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Baugeräte
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation" className=""><a href="#stromerzeuger" aria-controls="stromerzeuger" role="tab" data-toggle="tab">Stromerzeuger</a></li>
+                            <li role="presentation" className=""><a href="#kompressor" aria-controls="kompressor" role="tab" data-toggle="tab">Kompressor</a></li>
+                            <li role="presentation" className=""><a href="#betoninnenruettler" aria-controls="betoninnenruettler" role="tab" data-toggle="tab">Betoninnenrüttler</a></li>
+                            <li role="presentation" className=""><a href="#betonmischer" aria-controls="betonmischer" role="tab" data-toggle="tab">betonmischer</a></li>
+                            <li role="presentation" className=""><a href="#betonglaeter" aria-controls="betonglaeter" role="tab" data-toggle="tab">Betonglätter</a></li>
+                            <li role="presentation" className=""><a href="#bohrhammer" aria-controls="bohrhammer" role="tab" data-toggle="tab">Bohrhammer</a></li>
+                            <li role="presentation" className=""><a href="#abbruchhammer" aria-controls="abbruchhammer" role="tab" data-toggle="tab">Abbruchhammer</a></li>
+                            <li role="presentation" className=""><a href="#kernbohrmaschiene" aria-controls="kernbohrmaschiene" role="tab" data-toggle="tab">Kernbohrmaschiene</a></li>
+                           </ul>
+                        </li>
+                        <li class="dropdown">
                           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Radlader
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li role="presentation" className=""><a href="#radlader" aria-controls="radlader" role="tab" data-toggle="tab">Radlader</a></li>
+                            <li role="presentation" className=""><a href="#kettendumper" aria-controls="kettendumper" role="tab" data-toggle="tab">Kettendumper</a></li>
+                            <li role="presentation" className=""><a href="#raddumper" aria-controls="raddumper" role="tab" data-toggle="tab">Raddumper</a></li>
                            </ul>
                         </li>
                         <li class="dropdown">
@@ -217,6 +237,34 @@ onDrop(imageFiles) {
                           <ul class="dropdown-menu">
                             <li role="presentation" className=""><a href="#stampfer" aria-controls="stampfer" role="tab" data-toggle="tab">Stampfer</a></li>
                             <li role="presentation" className=""><a href="#vibrationsplatte" aria-controls="vibrationsplatte" role="tab" data-toggle="tab">Vibrationsplatte</a></li>
+                            <li role="presentation" className=""><a href="#vibrationswalze" aria-controls="vibrationswalze" role="tab" data-toggle="tab">Vibrationswalze</a></li>
+                            <li role="presentation" className=""><a href="#grabenwalze" aria-controls="grabenwalze" role="tab" data-toggle="tab">Grabenwalze</a></li>
+                           </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Landschaftstechnik
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation" className=""><a href="#bodenfraese" aria-controls="bodenfraese" role="tab" data-toggle="tab">Bodenfräse</a></li>
+                            <li role="presentation" className=""><a href="#holzhaecksler" aria-controls="holzhaecksler" role="tab" data-toggle="tab">Holzhäcksler</a></li>
+                           </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sägen & Schneider
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation" className=""><a href="#fugenschneider" aria-controls="fugenschneider" role="tab" data-toggle="tab">Fugenschneider</a></li>
+                            <li role="presentation" className=""><a href="#trennschleifer" aria-controls="trennschleifer" role="tab" data-toggle="tab">Trennschleifer</a></li>
+                            <li role="presentation" className=""><a href="#steinsaege" aria-controls="steinsaege" role="tab" data-toggle="tab">Steinsäge</a></li>
+                            <li role="presentation" className=""><a href="#bausteinBandseage" aria-controls="bausteinBandseage" role="tab" data-toggle="tab">Baustein-Bandsäge</a></li>
+                            <li role="presentation" className=""><a href="#blocksteinsaege" aria-controls="blocksteinsaege" role="tab" data-toggle="tab">Blocksteinsäge</a></li>
+                           </ul>
+                        </li>
+                        <li class="dropdown">
+                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Raumsysteme
+                          <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li role="presentation" className=""><a href="#materialContainer" aria-controls="materialContainer" role="tab" data-toggle="tab">Material Container</a></li>
                            </ul>
                         </li>
                         <li class="dropdown">
@@ -224,6 +272,7 @@ onDrop(imageFiles) {
                           <span class="caret"></span></a>
                           <ul class="dropdown-menu">
                             <li role="presentation" className=""><a href="#umzugstransporter" aria-controls="umzugstransporter" role="tab" data-toggle="tab">Umzugstransporter</a></li>
+                            <li role="presentation" className=""><a href="#pritschenwagen" aria-controls="pritschenwagen" role="tab" data-toggle="tab">Pritschenwagen</a></li>
                          </ul>
                         </li>
                       </ul>
@@ -232,6 +281,106 @@ onDrop(imageFiles) {
 
                   {/* Tab panes */}
                   <div className="tab-content tabs">
+                    <div role="tabpanel" className="tab-pane fade" id="vibrationswalze">
+                      <Vibrationswalze user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="trennschleifer">
+                      <Trennschleifer user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="Stromerzeuger">
+                      <Stromerzeuger user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="steinsaege">
+                      <Steinsaege user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="raddumper">
+                      <Raddumper user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="pritschenwagen">
+                      <Pritschenwagen user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="materialContainer">
+                      <MaterialContainer user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="kompressor">
+                      <Kompressor user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="kettendumper">
+                      <Kettendumper user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="kernbohrmaschiene">
+                      <Kernbohrmaschiene user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="holzhaecksler">
+                      <Holzhaecksler user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="grabenwalze">
+                      <Grabenwalze user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="fugenschneider">
+                      <Fugenschneider user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="Erdbohrgeraet">
+                      <Erdbohrgeraet user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="bohrhammer">
+                      <Bohrhammer user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="bodenfraese">
+                      <Bodenfraese user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="blocksteinsaege">
+                      <Blocksteinsaege user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="betoninnenruettler">
+                      <Betoninnenruettler user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="betonglaeter">
+                      <Betonglaeter user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="bausteinBandseage">
+                      <BausteinBandseage user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
                     <div role="tabpanel" className="tab-pane fade in active" id="minibagger">
                       <Minibagger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}

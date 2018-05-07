@@ -226,7 +226,7 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
-                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
                               </div>
 
                               <div className="col-sm-6">

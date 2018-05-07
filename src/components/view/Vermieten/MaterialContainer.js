@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Kompaktbagger extends Component{
+class MaterialContainer extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -18,6 +18,8 @@ class Kompaktbagger extends Component{
 
     }
 }
+
+c
 
 onDrop(imageFiles) {
 
@@ -50,28 +52,23 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.grapTiefeVonInput.value) {
+    if (this.bedienungInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Bedienung"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
+    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
     const alert = "Geben Sie Auskunft über die Grabtiefe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
+    const alert = "Geben Sie Auskunft über die Transporthöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.BreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.HoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.SchuetthoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schütthöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -85,22 +82,37 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.mietbedingungenInput.value == "") {
+    const alert = "Legen Sie ihre Mietbedingungen fest"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.pdfUpload.files[0] == undefined) {
+    const alert = "Laden Sie ein Datenblatt hoch"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('kompaktbagger');
+        const db = firebase.database().ref('app').child('cards').child('materialContainer');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value;
+        const bedienung = this.bedienungInput.value;
+        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
+        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
+        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const breite = this.BreitedesArtikelsInput.value;
-        const hoehe = this.HoehedesArtikelsInput.value;
-        const schuetthoehe = this.SchuetthoehedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
+        const Mietbedingungen = this.mietbedingungenInput.value;
+
+        const Pdf = this.pdfUpload.files[0]
+
+
 
         const timeInMs = Date.now();
 
@@ -140,20 +152,39 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
+          firebase
+         .storage()
+         .ref("pdf")
+         .child(userId)
+         .child(titel)
+         .child(Pdf.name)
+         .put(Pdf)
+         .then(() => {
+           firebase
+             .storage()
+             .ref("pdf")
+             .child(userId)
+             .child(titel)
+             .child(Pdf.name)
+             .getDownloadURL()
+             .then(url => {
+               const pdfUrl = url;
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"kompaktbagger",
+                         kategorie:"materialContainer",
+                         pdf: url,
                          email: this.props.email,
                          hersteller: hersteller,
+                         bedienung: bedienung,
                          grabtiefe: grabtiefe,
+                         transportbreite: transportbreite,
+                         transporthoehe: transporthoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
+                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
-                         breite: breite,
-                         hoehe: hoehe,
-                         schuetthoehe: schuetthoehe,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -172,7 +203,14 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-     }
+                   })
+           })
+
+
+
+
+
+       }
 
 
 
@@ -198,7 +236,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Kompaktbagger Inserieren</h3>
+            								<h3>Material-Container Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -218,38 +256,50 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Yanmar" />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
             									</div>
 
-                              <div className="col-sm-6">
-                                <label>Gewicht</label>
-                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Breite</label>
-                                <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Höhe</label>
-                                <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Schütthöhe</label>
-                                <input type="number" className="form-control" ref={(input) => { this.SchuetthoehedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
+            									<div className="col-sm-6">
+            										<label>Bedienung</label>
+            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
+            									</div>
 
 
-                              <div className="col-sm-6">
+                              <div className="col-sm-3">
             										<label>Grabtiefe</label>
-            										<input type="number"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
+            										<input type="text"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in cm"/>
+            									</div>
+                              <div className="col-sm-3">
+                                <label>bis</label>
+                                <input type="text"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in cm"/>
+            									</div>
+
+            									<div className="col-sm-3">
+            										<label>Transportbreite</label>
+            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+                              <div className="col-sm-3">
+                                <label>bis</label>
+                                <input type="text" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+
+                              <div className="col-sm-3">
+            										<label>Transporthöhe</label>
+            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+                              <div className="col-sm-3">
+                                <label>bis</label>
+                                <input type="text" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+
+            									<div className="col-sm-6">
+            										<label>Gewicht</label>
+            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -257,6 +307,10 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
+                              <div className="col-sm-12">
+            										<label>Mietbedingungen</label>
+            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
+            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
@@ -279,6 +333,12 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
+                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
+                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
+                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
+                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
+                                  </div>
+                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
@@ -296,4 +356,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Kompaktbagger;
+export default MaterialContainer;
