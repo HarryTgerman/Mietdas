@@ -19,8 +19,11 @@ class Kettendumper extends Component{
     }
 }
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 onDrop(imageFiles) {
 
  this.setState({
@@ -52,14 +55,39 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
+    if (this.muldeninhaltInput.value) {
+    const alert = "Geben Sie Auskunft über den Muldeninhalt"
+    this.setState({alert: alert, showAlert: true})
+    return 0
     }
+<<<<<<< Updated upstream
 
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
+=======
+    if (this.GewichtdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über das Gewicht"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.BreitedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.HoehedesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe"
+>>>>>>> Stashed changes
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.laengeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Länge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.nutzlastInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Nutzlast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -73,16 +101,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -92,16 +110,19 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
 
+=======
+        const laenge = this.laengeInput.value;
+>>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
+        const breite = this.BreitedesArtikelsInput.value;
+        const hoehe = this.HoehedesArtikelsInput.value;
+        const nutzlast = this.nutzlastInput.value;
+        const muldeninhalt = this.muldeninhaltInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
-
-        const Pdf = this.pdfUpload.files[0]
-
-
 
         const timeInMs = Date.now();
 
@@ -141,21 +162,33 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"kettendumper",
+<<<<<<< Updated upstream
 
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
 
+=======
+                         email: this.props.email,
+                         hersteller: hersteller,
+                         laenge : laenge,
+                         nutzlast : nutzlast,
+                         muldeninhalt : muldeninhalt,
+>>>>>>> Stashed changes
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
+                         breite: breite,
+                         hoehe: hoehe,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -174,12 +207,15 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
+<<<<<<< Updated upstream
             
 
 
 
 
 
+=======
+>>>>>>> Stashed changes
        }
 
 
@@ -221,30 +257,52 @@ onDrop(imageFiles) {
             								<div className="row mrg-r-10 mrg-l-10">
             									<div className="col-sm-6">
             										<label>Bezeichnung</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
+            										<input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Bsp: mit Drehkippmulde" />
             									</div>
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Wacker Neuson" />
             									</div>
 
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Gewicht</label>
+                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Breite</label>
+                                <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
+
+<<<<<<< Updated upstream
+
+=======
+                              <div className="col-sm-6">
+                                <label>Länge</label>
+                                <input type="number" className="form-control" ref={(input) => { this.laengeInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Höhe</label>
+                                <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Nutzlast</label>
+                                <input type="number" className="form-control" ref={(input) => { this.nutzlastInput = input}} placeholder="in kg"/>
+                              </div>
+>>>>>>> Stashed changes
 
 
-
-
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+                              <div className="col-sm-6">
+            										<label>Muldeninhalt</label>
+            										<input type="number"  ref={(input) => { this.muldeninhaltInput = input}}  className="form-control" placeholder="in m³"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -252,10 +310,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
@@ -278,12 +332,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">

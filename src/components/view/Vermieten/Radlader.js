@@ -52,8 +52,8 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
+    if (this.laengeInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Länge"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
@@ -72,11 +72,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.RechweitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Reichweite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.SchuetthoehedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Schütthöhe"
     this.setState({alert: alert, showAlert: true})
@@ -89,16 +84,6 @@ onDrop(imageFiles) {
     }
     if (this.NutzlastdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Nutzlast"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Grabtiefe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -126,14 +111,10 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
+        const laenge = this.laengeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const breite = this.BreitedesArtikelsInput.value;
         const hoehe = this.HoehedesArtikelsInput.value;
-        const reichweite = this.RechweitedesArtikelsInput.value;
         const schuetthoehe = this.SchuetthoehedesArtikelsInput.value;
         const schaufelinhalt = this.SchuetthoehedesArtikelsInput.value;
         const nutzlast = this.NutzlastdesArtikelsInput.value;
@@ -186,10 +167,7 @@ onDrop(imageFiles) {
                          kategorie:"radlader",
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-                         grabtiefe: grabtiefe,
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
+                         laenge: laenge,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -197,7 +175,6 @@ onDrop(imageFiles) {
                          gewicht: gewicht,
                          breite: breite,
                          hoehe: hoehe,
-                         reichweite: reichweite,
                          schuetthoehe: schuetthoehe,
                          schaufelinhalt: schaufelinhalt,
                          nutzlast: nutzlast,
@@ -268,11 +245,6 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Terex" />
             									</div>
 
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
-
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
                                 <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
@@ -286,12 +258,6 @@ onDrop(imageFiles) {
                               <div className="col-sm-6">
                                 <label>Höhe</label>
                                 <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-
-                              <div className="col-sm-6">
-                                <label>Reichweite</label>
-                                <input type="number" className="form-control" ref={(input) => { this.RechweitedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
@@ -310,31 +276,9 @@ onDrop(imageFiles) {
                               </div>
 
 
-                              <div className="col-sm-3">
-            										<label>Grabtiefe</label>
-            										<input type="number"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in mm"/>
-            									</div>
-
-            									<div className="col-sm-3">
-            										<label>Transportbreite</label>
-            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-
-                              <div className="col-sm-3">
-            										<label>Transporthöhe</label>
-            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in mm"/>
+            									<div className="col-sm-6">
+            										<label>Länge</label>
+            										<input type="number" ref={(input) => { this.laengeInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">

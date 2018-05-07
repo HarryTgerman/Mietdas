@@ -277,7 +277,7 @@ onDrop(imageFiles) {
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-pane fade" id="Stromerzeuger">
+                    <div role="tabpanel" className="tab-pane fade" id="stromerzeuger">
                       <Stromerzeuger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>

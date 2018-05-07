@@ -19,8 +19,6 @@ class Grabenwalze extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({
@@ -52,18 +50,8 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
-    }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.ArbeitsbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Arbeitsbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -72,7 +60,30 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.breiteInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.hoeheInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+<<<<<<< Updated upstream
 
+=======
+    if (this.bandagenbreiteInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Bandagenbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.ruettelkraftInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Rüttelkraft"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+>>>>>>> Stashed changes
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -97,10 +108,18 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
 
+=======
+        const transportbreite = this.transportbreiteVonInput.value;
+        const transporthoehe = this.transporthoeheVonInput.value;
+        const ruettelkraft = this.ruettelkraftInput.value;
+        const breite = this.breiteInput.value;
+        const hoehe = this.hoeheInput.value;
+        const bandagenbreite = this.bandagenbreite.value;
+>>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
@@ -151,14 +170,20 @@ onDrop(imageFiles) {
                          kategorie:"grabenwalze",
                          email: this.props.email,
                          hersteller: hersteller,
+<<<<<<< Updated upstream
                          bedienung: bedienung,
 
+=======
+                         breite: breite,
+                         hoehe: hoehe,
+                         ruettelkraft: ruettelkraft,
+                         bandagenbreite: bandagenbreite,
+>>>>>>> Stashed changes
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
                          mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
-                         arbeitsbreite: arbeitsbreite,
                          kraftstoff: kraftstoff,
                          address: this.props.address,
                          ort: this.props.ort,
@@ -227,19 +252,9 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Ammann" />
             									</div>
 
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
-
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
                                 <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
-                              </div>
-
-                              <div className="col-sm-6">
-                                <label>Arbeitsbreite</label>
-                                <input type="number" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
 
                               <div className="col-sm-6">
@@ -247,7 +262,29 @@ onDrop(imageFiles) {
                                 <input type="text" className="form-control" ref={(input) => { this.KraftstoffdesArtikelsInput = input}} placeholder="Bsp: Benzin"/>
                               </div>
 
+                              <div className="col-sm-6">
+                                <label>Rüttelkraft</label>
+                                <input type="number" className="form-control" ref={(input) => { this.ruettelkraftInput = input}} placeholder="in kN"/>
+                              </div>
+
+<<<<<<< Updated upstream
                               
+=======
+            									<div className="col-sm-6">
+            										<label>Breite</label>
+            										<input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Höhe</label>
+            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+                                <label>Bandagenbreite</label>
+                                <input type="number" ref={(input) => { this.bandagenbreiteInput  = input}} className="form-control" placeholder="in mm"/>
+                              </div>
+>>>>>>> Stashed changes
 
                               <div className="col-sm-6">
                                 <label>Preis</label>

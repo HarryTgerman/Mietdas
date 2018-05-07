@@ -19,8 +19,6 @@ class Vibrationsplatte extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({
@@ -57,16 +55,6 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.grapTiefeVonInput.value && this.grapTiefeBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Grabtiefe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.transportbreiteVonInput.value && this.transportbreiteBisInput.value  == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -77,13 +65,18 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.RuettelkraftdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Rüttelkraft"
+    if (this.KraftstoffdesArtikelsInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Kraftstoff"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.KraftstoffdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Kraftstoff"
+    if (this.transportbreiteVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.ruettelkraftInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Rüttelkraft"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -111,18 +104,15 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
-        const grabtiefe = this.grapTiefeVonInput.value +" - " + this.grapTiefeBisInput.value;
-        const transportbreite = this.transportbreiteVonInput.value + " - " + this.transportbreiteBisInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value + " - " + this.transporthoeheBisInput.value;
+        const transportbreite = this.transportbreiteVonInput.value;
+        const transporthoehe = this.transporthoeheVonInput.value;
+        const ruettelkraft = this.ruettelkraftInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
-        const ruettelkraft = this.RuettelkraftdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
-
 
         const timeInMs = Date.now();
 
@@ -162,16 +152,16 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
+
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"vibrationsplatte",
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-                         grabtiefe: grabtiefe,
                          transportbreite: transportbreite,
                          transporthoehe: transporthoehe,
+                         ruettelkraft: ruettelkraft,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -179,7 +169,6 @@ onDrop(imageFiles) {
                          gewicht: gewicht,
                          arbeitsbreite: arbeitsbreite,
                          kraftstoff: kraftstoff,
-                         ruettelkraft: ruettelkraft,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -198,7 +187,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-   }
+       }
 
 
 
@@ -247,11 +236,6 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Ammann" />
             									</div>
 
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
-
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
                                 <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
@@ -269,34 +253,17 @@ onDrop(imageFiles) {
 
                               <div className="col-sm-6">
                                 <label>Rüttelkraft</label>
-                                <input type="number" className="form-control" ref={(input) => { this.RuettelkraftdesArtikelsInput = input}} placeholder="in kN"/>
+                                <input type="number" className="form-control" ref={(input) => { this.ruettelkraftInput = input}} placeholder="in kN"/>
                               </div>
 
-                              <div className="col-sm-3">
-            										<label>Grabtiefe</label>
-            										<input type="number"  ref={(input) => { this.grapTiefeVonInput = input}}  className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number"  ref={(input) => { this.grapTiefeBisInput = input}}  className="form-control" placeholder="in mm"/>
-            									</div>
-
-            									<div className="col-sm-3">
+            									<div className="col-sm-6">
             										<label>Transportbreite</label>
             										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number" ref={(input) => { this.transportbreiteBisInput = input}} className="form-control" placeholder="in mm"/>
-            									</div>
 
-                              <div className="col-sm-3">
+                              <div className="col-sm-6">
             										<label>Transporthöhe</label>
             										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-3">
-                                <label>bis</label>
-                                <input type="number" ref={(input) => { this.transporthoeheBisInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">

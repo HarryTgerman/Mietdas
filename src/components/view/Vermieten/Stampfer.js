@@ -19,8 +19,6 @@ class Stampfer extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({
@@ -72,7 +70,15 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+<<<<<<< Updated upstream
 
+=======
+    if (this.transportbreiteVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+>>>>>>> Stashed changes
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -97,7 +103,12 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
+=======
+        const transportbreite = this.transportbreiteVonInput.value;
+        const transporthoehe = this.transporthoeheVonInput.value;
+>>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
         const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
@@ -150,7 +161,12 @@ onDrop(imageFiles) {
                          kategorie:"stampfer",
                          email: this.props.email,
                          hersteller: hersteller,
+<<<<<<< Updated upstream
                          bedienung: bedienung,
+=======
+                         transportbreite: transportbreite,
+                         transporthoehe: transporthoehe,
+>>>>>>> Stashed changes
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -225,11 +241,6 @@ onDrop(imageFiles) {
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Ammann" />
             									</div>
 
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
-            									</div>
-
                               <div className="col-sm-6">
                                 <label>Gewicht</label>
                                 <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
@@ -245,7 +256,19 @@ onDrop(imageFiles) {
                                 <input type="text" className="form-control" ref={(input) => { this.KraftstoffdesArtikelsInput = input}} placeholder="Bsp: Benzin"/>
                               </div>
 
+<<<<<<< Updated upstream
 
+=======
+            									<div className="col-sm-6">
+            										<label>Transportbreite</label>
+            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Transporthöhe</label>
+            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
+            									</div>
+>>>>>>> Stashed changes
 
                               <div className="col-sm-6">
                                 <label>Preis</label>

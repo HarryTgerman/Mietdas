@@ -26,12 +26,7 @@ onDrop(imageFiles) {
    })
  }
 
-
-
-
-
-
- artikelHochladen(event) {
+artikelHochladen(event) {
 
    event.preventDefault();
      this.setState({
@@ -50,12 +45,35 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
-      this.setState({alert: alert, showAlert: true})
-      return 0
+    if (this.transporthoeheVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
     }
+<<<<<<< Updated upstream
 
+=======
+    if (this.transportbreiteVonInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transportbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnittlaengeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnittlänge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnitttiefe.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnitttiefe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.schnittbreite.value == "") {
+    const alert = "Geben Sie Auskunft über die Schnittbreite"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+>>>>>>> Stashed changes
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -76,8 +94,33 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
+    if (this.abmessungenInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Abmessungen"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.leistungkvaInput.value == "") {
+    const alert = "Geben Sie Auskunft über Leistung (kVA)"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.leistungkwaInput.value == "") {
+    const alert = "Geben Sie Auskunft über Leistung kW/A"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.tankinhaltInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Tankinhalt"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.verbrauchInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Verbrauch unter Vollast"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.kraftstoffInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Kraftstoff"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -90,18 +133,24 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
+=======
+        const transportbreite = this.transportbreiteVonInput.value;
+        const transporthoehe = this.transporthoeheVonInput.value;
+        const abmessungen = this.abmessungenInput.value;
+        const leistungkva = this.leistungkvaInput.value;
+        const leistungkwa = this.leistungkwaInput.value;
+        const tankinhalt = this.tankinhalt.value;
+        const verbrauch = this.verbrauchInput.value;
+        const kraftstoff = this.kraftstoffInput.value;
+>>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
         const Mietbedingungen = this.mietbedingungenInput.value;
 
-        const Pdf = this.pdfUpload.files[0]
-
-
-
         const timeInMs = Date.now();
-
 
         const array = []
         const imageFiles = this.state.imageFiles
@@ -145,7 +194,18 @@ onDrop(imageFiles) {
                          kategorie:"stromerzeuger",
                          email: this.props.email,
                          hersteller: hersteller,
+<<<<<<< Updated upstream
                          bedienung: bedienung,
+=======
+                         transportbreite: transportbreite,
+                         transporthoehe: transporthoehe,
+                         abmessungen : abmessungen,
+                         leistungkva : leistungkva,
+                         leistungkwa : leistungkwa,
+                         tankinhalt : tankinhalt,
+                         verbrauch : verbrauch,
+                         kraftstoff : kraftstoff,
+>>>>>>> Stashed changes
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -169,6 +229,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
+<<<<<<< Updated upstream
 
 
 
@@ -176,6 +237,9 @@ onDrop(imageFiles) {
 
 
        }
+=======
+               }
+>>>>>>> Stashed changes
 
 
 
@@ -201,7 +265,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Stromerzeuger Inserieren</h3>
+            								<h3>Stromzeuger Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -221,10 +285,11 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Honda" />
             									</div>
 
             									<div className="col-sm-6">
+<<<<<<< Updated upstream
             										<label>Bedienung</label>
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
@@ -232,14 +297,47 @@ onDrop(imageFiles) {
 
 
 
+=======
+            										<label>Transportbreite</label>
+            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+                              <div className="col-sm-6">
+            										<label>Transporthöhe</label>
+            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+                              <div className="col-sm-6">
+            										<label>Abmessungen</label>
+            										<input type="text" ref={(input) => { this.abmessungenInput  = input}} className="form-control" placeholder="Bsp: 502 x 167 x 213 cm"/>
+            									</div>
+                              <div className="col-sm-6">
+                                <label>Leistung (kVA)</label>
+                                <input type="number" ref={(input) => { this.leistungkvaInput  = input}} className="form-control" placeholder="kVA"/>
+                              </div>
+                              <div className="col-sm-6">
+            										<label>Leistung (kW/A)</label>
+            										<input type="number" ref={(input) => { this.leistungkwaInput  = input}} className="form-control" placeholder="kW/A"/>
+            									</div>
+                              <div className="col-sm-6">
+            										<label>Tankinhalt</label>
+            										<input type="number" className="form-control" ref={(input) => { this.tankinhaltInput = input}} placeholder="in Liter"/>
+            									</div>
+                              <div className="col-sm-6">
+                                <label>Verbrauch Volllast</label>
+                                <input type="number" className="form-control" ref={(input) => { this.verbrauchInput = input}} placeholder="L/h"/>
+                              </div>
+                              <div className="col-sm-6">
+            										<label>Kraftstoff</label>
+            										<input type="text" className="form-control" ref={(input) => { this.kraftstoffInput = input}} placeholder="Bsp: Diesel"/>
+            									</div>
+>>>>>>> Stashed changes
             									<div className="col-sm-6">
             										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -273,12 +371,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
