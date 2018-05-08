@@ -50,13 +50,13 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.muldeninhaltInput.value) {
+    if (this.muldeninhaltInput.value == "") {
     const alert = "Geben Sie Auskunft über den Muldeninhalt"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
 
-  
+
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -238,7 +238,8 @@ onDrop(imageFiles) {
                               <div className="col-sm-6">
                                 <label>Breite</label>
                                 <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div                              <div className="col-sm-6">
+                              </div>
+                                                            <div className="col-sm-6">
                                 <label>Länge</label>
                                 <input type="number" className="form-control" ref={(input) => { this.laengeInput = input}} placeholder="in mm"/>
                               </div>

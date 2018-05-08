@@ -105,7 +105,7 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;        const gewicht = this.GewichtdesArtikelsInput.value;
+        const bedienung = this.bedienungInput.value;
         const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
 
         const transportbreite = this.transportbreiteVonInput.value;
@@ -259,7 +259,7 @@ onDrop(imageFiles) {
                                 <input type="number" className="form-control" ref={(input) => { this.ruettelkraftInput = input}} placeholder="in kN"/>
                               </div>
 
-                            
+
 
             									<div className="col-sm-6">
             										<label>Breite</label>

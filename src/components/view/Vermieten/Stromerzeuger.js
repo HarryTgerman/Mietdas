@@ -71,6 +71,7 @@ artikelHochladen(event) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -130,7 +131,9 @@ artikelHochladen(event) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
+
         const bedienung = this.bedienungInput.value;
+
         const transportbreite = this.transportbreiteVonInput.value;
         const transporthoehe = this.transporthoeheVonInput.value;
         const abmessungen = this.abmessungenInput.value;
@@ -139,6 +142,7 @@ artikelHochladen(event) {
         const tankinhalt = this.tankinhalt.value;
         const verbrauch = this.verbrauchInput.value;
         const kraftstoff = this.kraftstoffInput.value;
+
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
@@ -188,7 +192,9 @@ artikelHochladen(event) {
                          kategorie:"stromerzeuger",
                          email: this.props.email,
                          hersteller: hersteller,
+
                          bedienung: bedienung,
+
                          transportbreite: transportbreite,
                          transporthoehe: transporthoehe,
                          abmessungen : abmessungen,
@@ -197,6 +203,7 @@ artikelHochladen(event) {
                          tankinhalt : tankinhalt,
                          verbrauch : verbrauch,
                          kraftstoff : kraftstoff,
+
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -220,15 +227,10 @@ artikelHochladen(event) {
                          redirect: true
                        })
                      })
+                  }
 
 
 
-
-
-
-       }
-
-               }
 
 
 
@@ -278,11 +280,10 @@ artikelHochladen(event) {
             									</div>
 
             									<div className="col-sm-6">
+
             										<label>Bedienung</label>
             										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
             									</div>
-
-
 
 
             										<label>Transportbreite</label>
@@ -316,6 +317,7 @@ artikelHochladen(event) {
             										<label>Kraftstoff</label>
             										<input type="text" className="form-control" ref={(input) => { this.kraftstoffInput = input}} placeholder="Bsp: Diesel"/>
             									</div>
+
             									<div className="col-sm-6">
             										<label>Gewicht</label>
             										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
@@ -335,7 +337,7 @@ artikelHochladen(event) {
             										<label>Mietbedingungen</label>
             										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
             									</div>
-            								</div>
+            								
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
                               <h3>Gallerie</h3>

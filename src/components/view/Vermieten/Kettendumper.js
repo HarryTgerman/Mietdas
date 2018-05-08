@@ -19,13 +19,16 @@ class Kettendumper extends Component{
     }
 }
 
-
 onDrop(imageFiles) {
 
  this.setState({
      imageFiles: imageFiles,
    })
  }
+
+
+
+
 
 
  artikelHochladen(event) {
@@ -47,14 +50,13 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.muldeninhaltInput.value) {
+    if (this.muldeninhaltInput.value == "") {
     const alert = "Geben Sie Auskunft über den Muldeninhalt"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
 
-    if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
+
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -99,9 +101,6 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
-
-
         const laenge = this.laengeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const breite = this.BreitedesArtikelsInput.value;
@@ -149,22 +148,14 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
-
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"kettendumper",
-
                          email: this.props.email,
-                         hersteller: hersteller,
-                         bedienung: bedienung,
-
-                         email: this.props.email,
-                         hersteller: hersteller,
-                         laenge : laenge,
+                         hersteller: hersteller,                         laenge : laenge,
                          nutzlast : nutzlast,
-                         muldeninhalt : muldeninhalt,
-                         cardHeading:titel ,
+                         muldeninhalt : muldeninhalt,                         cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
                          gewicht: gewicht,
@@ -247,10 +238,6 @@ onDrop(imageFiles) {
                                 <label>Breite</label>
                                 <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
                               </div>
-
-<<<<<<< Updated upstream
-
-=======
                               <div className="col-sm-6">
                                 <label>Länge</label>
                                 <input type="number" className="form-control" ref={(input) => { this.laengeInput = input}} placeholder="in mm"/>
@@ -265,8 +252,6 @@ onDrop(imageFiles) {
                                 <label>Nutzlast</label>
                                 <input type="number" className="form-control" ref={(input) => { this.nutzlastInput = input}} placeholder="in kg"/>
                               </div>
->>>>>>> Stashed changes
-
 
                               <div className="col-sm-6">
             										<label>Muldeninhalt</label>
