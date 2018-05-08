@@ -19,21 +19,13 @@ class Kettendumper extends Component{
     }
 }
 
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
 onDrop(imageFiles) {
 
  this.setState({
      imageFiles: imageFiles,
    })
  }
-
-
-
-
 
 
  artikelHochladen(event) {
@@ -60,11 +52,9 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-<<<<<<< Updated upstream
 
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
-=======
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -77,7 +67,6 @@ onDrop(imageFiles) {
     }
     if (this.HoehedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Höhe"
->>>>>>> Stashed changes
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -110,12 +99,10 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
 
-=======
+
         const laenge = this.laengeInput.value;
->>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
         const breite = this.BreitedesArtikelsInput.value;
         const hoehe = this.HoehedesArtikelsInput.value;
@@ -162,27 +149,21 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"kettendumper",
-<<<<<<< Updated upstream
 
                          email: this.props.email,
                          hersteller: hersteller,
                          bedienung: bedienung,
 
-=======
                          email: this.props.email,
                          hersteller: hersteller,
                          laenge : laenge,
                          nutzlast : nutzlast,
                          muldeninhalt : muldeninhalt,
->>>>>>> Stashed changes
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -207,15 +188,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-<<<<<<< Updated upstream
-            
 
-
-
-
-
-=======
->>>>>>> Stashed changes
        }
 
 

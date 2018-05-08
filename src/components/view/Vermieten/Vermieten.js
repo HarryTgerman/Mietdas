@@ -180,13 +180,11 @@ onDrop(imageFiles) {
                   {/* Nav tabs */}
 
                   <nav className="navbar navbar-inverse">
-                    <div className="container-fluid">
-                      <div className="navbar-header">
-                        <a className="navbar-brand" href=""></a>
-                      </div>
+                    <div>
+
                       <ul className="nav nav-tabs">
 
-                        <li className="dropdown">
+                        <li className="dropdown" >
                           <a className="dropdown-toggle" data-toggle="dropdown" href="#">Bagger
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">

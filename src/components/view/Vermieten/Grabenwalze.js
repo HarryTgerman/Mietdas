@@ -70,9 +70,7 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-<<<<<<< Updated upstream
 
-=======
     if (this.bandagenbreiteInput.value == "") {
     const alert = "Geben Sie Auskunft über die Bandagenbreite"
     this.setState({alert: alert, showAlert: true})
@@ -83,7 +81,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
->>>>>>> Stashed changes
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -108,17 +105,14 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
 
-=======
         const transportbreite = this.transportbreiteVonInput.value;
         const transporthoehe = this.transporthoeheVonInput.value;
         const ruettelkraft = this.ruettelkraftInput.value;
         const breite = this.breiteInput.value;
         const hoehe = this.hoeheInput.value;
         const bandagenbreite = this.bandagenbreite.value;
->>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;
@@ -170,15 +164,13 @@ onDrop(imageFiles) {
                          kategorie:"grabenwalze",
                          email: this.props.email,
                          hersteller: hersteller,
-<<<<<<< Updated upstream
                          bedienung: bedienung,
 
-=======
+
                          breite: breite,
                          hoehe: hoehe,
                          ruettelkraft: ruettelkraft,
                          bandagenbreite: bandagenbreite,
->>>>>>> Stashed changes
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
@@ -267,9 +259,8 @@ onDrop(imageFiles) {
                                 <input type="number" className="form-control" ref={(input) => { this.ruettelkraftInput = input}} placeholder="in kN"/>
                               </div>
 
-<<<<<<< Updated upstream
-                              
-=======
+
+
             									<div className="col-sm-6">
             										<label>Breite</label>
             										<input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
@@ -284,7 +275,6 @@ onDrop(imageFiles) {
                                 <label>Bandagenbreite</label>
                                 <input type="number" ref={(input) => { this.bandagenbreiteInput  = input}} className="form-control" placeholder="in mm"/>
                               </div>
->>>>>>> Stashed changes
 
                               <div className="col-sm-6">
                                 <label>Preis</label>

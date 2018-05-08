@@ -55,11 +55,8 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-<<<<<<< Updated upstream
 
-    if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
-=======
+  
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
@@ -72,7 +69,6 @@ onDrop(imageFiles) {
     }
     if (this.HoehedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Höhe"
->>>>>>> Stashed changes
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -105,11 +101,8 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-<<<<<<< Updated upstream
         const bedienung = this.bedienungInput.value;
-=======
         const laenge = this.laengeInput.value;
->>>>>>> Stashed changes
         const gewicht = this.GewichtdesArtikelsInput.value;
         const breite = this.BreitedesArtikelsInput.value;
         const hoehe = this.HoehedesArtikelsInput.value;
@@ -156,23 +149,14 @@ onDrop(imageFiles) {
           );
 
         Promise.all(keysPromises).then(() => {
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"raddumper",
                          email: this.props.email,
-                         hersteller: hersteller,
-<<<<<<< Updated upstream
-=======
-                         laenge : laenge,
+                         hersteller: hersteller,                         laenge : laenge,
                          nutzlast : nutzlast,
-                         muldeninhalt : muldeninhalt,
->>>>>>> Stashed changes
-                         cardHeading:titel ,
+                         muldeninhalt : muldeninhalt,                         cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
                          gewicht: gewicht,
@@ -196,15 +180,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-<<<<<<< Updated upstream
 
-
-
-
-
-
-=======
->>>>>>> Stashed changes
        }
 
 
@@ -262,12 +238,7 @@ onDrop(imageFiles) {
                               <div className="col-sm-6">
                                 <label>Breite</label>
                                 <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
-                              </div>
-
-<<<<<<< Updated upstream
-
-=======
-                              <div className="col-sm-6">
+                              </div                              <div className="col-sm-6">
                                 <label>Länge</label>
                                 <input type="number" className="form-control" ref={(input) => { this.laengeInput = input}} placeholder="in mm"/>
                               </div>
@@ -281,8 +252,6 @@ onDrop(imageFiles) {
                                 <label>Nutzlast</label>
                                 <input type="number" className="form-control" ref={(input) => { this.nutzlastInput = input}} placeholder="in kg"/>
                               </div>
->>>>>>> Stashed changes
-
 
                               <div className="col-sm-6">
             										<label>Muldeninhalt</label>
