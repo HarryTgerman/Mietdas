@@ -40,16 +40,6 @@ app.post('/subscribe', (req, res) => {
 
 app.post('/payment', (req,res) => {
 
-<<<<<<< HEAD
-  console.log(req);
-  let config = {
-  
-  headers: {
-  "Content-Type": "application/json"
-},auth: {
-      username: "ws@Company.MietDas",
-      password: "2BK!+FIi>N3(uXt[2yCZ@4~s8"
-=======
   console.log('hallo ....', req);
 
  let config = {
@@ -60,7 +50,6 @@ app.post('/payment', (req,res) => {
   auth: {
       username: "ws@Company.MietDas",
       password: "wzqbjgtdu3fK"
->>>>>>> fc803903fb976031cae837ec342150ff4755c3d4
   }
 }
 
