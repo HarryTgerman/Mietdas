@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Trennschleifer extends Component{
+class Betonmischer extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -72,13 +72,8 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.durchmesserInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Durchmesser"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.gerauuschpegelInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Durchmesser"
+    if (this.motorInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Motor"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -92,17 +87,16 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('trennschleifer');
+        const db = firebase.database().ref('app').child('cards').child('betonmischer');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const durchmesser = this.durchmesserInput.value;
+        const motor = this.motorInput.value;
         const schnitttiefe = this.schnitttiefeInput.value;
         const preis = this.priceInput.value;
         const hoehe = this.hoeheInput.value;
         const breite = this.breiteInput.value;
-        const gerauuschpegel = this.gerauuschpegelInput.value;
 
 
         const timeInMs = Date.now();
@@ -147,13 +141,12 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"trennschleifer",
+                         kategorie:"betonmischer",
 
                          email: this.props.email,
                          hersteller: hersteller,
-                         durchmesser: durchmesser,
+                         motor: motor,
                          schnitttiefe: schnitttiefe,
-                         gerauuschpegel : gerauuschpegel,
                          hoehe : hoehe,
                          breite : breite,
                          cardHeading:titel,
@@ -203,7 +196,7 @@ onDrop(imageFiles) {
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
             							<div className="listing-box-header">
             								<i className="ti-write theme-cl"></i>
-            								<h3>Trennschleifer Inserieren</h3>
+            								<h3>Betonmischer Inserieren</h3>
             								<p>Fülle das Formular vollständig aus</p>
             							</div>
             							<form onSubmit={this.artikelHochladen.bind(this)}>
@@ -223,7 +216,7 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Stihl" />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Norton" />
             									</div>
 
 
@@ -244,15 +237,9 @@ onDrop(imageFiles) {
             									</div>
 
                               <div className="col-sm-6">
-                                <label>Durchmesser</label>
-                                <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="in mm"/>
+                                <label>Motor</label>
+                                <input type="text" className="form-control" ref={(input) => { this.motorInput = input}} placeholder="Bsp: Diesel"/>
                               </div>
-
-                              <div className="col-sm-6">
-                                <label>Geräuschpegel</label>
-                                <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="dB"/>
-                              </div>
-
 
 
 
@@ -316,4 +303,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Trennschleifer;
+export default Betonmischer;

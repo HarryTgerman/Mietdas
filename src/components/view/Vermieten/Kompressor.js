@@ -19,18 +19,12 @@ class Kompressor extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({
      imageFiles: imageFiles,
    })
  }
-
-
-
-
 
 
  artikelHochladen(event) {
@@ -52,8 +46,13 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
+    if (this.hoeheInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Höhe"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
+    if (this.breiteInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Breite"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
@@ -73,13 +72,13 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
+    if (this.volumenstromInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Volumenstrom"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
+    if (this.druckbereichInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Druckbereich"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -92,14 +91,12 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
+        const volumenstrom = this.volumenstromInput.value;
+        const druckbereich = this.druckbereichInput.value;
         const preis = this.priceInput.value;
-        const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
-
-        const Pdf = this.pdfUpload.files[0]
-
+        const hoehe = this.hoeheInput.value;
+        const breite = this.breiteInput.value;
 
 
         const timeInMs = Date.now();
@@ -145,13 +142,15 @@ onDrop(imageFiles) {
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"kompressor",
+
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-                         cardHeading:titel ,
+                         volumenstrom: volumenstrom,
+                         druckbereich: druckbereich,
+                         hoehe : hoehe,
+                         breite : breite,
+                         cardHeading:titel,
                          cardPreis: preis,
-                         cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          address: this.props.address,
                          ort: this.props.ort,
@@ -171,13 +170,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-
-
-
-
-
-
-       }
+          }
 
 
 
@@ -223,25 +216,41 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Atlas Copco" />
             									</div>
+
 
             									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
+            										<label>Breite</label>
+            										<input type="number" ref={(input) => { this.breiteVonInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
+
+                              <div className="col-sm-6">
+            										<label>Höhe</label>
+            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Druckbereich</label>
+            										<input type="text" className="form-control" ref={(input) => { this.druckbereichInput = input}} placeholder="Bsp: 4,0 bar - 8,5 bar"/>
+            									</div>
+
+                              <div className="col-sm-6">
+                                <label>Volumenstrom</label>
+                                <input type="text" className="form-control" ref={(input) => { this.volumenstromInput = input}} placeholder="Bsp: 5,3 m3/min"/>
+                              </div>
 
 
 
             									<div className="col-sm-6">
             										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -249,10 +258,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>

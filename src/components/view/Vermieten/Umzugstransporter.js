@@ -19,8 +19,6 @@ class Umzugstransporter extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({

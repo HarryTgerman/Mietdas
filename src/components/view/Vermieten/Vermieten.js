@@ -39,6 +39,7 @@ import Grabenwalze from './Grabenwalze'
 import Vibrationswalze from './Vibrationswalze'
 import Betoninnenruettler from './Betoninnenruettler'
 import Steinsaege from './Steinsaege'
+import Betonmischer from './Betonmischer'
 
 import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
 
@@ -216,6 +217,19 @@ onDrop(imageFiles) {
                            </ul>
                         </li>
                         <li className="dropdown">
+                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Baugeräte
+                          <span className="caret"></span></a>
+                          <ul className="dropdown-menu">
+                            <li role="presentation" className=""><a href="#betoninnenruettler" aria-controls="betoninnenruettler" role="tab" data-toggle="tab">Betoninnenruettler</a></li>
+                            <li role="presentation" className=""><a href="#betonglaeter" aria-controls="betonglaeter" role="tab" data-toggle="tab">Betongläter</a></li>
+                            <li role="presentation" className=""><a href="#abbruchhammer" aria-controls="abbruchhammer" role="tab" data-toggle="tab">Abbruchhammer</a></li>
+                            <li role="presentation" className=""><a href="#betonmischer" aria-controls="betonmischer" role="tab" data-toggle="tab">Betonmischer</a></li>
+                            <li role="presentation" className=""><a href="#bohrhammer" aria-controls="bohrhammer" role="tab" data-toggle="tab">Bohrhammer</a></li>
+                            <li role="presentation" className=""><a href="#erdbohrgeraet" aria-controls="erdbohrgeraet" role="tab" data-toggle="tab">Erdbohrgerät</a></li>
+                            <li role="presentation" className=""><a href="#kernbohrmaschiene" aria-controls="kernbohrmaschiene" role="tab" data-toggle="tab">Kernbohrmaschiene</a></li>
+                           </ul>
+                        </li>
+                        <li className="dropdown">
                           <a className="dropdown-toggle" data-toggle="dropdown" href="#">Verdichtungstechnik
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
@@ -267,6 +281,11 @@ onDrop(imageFiles) {
                   <div className="tab-content tabs">
                     <div role="tabpanel" className="tab-pane fade" id="vibrationswalze">
                       <Vibrationswalze user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="betonmischer">
+                      <Betonmischer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
