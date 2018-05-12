@@ -70,8 +70,13 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.transportbreiteVonInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    if (this.hoeheInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.breiteInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -104,8 +109,8 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const transportbreite = this.transportbreiteVonInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value;
+        const breite = this.breiteInput.value;
+        const hoehe = this.hoeheInput.value;
         const ruettelkraft = this.ruettelkraftInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
@@ -159,13 +164,12 @@ onDrop(imageFiles) {
                          kategorie:"vibrationsplatte",
                          email: this.props.email,
                          hersteller: hersteller,
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
+                         breite: breite,
+                         hoehe: hoehe,
                          ruettelkraft: ruettelkraft,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          arbeitsbreite: arbeitsbreite,
                          kraftstoff: kraftstoff,
@@ -257,13 +261,13 @@ onDrop(imageFiles) {
                               </div>
 
             									<div className="col-sm-6">
-            										<label>Transportbreite</label>
-            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
+            										<label>Breite</label>
+            										<input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
-            										<label>Transporthöhe</label>
-            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+            										<label>Höhe</label>
+            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">

@@ -70,9 +70,13 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-
-    if (this.transportbreiteVonInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    if (this.hoeheInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.breiteInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -86,11 +90,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -101,8 +100,8 @@ onDrop(imageFiles) {
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
         const bedienung = this.bedienungInput.value;
-        const transportbreite = this.transportbreiteVonInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value;
+        const breite = this.breiteInput.value;
+        const hoehe = this.hoeheInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const arbeitsbreite = this.ArbeitsbreitedesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
@@ -155,14 +154,11 @@ onDrop(imageFiles) {
                          kategorie:"stampfer",
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-
-                         transportbreite: transportbreite,
-                         transporthoehe: transporthoehe,
+                         breite: breite,
+                         hoehe: hoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          arbeitsbreite: arbeitsbreite,
                          kraftstoff: kraftstoff,
@@ -250,13 +246,13 @@ onDrop(imageFiles) {
 
 
             									<div className="col-sm-6">
-            										<label>Transportbreite</label>
-            										<input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
+            										<label>Breite</label>
+            										<input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in cm"/>
             									</div>
 
                               <div className="col-sm-6">
-            										<label>Transporthöhe</label>
-            										<input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
+            										<label>Höhe</label>
+            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in cm"/>
             									</div>
 
                               <div className="col-sm-6">
@@ -269,10 +265,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
