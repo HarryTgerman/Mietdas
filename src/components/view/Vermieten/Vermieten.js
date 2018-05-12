@@ -220,7 +220,7 @@ onDrop(imageFiles) {
                           <a className="dropdown-toggle" data-toggle="dropdown" href="#">Baugeräte
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
-                            <li role="presentation" className=""><a href="#betoninnenruettler" aria-controls="betoninnenruettler" role="tab" data-toggle="tab">Betoninnenruettler</a></li>
+                            <li role="presentation" className=""><a href="#betoninnenruettler" aria-controls="betoninnenruettler" role="tab" data-toggle="tab">Betoninnenrüttler</a></li>
                             <li role="presentation" className=""><a href="#betonglaeter" aria-controls="betonglaeter" role="tab" data-toggle="tab">Betongläter</a></li>
                             <li role="presentation" className=""><a href="#abbruchhammer" aria-controls="abbruchhammer" role="tab" data-toggle="tab">Abbruchhammer</a></li>
                             <li role="presentation" className=""><a href="#betonmischer" aria-controls="betonmischer" role="tab" data-toggle="tab">Betonmischer</a></li>
@@ -349,8 +349,13 @@ onDrop(imageFiles) {
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-pane fade" id="Erdbohrgeraet">
+                    <div role="tabpanel" className="tab-pane fade" id="erdbohrgeraet">
                       <Erdbohrgeraet user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="abbruchhammer">
+                      <Abbruchhammer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>

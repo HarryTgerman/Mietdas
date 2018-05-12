@@ -46,8 +46,8 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.hoeheInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Höhe"
+    if (this.laengeInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Länge"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
@@ -72,13 +72,13 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.motorInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Motor"
+    if (this.maxFuellmengeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Schlauchlänge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.schnitttiefeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnitttiefe"
+    if (this.spannungInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Spannung"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -87,16 +87,16 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('betonmischer');
+        const db = firebase.database().ref('app').child('cards').child('Betonmischer');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
-        const motor = this.motorInput.value;
-        const schnitttiefe = this.schnitttiefeInput.value;
+        const spannung = this.spannungInput.value;
         const preis = this.priceInput.value;
-        const hoehe = this.hoeheInput.value;
+        const laenge = this.laengeInput.value;
         const breite = this.breiteInput.value;
+        const maxFuellmenge = this.maxFuellmengeInput.value;
 
 
         const timeInMs = Date.now();
@@ -141,13 +141,13 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"betonmischer",
+                         kategorie:"Betonmischer",
 
                          email: this.props.email,
                          hersteller: hersteller,
-                         motor: motor,
-                         schnitttiefe: schnitttiefe,
-                         hoehe : hoehe,
+                         spannung: spannung,
+                         maxFuellmenge : maxFuellmenge,
+                         laenge : laenge,
                          breite : breite,
                          cardHeading:titel,
                          cardPreis: preis,
@@ -216,7 +216,7 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Norton" />
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Atlas Copco" />
             									</div>
 
 
@@ -227,19 +227,21 @@ onDrop(imageFiles) {
 
 
                               <div className="col-sm-6">
-            										<label>Höhe</label>
-            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
+            										<label>Länge</label>
+            										<input type="number" ref={(input) => { this.laengeInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
 
                               <div className="col-sm-6">
-            										<label>Schnitttiefe</label>
-            										<input type="number" className="form-control" ref={(input) => { this.schnitttiefeInput = input}} placeholder="in mm"/>
+            										<label>Spannung</label>
+            										<input type="number" className="form-control" ref={(input) => { this.spannungInput = input}} placeholder="Bsp: 230 V"/>
             									</div>
 
+
                               <div className="col-sm-6">
-                                <label>Motor</label>
-                                <input type="text" className="form-control" ref={(input) => { this.motorInput = input}} placeholder="Bsp: Diesel"/>
+                                <label>Max. Füllmenge</label>
+                                <input type="number" className="form-control" ref={(input) => { this.maxFuellmengeInput = input}} placeholder="in Liter"/>
                               </div>
+
 
 
 
@@ -280,12 +282,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">

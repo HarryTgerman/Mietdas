@@ -19,18 +19,12 @@ class Betoninnenruettler extends Component{
     }
 }
 
-c
-
 onDrop(imageFiles) {
 
  this.setState({
      imageFiles: imageFiles,
    })
  }
-
-
-
-
 
 
  artikelHochladen(event) {
@@ -52,8 +46,13 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.bedienungInput.value == "") {
-      const alert = "Geben Sie Auskunft über die Bedienung"
+    if (this.laengeInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Länge"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
+    if (this.breiteInput.value == "") {
+      const alert = "Geben Sie Auskunft über die Breite"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
@@ -73,13 +72,18 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
+    if (this.durchmesserInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Durchmesser"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.pdfUpload.files[0] == undefined) {
-    const alert = "Laden Sie ein Datenblatt hoch"
+    if (this.schlauchlaengeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Schlauchlänge"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.spannungInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Spannung"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -92,14 +96,13 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
+        const durchmesser = this.durchmesserInput.value;
+        const spannung = this.spannungInput.value;
         const preis = this.priceInput.value;
-        const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
-
-        const Pdf = this.pdfUpload.files[0]
-
+        const laenge = this.laengeInput.value;
+        const breite = this.breiteInput.value;
+        const schlauchlaenge = this.schlauchlaengeInput.value;
 
 
         const timeInMs = Date.now();
@@ -148,11 +151,13 @@ onDrop(imageFiles) {
 
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-                         cardHeading:titel ,
+                         durchmesser: durchmesser,
+                         spannung: spannung,
+                         schlauchlaenge : schlauchlaenge,
+                         laenge : laenge,
+                         breite : breite,
+                         cardHeading:titel,
                          cardPreis: preis,
-                         cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          address: this.props.address,
                          ort: this.props.ort,
@@ -172,13 +177,7 @@ onDrop(imageFiles) {
                          redirect: true
                        })
                      })
-
-
-
-
-
-
-       }
+          }
 
 
 
@@ -224,25 +223,44 @@ onDrop(imageFiles) {
 
             									<div className="col-sm-6">
             										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="..." />
-            									</div>
-
-            									<div className="col-sm-6">
-            										<label>Bedienung</label>
-            										<input type="text" className="form-control" ref={(input) => { this.bedienungInput = input}} placeholder="Bsp: mit Fahrer"/>
+            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Atlas Copco" />
             									</div>
 
 
-
-
             									<div className="col-sm-6">
+            										<label>Breite</label>
+            										<input type="number" ref={(input) => { this.breiteVonInput = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+
+
+                              <div className="col-sm-6">
+            										<label>Länge</label>
+            										<input type="number" ref={(input) => { this.laengeInput  = input}} className="form-control" placeholder="in mm"/>
+            									</div>
+
+                              <div className="col-sm-6">
+            										<label>Spannung</label>
+            										<input type="number" className="form-control" ref={(input) => { this.spannungInput = input}} placeholder="Bsp: 230 V"/>
+            									</div>
+
+                              <div className="col-sm-6">
+                                <label>Durchmesser</label>
+                                <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Schlauchlänge</label>
+                                <input type="number" className="form-control" ref={(input) => { this.schlauchlaengeInput = input}} placeholder="in m"/>
+                              </div>
+
+                                 <div className="col-sm-6">
             										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in Tonnen"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -250,10 +268,6 @@ onDrop(imageFiles) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
@@ -276,12 +290,6 @@ onDrop(imageFiles) {
                                   </div> : null}
                                   </div>
                                 </Dropzone>
-                                <div style={{padding:"10px"}} className="col-sm-12 text-center">
-                                  <div style={{padding:"15px", border: "solid 1px #dde6ef"}}>
-                                    <input style={{display:"none"}} accept='.pdf' ref={(input) => this.pdfUpload = input} type="file" name="myfile"/>
-                                    <button onClick={()=>this.pdfUpload.click( )} type="button" className="btn theme-btn">Datenblatt hochladen</button>
-                                  </div>
-                                </div>
                             </form>
                             <div className="form-group">
                               <div className="col-md-12 col-sm-12 text-center">
