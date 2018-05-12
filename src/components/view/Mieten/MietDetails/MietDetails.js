@@ -203,6 +203,168 @@ componentWillMount(){
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
+                                        {this.state.snap.trog?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Trog
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.trog}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.abmessungen?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Abmessungen
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.abmessungen}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.fraese?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Frästiefe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.fraese}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.motor?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Motor
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.motor}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schnitttiefe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schnitttiefe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.schnitttiefe}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.gerauuschpegel?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Geräuschpegel
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.gerauuschpegel}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.durchmesser?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Durchmesser
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.durchmesser}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schnittlaenge?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schnittlänge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.schnittlaenge}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schnittbreite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schnittbreite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.schnittbreite}</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.bandagenbreite?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Bandagenbreite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.bandagenbreite}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.maxFuellmenge?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Max. Füllmenge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.maxFuellmenge}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.spannung?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Spannung
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.spannung}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.einzelschlagstärke?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Einzelschlagstärke
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.einzelschlagstärke}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.aufname?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Aufname
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.aufname}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.bohrdurchmesser?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Bohrdurchmesser
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.bohrdurchmesser}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.bohrkrone?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Bohrkrone
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.bohrkrone}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.muldeninhalt?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Muldeninhalt
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.muldeninhalt}</p>
+                                          </div>
+                                        </React.Fragment>):(null)}
                                         {this.state.snap.breite?
                                         (<React.Fragment>
                                           <div className="detailsCategory col-sm-5 col-md-5">
@@ -783,6 +945,108 @@ componentWillMount(){
                                           <p>lade Daten...</p>
                                         </div>
                                         <div className="detailsCategory col-sm-5 col-md-5">
+                                          Trog
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Abmessungen
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Frästiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Motor
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schnitttiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Geräuschpegel
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Durchmesser
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schnittlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schnittbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Bandagenbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Max. Füllmenge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Spannung
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Einzelschlagstärke
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Aufname
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Bohrdurchmesser
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Bohrkrone
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Muldeninhalt
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>lade Daten...</p>
+                                        </div>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
                                           Breite
                                         </div>
                                         <div className="col-sm-5 col-md-5">
@@ -969,7 +1233,7 @@ componentWillMount(){
                                           <p>lade Daten...</p>
                                         </div>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Führerscheinklasse 
+                                          Führerscheinklasse
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>lade Daten...</p>

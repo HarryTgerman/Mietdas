@@ -71,11 +71,6 @@ artikelHochladen(event) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -85,13 +80,11 @@ artikelHochladen(event) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
         const schnittlaenge = this.schnittlaengeInput.value;
         const schnitttiefe = this.schnitttiefeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const timeInMs = Date.now();
 
@@ -142,7 +135,6 @@ artikelHochladen(event) {
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          address: this.props.address,
                          ort: this.props.ort,
@@ -211,23 +203,23 @@ artikelHochladen(event) {
             										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Norton" />
             									</div>
 
-            								
+
                               <div className="col-sm-6">
             										<label>Schnittlänge</label>
-            										<input type="text" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
+            										<input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-6">
             										<label>Schnitttiefe</label>
-            										<input type="text" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
+            										<input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
             									<div className="col-sm-6">
             										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -235,10 +227,7 @@ artikelHochladen(event) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
+
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>

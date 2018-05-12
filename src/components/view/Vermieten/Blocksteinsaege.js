@@ -45,13 +45,13 @@ artikelHochladen(event) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-    if (this.transporthoeheVonInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    if (this.hoeheInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Höhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.transportbreiteVonInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Transportbreite"
+    if (this.breiteInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Breite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -93,14 +93,14 @@ artikelHochladen(event) {
         const db = firebase.database().ref('app').child('cards').child('blocksteinsaege');
         const userId = this.props.user;
         const titel = this.titelInput.value;
+        const hoehe = this.hoeheInput.value;
+        const breite = this.breiteInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
         const schnittlaenge = this.schnittlaengeInput.value;
         const schnitttiefe = this.schnitttiefeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const timeInMs = Date.now();
 
@@ -151,7 +151,8 @@ artikelHochladen(event) {
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
+                         hoehe: hoehe,
+                         breite : breite,
                          gewicht: gewicht,
                          address: this.props.address,
                          ort: this.props.ort,
@@ -221,29 +222,29 @@ artikelHochladen(event) {
             									</div>
 
             									<div className="col-sm-6">
-            										<label>Transportbreite</label>
-            										<input type="text" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
+            										<label>Breite</label>
+            										<input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-6">
-            										<label>Transporthöhe</label>
-            										<input type="text" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+            										<label>Höhe</label>
+            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-6">
             										<label>Schnittlänge</label>
-            										<input type="text" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
+            										<input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
                               <div className="col-sm-6">
             										<label>Schnitttiefe</label>
-            										<input type="text" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
+            										<input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
             									</div>
             									<div className="col-sm-6">
             										<label>Gewicht</label>
-            										<input type="text" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
             									</div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
-                                <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
             									<div className="col-sm-12">
@@ -251,10 +252,6 @@ artikelHochladen(event) {
             										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
             									</div>
 
-                              <div className="col-sm-12">
-            										<label>Mietbedingungen</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-            									</div>
             								</div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
