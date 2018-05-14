@@ -51,8 +51,12 @@ componentWillMount(){
 }
 firedata() {
   let array = ["minibagger","kompaktbagger","raupenbagger","mobilbagger","radlader",
-              "verdichtungstechnik","stampfer","vibrationsplatte","anhänger",
-              "kippanhänger","planenanhänger","autotransportanhänger","tieflader",]
+              "stampfer","vibrationsplatte","anhänger",
+              "kippanhänger","planenanhänger","autotransportanhänger","tieflader","kettendumper","abbruchhammer",
+              "bausteinBandseage","betonglaeter","betoninnenruettler","betonmischer",
+            "blocksteinsaege","bodenfraese","bohrhammer","erdbohrgeraet","fugenschneider","grabenwalze","holzhaecksler",
+          "kernbohrmaschiene","kompressor","materialContainer","motorradanhänger","planenanhänger","pritschenwagen",
+        "steinsaege","stromerzeuger","trennschleifer","umzugstransporter","vibrationswalze"]
   const previousCards = [];
   array.map((i) =>
   {

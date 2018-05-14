@@ -1,45 +1,44 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom';
-//import Bagger from './Bagger'
-import Minibagger from './Minibagger'
-import Kompaktbagger from './Kompaktbagger'
-import Raupenbagger from './Raupenbagger'
-import Mobilbagger from './Mobilbagger'
-import Raddumper from './Raddumper'
-import Kettendumper from './Kettendumper'
-import Radlader from './Radlader'
-import Stampfer from './Stampfer'
-import Vibrationsplatte from './Vibrationsplatte'
-import Kippanhänger from './Kippanhänger'
-import Motorradanhänger from './Motorradanhänger'
-import Stromerzeuger from './Stromerzeuger'
-import Bodenfraese from './Bodenfraese'
-import Holzhaecksler from './Holzhaecksler'
-import Kompressor from './Kompressor'
-import SteinTischseage from './SteinTischseage'
-import BausteinBandseage from './BausteinBandseage'
-import Blocksteinsaege from './Blocksteinsaege'
-import Fugenschneider from './Fugenschneider'
-import Trennschleifer from './Trennschleifer'
-import MaterialContainer from './MaterialContainer'
-import Pritschenwagen from './Pritschenwagen'
-import Umzugstransporter from './Umzugstransporter'
-import Planenanhänger from './Planenanhänger'
-import Autotransportanhänger from './Autotransportanhänger'
-import Betonglaeter from './Betonglaeter'
-import Bohrhammer from './Bohrhammer'
-import Abbruchhammer from './Abbruchhammer'
-import Erdbohrgeraet from './Erdbohrgeraet'
-import Kernbohrmaschiene from './Kernbohrmaschiene'
-import Tieflader from './Tieflader'
-import Verdichtungstechnik from './Verdichtungstechnik'
-import Anhänger from './Anhänger'
-import Grabenwalze from './Grabenwalze'
-import Vibrationswalze from './Vibrationswalze'
-import Betoninnenruettler from './Betoninnenruettler'
-import Steinsaege from './Steinsaege'
-import Betonmischer from './Betonmischer'
+//import Bagger from './Components/Bagger'
+import Minibagger from './Components/Minibagger'
+import Kompaktbagger from './Components/Kompaktbagger'
+import Raupenbagger from './Components/Raupenbagger'
+import Mobilbagger from './Components/Mobilbagger'
+import Raddumper from './Components/Raddumper'
+import Kettendumper from './Components/Kettendumper'
+import Radlader from './Components/Radlader'
+import Stampfer from './Components/Stampfer'
+import Vibrationsplatte from './Components/Vibrationsplatte'
+import Kippanhänger from './Components/Kippanhänger'
+import Motorradanhänger from './Components/Motorradanhänger'
+import Stromerzeuger from './Components/Stromerzeuger'
+import Bodenfraese from './Components/Bodenfraese'
+import Holzhaecksler from './Components/Holzhaecksler'
+import Kompressor from './Components/Kompressor'
+import SteinTischseage from './Components/SteinTischseage'
+import BausteinBandseage from './Components/BausteinBandseage'
+import Blocksteinsaege from './Components/Blocksteinsaege'
+import Fugenschneider from './Components/Fugenschneider'
+import Trennschleifer from './Components/Trennschleifer'
+import MaterialContainer from './Components/MaterialContainer'
+import Pritschenwagen from './Components/Pritschenwagen'
+import Umzugstransporter from './Components/Umzugstransporter'
+import Planenanhänger from './Components/Planenanhänger'
+import Autotransportanhänger from './Components/Autotransportanhänger'
+import Betonglaeter from './Components/Betonglaeter'
+import Bohrhammer from './Components/Bohrhammer'
+import Abbruchhammer from './Components/Abbruchhammer'
+import Erdbohrgeraet from './Components/Erdbohrgeraet'
+import Kernbohrmaschiene from './Components/Kernbohrmaschiene'
+import Tieflader from './Components/Tieflader'
+import Anhänger from './Components/Anhänger'
+import Grabenwalze from './Components/Grabenwalze'
+import Vibrationswalze from './Components/Vibrationswalze'
+import Betoninnenruettler from './Components/Betoninnenruettler'
+import Steinsaege from './Components/Steinsaege'
+import Betonmischer from './Components/Betonmischer'
 
 import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
 
@@ -74,7 +73,6 @@ componentWillMount(){
              if(snapshot.val()){var adresse = snapshot.val().adresse;
              var ort = snapshot.val().ort;
              var telefon = snapshot.val().telefon;
-             console.log(snapshot.val());
              this.setState({
                address : adresse,
                ort : ort,
@@ -82,7 +80,6 @@ componentWillMount(){
              },()=>{
              geocodeByAddress(this.state.ort)
             .then(results =>{
-              console.log(results[0]);
               const res = results[0];
               this.setState({
                 bundesland: res.address_components[3].long_name,
@@ -180,7 +177,7 @@ onDrop(imageFiles) {
                 <div className="tab style-2" role="tabpanel">
                   {/* Nav tabs */}
 
-                  <nav className="navbar navbar-inverse">
+                  <div className="navbar navbar-inverse">
                     <div>
 
                       <ul className="nav nav-tabs">
@@ -239,18 +236,18 @@ onDrop(imageFiles) {
                             <li role="presentation" className=""><a href="#grabenwalze" aria-controls="grabenwalze" role="tab" data-toggle="tab">Grabenwalze</a></li>
                            </ul>
                         </li>
-                        <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Landschaftstechnik
-                          <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
+                        <li className="dropdown">
+                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Landschaftstechnik
+                          <span className="caret"></span></a>
+                          <ul className="dropdown-menu">
                             <li role="presentation" className=""><a href="#bodenfraese" aria-controls="bodenfraese" role="tab" data-toggle="tab">Bodenfräse</a></li>
                             <li role="presentation" className=""><a href="#holzhaecksler" aria-controls="holzhaecksler" role="tab" data-toggle="tab">Holzhäcksler</a></li>
                            </ul>
                         </li>
-                        <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sägen & Schneider
-                          <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
+                        <li className="dropdown">
+                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Sägen & Schneider
+                          <span className="caret"></span></a>
+                          <ul className="dropdown-menu">
                             <li role="presentation" className=""><a href="#fugenschneider" aria-controls="fugenschneider" role="tab" data-toggle="tab">Fugenschneider</a></li>
                             <li role="presentation" className=""><a href="#trennschleifer" aria-controls="trennschleifer" role="tab" data-toggle="tab">Trennschleifer</a></li>
                             <li role="presentation" className=""><a href="#steinsaege" aria-controls="steinsaege" role="tab" data-toggle="tab">Steinsäge</a></li>
@@ -258,10 +255,10 @@ onDrop(imageFiles) {
                             <li role="presentation" className=""><a href="#blocksteinsaege" aria-controls="blocksteinsaege" role="tab" data-toggle="tab">Blocksteinsäge</a></li>
                            </ul>
                         </li>
-                        <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Raumsysteme
-                          <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
+                        <li className="dropdown">
+                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Raumsysteme
+                          <span className="caret"></span></a>
+                          <ul className="dropdown-menu">
                             <li role="presentation" className=""><a href="#materialContainer" aria-controls="materialContainer" role="tab" data-toggle="tab">Material Container</a></li>
                            </ul>
                         </li>
@@ -275,7 +272,7 @@ onDrop(imageFiles) {
                         </li>
                       </ul>
                     </div>
-                  </nav>
+                  </div>
 
                   {/* Tab panes */}
                   <div className="tab-content tabs">
@@ -456,11 +453,7 @@ onDrop(imageFiles) {
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-pane fade" id="profile">
-                      <Verdichtungstechnik user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
-                    </div>
+
                     <div role="tabpanel" className="tab-pane fade" id="messages">
                       <Anhänger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}

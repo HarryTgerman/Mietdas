@@ -22,6 +22,8 @@ import Payment from './components/PaymentMethod/Payment'
 
 
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
+const gmailProvider = new firebase.auth.GoogleAuthProvider();
+gmailProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 
 
@@ -45,7 +47,7 @@ class Routes extends Component{
 checkCaptcha() {
 
   const captcha = document.querySelector('#g-recaptcha-response').value;
-  
+
   fetch('/subscribe', {
         method:'POST',
         headers: {
@@ -66,8 +68,25 @@ checkCaptcha() {
 
 }
 
+authWithGmail(){
+firebase.auth().signInWithPopup(gmailProvider).then(function(result) {
 
-
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  var token = result.credential.accessToken;
+  // The signed-in user info.
+  var user = result.user;
+  // ...
+}).catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // The email of the user's account used.
+  var email = error.email;
+  // The firebase.auth.AuthCredential type that was used.
+  var credential = error.credential;
+  // ...
+});
+}
 
 authWithFacebook(){
   let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
@@ -169,6 +188,25 @@ registerWithFacebook(){
     whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
     })
 }
+registerWithGmail(){
+  let whenFacebookAuth = firebase.auth().signInWithPopup(gmailProvider)
+    .then((result, error) => {
+      if (error) {
+        alert(error)
+        return 0;
+      } else {
+        const userProfile = firebase.auth().currentUser
+        userProfile.sendEmailVerification().then(function() {
+          alert('Es wurde eine bestätigungs Email an Sie versendet')
+        }).catch(function(error) {
+          // An error happened.
+        })
+        this.setState({ authenticated: true})
+      }
+    })
+    whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
+    })
+}
 
 sendPwReset(){
   var auth = firebase.auth();
@@ -232,6 +270,9 @@ sendPwReset(){
                                           <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
                                             Log-In mit Facebook
                                           </button>
+                                          <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithGmail.bind(this)}>
+                                            Log-In mit Gmail
+                                          </button>
                                           <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
 
                                           </div></div>)}
@@ -255,6 +296,9 @@ sendPwReset(){
                                           onChange={this.checkCaptcha.bind(this)}/>
                                         <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
                                           Log-In mit Facebook
+                                        </button>
+                                        <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithGmail.bind(this)}>
+                                          Log-In mit Gmaill
                                         </button>
                                         <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200"> Registriere Dich </button>
                                         </div>

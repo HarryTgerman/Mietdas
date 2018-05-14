@@ -9,7 +9,6 @@ const urlencode = require('urlencode');
 
 const app = express();
 
-let merchantSig = "";
 
 
 signatureCalculation = () => {
@@ -20,7 +19,7 @@ signatureCalculation = () => {
     { key :'shopperLocale', val: 'de_GER'},
     { key :'merchantReference', val: 'paymentTest'},
     { key :'merchantAccount', val: 'MietDasCOM'},
-    { key :'sessionValidity', val: '2018-05-08T14:50:06Z'},
+    { key :'sessionValidity', val: '2018-05-14T18\\:46\\:19Z'},
     { key :'shipBeforeDate', val: '2018-07-30'},
     { key :'paymentAmount', val: '1995'},
     { key :'currencyCode', val: 'EUR'},
@@ -62,13 +61,23 @@ signatureCalculation = () => {
 
   console.log(signature);
 
-  merchantSig = urlencode(signature);
+   let merchantSig = urlencode(signature);
 
   //requestPaymentMethods(merchantSig);
+  let config = {
+   headers: {
+     'Accept': 'application/json, text/plain, */*',
+     'Content-type':'application/json'
+   },
+   auth: {
+       username: "ws@Company.MietDas",
+       password: "wzqbjgtdu3fK"
+   }
+ }
 
+let test_url = 'https://ca-test.adyen.com/ca/ca/skin/checkhmac.shtml?' + merchantSig;
 
-
-  axios.post('https://ca-test.adyen.com/ca/ca/skin/checkhmac.shtml'+ '?' + merchantSig)
+  axios.post(test_url, config)
   .then((res)=>{console.log('Das ist die Response', res);}, (err)=>{console.log('Das ist der Error', err);})
 
 
@@ -86,7 +95,7 @@ app.listen(port, () => console.log(`server started on port ${port}`));
 
 app.post('/subscribe', (req, res) => {
 
-  console.log('hallo ....');
+  console.log('hallo .... subscribe');
 
   // Secret Key
   const secretKey = '6LeEWlYUAAAAAPW3leTdfXbBJg7vZ23l6k1gllUP';
@@ -111,7 +120,6 @@ app.post('/subscribe', (req, res) => {
 
 app.post('/payment', (req,res) => {
 
-  console.log('hallo ....', req);
 
  let config = {
   headers: {
@@ -148,30 +156,30 @@ app.post('/payment', (req,res) => {
 
 });
 
-requestPaymentMethods = (val) => {
-
-  let merchantSig = val;
-  console.log('hier merchantSig',merchantSig);
-
-  let config = {
-   headers: {
-     'Accept': 'application/json, text/plain, */*',
-     'Content-type':'application/json'
-   }
- }
-
-
- let data = {
-      'countryCode' : 'DE',
-      'currencyCode' : 'EUR',
-      'merchantAccount' : 'MietDasCOM',
-      'merchantReference': 'Test_directory_lookup',
-      'paymentAmount': 2000,
-      'sessionValidity' : '2018-05-08T15:50:06Z',
-      'skinCode': 'mLIn3bJn',
-      'merchantSig': merchantSig
-  }
-  axios.post('https://test.adyen.com/hpp/directory.shtml', config)
-  .then((res)=>{console.log('Das sind die Payment Methods', res);}, (err)=>{console.log('Das ist der Error von Payment Methods', err);})
-
-}
+// requestPaymentMethods = (val) => {
+//
+//   let merchantSig = val;
+//   console.log('hier merchantSig',merchantSig);
+//
+//   let config = {
+//    headers: {
+//      'Accept': 'application/json, text/plain, */*',
+//      'Content-type':'application/json'
+//    }
+//  }
+//
+//
+//  let data = {
+//       'countryCode' : 'DE',
+//       'currencyCode' : 'EUR',
+//       'merchantAccount' : 'MietDasCOM',
+//       'merchantReference': 'Test_directory_lookup',
+//       'paymentAmount': 2000,
+//       'sessionValidity' : '2018-05-14T12\\:50\\:06Z',
+//       'skinCode': 'mLIn3bJn',
+//       'merchantSig': merchantSig
+//   }
+//   axios.post('https://test.adyen.com/hpp/directory.shtml')
+//   .then((res)=>{console.log('Das sind die Payment Methods', res);}, (err)=>{console.log('Das ist der Error von Payment Methods', err);})
+//
+// }
