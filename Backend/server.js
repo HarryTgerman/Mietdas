@@ -70,15 +70,32 @@ signatureCalculation = () => {
      'Content-type':'application/json'
    },
    auth: {
-       username: "ws@Company.MietDas",
-       password: "wzqbjgtdu3fK"
+       username: "MietDas",
+       account: "admin",
+       password: "G8$g$!CyB3<uB#?A"
    }
  }
 
-let test_url = 'https://ca-test.adyen.com/ca/ca/skin/checkhmac.shtml?' + merchantSig;
+ let data = {
+    shopperLocale: 'de_GER',
+    merchantReference: 'paymentTest',
+    merchantAccount: 'MietDasCOM',
+    sessionValidity: '2018-05-15T18\\:46\\:19Z',
+    shipBeforeDate: '2018-07-30',
+    paymentAmount: '1995',
+    currencyCode: 'EUR',
+    skinCode: 'mLIn3bJn',
+   merchantSig: merchantSig
+ }
 
-  axios.post(test_url, config)
-  .then((res)=>{console.log('Das ist die Response', res);}, (err)=>{console.log('Das ist der Error', err);})
+  axios.post('https://test.adyen.com/hpp/directory.shtml', data)
+
+  .then((res)=>{console.log('Das ist die Response für PaymentMethod', res);}, (err)=>{console.log('Das ist der Error für PaymentMethods', err);})
+
+// let test_url = 'https://ca-test.adyen.com/ca/ca/skin/checkhmac.shtml?' + merchantSig;
+//
+//   axios.post(test_url, config)
+//   .then((res)=>{console.log('Das ist die Response', res);}, (err)=>{console.log('Das ist der Error', err);})
 
 
 }

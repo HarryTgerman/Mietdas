@@ -420,7 +420,7 @@ span.input-group-addon {
 }
 .bootstrap-select.btn-group .dropdown-menu li a:hover {
     box-shadow: none;
-    background: #f64625;
+    background: green;
     color: #ffffff;
 }
 .btn-group.open .dropdown-toggle {
@@ -438,7 +438,10 @@ button.btn.dropdown-toggle.btn-default {
     box-shadow: none;
     height: 46px;
 }
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+ul.dropdown-menu li>.active>a{
+	background-color:#fff6e5 !important;
+}
+.dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
     background-color:#f64625;
 }
 /*------ Choosen Select Box ----*/
@@ -3736,7 +3739,7 @@ Component Style
     -webkit-box-shadow: 0px 0px 10px 1px rgba(71, 85, 95,0.08);
     -moz-box-shadow: 0px 0px 10px 1px rgba(71, 85, 95,0.08);
 }
-.tab.style-2 .nav-tabs li a:hover, .tab.style-2 .nav-tabs li.active a {
+.tab.style-2 .nav-tabs li a:hover {
     color: #ffffff;
     border-bottom: 2px solid #f64625;
     background: #f64625;

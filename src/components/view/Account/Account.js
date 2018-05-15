@@ -15,6 +15,7 @@ class Account extends Component{
     super(props)
     this.firedata = this.firedata.bind(this)
     this.loadAnfragen = this.loadAnfragen.bind(this)
+
     this.state ={
       authenticated: false,
       redirect: false,
@@ -139,6 +140,7 @@ editProfile() {
           if(this.state.redirect === true){
             return (<Redirect to="/"/>)
           }
+
           return(
             <div className="home-2 wrapper">
                 {/* Start Navigation */}
@@ -228,7 +230,7 @@ editProfile() {
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="meinGerätepark">
                     {this.state.cards?(this.state.cards.map((card) => {
-                             return(<AccountCards snap={card.snap} cardId={card.id}/>)
+                             return(<AccountCards snap={card.snap} cardId={card.id} firebase={firebase.database().ref().child('app')}/>)
                            })):(<h3>Du hast keine Geräte inseriert</h3>)
                        }
                     </div>

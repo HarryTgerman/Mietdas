@@ -1,13 +1,40 @@
 import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
+import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
 
 
 
 class  AccountCards extends Component {
   constructor(props) {
       super(props)
+      this.state ={
+        toggle: true,
+        adresse: this.props.snap.address
+      }
     }
 
+changeLocation(){
+ geocodeByAddress(this.inputRef.value)
+  .then(results =>{
+    let res = results[0]
+    getLatLng(results[0])
+    .then(latLng =>{
+      this.setState({
+          latLng: latLng,
+          })
+      }).then(()=>{
+        let arr =  res.formatted_address.split(",")
+        let adresse= arr[0]+arr[1]
+        let ort = results[0].address_components[5].long_name + results[0].address_components[2].long_name
+        this.props.firebase.child('cards').child(this.props.snap.kategorie).child(this.props.cardId)
+        .update({address:adresse, bundesland: results[0].address_components[3].long_name, cords: this.state.latLng, ort: ort})
+        this.setState({
+          adresse: adresse,
+          toggle:true,
+      })
+    }).catch(error => console.error('Error', error))
+  })
+}
 
     render(){
 
@@ -16,33 +43,31 @@ class  AccountCards extends Component {
       <div >
 
 
-        <div style={{height: "455px"}}  className="col-md-4 col-sm-12">
+      <div style={{height: "455px"}}  className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
-            <a href="#">
               <div className="listing-shot-img">
                 <img src={this.props.snap.imageUrl}  className="img-responsive" alt=""/>
               </div>
-              <div className="listing-shot-caption">
-                <h4>{this.props.snap.cardHeading}</h4>
-                <p className="listing-location">{this.props.snap.standOrt}</p>
-                <Link to={{ pathname: `/artikelbearbeiten/${this.props.cardId}`,
-                          state: {
-                                    id: this.props.cardId,
-                                    snap: this.props.snap,
-                                  }
-        }}><span className="like-listing style-2"><i className="fa fa-edit" aria-hidden="true"></i></span></Link>
-              </div>
-            </a>
-            <div className="listing-shot-info">
+            <div className="listing-shot-caption">
+              <h4>{this.props.snap.cardHeading}</h4>
+            </div>
+            {this.state.toggle ?
+          (
+          <div className="listing-shot-info">
               <div className="row extra">
                 <div className="col-md-12">
                   <div className="listing-detail-info">
-                    <span><i className="fa fa-phone" aria-hidden="true"></i> 807-502-5867</span>
-                    <span><i className="fa fa-globe" aria-hidden="true"></i> www.mysitelink.com</span>
+                    <span>gemiete: ....</span>
+                    <span><a>{this.state.adresse}</a></span>
                   </div>
                 </div>
               </div>
-            </div>
+            </div>):(
+              <div className="listing-shot-info ">
+                  <span><label>Adresse eingeben</label></span>
+                  <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}><i className="fa fa-map-marker" aria-hidden="true"></i></button></span>
+              </div>
+            )}
             <div className="listing-shot-info rating">
               <div className="row extra">
                 <div className="col-md-7 col-sm-7 col-xs-6">
@@ -53,7 +78,7 @@ class  AccountCards extends Component {
                   <i className="fa fa-star" aria-hidden="true"></i>
                 </div>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                  <a href="#" className="detail-link">Open Now</a>
+                  <a onClick={()=>{this.setState({toggle:!this.state.toggle})}} href="#" className="detail-link">Standort verändern</a>
                 </div>
               </div>
             </div>
