@@ -18,6 +18,7 @@ import axios from 'axios'
 class Payment extends Component{
   constructor(props){
     super(props)
+    this.getPaymentMethods = this.getPaymentMethods.bind(this);
     // this.ArtikelOwnerId = this.props.query.anfrage.uid
     // this.ArtikelOwnerEmail = this.props.query.anfrage.email
     this.state ={
@@ -48,6 +49,13 @@ class Payment extends Component{
         })
         }
       })
+      fetch('http://localhost:8888/Backend/payment.php', {
+      })
+      .then((response) => response.json())
+      .then((responseJson)=>
+     {
+       console.log(responseJson);
+     })
 
   }
   componentWillUpdate(nextProps, nextState) {
@@ -81,20 +89,13 @@ requestHandler(e){
   console.log(cseInstance, 'das ist cseInstance', encryptedInstance, 'encryptedInstance 2');
 
 
-
-  fetch('/payment', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json, text/plain, */*',
-    'Content-type':'application/json'
-  },
-  body:JSON.stringify({encryptedInstance: encryptedInstance})
-}).then((res) => {
-  console.log(res, 'hier res');
-});
-
-
 }
+
+ //
+
+ getPaymentMethods(){
+
+ }
 
 
   render(){
@@ -181,7 +182,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                           </div>
 
 
-                      <form onSubmit={this.requestHandler.bind(this)}  id="adyen-encrypted-form">
+                      <form  onSubmit={this.getPaymentMethods} id="adyen-encrypted-form">
                           <input type="text" size="20" data-encrypted-name="number" placeholder="number"/>
                           <input type="text" size="20" data-encrypted-name="holderName" placeholder="holderName"/>
                           <input type="text" size="20" data-encrypted-name="expiryMonth" placeholder="expiryMonth"/>
