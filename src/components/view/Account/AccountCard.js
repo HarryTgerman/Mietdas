@@ -24,10 +24,12 @@ changeLocation(){
           })
       }).then(()=>{
         let arr =  res.formatted_address.split(",")
+        console.log(results[0].address_components);
         let adresse= arr[0]+arr[1]
-        let ort = results[0].address_components[5].long_name + results[0].address_components[2].long_name
+        let ort = results[0].address_components[5].long_name +" "+ results[0].address_components[2].long_name
         this.props.firebase.child('cards').child(this.props.snap.kategorie).child(this.props.cardId)
-        .update({address:adresse, bundesland: results[0].address_components[3].long_name, cords: this.state.latLng, ort: ort})
+        .update({adresse:adresse, bundesland: results[0].address_components[3].long_name,
+           cords: this.state.latLng, ort: ort,})
         this.setState({
           adresse: adresse,
           toggle:true,
@@ -65,7 +67,7 @@ changeLocation(){
             </div>):(
               <div className="listing-shot-info ">
                   <span><label>Adresse eingeben</label></span>
-                  <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}><i className="fa fa-map-marker" aria-hidden="true"></i></button></span>
+                  <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}><i className="color fa fa-map-marker" aria-hidden="true"></i></button></span>
               </div>
             )}
             <div className="listing-shot-info rating">

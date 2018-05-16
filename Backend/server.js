@@ -3,9 +3,16 @@ const bodyParser = require('body-parser');
 const request = require('request');
 const axios = require('axios')
 const hexToBinary = require('hex-to-binary');
-const sha256 = require('sha256');
-const base64js = require('base64-js');
 const urlencode = require('urlencode');
+const crypto = require('crypto')
+const base64 = require('base-64');
+const base64js = require('base64-js');
+// const SHA256 = require("crypto-js/sha256");
+// let binary_hmacKey = hexToBinary(HMAC_KEY);
+
+const sha256 = require('js-sha256');
+
+
 
 const app = express();
 
@@ -13,13 +20,13 @@ const app = express();
 
 signatureCalculation = () => {
 
-  HMAC_KEY = "081558DC84C7011F068288C3D2F94AB30623A17D67262F6122BA7AA84FF784E0"
+  let HMAC_KEY = "5372E894790F9649C61300743CA2ECE9E9763F9401A9BE53C2B914DE1AE44F07"
 
   let masterList = [
-    { key :'shopperLocale', val: 'de_GER'},
+    { key :'shopperLocale', val: 'en_GB'},
     { key :'merchantReference', val: 'paymentTest'},
     { key :'merchantAccount', val: 'MietDasCOM'},
-    { key :'sessionValidity', val: '2018-05-14T18\\:46\\:19Z'},
+    { key :'sessionValidity', val: '2018-05-18T13\:15\:30Z'},
     { key :'shipBeforeDate', val: '2018-07-30'},
     { key :'paymentAmount', val: '1995'},
     { key :'currencyCode', val: 'EUR'},
@@ -37,7 +44,6 @@ signatureCalculation = () => {
   let i;
   let j;
   let signingString = "";
-
   for (i = 0; i < masterList.length; i++) {
       signingString += masterList[i].key + ":";
   }
@@ -45,23 +51,57 @@ signatureCalculation = () => {
   for (j = 0; j < masterList.length; j++) {
       signingString += masterList[j].val + ":";
   }
+  signingString  = signingString.slice(0,-1)
   console.log('signing String:',signingString);
 
   //binäre Konvertierung
+  (function(){
+      var ConvertBase = function (num) {
+          return {
+              from : function (baseFrom) {
+                  return {
+                      to : function (baseTo) {
+                          return parseInt(num, baseFrom).toString(baseTo);
+                      }
+                  };
+              }
+          };
+      };
+      // hexadecimal to binary
+      ConvertBase.hex2bin = function (num) {
+          return ConvertBase(num).from(16).to(2);
+      };
+      this.ConvertBase = ConvertBase;
+  })(this);
 
-  let binary_hmacKey = hexToBinary(HMAC_KEY);
+
+  let  binary_hmacKey = ConvertBase.hex2bin(HMAC_KEY)
+
+
+  console.log(binary_hmacKey);
 
   //Calculate the HMAC with the signing string with scha256
+  // let binary_hmac = crypto.createHmac('sha256',  binary_hmacKey).update(signingString).digest('hex')
+  // let binary_hmac = SHA256(signingString, binary_hmacKey);
 
-  let binary_hmac = sha256(binary_hmacKey, signingString);
+  let binary_hmac = sha256.hmac(binary_hmacKey, signingString);
+
+
+   // let binary_hmac= sha256(bin, signingString);
+
+  console.log(binary_hmac);
 
   //encode base64
 
-  let signature = base64js.fromByteArray(binary_hmac);
+  let signature = base64.encode(binary_hmac);
+
+  // let signature = base64js.fromByteArray(binary_hmac);
 
   console.log(signature);
 
    let merchantSig = urlencode(signature);
+
+   console.log(merchantSig);
 
   //requestPaymentMethods(merchantSig);
   let config = {
@@ -70,33 +110,46 @@ signatureCalculation = () => {
      'Content-type':'application/json'
    },
    auth: {
-       username: "MietDas",
+       merchantAccount: "MietDasCOM",
        account: "admin",
        password: "G8$g$!CyB3<uB#?A"
    }
  }
 
  let data = {
-    shopperLocale: 'de_GER',
+   shopperLocale: 'de_GER',
     merchantReference: 'paymentTest',
     merchantAccount: 'MietDasCOM',
-    sessionValidity: '2018-05-15T18\\:46\\:19Z',
-    shipBeforeDate: '2018-07-30',
+    sessionValidity: '2018-05-15T21\\:46\\:19Z',
     paymentAmount: '1995',
     currencyCode: 'EUR',
     skinCode: 'mLIn3bJn',
    merchantSig: merchantSig
  }
+ // curl https://test.adyen.com/hpp/directory.shtml \
+ // -d countryCode=DE \
+ // -d currencyCode=EUR \
+ // -d merchantAccount=MietDasCOM \
+ // -d merchantReference=paymentTest \
+ // -d paymentAmount=2000 \
+ // -d sessionValidity='2018-05-17T22\\:46\\:19Z' \
+ // -d skinCode=mLIn3bJn \
+ // -d merchantSig=MTFhNjM3N2E4MmNkYTkwMTI3ZGRlNGQwNzdkNjcwMTUwODBiOTkzYjFhZDA0YmZhYWQ3ZDQ5NGJiYzg5NWVlOA%3D%3D
 
-  axios.post('https://test.adyen.com/hpp/directory.shtml', data)
 
-  .then((res)=>{console.log('Das ist die Response für PaymentMethod', res);}, (err)=>{console.log('Das ist der Error für PaymentMethods', err);})
 
-// let test_url = 'https://ca-test.adyen.com/ca/ca/skin/checkhmac.shtml?' + merchantSig;
+
+
+//    axios.post('https://test.adyen.com/hpp/directory.shtml', data)
+//   //
+//    .then((res)=>{console.log('Das ist die Response für PaymentMethod', res);}, (err)=>{console.log('Das ist der Error für PaymentMethods', err);})
 //
-//   axios.post(test_url, config)
-//   .then((res)=>{console.log('Das ist die Response', res);}, (err)=>{console.log('Das ist der Error', err);})
-
+//  let test_url = 'https://ca-test.adyen.com/ca/ca/skin/checkhmac.shtml?'+merchantSig;
+// ;
+ //
+  // axios.post(test_url)
+  // .then((res)=>{console.log('Das ist die Response', res);}, (err)=>{console.log('Das ist der Error', err);})
+ //
 
 }
 

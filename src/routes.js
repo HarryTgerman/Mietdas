@@ -23,7 +23,6 @@ import Payment from './components/PaymentMethod/Payment'
 
 const facebookProvider = new firebase.auth.FacebookAuthProvider()
 const gmailProvider = new firebase.auth.GoogleAuthProvider();
-gmailProvider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
 
 
@@ -69,23 +68,24 @@ checkCaptcha() {
 }
 
 authWithGmail(){
-firebase.auth().signInWithPopup(gmailProvider).then(function(result) {
+  firebase.auth().signInWithPopup(gmailProvider).then(function(result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    this.setState({ authenticated: true})
 
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  var token = result.credential.accessToken;
-  // The signed-in user info.
-  var user = result.user;
-  // ...
-}).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-});
+    // ...
+  }).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
 }
 
 authWithFacebook(){
@@ -267,13 +267,14 @@ sendPwReset(){
                                           <input type="password" name="password" className="form-control"  placeholder="Passwort" ref={(input) => { this.passwordInput = input; }} required=""/>
                                           <a className="forgottPW" onClick={()=>{this.setState({forgottPw : true})}} >Passwort vergessen ?</a>
                                           <div style={{marginTop:"10px"}} className="center">
-                                          <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithFacebook}>
+                                          <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px", margin:"5px"}} onClick={this.authWithFacebook}>
                                             Log-In mit Facebook
                                           </button>
-                                          <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.authWithGmail.bind(this)}>
+                                          <button  type = "button" className="btn btn-midium btn-radius width-200" style={{borderRadius: "50px", width: "200px",margin:"5px"}} onClick={this.authWithGmail.bind(this)}>
+                                          <img className="left" width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
                                             Log-In mit Gmail
                                           </button>
-                                          <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200"> Login </button>
+                                          <button type="button" id="login-btn" onClick={this.signIn} className="btn btn-midium theme-btn btn-radius width-200" style={{margin:"5px"}}> Login </button>
 
                                           </div></div>)}
                                         </div>
@@ -289,18 +290,19 @@ sendPwReset(){
                                       <div className="form-group">
                                         <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
                                         <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
-                                        <div className="center">
-                                          <ReCAPTCHA
+                                        <div className="center"  >
+                                          <ReCAPTCHA style={{marginBottom: "10px"}}
                                           ref="recaptcha"
                                           sitekey="6LeEWlYUAAAAAOITMgxX0pcih46KC23uxTQQwD72"
                                           onChange={this.checkCaptcha.bind(this)}/>
-                                        <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithFacebook}>
+                                        <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px", margin:"5px"}} onClick={this.registerWithFacebook}>
                                           Log-In mit Facebook
                                         </button>
-                                        <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px"}} onClick={this.registerWithGmail.bind(this)}>
+                                        <button  type="button" className="btn btn-midium btn-radius width-200" style={{borderRadius: "50px", width: "200px",margin:"5px"}} onClick={this.registerWithGmail.bind(this)}>
+                                           <img width="20px" alt="Google &quot;G&quot; Logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
                                           Log-In mit Gmaill
                                         </button>
-                                        <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200"> Registriere Dich </button>
+                                        <button   type = "button" onClick={this.register} className="btn btn-midium theme-btn btn-radius width-200" style={{margin:"5px"}}> Registriere Dich </button>
                                         </div>
                                       </div>
                                     </div>

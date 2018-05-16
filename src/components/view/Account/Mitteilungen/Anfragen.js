@@ -8,16 +8,9 @@ import {Link} from 'react-router-dom';
 class Anfragen extends Component{
   constructor(props){
     super(props)
-    this.Details = this.Details.bind(this);
-    this.Zusagen = this.Zusagen.bind(this);
   }
 
-  Details(){
-    const num = this.props.name + this.props.num
-    firebase.database().ref().child('app').child('users/' + this.props.uid)
-    .child('anfragen').child(num)
-    .update({new: false})
-  }
+
 
   Zusagen(){
     alert('Sie haben '+ this.props.name+ ' zugesagt ' +this.props.cardHeading + ' im Zeitraum von '+this.props.mietbeginn + " - " +this.props.mietende+" zu vermieten")
@@ -74,8 +67,8 @@ class Anfragen extends Component{
                           <div className="row extra">
 
                             <div className="row pull-right">
-                              <div className="col-sm-4">
-                                <button onClick={this.Zusagen} className="theme-btn btn-outlined">Zusagen</button>
+                              <div className="col-sm-6">
+                                <button onClick={this.Zusagen.bind(this)} className="theme-btn btn-outlined">Zusagen</button>
                               </div>
                               <Link to={{
                                        pathname: `/baumaschinen_Anfragen/uid=${this.props.uid}/name=${this.props.name}/num=${this.props.num}`,
@@ -94,11 +87,9 @@ class Anfragen extends Component{
                                          yName: this.props.yName,
                                        }
                                      }}>
-                              <div className="col-sm-4">
-                                <button  className="theme-btn btn-outlined">Details</button>
-                              </div>
+
                               </Link>
-                              <div className="col-sm-4">
+                              <div className="col-sm-6">
                                 <button onClick={this.Absagen.bind(this)} className="theme-btn btn-outlined">Absagen</button>
                               </div>
                             </div>

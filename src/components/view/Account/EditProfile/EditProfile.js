@@ -9,7 +9,7 @@ class EditProfile extends Component{
     super(props)
     this.state={
       loading: true,
-      redirect: true
+      redirect: false
 
     }
 }
