@@ -95,12 +95,15 @@ requestHandler(e){
   })
  }
  recalcRequest(e){
+   e.preventDefault
+   this.setState({showCardDetails:true, requestPaymentMethods:false})
    let brandCode = this.state.brandcode
    let paymentAmount = this.props.location.query.anfrage.umsatz+"00"
    let merchantReference = this.props.location.query.cardId
-   this.setState({showCardDetails:true, requestPaymentMethods:false})
-   e.preventDefault
-   fetch('http://localhost:8888/Backend/recalcSig.php', {brandCode,paymentAmount,merchantReference
+   let formData = new FormData();
+   formData.append('content','test2')
+   fetch(`http://localhost:8888/Backend/recalcSig.php`, {method:"POST",headers:{},
+    body:formData
    })
    .then((response) => console.log(response))
 

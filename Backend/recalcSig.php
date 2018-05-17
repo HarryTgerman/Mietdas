@@ -26,18 +26,15 @@
   * The following fields are required for the directory
   * service.
   */
+echo 'hallo';
+
 $skinCode        = "mLIn3bJn";
 $merchantAccount = "MietDasCOM";
 $hmacKey         = "5372E894790F9649C61300743CA2ECE9E9763F9401A9BE53C2B914DE1AE44F07";
-$paymentAmount = request.paymentAmount;
-$merchantReference = request.merchantReference;
-$brandCode= request.brandCode;
+$brandCode = $_POST['content'];
 
 $request = array(
-                "brandCode"         => $brandCode
-                "paymentAmount"     => $paymentAmount,
                 "currencyCode"      => "EUR",
-                "merchantReference" => $merchantReference,
                 "skinCode"          =>  $skinCode,
                 "merchantAccount"   =>  $merchantAccount,
                 "sessionValidity"   => date("c",strtotime("+1 days")),
@@ -55,6 +52,6 @@ ksort($request, SORT_STRING);
 $signData = implode(":",array_map($escapeval,array_merge(array_keys($request), array_values($request))));
 // base64-encode the binary result of the HMAC computation
 $merchantSig = base64_encode(hash_hmac('sha256',$signData,pack("H*" , $hmacKey),true));
-$request["merchantSig"] = $merchantSig;
- echo $merchantSig;
+
+echo $brandCode;
 ?>
