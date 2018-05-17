@@ -181,6 +181,7 @@ onDrop(imageFiles) {
 
 
         render(){
+          console.log('hier ist der abbruchhammer');
           if(this.state.redirect === true) {
             return  <Redirect to="/benutzeraccount"/>
           }

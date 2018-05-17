@@ -18,7 +18,6 @@ import axios from 'axios'
 class Payment extends Component{
   constructor(props){
     super(props)
-    this.getPaymentMethods = this.getPaymentMethods.bind(this);
     // this.ArtikelOwnerId = this.props.query.anfrage.uid
     // this.ArtikelOwnerEmail = this.props.query.anfrage.email
     this.state ={
@@ -49,18 +48,10 @@ class Payment extends Component{
         })
         }
       })
-      fetch('http://localhost:8888/Backend/payment.php', {
-      })
-      .then((response) => response.json())
-      .then((responseJson)=>
-     {
-       console.log(responseJson);
-     })
+
 
   }
-  componentWillUpdate(nextProps, nextState) {
-   console.log('Will update', nextProps);
- }
+
 
 
 requestHandler(e){
@@ -93,7 +84,26 @@ requestHandler(e){
 
  //
 
- getPaymentMethods(){
+ getPaymentMethods(e){
+   e.preventDefault
+   fetch('http://localhost:8888/Backend/payment.php', {
+   })
+   .then((response) => response.json())
+   .then((responseJson)=>
+  { this.setState({requestPaymentMethods:responseJson.paymentMethods})
+    console.log(responseJson);
+  })
+ }
+ recalcRequest(e){
+   let brandCode = this.state.brandcode
+   let paymentAmount = this.props.location.query.anfrage.umsatz+"00"
+   let merchantReference = this.props.location.query.cardId
+
+   e.preventDefault
+   fetch('http://localhost:8888/Backend/recalcSig.php', {brandCode,paymentAmount,merchantReference
+   })
+   .then((response) => console.log(response))
+   .then(()=>{this.setState({showCardDetails:true, requestPaymentMethods:false})})
 
  }
 
@@ -175,31 +185,88 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                       <h4><i className="ti-credit-card theme-cl mrg-r-5 "></i>Payment Methode</h4>
                     </div>
                     <div className="detail-wrapper-body">
-                      <div className="payment-card">
+
+                      <button type="button" className="btn theme-btn"  onClick={this.getPaymentMethods.bind(this)}>Zahlmethode</button>
+
+            {this.state.requestPaymentMethods?
+              (this.state.requestPaymentMethods.map((meth) =>{
+                  return(
+                    <div stlye={{width:"100%", height:"15px"}}>
+                      <button onClick={()=>{this.setState({showCardDetails:true, paymentLogo:meth.logos.normal,
+                        brandcode:meth.brandCode, name: meth.name,})},this.recalcRequest.bind(this)}
+                        className="btn-default" >
+                        <img className="left" src={meth.logos.normal}/>
+                        <p>{meth.name}</p>
+                     </button>
+                   </div>)
+                       })): (null)}
 
 
+                       {this.state.showCardDetails?(
+                         <form method="post" action="https://test.adyen.com/hpp/skipDetails.shtml" id="adyenForm" name="adyenForm" target="_parent">
+                           <input type="hidden" name="merchantSig" value={this.state.recalcRequest} />
+                           <input type="hidden" name="sessionValidity" value="newRequest Gera du musst das machen!" />
+                           <input type="hidden" name="shopperLocale" value="ger_DE" />
+                           <input type="hidden" name="merchantAccount" value="MietDasCOM" />
+                           <input type="hidden" name="paymentAmount" value={this.props.location.query.anfrage.umsatz+"00"} />
+                           <input type="hidden" name="currencyCode" value="DE" />
+                           <input type="hidden" name="skinCode" value="mLIn3bJn" />
+                           <input type="hidden" name="merchantReference" value={this.props.location.query.cardId} />
+                           <input type="hidden" name="brandCode" value={this.state.brandcode} />
+                           <input type="submit" value="Send" />
+                           <input type="reset" />
+                        </form>
+                       ):(null)}
 
-                          </div>
-
-
-                      <form  onSubmit={this.getPaymentMethods} id="adyen-encrypted-form">
-                          <input type="text" size="20" data-encrypted-name="number" placeholder="number"/>
-                          <input type="text" size="20" data-encrypted-name="holderName" placeholder="holderName"/>
-                          <input type="text" size="20" data-encrypted-name="expiryMonth" placeholder="expiryMonth"/>
-                          <input type="text" size="14" data-encrypted-name="expiryYear" placeholder="expiryYear"/>
-                          <input type="text" size="14" data-encrypted-name="cvc" placeholder="cvc"/>
-                          <input type="hidden" value={timeStemp} data-encrypted-name="generationtime"/>
-                          <input type="submit" value="Pay"/>
-                      </form>
                     </div>
                   </div>
                 </div>
 
                 {/* Sidebar */}
                 <div className="col-md-4 col-sm-12">
-                  <div className="widget-boxed padd-0">
-                    {/* Booking listing or Space */}
+                  <div >
+                    {/* Start: Search By Price */}
+                    <div className="widget-boxed padd-0">
 
+                      {/* Booking listing or Space */}
+                      <div className="listing-shot grid-style no-shadow border-0 mrg-0">
+                        <a href="#">
+                          <div className="listing-shot-img">
+                            <img src={this.props.location.query.anfrage.url} className="img-responsive" alt=""/>
+                            <span className="like-listing"><i className="fa fa-heart-o" aria-hidden="true"></i></span>
+                          </div>
+                          <div className="listing-shot-caption">
+                            <h4>{this.props.location.query.anfrage.cardHeading}</h4>
+                            <p className="listing-location">{this.props.location.query.anfrage.standOrt}</p>
+                          </div>
+                        </a>
+                      </div>
+
+                      {/* Booking listing or Space Price */}
+                      <div className="booking-price padd-15">
+                        <h4 className="mrg-bot-20">Zusammenfassung</h4>
+
+                        {/* your Dates */}
+                        <div className="booking-price-detail side-list no-border">
+                          <h5>Zeitraum</h5>
+                          <ul>
+                            <li>Mietbeginn<strong className="pull-right">{this.props.location.query.anfrage.mietbeginn}</strong></li>
+                            <li>Mietende<strong className="pull-right">{this.props.location.query.anfrage.mietende}</strong></li>
+                          </ul>
+                        </div>
+
+
+
+                        {/* Total Cost */}
+                        <div className="booking-price-detail side-list no-border">
+                          <ul>
+                            <li>{this.props.location.query.anfrage.tage}<strong className="theme-cl pull-right">{this.props.location.query.anfrage.umsatz}€</strong></li>
+                          </ul>
+                        </div>
+
+                      </div>
+
+                    </div>
                   </div>
                 </div>
               </div>

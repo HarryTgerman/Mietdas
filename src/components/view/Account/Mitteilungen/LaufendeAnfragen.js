@@ -50,6 +50,7 @@ class LaufendeAnfragen extends Component{
                           this.props.bestätigt ?(<Link to={{
                                pathname: `/reservierung=${this.props.cardId}/payment`,
                                query: {
+                                 cardid: this.props.cardId,
                                  anfrage: this.props.anfrage,
                                }
                          }}>

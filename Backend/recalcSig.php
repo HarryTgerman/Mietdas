@@ -29,10 +29,15 @@
 $skinCode        = "mLIn3bJn";
 $merchantAccount = "MietDasCOM";
 $hmacKey         = "5372E894790F9649C61300743CA2ECE9E9763F9401A9BE53C2B914DE1AE44F07";
+$paymentAmount = request.paymentAmount;
+$merchantReference = request.merchantReference;
+$brandCode= request.brandCode;
+
 $request = array(
-                "paymentAmount"     => "199",
+                "brandCode"         => $brandCode
+                "paymentAmount"     => $paymentAmount,
                 "currencyCode"      => "EUR",
-                "merchantReference" => "Banentest",
+                "merchantReference" => $merchantReference,
                 "skinCode"          =>  $skinCode,
                 "merchantAccount"   =>  $merchantAccount,
                 "sessionValidity"   => date("c",strtotime("+1 days")),
@@ -51,27 +56,5 @@ $signData = implode(":",array_map($escapeval,array_merge(array_keys($request), a
 // base64-encode the binary result of the HMAC computation
 $merchantSig = base64_encode(hash_hmac('sha256',$signData,pack("H*" , $hmacKey),true));
 $request["merchantSig"] = $merchantSig;
- $ch = curl_init();
- curl_setopt($ch, CURLOPT_URL, "https://test.adyen.com/hpp/directory/v2.shtml");
- curl_setopt($ch, CURLOPT_HEADER, false);
- curl_setopt($ch, CURLOPT_POST,count($request));
- curl_setopt($ch, CURLOPT_POSTFIELDS,http_build_query($request));
- curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
-
- $result = curl_exec($ch);
-
-
- if($result === false)
-	echo "Error: " . curl_error($ch);
- else{
-	/**
-	 * The $result contains a JSON array containing
-	 * the available payment methods for the merchant account.
-	 */
-	echo $result;
-
- }
- 
-
- curl_close($ch);
+ echo $merchantSig;
 ?>

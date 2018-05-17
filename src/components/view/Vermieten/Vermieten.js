@@ -276,185 +276,185 @@ onDrop(imageFiles) {
 
                   {/* Tab panes */}
                   <div className="tab-content tabs">
-                    <div role="tabpanel" className="tab-panel fade" id="vibrationswalze">
+                    <div role="tabpanel" className="tab-pane fade" id="vibrationswalze">
                       <Vibrationswalze user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="betonmischer">
+                    <div role="tabpanel" className="tab-pane fade" id="betonmischer">
                       <Betonmischer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="trennschleifer">
+                    <div role="tabpanel" className="tab-pane fade" id="trennschleifer">
                       <Trennschleifer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="stromerzeuger">
+                    <div role="tabpanel" className="tab-pane fade" id="stromerzeuger">
                       <Stromerzeuger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="steinsaege">
+                    <div role="tabpanel" className="tab-pane fade" id="steinsaege">
                       <Steinsaege user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="raddumper">
+                    <div role="tabpanel" className="tab-pane fade" id="raddumper">
                       <Raddumper user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="pritschenwagen">
+                    <div role="tabpanel" className="tab-pane fade" id="pritschenwagen">
                       <Pritschenwagen user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="materialContainer">
+                    <div role="tabpanel" className="tab-pane fade" id="materialContainer">
                       <MaterialContainer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="kompressor">
+                    <div role="tabpanel" className="tab-pane fade" id="kompressor">
                       <Kompressor user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="kettendumper">
+                    <div role="tabpanel" className="tab-pane fade" id="kettendumper">
                       <Kettendumper user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="kernbohrmaschiene">
+                    <div role="tabpanel" className="tab-pane fade" id="kernbohrmaschiene">
                       <Kernbohrmaschiene user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="holzhaecksler">
+                    <div role="tabpanel" className="tab-pane fade" id="holzhaecksler">
                       <Holzhaecksler user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="grabenwalze">
+                    <div role="tabpanel" className="tab-pane fade" id="grabenwalze">
                       <Grabenwalze user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="fugenschneider">
+                    <div role="tabpanel" className="tab-pane fade" id="fugenschneider">
                       <Fugenschneider user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="erdbohrgeraet">
+                    <div role="tabpanel" className="tab-pane fade" id="erdbohrgeraet">
                       <Erdbohrgeraet user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="abbruchhammer">
+                    <div role="tabpanel" className="tab-pane fade" id="abbruchhammer">
                       <Abbruchhammer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="bohrhammer">
+                    <div role="tabpanel" className="tab-pane fade" id="bohrhammer">
                       <Bohrhammer user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="bodenfraese">
+                    <div role="tabpanel" className="tab-pane fade" id="bodenfraese">
                       <Bodenfraese user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="blocksteinsaege">
+                    <div role="tabpanel" className="tab-pane fade" id="blocksteinsaege">
                       <Blocksteinsaege user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="betoninnenruettler">
+                    <div role="tabpanel" className="tab-pane fade" id="betoninnenruettler">
                       <Betoninnenruettler user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="betonglaeter">
+                    <div role="tabpanel" className="tab-pane fade" id="betonglaeter">
                       <Betonglaeter user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="bausteinBandseage">
+                    <div role="tabpanel" className="tab-pane fade" id="bausteinBandseage">
                       <BausteinBandseage user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade in active" id="minibagger">
+                    <div role="tabpanel" className="tab-pane fade in active" id="minibagger">
                       <Minibagger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="kompaktbagger">
+                    <div role="tabpanel" className="tab-pane fade" id="kompaktbagger">
                       <Kompaktbagger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="raupenbagger">
+                    <div role="tabpanel" className="tab-pane fade" id="raupenbagger">
                       <Raupenbagger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="mobilbagger">
+                    <div role="tabpanel" className="tab-pane fade" id="mobilbagger">
                       <Mobilbagger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
 
-                    <div role="tabpanel" className="tab-panel fade" id="radlader">
+                    <div role="tabpanel" className="tab-pane fade" id="radlader">
                       <Radlader  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="stampfer">
+                    <div role="tabpanel" className="tab-pane fade" id="stampfer">
                       <Stampfer  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="vibrationsplatte">
+                    <div role="tabpanel" className="tab-pane fade" id="vibrationsplatte">
                       <Vibrationsplatte  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="kippanhänger">
+                    <div role="tabpanel" className="tab-pane fade" id="kippanhänger">
                       <Kippanhänger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="motorradanhänger">
+                    <div role="tabpanel" className="tab-pane fade" id="motorradanhänger">
                       <Motorradanhänger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="umzugstransporter">
+                    <div role="tabpanel" className="tab-pane fade" id="umzugstransporter">
                       <Umzugstransporter  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="planenanhänger">
+                    <div role="tabpanel" className="tab-pane fade" id="planenanhänger">
                       <Planenanhänger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-panel fade" id="autotransportanhänger">
+                    <div role="tabpanel" className="tab-pane fade" id="autotransportanhänger">
                       <Autotransportanhänger  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
 
-                    <div role="tabpanel" className="tab-panel fade" id="tieflader">
+                    <div role="tabpanel" className="tab-pane fade" id="tieflader">
                       <Tieflader  user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
 
-                    <div role="tabpanel" className="tab-panel fade" id="messages">
+                    <div role="tabpanel" className="tab-pane fade" id="messages">
                       <Anhänger user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>

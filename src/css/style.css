@@ -1,3 +1,4 @@
+
 /*-----------------------------------------
 * Theme Name: Listing Hub
 * Author: Themez Hub
@@ -33,7 +34,6 @@
 # Navigation
 	Default Navigation
 	Transparent Navigation
-
 # Home Banner Styles
 	Common Banner Style
 	Home 1 Banner
@@ -48,12 +48,10 @@
 	listing Category Style 1
 	listing Category Style 2
 	listing Category Style 3
-
 # Popular Cities Style
 # Testimonial Styles
 	Testimonial Styles 1
 	Testimonial Styles 2
-
 # Pricing Table Style
 # Services Style
 # Features Style
@@ -61,7 +59,6 @@
 # Tag Section Style
 # Profile Page Styles
 # Page Title Settings
-
 # Component Style
 	Component: Accordion 1
 	Component: Accordion 2
@@ -70,13 +67,9 @@
 	Component: Tab Style 2
 	Component: Notify Style
 	Component: Alert Style
-
 # Footer Styles
-
 # Dropper Settings
-
 # Slick Slider
-
 # Pages Settings
 	Add listing
 	Edit Wraper
@@ -90,13 +83,11 @@
 	Filter Option
 	TranslateY
 	Manage Listing
-
 # Sidebar Style
 	Opening hour
 	Listing In Sidebar
 	Gallery Style
 	Pages Settings
-
 # Login and Signup Popup
 # Blog Page Style
 	Blog Style In Grid
@@ -106,7 +97,6 @@
 # Icons Style
 # Login And SignUp Style
 # Bottom To top Scroll
-
 -----------------------------------------------*/
 
 
@@ -438,7 +428,7 @@ button.btn.dropdown-toggle.btn-default {
     box-shadow: none;
     height: 46px;
 }
-ul.dropdown-menu li>.active>a{
+-.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
 	background-color:#fff6e5 !important;
 }
 .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
@@ -3739,7 +3729,7 @@ Component Style
     -webkit-box-shadow: 0px 0px 10px 1px rgba(71, 85, 95,0.08);
     -moz-box-shadow: 0px 0px 10px 1px rgba(71, 85, 95,0.08);
 }
-.tab.style-2 .nav-tabs li a:hover {
+-.tab.style-2 .nav-tabs li a:hover, .tab.style-2 .nav-tabs li.active a {
     color: #ffffff;
     border-bottom: 2px solid #f64625;
     background: #f64625;
@@ -4994,7 +4984,7 @@ border:1px solid #0e9cf3;
 color:#ffffff;
 }
 .tab-content {
-padding: 2em 0 3em 0;
+padding: 0em 0 1em 0;
 }
 .modal-body .nav-tabs{
 margin-top:0;

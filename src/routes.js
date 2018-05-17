@@ -189,7 +189,7 @@ registerWithFacebook(){
     })
 }
 registerWithGmail(){
-  let whenFacebookAuth = firebase.auth().signInWithPopup(gmailProvider)
+  let whenGmailAuth = firebase.auth().signInWithPopup(gmailProvider)
     .then((result, error) => {
       if (error) {
         alert(error)
@@ -204,7 +204,7 @@ registerWithGmail(){
         this.setState({ authenticated: true})
       }
     })
-    whenFacebookAuth.then(() =>{ this.setState({registerRedirect:true})
+    whenGmailAuth.then(() =>{ this.setState({registerRedirect:true})
     })
 }
 
