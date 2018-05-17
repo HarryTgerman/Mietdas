@@ -98,12 +98,11 @@ requestHandler(e){
    let brandCode = this.state.brandcode
    let paymentAmount = this.props.location.query.anfrage.umsatz+"00"
    let merchantReference = this.props.location.query.cardId
-
+   this.setState({showCardDetails:true, requestPaymentMethods:false})
    e.preventDefault
    fetch('http://localhost:8888/Backend/recalcSig.php', {brandCode,paymentAmount,merchantReference
    })
    .then((response) => console.log(response))
-   .then(()=>{this.setState({showCardDetails:true, requestPaymentMethods:false})})
 
  }
 
@@ -186,19 +185,22 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                     </div>
                     <div className="detail-wrapper-body">
 
-                      <button type="button" className="btn theme-btn"  onClick={this.getPaymentMethods.bind(this)}>Zahlmethode</button>
+                      <button type="button" style={{marginBottom:"20px"}} className="btn theme-btn"  onClick={this.getPaymentMethods.bind(this)}>Zahlmethoden</button>
 
             {this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{
                   return(
-                    <div stlye={{width:"100%", height:"15px"}}>
-                      <button onClick={()=>{this.setState({showCardDetails:true, paymentLogo:meth.logos.normal,
-                        brandcode:meth.brandCode, name: meth.name,})},this.recalcRequest.bind(this)}
-                        className="btn-default" >
-                        <img className="left" src={meth.logos.normal}/>
-                        <p>{meth.name}</p>
-                     </button>
-                   </div>)
+                      <div className="payment-card" onClick={()=>{this.setState({showCardDetails:true, paymentLogo:meth.logos.normal,
+                        brandcode:meth.brandCode, paymanetName: meth.name,})},this.recalcRequest.bind(this)}>
+                        <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
+                          <div className="payment-card-title flexbox">
+                            <h4>{meth.name}</h4>
+                          </div>
+                          <div className="pull-right">
+                            <img src={meth.logos.normal} className="img-responsive" alt=""/>
+                          </div>
+                        </header>
+                      </div>)
                        })): (null)}
 
 
