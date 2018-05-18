@@ -26,28 +26,27 @@
   * The following fields are required for the directory
   * service.
   */
-echo 'hallo';
+$data = json_decode($_POST['data']);
+//echo $data;
 
-$json = file_get_contents("php://input");
+$brandCode = $data->brandCode;
+$paymentAmount=$data->paymentAmount ;
+$merchantReference=$data->merchantReference;
 
-$obj = json_decode($json);
-$response = array();
-$response["data1"] = $obj->field1;
-$response["data2"] = $obj->field2;
-$json_response = json_encode($response);
-echo $json_response;
 
 $skinCode        = "mLIn3bJn";
 $merchantAccount = "MietDasCOM";
 $hmacKey         = "5372E894790F9649C61300743CA2ECE9E9763F9401A9BE53C2B914DE1AE44F07";
-$brandCode = $_POST['content'];
 
 $request = array(
+                "brandCode"         => $brandCode,
+                "merchantReference" => $merchantReference,
+                "paymentAmount"     => $paymentAmount,
                 "currencyCode"      => "EUR",
                 "skinCode"          =>  $skinCode,
                 "merchantAccount"   =>  $merchantAccount,
                 "sessionValidity"   => date("c",strtotime("+1 days")),
-                "countryCode"       => "DE",
+                "shopperLocale"       => "ger_DE",
 );
 
 // Calculation of SHA-256
@@ -62,5 +61,12 @@ $signData = implode(":",array_map($escapeval,array_merge(array_keys($request), a
 // base64-encode the binary result of the HMAC computation
 $merchantSig = base64_encode(hash_hmac('sha256',$signData,pack("H*" , $hmacKey),true));
 
-echo $brandCode;
+
+$responseObj = (object) [
+  'merchantSig' => $merchantSig,
+  'request'   => $request,
+
+];
+echo json_encode($responseObj);
+
 ?>

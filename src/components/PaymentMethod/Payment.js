@@ -18,6 +18,7 @@ import axios from 'axios'
 class Payment extends Component{
   constructor(props){
     super(props)
+    this.recalcRequest= this.recalcRequest.bind(this)
     // this.ArtikelOwnerId = this.props.query.anfrage.uid
     // this.ArtikelOwnerEmail = this.props.query.anfrage.email
     this.state ={
@@ -94,23 +95,34 @@ requestHandler(e){
     console.log(responseJson);
   })
  }
- recalcRequest(e){
-   e.preventDefault
-   this.setState({showCardDetails:true, requestPaymentMethods:false})
-   let brandCode = this.state.brandcode
+ recalcRequest(data){
+   let meth = data
+   let brandCode = meth.brandCode
    let paymentAmount = this.props.location.query.anfrage.umsatz+"00"
-   let merchantReference = this.props.location.query.cardId
-   let text1 = "hasllo";
-   let text2 = "welt";
+   let merchantReference = this.props.location.query.cardid
    let jsonData = {
-						field1 : text1,
-						field2 : text2
+						brandCode : brandCode,
+						paymentAmount : paymentAmount,
+            merchantReference:merchantReference
 					};
-  console.log(jsonData);
-   fetch(`http://localhost:8888/Backend/recalcSig.php`, {method:"POST",headers:{},
-    data: JSON.stringify(jsonData),
-   })
-   .then((response) => console.log(response))
+
+  request.post({
+    headers: {'content-type' : 'application/x-www-form-urlencoded'},
+    url:     'http://localhost:8888/Backend/recalcSig.php',
+    body:    "data=" + JSON.stringify(jsonData)
+  },(err, response, body) => {
+    if (err) throw err;
+      body = JSON.parse(body)
+      console.log(body.merchantSig);
+      console.log(body.request);
+      this.setState({
+        merchantSig: body.merchantSig,
+        sessionValidity: body.request.sessionValidity,
+        requestPaymentMethods: false,
+        showCardDetails:true
+      })
+    console.log('response: ', response);
+  })
 
  }
 
@@ -198,8 +210,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
             {this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{
                   return(
-                      <div className="payment-card" onClick={()=>{this.setState({showCardDetails:true, paymentLogo:meth.logos.normal,
-                        brandcode:meth.brandCode, paymanetName: meth.name,})},this.recalcRequest.bind(this)}>
+                      <div className="payment-card" onClick={()=>{this.setState({meth:meth},this.recalcRequest(meth))}}>
                         <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
                           <div className="payment-card-title flexbox">
                             <h4>{meth.name}</h4>
@@ -214,19 +225,20 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
 
                        {this.state.showCardDetails?(
                          <form method="post" action="https://test.adyen.com/hpp/skipDetails.shtml" id="adyenForm" name="adyenForm" target="_parent">
-                           <input type="hidden" name="merchantSig" value={this.state.recalcRequest} />
-                           <input type="hidden" name="sessionValidity" value="newRequest Gera du musst das machen!" />
-                           <input type="hidden" name="shopperLocale" value="ger_DE" />
+                           <input type="hidden" name="merchantSig" value={this.state.merchantSig} />
+                           <input type="hidden" name="sessionValidity" value={this.state.sessionValidity} />
                            <input type="hidden" name="merchantAccount" value="MietDasCOM" />
                            <input type="hidden" name="paymentAmount" value={this.props.location.query.anfrage.umsatz+"00"} />
-                           <input type="hidden" name="currencyCode" value="DE" />
+                           <input type="hidden" name="currencyCode" value="EUR" />
+                           <input type="hidden" name="shopperLocale" value="ger_DE" />
                            <input type="hidden" name="skinCode" value="mLIn3bJn" />
-                           <input type="hidden" name="merchantReference" value={this.props.location.query.cardId} />
-                           <input type="hidden" name="brandCode" value={this.state.brandcode} />
+                           <input type="hidden" name="merchantReference" value={this.props.location.query.cardid} />
+                           <input type="hidden" name="brandCode" value={this.state.meth.brandCode} />
                            <input type="submit" value="Send" />
                            <input type="reset" />
                         </form>
                        ):(null)}
+
 
                     </div>
                   </div>
