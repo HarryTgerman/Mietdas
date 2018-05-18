@@ -28,6 +28,15 @@
   */
 echo 'hallo';
 
+$json = file_get_contents("php://input");
+
+$obj = json_decode($json);
+$response = array();
+$response["data1"] = $obj->field1;
+$response["data2"] = $obj->field2;
+$json_response = json_encode($response);
+echo $json_response;
+
 $skinCode        = "mLIn3bJn";
 $merchantAccount = "MietDasCOM";
 $hmacKey         = "5372E894790F9649C61300743CA2ECE9E9763F9401A9BE53C2B914DE1AE44F07";

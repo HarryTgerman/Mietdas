@@ -100,10 +100,15 @@ requestHandler(e){
    let brandCode = this.state.brandcode
    let paymentAmount = this.props.location.query.anfrage.umsatz+"00"
    let merchantReference = this.props.location.query.cardId
-   let formData = new FormData();
-   formData.append('content','test2')
+   let text1 = "hasllo";
+   let text2 = "welt";
+   let jsonData = {
+						field1 : text1,
+						field2 : text2
+					};
+  console.log(jsonData);
    fetch(`http://localhost:8888/Backend/recalcSig.php`, {method:"POST",headers:{},
-    body:formData
+    data: JSON.stringify(jsonData),
    })
    .then((response) => console.log(response))
 
