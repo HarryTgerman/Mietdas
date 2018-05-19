@@ -60,7 +60,6 @@ class Artikelbearbeiten extends Component{
    // Uh-oh, an error occurred!
      });
    })
-   console.log(imageFiles)
 }
 
 

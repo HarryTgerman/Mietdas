@@ -35,6 +35,7 @@ componentWillMount(){
         photoUrl: userProfile.photoURL,
         name : userProfile.displayName,
         email : userProfile.email,
+        stadt: userProfile.stadt,
         uid : userProfile.uid,
       },()=>{ this.firedata();
               this.loadAnfragen();
@@ -287,7 +288,7 @@ editProfile() {
                                           <label><i className="ti-user preview-icon call mrg-r-10"></i>{this.state.name}</label>
                                         </li>
                                         <li>
-                                          <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: Speyer</label>
+                                          <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: {this.state.stadt}</label>
                                         </li>
                                         <li>
                                           <label><i className="ti-info preview-icon call mrg-r-10"></i>Plz: 132112342</label>

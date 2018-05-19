@@ -63,4 +63,9 @@ border-top: 1px solid #eaeff5;
 
 .errorMessage{
   color: red;
+  margin: 10px;
+}
+
+.btn theme-btn  {
+  cursor: pointer !important;
 }

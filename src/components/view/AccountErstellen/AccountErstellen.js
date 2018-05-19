@@ -126,6 +126,15 @@ componentWillMount(){
     }
   }
 
+  checkPicture = () => {
+    if(this.profilePic.files.length < 1){
+      const error = "Bitte laden Sie ein Profilbild hoch.";
+      this.setState({bildError: error, isError: true})
+    }else{
+       this.setState({bildError: '', isError: false})
+     }
+  }
+
 
 
 
@@ -140,6 +149,7 @@ createUserProfil(event){
     this.checkPlz();
     this.checkBundesland();
     this.checkLand();
+    this.checkPicture();
 
     const name = this.nameInput.value;
     const email = this.emailInput.value;
@@ -292,9 +302,10 @@ handleChange(event){
                             <div className="avater-box">
                             <img src={this.state.avatarImg } style={{height:"130px",width:"130px"}} className="img-responsive img-circle edit-avater" alt="" />
                             <div style={{marginLeft:"11px"}} className="upload-btn-wrapper">
-                              <button className="btn theme-btn">Profilbild</button>
+                              <button className="btn theme-btn">Profilbild hochladen + </button>
                               <input type="file" name="myfile"   ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
-                            </div>
+                          </div>
+                          <p className="errorMessage">{this.state.bildError}</p>
                             </div>
                             <h3>{this.state.name}</h3>
                           </div>

@@ -5,8 +5,7 @@ const axios = require('axios')
 const hexToBinary = require('hex-to-binary');
 const urlencode = require('urlencode');
 const crypto = require('crypto')
-const base64 = require('base-64');
-const base64js = require('base64-js');
+
 // const SHA256 = require("crypto-js/sha256");
 // let binary_hmacKey = hexToBinary(HMAC_KEY);
 

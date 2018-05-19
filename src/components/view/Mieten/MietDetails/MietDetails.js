@@ -184,7 +184,7 @@ componentWillMount(){
                                         Gewicht
                                       </div>
                                       <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.gewicht} Kilogramm</p>
+                                        <p>{this.state.snap.gewicht} kg</p>
                                       </div>
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Hersteller
@@ -199,7 +199,7 @@ componentWillMount(){
                                             Länge
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.laenge}</p>
+                                            <p>{this.state.snap.laenge} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -209,7 +209,7 @@ componentWillMount(){
                                             Trog
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.trog}</p>
+                                            <p>{this.state.snap.trog} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -219,7 +219,7 @@ componentWillMount(){
                                             Abmessungen
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.abmessungen}</p>
+                                            <p>{this.state.snap.abmessungen} cm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -229,7 +229,7 @@ componentWillMount(){
                                             Frästiefe
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.fraese}</p>
+                                            <p>{this.state.snap.fraese} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -249,7 +249,7 @@ componentWillMount(){
                                             Schnitttiefe
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.schnitttiefe}</p>
+                                            <p>{this.state.snap.schnitttiefe} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -259,7 +259,7 @@ componentWillMount(){
                                             Geräuschpegel
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.gerauuschpegel}</p>
+                                            <p>{this.state.snap.gerauuschpegel} dB</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -269,7 +269,7 @@ componentWillMount(){
                                             Durchmesser
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.durchmesser}</p>
+                                            <p>{this.state.snap.durchmesser} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -279,7 +279,7 @@ componentWillMount(){
                                             Schnittlänge
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.schnittlaenge}</p>
+                                            <p>{this.state.snap.schnittlaenge} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -289,7 +289,7 @@ componentWillMount(){
                                             Schnittbreite
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.schnittbreite}</p>
+                                            <p>{this.state.snap.schnittbreite} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -299,7 +299,7 @@ componentWillMount(){
                                             Bandagenbreite
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.bandagenbreite}</p>
+                                            <p>{this.state.snap.bandagenbreite} mm</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.maxFuellmenge?(
@@ -308,7 +308,7 @@ componentWillMount(){
                                             Max. Füllmenge
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.maxFuellmenge}</p>
+                                            <p>{this.state.snap.maxFuellmenge} Liter</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.spannung?(
@@ -317,7 +317,7 @@ componentWillMount(){
                                             Spannung
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.spannung}</p>
+                                            <p>{this.state.snap.spannung} V</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.einzelschlagstärke?(
@@ -326,7 +326,7 @@ componentWillMount(){
                                             Einzelschlagstärke
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.einzelschlagstärke}</p>
+                                            <p>{this.state.snap.einzelschlagstärke} Joule</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.aufname?(
@@ -335,7 +335,7 @@ componentWillMount(){
                                             Aufname
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.aufname}</p>
+                                            <p>{this.state.snap.aufname} mds</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.bohrdurchmesser?(
@@ -344,7 +344,7 @@ componentWillMount(){
                                             Bohrdurchmesser
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.bohrdurchmesser}</p>
+                                            <p>{this.state.snap.bohrdurchmesser} mm</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.bohrkrone?(
@@ -362,7 +362,7 @@ componentWillMount(){
                                             Muldeninhalt
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.muldeninhalt}</p>
+                                            <p>{this.state.snap.muldeninhalt} m³</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.breite?
@@ -371,7 +371,7 @@ componentWillMount(){
                                             Breite
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.breite}</p>
+                                            <p>{this.state.snap.breite} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -381,7 +381,7 @@ componentWillMount(){
                                             Höhe
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.hoehe}</p>
+                                            <p>{this.state.snap.hoehe} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -391,7 +391,7 @@ componentWillMount(){
                                             Reichweite
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.reichweite}</p>
+                                            <p>{this.state.snap.reichweite} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -401,7 +401,7 @@ componentWillMount(){
                                             Schütthöhe
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.schuetthoehe}</p>
+                                            <p>{this.state.snap.schuetthoehe} mm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -411,36 +411,17 @@ componentWillMount(){
                                           Grabtiefe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.grabtiefe}</p>
+                                          <p>{this.state.snap.grabtiefe} mm</p>
                                         </div>
                                       </React.Fragment>
                                       ):(null)}
-                                      {this.state.snap.transportbreite?(
-                                      <React.Fragment>
-                                        <div className="detailsCategory col-sm-5 col-md-5">
-                                          Transportbreite
-                                        </div>
-                                        <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.transportbreite}</p>
-                                        </div>
-                                      </React.Fragment>
-                                      ):(null)}
-                                      {this.state.snap.transporthoehe?(
-                                      <React.Fragment>
-                                        <div className="detailsCategory col-sm-5 col-md-5">
-                                          Transporthöhe
-                                        </div>
-                                        <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.transporthoehe}</p>
-                                        </div>
-                                      </React.Fragment>):(null)}
                                       {this.state.snap.gesamtgewicht?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
                                           Gesamtgewicht
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.gesamtgewicht}</p>
+                                          <p>{this.state.snap.gesamtgewicht} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.nutzlast?(
@@ -449,7 +430,7 @@ componentWillMount(){
                                           Nutzlast
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.nutzlast}</p>
+                                          <p>{this.state.snap.nutzlast} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.auflaufbremse?(
@@ -467,7 +448,7 @@ componentWillMount(){
                                           Gesamthöhe Ladeboard
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.gesamthoeheLadeboard}</p>
+                                          <p>{this.state.snap.gesamthoeheLadeboard} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamthoeheSpriegel?(
@@ -476,7 +457,7 @@ componentWillMount(){
                                           Gesamthöhe Spriegel
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.gesamthoeheSpriegel}</p>
+                                          <p>{this.state.snap.gesamthoeheSpriegel} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamtbreite?(
@@ -485,7 +466,7 @@ componentWillMount(){
                                           Gesamtbreite
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.gesamtbreite}</p>
+                                          <p>{this.state.snap.gesamtbreite} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamtlaenge?(
@@ -494,7 +475,7 @@ componentWillMount(){
                                           Gesamtlänge
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.gesamtlaenge}</p>
+                                          <p>{this.state.snap.gesamtlaenge} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.innenhoehe?(
@@ -503,7 +484,7 @@ componentWillMount(){
                                           Innenhöhe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.innenhoehe}</p>
+                                          <p>{this.state.snap.innenhoehe} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.innenladehoehe?(
@@ -512,7 +493,7 @@ componentWillMount(){
                                           Innenladehöhe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.innenladehoehe}</p>
+                                          <p>{this.state.snap.innenladehoehe} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.innenbreite?(
@@ -521,7 +502,7 @@ componentWillMount(){
                                           Innenbreite
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.innenbreite}</p>
+                                          <p>{this.state.snap.innenbreite} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.innenlaenge?(
@@ -530,7 +511,7 @@ componentWillMount(){
                                           Innenlänge
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.innenlaenge}</p>
+                                          <p>{this.state.snap.innenlaenge} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.ladehöhe?(
@@ -539,7 +520,7 @@ componentWillMount(){
                                           Ladehöhe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.ladehöhe}</p>
+                                          <p>{this.state.snap.ladehöhe} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.hundertkmh?(
@@ -557,7 +538,7 @@ componentWillMount(){
                                           Arbeitsbreite
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.arbeitsbreite}</p>
+                                          <p>{this.state.snap.arbeitsbreite} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.kraftstoff?(
@@ -575,7 +556,7 @@ componentWillMount(){
                                           Rüttelkraft
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.ruettelkraft}</p>
+                                          <p>{this.state.snap.ruettelkraft} kN</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.schaufelinhalt?(
@@ -584,7 +565,7 @@ componentWillMount(){
                                           Schaufelinhalt
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.schaufelinhalt}</p>
+                                          <p>{this.state.snap.schaufelinhalt} m³</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.laengeDerLadeflaeche?(
@@ -593,7 +574,7 @@ componentWillMount(){
                                           Länge der Ladefläche
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.laengeDerLadeflaeche}</p>
+                                          <p>{this.state.snap.laengeDerLadeflaeche} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.breiteDerLadeflaeche?(
@@ -602,7 +583,7 @@ componentWillMount(){
                                           Breite der Ladefläche
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.breiteDerLadeflaeche}</p>
+                                          <p>{this.state.snap.breiteDerLadeflaeche} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.hoeheDerLadeflaeche?(
@@ -611,7 +592,7 @@ componentWillMount(){
                                           Höhe der Ladefläche
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.hoeheDerLadeflaeche}</p>
+                                          <p>{this.state.snap.hoeheDerLadeflaeche} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.laderaumvolumen?(
@@ -620,7 +601,16 @@ componentWillMount(){
                                           Laderaumvolumen
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.laderaumvolumen}</p>
+                                          <p>{this.state.snap.laderaumvolumen} m³</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.volumenstrom?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Volumenstrom
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.volumenstrom} m³/min</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.leerGewicht?(
@@ -629,7 +619,7 @@ componentWillMount(){
                                           Leergewicht
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.leerGewicht}</p>
+                                          <p>{this.state.snap.leerGewicht} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamtGewicht?(
@@ -638,7 +628,7 @@ componentWillMount(){
                                           Gesamtgewicht
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.gesamtGewicht}</p>
+                                          <p>{this.state.snap.gesamtGewicht} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.sitzplaetze?(
@@ -653,10 +643,19 @@ componentWillMount(){
                                       {this.state.snap.leistung?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Leistung in PS/KW
+                                          Leistung
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.leistung}</p>
+                                          <p>{this.state.snap.leistung} PS/KW</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.druckbereich?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Druckbereich
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.druckbereich} bar</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.anhaengerlastUngebremst?(
@@ -665,7 +664,7 @@ componentWillMount(){
                                           Anhängerlast Ungebremst
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.anhaengerlastUngebremst}</p>
+                                          <p>{this.state.snap.anhaengerlastUngebremst} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.anhaengerlastGebremst?(
@@ -674,7 +673,7 @@ componentWillMount(){
                                           Anhängerlast Gebremst
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.anhaengerlastGebremst}</p>
+                                          <p>{this.state.snap.anhaengerlastGebremst} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.stuetzlast?(
@@ -683,7 +682,7 @@ componentWillMount(){
                                           Stützlast
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.stuetzlast}</p>
+                                          <p>{this.state.snap.stuetzlast} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.fuehrerschein?(
@@ -695,12 +694,6 @@ componentWillMount(){
                                           <p>{this.state.snap.fuehrerschein}</p>
                                         </div>
                                       </React.Fragment>):(null)}
-                                      </div>
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Datenblatt
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <a href={this.state.snap.pdf}>klicke hier</a>
                                       </div>
                                     </div>
                                   </div>
@@ -719,24 +712,6 @@ componentWillMount(){
                                       </div>
                                       <div className="col-sm-5 col-md-5">
                                         <p>{this.state.snap.cardDesc} </p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="detail-wrapper">
-                								<div className="detail-wrapper-header">
-          							         <h4>Mietbedingungen</h4>
-                								</div>
-                                <div className="widget-boxed-body">
-                                  <div className="side-list">
-                                    <div className="reviews-box">
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Mietbedingungen
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.mietbedingungen} </p>
                                       </div>
                                     </div>
                                   </div>
