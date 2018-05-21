@@ -229,7 +229,7 @@ a.btn.call-btn {
 .heading h2{
 	font-weight:500;
 	margin-top:0;
-	text-transform:capitalize;
+
 	font-family: 'Montserrat', sans-serif;
 }
 .heading h2 span{
@@ -1628,7 +1628,7 @@ sidebar-collapse .nav > li > a:hover, .sidebar-collapse .nav > li > a:focus {
     background: #1d293e;
     text-shadow: none;
     color: #91b1c3;
-    text-transform: capitalize !important;
+
 }
 .navbar-default {
 	background-image: none;
@@ -1648,12 +1648,12 @@ sidebar-collapse .nav > li > a:hover, .sidebar-collapse .nav > li > a:focus {
 	color:#677782;
 	text-shadow:none;
 	font-family: 'Quicksand', sans-serif;
-	text-transform:capitalize;
+
 }
 .navbar.bootsnav ul.nav > li > a{
     color:#677782;
 	font-size:15px;
-	text-transform:capitalize;
+
     background-color: transparent  ;
 	font-family: 'Quicksand', sans-serif;
 }
@@ -1911,7 +1911,7 @@ color:#f64625;
 	opacity: 0.8;
 	font-weight:300;
 	font-size: 18px;
-	text-transform:capitalize;
+
 	line-height: 1.8;
 }
  .no-padd{
@@ -2687,7 +2687,7 @@ listing Category Style
     font-size: 24px;
     padding: 5px 0;
     margin: 0;
-	text-transform:capitalize;
+
 }
 
 .category-box-content span {
@@ -2740,7 +2740,7 @@ listing Category Style
 	color:#ffffff;
 	font-weight:500;
 	font-size:22px;
-	text-transform:capitalize;
+
 }
 /*----------- listing Category Style 3 -----------*/
 .category-full-widget {
@@ -3699,11 +3699,7 @@ Component Style
 .tab .nav-tabs li:last-child a:hover{
     border-right: 1px solid #eaeff5;
 }
-.tab .nav-tabs li a:hover,
-.tab .nav-tabs li.active a{
-    color: #f64625;
-    border-bottom: 2px solid #f64625;
-}
+
 .tab .tab-content{
     font-size: 14px;
   }
@@ -3731,7 +3727,6 @@ Component Style
 }
 -.tab.style-2 .nav-tabs li a:hover, .tab.style-2 .nav-tabs li.active a {
     color: #ffffff;
-    border-bottom: 2px solid #f64625;
     background: #f64625;
 }
 
@@ -4606,8 +4601,11 @@ p#invoice-info {
     }
 }
 /*==========================================
-Sidebar Style
+# Style
 ==========================================*/
+.sidebar{
+	z-index: 5;
+}
 @media screen and (min-width: 1000px) {
   .sidebar {
     position: fixed;
@@ -5338,4 +5336,15 @@ Login And SignUp Style
 }
 .card-expanded {
     margin-top: 20px;
+}
+
+.tab.style-2 .nav-tabs li.dropdown a.dropdown-toggle:hover {
+	border: none;
+}
+
+.tab.style-2 .nav-tabs li.dropdown a.dropdown-toggle:active {
+	border: none;
+}
+.tab.style-2 .nav-tabs li a:hover, .tab.style-2 .nav-tabs li.active a   {
+	border-bottom: none;
 }

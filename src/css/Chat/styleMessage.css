@@ -78,7 +78,6 @@ body {
 
 p {
     position: relative;
-    text-transform: capitalize;
     font-size: 13.5px;
     color:#677782;
     line-height:1.8;
@@ -139,7 +138,6 @@ a.btn.call-btn {
 	border-radius: 4px;
 	padding: 0.8em 2em;
 	color:#ff3a72;
-	text-transform: capitalize;
 }
 .d-block{
 	display:block;
@@ -215,7 +213,6 @@ a.btn.call-btn {
 .heading h2{
 	font-weight:500;
 	margin-top:0;
-	text-transform:capitalize;
 	font-family: 'Montserrat', sans-serif;
 }
 .heading h2 span{

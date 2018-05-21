@@ -54,40 +54,9 @@ class Payment extends Component{
   }
 
 
-
-requestHandler(e){
-  e.preventDefault
-
-  let key = "10001|C4B9DCF30853F90459D47B5CDDE9031AA0B63A22A48D87DFD264C67917E405F6BEEF46E68B857103B868EF69E6AF30FED1F49F877795A5DB72427BD24F106C8A484D266DCB0688C5B4138FC48B8CA65416F9F48E7BE48CA155AD32063467E9027461479905340AFC07BB721EE937B46CC6C5FB35A81C9F44CFF620862D3CDDF57C9496C25A218198A5081C9BDCDFA339F7444158179C8F141E319C006AFC370EDB3C7A28FBA55909CE663B8CE4BC733931C35E72F53D539BE19F8CACAB85062734269FD923EC49B77451F38991CF26689CFEAE3E26802A7F626914A752154C1C3784EBFD5E49CCA98601304E1140C4FE2C609E2703973D777643C61937B4EA95";
-
-  let options = {
-
-  };
-
-  let cardData = {
-        number : '2223 0000 4841 0010',
-        cvc : '737',
-        holderName : 'Harry Trippel',
-        expiryMonth : '10',
-        expiryYear : '2020',
-        generationtime : '2018-05-08T14:56:29.292+02:00'
-                          // 2017-07-17T13:42:40.428+01:00
-    };
-
-  let cseInstance = window.adyen.encrypt.createEncryption(key, options, cardData)
-
-  let encryptedInstance = cseInstance.encrypt(cardData);
-
-  console.log(cseInstance, 'das ist cseInstance', encryptedInstance, 'encryptedInstance 2');
-
-
-}
-
- //
-
  getPaymentMethods(e){
    e.preventDefault
-   fetch('http://localhost:8888/Backend/payment.php', {
+   fetch('https://mietdas.de/Backend/payment.php', {
    })
    .then((response) => response.json())
    .then((responseJson)=>
@@ -108,7 +77,7 @@ requestHandler(e){
 
   request.post({
     headers: {'content-type' : 'application/x-www-form-urlencoded'},
-    url:     'http://localhost:8888/Backend/recalcSig.php',
+    url:     'https://mietdas.de/Backend/recalcSig.php',
     body:    "data=" + JSON.stringify(jsonData)
   },(err, response, body) => {
     if (err) throw err;

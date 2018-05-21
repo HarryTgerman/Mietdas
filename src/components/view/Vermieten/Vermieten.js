@@ -186,10 +186,10 @@ onDrop(imageFiles) {
                           <a className="dropdown-toggle" data-toggle="dropdown" href="#">Bagger
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
-                            <li role="presentation" className="dropdown"><a href="#minibagger" aria-controls="minibagger" role="tab" data-toggle="tab">Minibagger</a></li>
-                            <li role="presentation" className="dropdown"><a href="#kompaktbagger" aria-controls="kompaktbagger" role="tab" data-toggle="tab">Kompaktbagger</a></li>
-                            <li role="presentation" className="dropdown"><a href="#raupenbagger" aria-controls="raupenbagger" role="tab" data-toggle="tab">Raupenbagger</a></li>
-                            <li role="presentation" className="dropdown"><a href="#mobilbagger" aria-controls="mobilbagger" role="tab" data-toggle="tab">Mobilbagger</a></li>
+                            <li role="presentation" className=""><a href="#minibagger" aria-controls="minibagger" role="tab" data-toggle="tab">Minibagger</a></li>
+                            <li role="presentation" className=""><a href="#kompaktbagger" aria-controls="kompaktbagger" role="tab" data-toggle="tab">Kompaktbagger</a></li>
+                            <li role="presentation" className=""><a href="#raupenbagger" aria-controls="raupenbagger" role="tab" data-toggle="tab">Raupenbagger</a></li>
+                            <li role="presentation" className=""><a href="#mobilbagger" aria-controls="mobilbagger" role="tab" data-toggle="tab">Mobilbagger</a></li>
                           </ul>
                         </li>
                         <li className="dropdown">

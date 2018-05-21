@@ -205,17 +205,9 @@ ul.social-info.info-list li i {
     background: #ff431e;
 }
 /*---Tab Style---*/
-.tab .nav-tabs li a:hover, .tab .nav-tabs li.active a {
-    color: #ff431e;
-    border-bottom: 2px solid #ff431e;
-}
-.tab .nav-tabs li a:hover, .tab .nav-tabs li.active a {
-    color: #ff431e;
-    border-bottom: 2px solid #ff431e;
-}
-.tab.style-2 .nav-tabs li a:hover, .tab.style-2 .nav-tabs li.active a {
+
+.tab.style-2 .nav-tabs li a:hover, .tab.style-2 .nav-tabs li.active>a {
     color: #ffffff;
-    border-bottom: 2px solid #ff431e;
     background: #ff431e;
 }
 .form-control:hover, .form-control:focus {
