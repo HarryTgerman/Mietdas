@@ -98,8 +98,12 @@ firedata() {
             nachName: snap.val().nachName,
             adresse: snap.val().address,
             geboren: snap.val().geburtsDatum,
-            mobil: snap.val().mobil,
             telefon: snap.val().telefon,
+            stadt: snap.val().stadt,
+            plz: snap.val().plz,
+            straße: snap.val().straße,
+
+
           })
         }
       }
@@ -126,11 +130,20 @@ firedata() {
 
 
 editProfile() {
+
+
 		this.setState((prevState)=>{
 			return {editProfile: !prevState.editProfile};
 		});
 	}
 
+editBankData(){
+  this.setState((prevState)=>{
+    return {editProfile: !prevState.editProfile, showBankData: true};
+  });
+
+
+}
 
 
 
@@ -236,11 +249,14 @@ editProfile() {
                        }
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="profile">
-                      <div >
-                          <button type="button" onClick={this.editProfile.bind(this)} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">
+                      <div>
+                        <div style={{float:"right", marginRight:"20px", marginBottom:"40px",marginTop: "10px"}} >
+                          <button className="btn btn-default" style={{marginRight:"5px"}} onClick={this.editBankData.bind(this)}>Bankdaten hinzufügen</button>
+                          <button type="button" onClick={this.editProfile.bind(this)}  className="btn theme-btn">
                           {this.state.editProfile ?("Zurück"):("Profil bearbeiten")}</button>
+                      </div>
                          {/* General Information */}
-                         {this.state.editProfile ?(<div><EditProfile uid={this.state.uid} name={this.state.name}/></div>)
+                         {this.state.editProfile ?(<div><EditProfile uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
                      :(<div className="container">
 
                          <div className="col-md-10 translateY-60 col-sm-12 col-md-offset-1">
@@ -275,7 +291,7 @@ editProfile() {
                                     <div className="preview-info-body">
                                       <ul className="info-list">
                                         <li>
-                                            <label><i className="ti-credit-card preview-icon birth mrg-r-10"></i>Iban</label>
+                                            <label><i className="ti-credit-card preview-icon birth mrg-r-10"></i>Iban </label>
                                         </li>
                                       </ul>
                                     </div>
@@ -291,10 +307,10 @@ editProfile() {
                                           <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: {this.state.stadt}</label>
                                         </li>
                                         <li>
-                                          <label><i className="ti-info preview-icon call mrg-r-10"></i>Plz: 132112342</label>
+                                          <label><i className="ti-info preview-icon call mrg-r-10"></i>PLZ: {this.state.plz}</label>
                                         </li>
                                         <li>
-                                        <label><i className="ti-home preview-icon call mrg-r-10"></i>Straße: Keplerstr 10</label>
+                                        <label><i className="ti-home preview-icon call mrg-r-10"></i>Straße: {this.state.straße}</label>
                                         </li>
                                       </ul>
                                     </div>
