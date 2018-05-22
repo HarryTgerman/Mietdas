@@ -49,10 +49,9 @@ class Payment extends Component{
         })
         }
       })
-      this.getPaymentMethods();
 
-  }
 
+<<<<<<< HEAD
   post(path, params, method) {
      method = method || "post";
 
@@ -74,10 +73,13 @@ class Payment extends Component{
 
      document.body.appendChild(form);
      form.submit();
+=======
+>>>>>>> bbe5e1e978418b89b5e3febc33d866e1c377750f
   }
 
- getPaymentMethods(){
 
+ getPaymentMethods(e){
+   e.preventDefault
    fetch('https://mietdas.de/Backend/payment.php', {
    })
    .then((response) => response.json())
@@ -118,9 +120,12 @@ class Payment extends Component{
       })
     console.log('response: ', response);
   })
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> bbe5e1e978418b89b5e3febc33d866e1c377750f
 
  }
 
@@ -203,6 +208,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                     </div>
                     <div className="detail-wrapper-body">
 
+                      <button type="button" style={{marginBottom:"20px"}} className="btn theme-btn"  onClick={this.getPaymentMethods.bind(this)}>Zahlmethoden</button>
 
             {this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{
