@@ -326,7 +326,7 @@ componentWillMount(){
                                             Einzelschlagstärke
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.einzelschlagstärke} Joule</p>
+                                            <p>{this.state.snap.einzelschlagstärke} </p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.aufname?(
@@ -335,7 +335,7 @@ componentWillMount(){
                                             Aufname
                                           </div>
                                           <div className="col-sm-5 col-md-5">
-                                            <p>{this.state.snap.aufname} mds</p>
+                                            <p>{this.state.snap.aufname}</p>
                                           </div>
                                         </React.Fragment>):(null)}
                                         {this.state.snap.bohrdurchmesser?(
