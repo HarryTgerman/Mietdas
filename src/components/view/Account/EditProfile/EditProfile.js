@@ -16,9 +16,7 @@ class EditProfile extends Component{
 }
 
 componentWillMount(){
-  if (this.props.showBankData){
-    window.scrollTo(0, 4000)
-}
+
 this.setState({
   name: this.props.snap.name,
   email:this.props.snap.email,

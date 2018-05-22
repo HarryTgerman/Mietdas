@@ -53,6 +53,28 @@ class Payment extends Component{
 
   }
 
+  post(path, params, method) {
+     method = method || "post";
+
+
+     var form = document.createElement("form");
+     form.setAttribute("method", method);
+     form.setAttribute("action", path);
+
+     for(var key in params) {
+         if(params.hasOwnProperty(key)) {
+             var hiddenField = document.createElement("input");
+             hiddenField.setAttribute("type", "hidden");
+             hiddenField.setAttribute("name", key);
+             hiddenField.setAttribute("value", params[key]);
+
+             form.appendChild(hiddenField);
+         }
+     }
+
+     document.body.appendChild(form);
+     form.submit();
+  }
 
  getPaymentMethods(){
 
@@ -89,13 +111,14 @@ class Payment extends Component{
         sessionValidity: body.request.sessionValidity,
         requestPaymentMethods: false,
         showCardDetails:true
+      }, ()=>{
+        this.post('https://test.adyen.com/hpp/skipDetails.shtml', {merchantSig:this.state.merchantSig,sessionValidity:this.state.sessionValidity,
+          merchantAccount:"MietDasCOM",paymentAmount:paymentAmount, currencyCode:"EUR", shopperLocale:"ger_DE",skinCode: "mLIn3bJn",
+          merchantReference:this.props.location.query.cardid, brandCode:this.state.meth.brandCode})
       })
     console.log('response: ', response);
   })
-    let pAmount=this.props.location.query.anfrage.umsatz+"00";
-    request.post('https://test.adyen.com/hpp/skipDetails.shtml', {form:{merchantSig:this.state.merchantSig,sessionValidity:this.state.sessionValidity,
-    merchantAccount:"MietDasCOM",paymentAmount:pAmount, currencyCode:"EUR", shopperLocale:"ger_DE",skinCode: "mLIn3bJn",
-  merchantReference:this.props.location.query.cardid, brandCode:brandCode}})
+
 
 
 
@@ -184,7 +207,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
             {this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{
                   return(
-                      <div className="payment-card" onClick={()=>{this.setState({meth:meth},this.recalcRequest(meth))}}>
+                      <div className="payment-card" onClick={()=>{this.setState({meth:meth, loading:true},this.recalcRequest(meth))}}>
                         <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
                           <div className="payment-card-title flexbox">
                             <h4>{meth.name}</h4>
@@ -197,20 +220,8 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                        })): (null)}
 
 
-                       {this.state.showCardDetails?(
-                         <form method="post" action="https://test.adyen.com/hpp/skipDetails.shtml" id="adyenForm" name="adyenForm" target="_parent">
-                           <input type="hidden" name="merchantSig" value={this.state.merchantSig} />
-                           <input type="hidden" name="sessionValidity" value={this.state.sessionValidity} />
-                           <input type="hidden" name="merchantAccount" value="MietDasCOM" />
-                           <input type="hidden" name="paymentAmount" value={this.props.location.query.anfrage.umsatz+"00"} />
-                           <input type="hidden" name="currencyCode" value="EUR" />
-                           <input type="hidden" name="shopperLocale" value="ger_DE" />
-                           <input type="hidden" name="skinCode" value="mLIn3bJn" />
-                           <input type="hidden" name="merchantReference" value={this.props.location.query.cardid} />
-                           <input type="hidden" name="brandCode" value={this.state.meth.brandCode} />
-                           <input type="submit" value="Send" />
-                           <input type="reset" />
-                        </form>
+                       {this.state.loading?(
+                        <h4>Lade...</h4>
                        ):(null)}
 
 
