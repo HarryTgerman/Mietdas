@@ -49,13 +49,13 @@ class Payment extends Component{
         })
         }
       })
-
+      this.getPaymentMethods();
 
   }
 
 
- getPaymentMethods(e){
-   e.preventDefault
+ getPaymentMethods(){
+
    fetch('https://mietdas.de/Backend/payment.php', {
    })
    .then((response) => response.json())
@@ -92,6 +92,12 @@ class Payment extends Component{
       })
     console.log('response: ', response);
   })
+    let pAmount=this.props.location.query.anfrage.umsatz+"00";
+    request.post('https://test.adyen.com/hpp/skipDetails.shtml', {form:{merchantSig:this.state.merchantSig,sessionValidity:this.state.sessionValidity,
+    merchantAccount:"MietDasCOM",paymentAmount:pAmount, currencyCode:"EUR", shopperLocale:"ger_DE",skinCode: "mLIn3bJn",
+  merchantReference:this.props.location.query.cardid, brandCode:brandCode}})
+
+
 
  }
 
@@ -174,7 +180,6 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                     </div>
                     <div className="detail-wrapper-body">
 
-                      <button type="button" style={{marginBottom:"20px"}} className="btn theme-btn"  onClick={this.getPaymentMethods.bind(this)}>Zahlmethoden</button>
 
             {this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{

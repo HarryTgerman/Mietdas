@@ -85,6 +85,7 @@ firedata() {
     const uid = this.state.uid;
     firebase.database().ref('app/').child('users/'+uid)
     .on('value', snap => {
+
         if(snap.val()){
           if(snap.val().anfragen == null){
           this.setState({
@@ -102,11 +103,16 @@ firedata() {
             stadt: snap.val().stadt,
             plz: snap.val().plz,
             straße: snap.val().straße,
-
-
+            profileInfo: snap.val()
+          })
+        }
+        if(snap.val().bankData == undefined){
+          this.setState({
+            showEditBankData: true
           })
         }
       }
+
 
   })
   const mitteilung = [];
@@ -251,12 +257,12 @@ editBankData(){
                     <div role="tabpanel" className="tab-pane fade" id="profile">
                       <div>
                         <div style={{float:"right", marginRight:"20px", marginBottom:"40px",marginTop: "10px"}} >
-                          <button className="btn btn-default" style={{marginRight:"5px"}} onClick={this.editBankData.bind(this)}>Bankdaten hinzufügen</button>
+                          {this.state.showEditBankData?(<button className="btn btn-default" style={{marginRight:"5px"}} onClick={this.editBankData.bind(this)}>Bankdaten hinzufügen</button>):(null)}
                           <button type="button" onClick={this.editProfile.bind(this)}  className="btn theme-btn">
                           {this.state.editProfile ?("Zurück"):("Profil bearbeiten")}</button>
                       </div>
                          {/* General Information */}
-                         {this.state.editProfile ?(<div><EditProfile uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
+                         {this.state.editProfile ?(<div><EditProfile snap={this.state.profileInfo} uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
                      :(<div className="container">
 
                          <div className="col-md-10 translateY-60 col-sm-12 col-md-offset-1">

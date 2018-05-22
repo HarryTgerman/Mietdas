@@ -36,15 +36,16 @@ class Anfragen extends Component{
 
         render(){
           return(
-              <div className="col-sm-12" style={{transition: "all .7s cubic-bezier(.25,.46,.45,.94)", overflow: "hidden"}}>
+              <div className="col-sm-12" style={{ overflow: "hidden"}}>
                   <div className="col-md-12 col-sm-12">
-                    <div className="verticleilist listing-shot">
-                      <a className="listing-item">
-                        <div className="listing-shot-img">
-                          <img src={this.props.url} className="img-responsive" alt=""/>
-                          <span className="listing-price">{this.props.umsatz}€</span>
-                        </div>
-                      </a>
+                      <div className="verticleilist listing-shot">
+                        <a className="listing-item">
+                          <div className="listing-shot-img">
+                            <img src={this.props.url} className="img-responsive" alt=""/>
+                            <span className="listing-price">{this.props.umsatz}€</span>
+                          </div>
+                        </a>
+
 
                       <div className="verticle-listing-caption">
 

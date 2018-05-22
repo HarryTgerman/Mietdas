@@ -9,49 +9,41 @@ class EditProfile extends Component{
   constructor(props){
     super(props)
     this.state={
-      loading: true,
+      loading: false,
       redirect: false
 
     }
 }
 
-componentDidMount(){
-  firebase.database().ref().child("app/users").child(this.props.uid)
-  .once('value', snap=>{
-    if(snap.val() === null){
-      this.setState({
-        redirect: true
-      })
-      return 0;
-    }
-
-    let url = snap.val().url
-    let email = snap.val().email
-    let name = snap.val().name
-    let telefon = snap.val().telefon
-    let geburtsdatum = snap.val().geburtsDatum
-    let adresse = snap.val().adresse
-    let straße = snap.val().straße
-    let plz = snap.val().plz
-    let stadt = snap.val().stadt
-    let bundesLand = snap.val().bundesLand
-
-
-
+componentWillMount(){
+  if (this.props.showBankData){
+    window.scrollTo(0, 4000)
+}
+this.setState({
+  name: this.props.snap.name,
+  email:this.props.snap.email,
+  telefon:this.props.snap.telefon,
+  geburtsDatum:this.props.snap.geburtsDatum,
+  adresse:this.props.snap.adresse,
+  straße:this.props.snap.straße,
+  stadt:this.props.snap.stadt,
+  plz:this.props.snap.plz,
+  bundesLand:this.props.snap.bundesLand,
+  url: this.props.snap.url
+})
+  if(this.props.snap.bankData == undefined){
     this.setState({
-      bundesLand:bundesLand,
-      adresse: adresse,
-      straße: straße,
-      plz: plz,
-      stadt: stadt,
-      geburtsDatum:geburtsdatum,
-      telefon: telefon,
-      avatarImg: url,
-      email:email,
-      name:name,
-      loading: false,
+      iban: "bitte angeben",
+      bic: "bitte  angeben",
+      inhaber: "bitte angeben"
     })
-  })
+  }else {
+    this.setState({
+      iban: this.props.snap.bankData.iban,
+      bic: this.props.snap.bankData.bic,
+      inhaber: this.props.snap.bankData.kontoinhaber
+    })
+  }
 }
 
 handleChangeName(event) {
@@ -104,9 +96,9 @@ handleChangeName(event) {
     checkRechnungsAdresse(e) {
       if (this.bundeslandInput.value.length < 2){
         const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
-        this.setState({bundeslandError: error, isError: true,adresse: e.target.value})
+        this.setState({rechnungsAdresseError: error, isError: true,adresse: e.target.value})
      }else{
-        this.setState({bundeslandError: '', isError: false,adresse: e.target.value})
+        this.setState({rechnungsAdresseError: '', isError: false,adresse: e.target.value})
       }
     }
     checkIban(e) {
@@ -146,27 +138,44 @@ handleChange(event){
         }
 }
 
-uploadData(){
-  firebase.database().ref('app').child('user').child(this.props.uid).
-  update({
+savePersonel(){
+  firebase.database().ref().child('app/users').child(this.props.uid).update({
+    telefon: this.state.telefon,
+    geburtsDatum: this.state.geburtsDatum,
+    editProfile: false
+  })
+
+}
+saveLocation(){
+  firebase.database().ref().child('app/users').child(this.props.uid).update({
     straße: this.state.straße,
     plz: this.state.plz,
+    bundesLand: this.state.bundesLand,
     stadt: this.state.stadt,
-  
+    editLocation:false,
   })
-}
 
+}
+saveBankData(){
+  firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
+    iban: this.state.iban,
+    bic: this.state.bic,
+    kontoinhaber: this.state.inhaber,
+    editBankData:false,
+  })
+
+}
+componentDidMount(){
+  if (this.props.showBankData){
+  scrollToComponent(this.bankData)
+}
+}
 
         render(){
           if (this.state.redirect === true){return <Redirect to="/account-erstellen"/>}
 
-          if (this.props.showBankData){
-            scrollToComponent(this.bankData, {
-    offset: 1000,
-    align: 'top',
-    duration: 1500
-});
-          }
+
+
 
           return(
               <div>
@@ -176,10 +185,10 @@ uploadData(){
                       <div className="  edit-info mrg-bot-25 padd-bot-30 padd-top-25">
                         <div className="listing-box-header">
                           <div className="avater-box">
-                          <img style={{height:"130px" ,width:"130px"}} src={this.state.avatarImg} className="img-responsive img-circle edit-avater" alt="" />
-                          <div style={{marginLeft:"11px"}} className="upload-btn-wrapper">
-                            <button className="btn theme-btn">Profilbild</button>
-                            <input type="file" name="myfile"   ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
+                          <img style={{height:"130px" ,width:"130px"}} src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />
+                          <div style={{marginLeft:"12px"}} className="upload-btn-wrapper">
+                            <button className="btn theme-btn" >Profilbild</button>
+                            <input type="file" name="myfile"  style={{cursor:"pointer"}} ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
                           </div>
                           </div>
                           <h3>{this.state.name}</h3>
@@ -188,19 +197,27 @@ uploadData(){
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-sm-6">
                               <label>Name</label>
-                              <input type="text" className="form-control" onChange={this.handleChangeName.bind(this)} value={this.state.name}/>
+                              <p>{this.state.name}</p>
                             </div>
                             <div className="col-sm-6">
                               <label>Email</label>
-                              <input type="text" className="form-control" onChange={this.handleChangeEmail.bind(this)} value={this.state.email}/>
+                              <p>{this.state.email}</p>
                             </div>
                             <div className="col-sm-6">
                               <label>Telefon</label>
-                              <input type="text" className="form-control" onChange={this.handleChangeTelefon.bind(this)} value={this.state.telefon}/>
+                              {this.state.editPersonel ?(<input type="text" className="form-control" onChange={this.handleChangeTelefon.bind(this)} value={this.state.telefon}/>)
+                              :(<p>{this.state.telefon}</p>)}
                             </div>
                             <div className="col-sm-6">
                               <label>Geburtsdatum</label>
-                              <input type="text" className="form-control" onChange={this.handleChangeGeburtsDatum.bind(this)} value={this.state.geburtsDatum}/>
+                              {this.state.editPersonel ?(<input type="text" className="form-control" onChange={this.handleChangeGeburtsDatum.bind(this)} value={this.state.geburtsDatum}/>)
+                              :(<p>{this.state.geburtsDatum}</p>)}
+                            </div>
+                              <div className="editProfile">
+                              <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
+                                  return {editPersonel: !prevState.editPersonel};
+                                })}}>{this.state.editPersonel?("abbrechen"):("bearbeiten ")}</a><a> </a>
+    {this.state.editPersonel?(<a className="editProfile" onClick={this.savePersonel.bind(this)}>speichern</a>):(null)}
                             </div>
                           </div>
                         </form>
@@ -210,41 +227,47 @@ uploadData(){
                         <div className="listing-box-header">
                           <i className="ti-location-pin theme-cl"></i>
                           <h3>Standort Informationen</h3>
-                          <p>Firmensitz oder Standort der Maschienen</p>
                         </div>
                         <form>
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-sm-6">
                               <label>Straße</label>
-                              <input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse.bind(this)} value={this.state.straße}/>
-                              <p className="errorMessage">{this.state.strasseError}</p>
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse.bind(this)} value={this.state.straße}/><p className="errorMessage">{this.state.strasseError}</p></div>)
+                              :(<p>{this.state.straße}</p>)}
                             </div>
                             <div className="col-sm-6">
                               <label>Rechnungsadresse</label>
-                              <input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} onChange={this.checkRechnungsAdresse.bind(this)} value={this.state.adresse} />
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} onChange={this.checkRechnungsAdresse.bind(this)} value={this.state.adresse} /><p className="errorMessage">{this.state.rechnungsAdresseError}</p></div>)
+                              :(<p>{this.state.adresse}</p>)}
                             </div>
                             <div className="col-sm-6">
                               <label>Stadt</label>
-                              <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt.bind(this)} value={this.state.stadt} />
-                              <p className="errorMessage">{this.state.stadtError}</p>
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt.bind(this)} value={this.state.stadt} /><p className="errorMessage">{this.state.stadtError}</p></div>)
+                              :(<p>{this.state.stadt}</p>)}
                             </div>
                             <div className="col-sm-6">
                               <label>PLZ</label>
-                              <input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz.bind(this)} value={this.state.plz}/>
-                              <p className="errorMessage">{this.state.plzError}</p>
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz.bind(this)} value={this.state.plz}/><p className="errorMessage">{this.state.plzError}</p></div>)
+                              :(<p>{this.state.plz}</p>)}
                             </div>
                             <div className="col-sm-12">
                               <label>Bundesland</label>
-                              <input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} onChange={this.checkBundesland.bind(this)} value={this.state.bundesLand} />
-                              <p className="errorMessage">{this.state.bundeslandError}</p>
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} onChange={this.checkBundesland.bind(this)} value={this.state.bundesLand} /><p className="errorMessage">{this.state.bundeslandError}</p></div>)
+                              :(<p>{this.state.bundesLand}</p>)}
                             </div>
+                            <div className="editProfile">
+                            <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
+                                return {editLocation: !prevState.editLocation};
+                              })}}>{this.state.editLocation?("abbrechen"):("bearbeiten ")}</a><a> </a>
+  {this.state.editLocation?(<a className="editProfile" onClick={this.saveLocation.bind(this)}>speichern</a>):(null)}
+                          </div>
                           </div>
                         </form>
                       </div>
 
 
                       <div  className="opening-day mrg-bot-25 padd-bot-30 padd-top-25">
-                        <div ref={(section) => { this.bankData = section; }} className="listing-box-header">
+                        <div  className="listing-box-header">
                           <i className="ti-wallet theme-cl"></i>
                           <h3>Bank Daten</h3>
                           <p>Füllen Sie Ihre Bankdaten </p>
@@ -254,16 +277,16 @@ uploadData(){
                               <div className="pull-right">
 
                               </div>
-                              <form>
+                              <form ref={(section) => { this.bankData = section; }}>
                                 <div className="row mrg-0">
                                   <div className="col-md-12 mob-padd-0">
                                     <div className="form-group">
                                       <label>Kontoinhaber</label>
-                                      <div className="input-group">
-                                        <input onChange={this.checkInhaber.bind(this)} ref={(input) => { this.inhaberInput = input; }} type="text" className="form-control" placeholder="Kontoinhaber"/>
+                                      {this.state.editBankData ?(<div><div className="input-group">
+                                        <input onChange={this.checkInhaber.bind(this)} ref={(input) => { this.inhaberInput = input; }} type="text" className="form-control" placeholder="Kontoinhaber" value={this.state.inhaber}/>
                                         <span className="input-group-addon"><span className="glyphicon glyphicon-user"></span></span>
-                                      </div>
-                                      <p className="errorMessage">{this.state.inhaberError}</p>
+                                      </div>  <p className="errorMessage">{this.state.inhaberError}</p></div>)
+                                      :(<p>{this.state.inhaber}</p>)}
                                     </div>
                                   </div>
                                 </div>
@@ -271,11 +294,11 @@ uploadData(){
                                   <div className="col-md-12 mob-padd-0">
                                     <div className="form-group">
                                       <label>IBAN</label>
-                                      <div className="input-group">
-                                        <input onChange={this.checkIban.bind(this)} ref={(input) => { this.ibanInput = input; }} type="text" className="form-control" placeholder="mindestens 22 Zeichen"/>
+                                      {this.state.editBankData ?(<div><div className="input-group">
+                                        <input onChange={this.checkIban.bind(this)} ref={(input) => { this.ibanInput = input; }} type="text" className="form-control" placeholder="mindestens 22 Zeichen" value={this.state.iban}/>
                                         <span className="input-group-addon"><span className="glyphicon glyphicon-lock"></span></span>
-                                      </div>
-                                      <p className="errorMessage">{this.state.ibanError}</p>
+                                      </div>  <p className="errorMessage">{this.state.ibanError}</p></div>)
+                                      :(<p>{this.state.iban}</p>)}
                                     </div>
                                   </div>
                                 </div>
@@ -283,13 +306,19 @@ uploadData(){
                                   <div className="col-md-12 mob-padd-0">
                                     <div className="form-group">
                                       <label>BIC</label>
-                                      <div className="input-group">
-                                        <input onChange={this.checkBIC.bind(this)} ref={(input) => { this.bicInput = input; }} type="text" className="form-control" placeholder="zwischen 8 und 11 Zeichen"/>
+                                      {this.state.editBankData ?(<div><div className="input-group">
+                                        <input onChange={this.checkBIC.bind(this)} ref={(input) => { this.bicInput = input; }} type="text" className="form-control" placeholder="zwischen 8 und 11 Zeichen" value={this.state.bic}/>
                                         <span className="input-group-addon"><span className="glyphicon glyphicon-lock"></span></span>
-                                      </div>
-                                      <p className="errorMessage">{this.state.bicError}</p>
+                                      </div>  <p className="errorMessage">{this.state.bicError}</p></div>)
+                                      :(<p>{this.state.bic}</p>)}
                                     </div>
                                   </div>
+                                  <div className="editProfile">
+                                  <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
+                                      return {editBankData: !prevState.editBankData};
+                                    })}}>{this.state.editBankData?("abbrechen"):("bearbeiten ")}</a><a> </a>
+        {this.state.editBankData?(<a className="editProfile" onClick={this.saveBankData.bind(this)}>speichern</a>):(null)}
+                                </div>
                                 </div>
 
                               </form>
