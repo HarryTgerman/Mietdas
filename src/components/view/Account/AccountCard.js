@@ -67,18 +67,12 @@ changeLocation(){
             </div>):(
               <div className="listing-shot-info ">
                   <span><label>Adresse eingeben</label></span>
-                  <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}><i className="color fa fa-map-marker" aria-hidden="true"></i></button></span>
+                  <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}>aktualisieren</button></span>
               </div>
             )}
             <div className="listing-shot-info rating">
               <div className="row extra">
-                <div className="col-md-7 col-sm-7 col-xs-6">
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star" aria-hidden="true"></i>
-                  <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                  <i className="fa fa-star" aria-hidden="true"></i>
-                </div>
+
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
                   <a onClick={()=>{this.setState({toggle:!this.state.toggle})}} href="#" className="detail-link">Standort verändern</a>
                 </div>
