@@ -231,7 +231,7 @@ sendPwReset(){
                       <Route path='/mieten/city=:id/type=:id/' exact component={Mieten}/>
                       <Route path='/logout' exact component={Logout}/>
                       <Route path='/benutzeraccount' exact component={Account}/>
-                      <Route path='/bezahlung?:' exact component={Bezahlung}/>
+                      <Route path='/bezahlung' exact component={Bezahlung}/>
                       <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
                       <Route name= 'details' path='/details/search=:type/:id' component={MietDetails}/>
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Reservierung}/>

@@ -90,6 +90,7 @@ loadUser(){
     const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
     const endDate = moment(this.props.location.query.endDate).format("DD-MM-YYYY");
     const num = Math.floor((Math.random() * 5000) + 1)
+    let ref = this.state.name.split(' ').join('-') + num
     let randomeKey = ""
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (var i = 0; i < 28; i++){
@@ -117,7 +118,7 @@ loadUser(){
     }
 
     firebase.database().ref().child('app').child('users/' + this.state.uid)
-    .child('/mitteilung/').child(this.state.name + num)
+    .child('/mitteilung/').child(ref)
     .set({ bestätigt: false,
               cardId: this.props.location.query.cardId,
               anfrage: anfObj,
@@ -126,7 +127,7 @@ loadUser(){
     var Date = moment().format("DD-MM-YY")
     const UserRef = firebase.database().ref().child('app')
     .child('users').child(this.props.location.query.snap.uid)
-    .child("anfragen/" +this.state.name + num);
+    .child("anfragen/" +ref);
     UserRef.set({
       RechnungsAdresse: this.adresseInput.value,
       cardId: this.props.location.query.cardId,

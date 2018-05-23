@@ -4456,8 +4456,33 @@ p#invoice-info {
     -webkit-box-shadow:0px 0px 10px 1px rgb(175, 255, 229);
     -moz-box-shadow:0px 0px 10px 1px rgb(175, 255, 229);
 }
-.booking-confirm h2{
-	color: #05bf83;
+.booking-abort h2{
+	color: #f64625;
+}
+.booking-abort {
+    text-align: center;
+}
+.booking-abort p {
+    font-size: 17px;
+	text-transform: initial;
+}
+.booking-abort i {
+    width:100px;
+    height:100px;
+    display: table;
+    margin: 0 auto;
+    background: #ffffff;
+    line-height:100px;
+    font-size:45px;
+    color: #f64625;
+	border-radius:50%;
+	border: 1px solid #f64625;
+    box-shadow:0px 0px 10px 1px #f64625;
+    -webkit-box-shadow:0px 0px 10px 1px #f64625;
+    -moz-box-shadow:0px 0px 10px 1px #f64422;
+}
+.booking-abort h2{
+	color: #f64625;
 }
 
 .funky-font{

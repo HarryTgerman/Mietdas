@@ -113,7 +113,6 @@ getChatData(data){
             //chat Übersicht
             <div id="wrapper">
 
-                <div id="page-inner">
                    <div  className="row">
                     <div  className="col-md-12">
 {this.state.showInbox?(<div  className="card">
@@ -171,7 +170,6 @@ getChatData(data){
 
 
                 </div>
-              </div>
 
             </div>
 

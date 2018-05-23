@@ -90,7 +90,7 @@ class Payment extends Component{
    let meth = data
    let brandCode = meth.brandCode
    let paymentAmount = this.props.location.query.anfrage.umsatz+"00"
-   let merchantReference = this.props.location.query.cardid
+   let merchantReference = this.props.location.query.merchantReference
    let jsonData = {
 						brandCode : brandCode,
 						paymentAmount : paymentAmount,
@@ -114,7 +114,7 @@ class Payment extends Component{
       }, ()=>{
         this.post('https://test.adyen.com/hpp/skipDetails.shtml', {merchantSig:this.state.merchantSig,sessionValidity:this.state.sessionValidity,
           merchantAccount:"MietDasCOM",paymentAmount:paymentAmount, currencyCode:"EUR", shopperLocale:"ger_DE",skinCode: "mLIn3bJn",
-          merchantReference:this.props.location.query.cardid, brandCode:this.state.meth.brandCode})
+          merchantReference:this.props.location.query.merchantReference, brandCode:this.state.meth.brandCode})
         })
       })
 
@@ -195,7 +195,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
 
                   <div className="detail-wrapper">
                     <div className="detail-wrapper-header">
-                      <h4><i className="ti-credit-card theme-cl mrg-r-5 "></i>Payment Methode</h4>
+                      <h4><i className="ti-credit-card theme-cl mrg-r-5 "></i>Bezahlmethoden</h4>
                     </div>
                     <div className="detail-wrapper-body">
 

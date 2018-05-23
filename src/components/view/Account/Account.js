@@ -215,7 +215,7 @@ editBankData(){
               </div>
               <div className="clearfix"></div>
               {/* Tab Style 1 */}
-              <div className="container">
+              <div className="container" style={{minHeight:"600px"}}>
                 <div className="tab style-2" role="tabpanel">
                   {/* Nav tabs */}
                   <ul className="nav nav-tabs" role="tablist">
@@ -244,7 +244,7 @@ editBankData(){
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="meineAnfragen">
                     {this.state.mitteilungen?(this.state.mitteilungen.map((mit)=>{
-                                  return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} uid={this.state.uid}/>)
+                                  return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} snapId={mit.id} uid={this.state.uid}/>)
                                 })):(<h3>Du hast keine laufenden Anfragen</h3>)
                     }
                     </div>
@@ -279,7 +279,7 @@ editBankData(){
                               <div className="col-md-12 col-sm-12 mob-padd-0">
                                 {/* Basic Information */}
                                 <div className="edit-info">
-                                  <div className="col-md-4 col-sm-12">
+                                  <div className="col-md-6 col-sm-12">
                                     <h4>Kontaktdaten</h4>
                                     <div className="preview-info-body">
                                       <ul className="info-list">
@@ -292,17 +292,8 @@ editBankData(){
                                       </ul>
                                     </div>
                                   </div>
-                                  <div className="col-md-4 col-sm-12">
-                                    <h4>Zahlungsdaten</h4>
-                                    <div className="preview-info-body">
-                                      <ul className="info-list">
-                                        <li>
-                                            <label><i className="ti-credit-card preview-icon birth mrg-r-10"></i>Iban </label>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                  </div>
-                                  <div className="col-md-4 col-sm-12">
+
+                                  <div className="col-md-6 col-sm-12">
                                     <h4>Persönliche Daten</h4>
                                     <div className="preview-info-body">
                                       <ul className="info-list">
