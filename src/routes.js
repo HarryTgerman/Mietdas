@@ -44,29 +44,40 @@ class Routes extends Component{
 
 
 
-checkCaptcha() {
+checkCaptcha(response) {
 
-  const captcha = document.querySelector('#g-recaptcha-response').value;
+  // from https://itsolutionstuff.com/post/php-how-to-implement-google-new-recaptcha-code-example-with-demoexample.html
 
-  fetch('/subscribe', {
-        method:'POST',
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-type':'application/json'
-        },
-        body:JSON.stringify({captcha: captcha})
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if(data.msg == "Captcha passed"){
-              this.setState({
-                   isCaptcha: true
-              });
-        };
-      });
+  let captcha = document.querySelector('#g-recaptcha-response').value;
 
-}
+  fetch("https://mietdas.de/Backend/recaptcha.php", {
+  method: "post",
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  //make sure to serialize your JSON body
+  body: JSON.stringify({
+    captcha: captcha
+  })
+})
+.then( (response) => {
+  if(response.success !== undefined && !response.success){
+    console.log({"success": false, "msg":"Failed captcha verification"});
+    this.setState({ isCaptcha: false});
+    return console.log(this.state.isCaptcha, "das ist captcha");
+  }else{
+    console.log({"success": true, "msg":"Captcha passed"});
+    this.setState({ isCaptcha: true});
+    return console.log(this.state.isCaptcha, "das ist captcha");
+  }
+
+
+   //do something awesome that makes the world a better place
+   //console.log(response);
+});
+
+ }
 
 authWithGmail(){
   firebase.auth().signInWithPopup(gmailProvider).then(function(result) {
@@ -162,7 +173,7 @@ register(){
          this.setState({registerRedirect:true})
       })
     }else{
-      alert("biite bestätige das du kein Roboter bist")
+      alert("bitte bestätige das du kein Roboter bist")
     }
 
   }else{
@@ -231,7 +242,7 @@ sendPwReset(){
                       <Route path='/mieten/city=:id/type=:id/' exact component={Mieten}/>
                       <Route path='/logout' exact component={Logout}/>
                       <Route path='/benutzeraccount' exact component={Account}/>
-                      <Route path='/bezahlung' exact component={Bezahlung}/>
+                      <Route path='/bezahlung?:' exact component={Bezahlung}/>
                       <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
                       <Route name= 'details' path='/details/search=:type/:id' component={MietDetails}/>
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Reservierung}/>
