@@ -64,7 +64,7 @@ firedata() {
   {
     firebase.database().ref().child('app').child('cards/'+i)
     .orderByChild('uid').equalTo(this.state.uid)
-    .once('value', snap => {
+    .on('value', snap => {
       snap.forEach(childSnapshot => {
         previousCards.push ({
           id: childSnapshot.key,
@@ -118,7 +118,7 @@ firedata() {
   })
   const mitteilung = [];
     firebase.database().ref().child('app').child('users/').child(this.state.uid)
-    .child('mitteilung').once('value' ,snap => {
+    .child('mitteilung').on('value' ,snap => {
       snap.forEach(childSnapshot => {
       mitteilung.push ({
         id: childSnapshot.key,

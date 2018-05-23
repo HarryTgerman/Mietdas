@@ -59,7 +59,7 @@ changeLocation(){
               <div className="row extra">
                 <div className="col-md-12">
                   <div className="listing-detail-info">
-                    <span>gemiete: ....</span>
+                    <span></span>
                     <span><a>{this.state.adresse}</a></span>
                   </div>
                 </div>
@@ -72,9 +72,11 @@ changeLocation(){
             )}
             <div className="listing-shot-info rating">
               <div className="row extra">
-
-                <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                  <a onClick={()=>{this.setState({toggle:!this.state.toggle})}} href="#" className="detail-link">Standort verändern</a>
+                <div className="col-sm-6" >
+                  <Link to={'details/search='+this.props.snap.kategorie+'/'+this.props.cardId}><a  className="detail-link">Details</a></Link>
+                </div>
+                <div className="col-sm-6" style={{textAlign:"right"}}>
+                  <a onClick={()=>{this.setState({toggle:!this.state.toggle})}} href="#" className="detail-link">{this.state.toggle?('Standort verändern'):('abbrechen')}</a>
                 </div>
               </div>
             </div>

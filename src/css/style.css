@@ -2421,7 +2421,7 @@ p.listing-location {
     color: #a1acb5;
 }
 
-.listing-shot-info.rating a.detail-link {
+.detail-link {
     color: #f64625;
     text-transform: uppercase;
     font-size: 14px;
