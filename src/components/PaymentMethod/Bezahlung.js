@@ -36,7 +36,7 @@ componentWillMount(){
         let pspReference = this.props.location.search.split('&')[4].split('=')[1]
         let merchantReference = url[2].split('&')[0]
 
-        if(resultUrl == "CANCELLED"){this.setState({cancelled:true})};
+
 
         if(resultUrl == "AUTHORISED"){
           this.setState({authorised:true})
@@ -59,6 +59,8 @@ componentWillMount(){
 
             })
           })
+        }else{
+          this.setState({cancelled:true})
         }
       })
     }
