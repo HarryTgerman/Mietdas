@@ -177,7 +177,7 @@ onDrop(imageFiles) {
           if(this.state.redirect === true) {
             return  <Redirect to="/benutzeraccount"/>
           }
-          if(this.state.showAlert === true)
+          if(this.state.showAlert === true || this.state.loading ===true)
           {window.scrollTo(0, 0)}
 
           return(
@@ -190,15 +190,16 @@ onDrop(imageFiles) {
 
                    {/* /. ROW  */}
                   <div id="page-inner">
+  {this.state.loading?(<div className="loader"></div>):(
                     <div className="row bott-wid">
                       <div className="col-md-12 col-sm-12">
                         <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
-            							<div className="listing-box-header">
-            								<i className="ti-write theme-cl"></i>
-            								<h3>Bodenfräse Inserieren</h3>
-            								<p>Fülle das Formular vollständig aus</p>
-            							</div>
-            							<form onSubmit={this.artikelHochladen.bind(this)}>
+                          <div className="listing-box-header">
+                            <i className="ti-write theme-cl"></i>
+                            <h3>Bodenfräse Inserieren</h3>
+                            <p>Fülle das Formular vollständig aus</p>
+                          </div>
+                          <form onSubmit={this.artikelHochladen.bind(this)}>
                             {
                               this.state.showAlert ?
                                (<div ref="alert" className="alert alert-danger" role="alert">
@@ -207,33 +208,33 @@ onDrop(imageFiles) {
                               :(null)
                             }
 
-            								<div className="row mrg-r-10 mrg-l-10">
-            									<div className="col-sm-6">
-            										<label>Bezeichnung</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
-            									</div>
+                            <div className="row mrg-r-10 mrg-l-10">
+                              <div className="col-sm-6">
+                                <label>Bezeichnung</label>
+                                <input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
+                              </div>
 
-            									<div className="col-sm-6">
-            										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Kersten" />
-            									</div>
-
-
-            									<div className="col-sm-6">
-            										<label>Breite</label>
-            										<input type="number" ref={(input) => { this.breiteVonInput = input}} className="form-control" placeholder="in mm"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Hersteler</label>
+                                <input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Kersten" />
+                              </div>
 
 
                               <div className="col-sm-6">
-            										<label>Höhe</label>
-            										<input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
+                                <label>Breite</label>
+                                <input type="number" ref={(input) => { this.breiteVonInput = input}} className="form-control" placeholder="in mm"/>
+                              </div>
+
 
                               <div className="col-sm-6">
-            										<label>Frästiefe</label>
-            										<input type="number" className="form-control" ref={(input) => { this.fraeseInput = input}} placeholder="in mm"/>
-            									</div>
+                                <label>Höhe</label>
+                                <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
+                              </div>
+
+                              <div className="col-sm-6">
+                                <label>Frästiefe</label>
+                                <input type="number" className="form-control" ref={(input) => { this.fraeseInput = input}} placeholder="in mm"/>
+                              </div>
 
                               <div className="col-sm-6">
                                 <label>Motor</label>
@@ -242,22 +243,22 @@ onDrop(imageFiles) {
 
 
 
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
-            									</div>
+                              <div className="col-sm-6">
+                                <label>Gewicht</label>
+                                <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                              </div>
 
                               <div className="col-sm-6">
                                 <label>Preis</label>
                                 <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
-            									<div className="col-sm-12">
-            										<label>Artikelbeschreibung</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
-            									</div>
+                              <div className="col-sm-12">
+                                <label>Artikelbeschreibung</label>
+                                <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
+                              </div>
 
-            								</div>
+                            </div>
                             <div className="listing-box-header">
                               <i className="ti-gallery theme-cl"></i>
                               <h3>Gallerie</h3>
@@ -291,10 +292,11 @@ onDrop(imageFiles) {
                                 <button type="submit" className="btn theme-btn">Artikel hochladen</button>
                               </div>
                             </div>
-            							</form>
-            						</div>
+                          </form>
+                        </div>
                       </div>
-                    </div>
+                    </div>)}
+
                   </div>
                 </div>
               </div>

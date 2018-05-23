@@ -168,7 +168,7 @@ artikelHochladen(event) {
           if(this.state.redirect === true) {
             return  <Redirect to="/benutzeraccount"/>
           }
-          if(this.state.showAlert === true)
+          if(this.state.showAlert === true || this.state.loading ===true)
           {window.scrollTo(0, 0)}
 
           return(
@@ -181,94 +181,97 @@ artikelHochladen(event) {
 
                    {/* /. ROW  */}
                   <div id="page-inner">
-                    <div className="row bott-wid">
-                      <div className="col-md-12 col-sm-12">
-                        <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
-            							<div className="listing-box-header">
-            								<i className="ti-write theme-cl"></i>
-            								<h3>Baustein-Bandsäge Inserieren</h3>
-            								<p>Fülle das Formular vollständig aus</p>
-            							</div>
-            							<form onSubmit={this.artikelHochladen.bind(this)}>
-                            {
-                              this.state.showAlert ?
-                               (<div ref="alert" className="alert alert-danger" role="alert">
-                                  <strong>Achtung</strong> {this.state.alert}
-                                </div>)
-                              :(null)
-                            }
-
-            								<div className="row mrg-r-10 mrg-l-10">
-            									<div className="col-sm-6">
-            										<label>Bezeichnung</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
-            									</div>
-
-            									<div className="col-sm-6">
-            										<label>Hersteler</label>
-            										<input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Zagro" />
-            									</div>
-
-
-                              <div className="col-sm-6">
-            										<label>Schnittlänge</label>
-            										<input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-                              <div className="col-sm-6">
-                                <label>Schnittbreite</label>
-                                <input type="number" ref={(input) => { this.schnittbreiteInput  = input}} className="form-control" placeholder="in mm"/>
-                              </div>
-                              <div className="col-sm-6">
-            										<label>Schnitttiefe</label>
-            										<input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
-            									</div>
-            									<div className="col-sm-6">
-            										<label>Gewicht</label>
-            										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
-            									</div>
-
-                              <div className="col-sm-6">
-                                <label>Preis</label>
-                                <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
-                              </div>
-
-            									<div className="col-sm-12">
-            										<label>Artikelbeschreibung</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
-            									</div>
-
-            								</div>
+                    {this.state.loading?(<div className="loader"></div>):(
+                      <div className="row bott-wid">
+                        <div className="col-md-12 col-sm-12">
+                          <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
                             <div className="listing-box-header">
-                              <i className="ti-gallery theme-cl"></i>
-                              <h3>Gallerie</h3>
-                              <p>Füge deine Bilder hinzu</p>
+                              <i className="ti-write theme-cl"></i>
+                              <h3>Baustein-Bandsäge Inserieren</h3>
+                              <p>Fülle das Formular vollständig aus</p>
                             </div>
-                            <form style={{cursor:'pointer'}}  className="dz-clickable primary-dropzone">
-                              <Dropzone
-                                  className="dropzone"
-                                  onDrop={this.onDrop.bind(this)}
-                                  activeClassName='active-dropzone'
-                                  multiple={true}>
-                                  <div className="dz-default dz-message">
-                                    <i className="ti-gallery"></i>
-                                    <span>Klicke auf diese Feld</span>
-                                  </div>
-                                  <div className="row">
-                                  {this.state.imageFiles.length > 0 ? <div>
-                                  <div>{this.state.imageFiles.map((file) => <div key={file.name.toString()} className="col-md-4 col-sm-12" ><img  stlye={{height: "120px", width: "120px", borderRadius: "4px"}}  src={file.preview} /></div> )}</div>
-                                  </div> : null}
-                                  </div>
-                                </Dropzone>
-                            </form>
-                            <div className="form-group">
-                              <div className="col-md-12 col-sm-12 text-center">
-                                <button type="submit" className="btn theme-btn">Artikel hochladen</button>
+                            <form onSubmit={this.artikelHochladen.bind(this)}>
+                              {
+                                this.state.showAlert ?
+                                 (<div ref="alert" className="alert alert-danger" role="alert">
+                                    <strong>Achtung</strong> {this.state.alert}
+                                  </div>)
+                                :(null)
+                              }
+
+                              <div className="row mrg-r-10 mrg-l-10">
+                                <div className="col-sm-6">
+                                  <label>Bezeichnung</label>
+                                  <input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Hersteler</label>
+                                  <input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Zagro" />
+                                </div>
+
+
+                                <div className="col-sm-6">
+                                  <label>Schnittlänge</label>
+                                  <input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
+                                </div>
+                                <div className="col-sm-6">
+                                  <label>Schnittbreite</label>
+                                  <input type="number" ref={(input) => { this.schnittbreiteInput  = input}} className="form-control" placeholder="in mm"/>
+                                </div>
+                                <div className="col-sm-6">
+                                  <label>Schnitttiefe</label>
+                                  <input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
+                                </div>
+                                <div className="col-sm-6">
+                                  <label>Gewicht</label>
+                                  <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Preis</label>
+                                  <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                </div>
+
+                                <div className="col-sm-12">
+                                  <label>Artikelbeschreibung</label>
+                                  <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
+                                </div>
+
                               </div>
-                            </div>
-            							</form>
-            						</div>
+                              <div className="listing-box-header">
+                                <i className="ti-gallery theme-cl"></i>
+                                <h3>Gallerie</h3>
+                                <p>Füge deine Bilder hinzu</p>
+                              </div>
+                              <form style={{cursor:'pointer'}}  className="dz-clickable primary-dropzone">
+                                <Dropzone
+                                    className="dropzone"
+                                    onDrop={this.onDrop.bind(this)}
+                                    activeClassName='active-dropzone'
+                                    multiple={true}>
+                                    <div className="dz-default dz-message">
+                                      <i className="ti-gallery"></i>
+                                      <span>Klicke auf diese Feld</span>
+                                    </div>
+                                    <div className="row">
+                                    {this.state.imageFiles.length > 0 ? <div>
+                                    <div>{this.state.imageFiles.map((file) => <div key={file.name.toString()} className="col-md-4 col-sm-12" ><img  stlye={{height: "120px", width: "120px", borderRadius: "4px"}}  src={file.preview} /></div> )}</div>
+                                    </div> : null}
+                                    </div>
+                                  </Dropzone>
+                              </form>
+                              <div className="form-group">
+                                <div className="col-md-12 col-sm-12 text-center">
+                                  <button type="submit" className="btn theme-btn">Artikel hochladen</button>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    )}
+
                   </div>
                 </div>
               </div>

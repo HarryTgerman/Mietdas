@@ -183,7 +183,7 @@ onDrop(imageFiles) {
           if(this.state.redirect === true) {
             return  <Redirect to="/benutzeraccount"/>
           }
-          if(this.state.showAlert === true)
+          if(this.state.showAlert === true || this.state.loading ===true)
           {window.scrollTo(0, 0)}
 
           return(

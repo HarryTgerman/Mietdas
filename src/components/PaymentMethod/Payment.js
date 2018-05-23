@@ -56,7 +56,6 @@ class Payment extends Component{
   post(path, params, method) {
      method = method || "post";
 
-
      var form = document.createElement("form");
      form.setAttribute("method", method);
      form.setAttribute("action", path);
@@ -86,6 +85,7 @@ class Payment extends Component{
     console.log(responseJson);
   })
  }
+
  recalcRequest(data){
    let meth = data
    let brandCode = meth.brandCode
@@ -115,10 +115,8 @@ class Payment extends Component{
         this.post('https://test.adyen.com/hpp/skipDetails.shtml', {merchantSig:this.state.merchantSig,sessionValidity:this.state.sessionValidity,
           merchantAccount:"MietDasCOM",paymentAmount:paymentAmount, currencyCode:"EUR", shopperLocale:"ger_DE",skinCode: "mLIn3bJn",
           merchantReference:this.props.location.query.cardid, brandCode:this.state.meth.brandCode})
+        })
       })
-  })
-
-
 
  }
 
@@ -216,13 +214,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                         </header>
                       </div>)
                        })): (null)}
-
-
-                       {this.state.loading?(
-                        <h4>Lade...</h4>
-                       ):(null)}
-
-
+                     {this.state.loading?(<h4>Lade...</h4>):(null)}
                     </div>
                   </div>
                 </div>

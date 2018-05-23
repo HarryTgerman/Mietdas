@@ -85,7 +85,6 @@ firedata() {
     const uid = this.state.uid;
     firebase.database().ref('app/').child('users/'+uid)
     .on('value', snap => {
-
         if(snap.val()){
           if(snap.val().anfragen == null){
           this.setState({
@@ -94,16 +93,6 @@ firedata() {
       }else{
             this.setState({
             anfragen: snap.val().anfragen,
-            cardId: snap.val().cardId,
-            url: snap.val().url,
-            nachName: snap.val().nachName,
-            adresse: snap.val().address,
-            geboren: snap.val().geburtsDatum,
-            telefon: snap.val().telefon,
-            stadt: snap.val().stadt,
-            plz: snap.val().plz,
-            straße: snap.val().straße,
-            profileInfo: snap.val()
           })
         }
         if(snap.val().bankData == undefined){
@@ -111,6 +100,18 @@ firedata() {
             showEditBankData: true
           })
         }
+        this.setState({
+          cardId: snap.val().cardId,
+          url: snap.val().url,
+          nachName: snap.val().nachName,
+          adresse: snap.val().address,
+          geboren: snap.val().geburtsDatum,
+          telefon: snap.val().telefon,
+          stadt: snap.val().stadt,
+          plz: snap.val().plz,
+          straße: snap.val().straße,
+          profileInfo: snap.val()
+        })
       }
 
 
@@ -136,7 +137,6 @@ firedata() {
 
 
 editProfile() {
-
 
 		this.setState((prevState)=>{
 			return {editProfile: !prevState.editProfile};
