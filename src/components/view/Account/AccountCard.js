@@ -73,7 +73,7 @@ changeLocation(){
             <div className="listing-shot-info rating">
               <div className="row extra">
                 <div className="col-sm-6" >
-                  <Link to={'details/search='+this.props.snap.kategorie+'/'+this.props.cardId}><a  className="detail-link">Details</a></Link>
+                  <Link to={'mashineDetails/search='+this.props.snap.kategorie+'/'+this.props.cardId}><a  className="detail-link">Details</a></Link>
                 </div>
                 <div className="col-sm-6" style={{textAlign:"right"}}>
                   <a onClick={()=>{this.setState({toggle:!this.state.toggle})}} href="#" className="detail-link">{this.state.toggle?('Standort verändern'):('abbrechen')}</a>

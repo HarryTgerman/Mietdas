@@ -2023,7 +2023,7 @@ color:#f64625;
     display: none;
 }
 .custom-tooltip > div:nth-child(4) > div > div:last-child {
-    color:#ff431e;
+    color:#f64625;
     content: "x";
     font-size:15px  ;
     height:30px  ;
@@ -2046,7 +2046,7 @@ color:#f64625;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
-    color:#ff431e;
+    color:#f64625;
     content: "x";
     font-family: Nunito;
     font-size: 16px;
@@ -2165,7 +2165,7 @@ img.detailsImg {
     content: '';
     width: 12px;
     height: 12px;
-    background:#ff431e;
+    background:#f64625;
     position: absolute;
     top: 3px;
     left:3px;
@@ -2196,13 +2196,13 @@ img.detailsImg {
     border-radius: 50px;
 }
 .range-slider .slider-selection {
-    background:#ff431e;
+    background:#f64625;
 }
 .range-slider .slider-handle.round {
     background: white;
     top: 2px;
     border-radius: 50%;
-    border: 2px solid #ff431e;
+    border: 2px solid #f64625;
 }
 /*---------- Home 5 Banner ------------*/
 .home-2 .banner{
@@ -2326,19 +2326,19 @@ a.btn.listing-btn {
 }
 
 .banner-caption .btn-primary{
-	background:#ff431e;
+	background:#f64625;
 	color:#ffffff;
 	border-radius:0px;
-	border-color:#ff431e;
+	border-color:#f64625;
 	width:100%;
 	font-size:16px;
 	text-transform:uppercase;
 	display:block;
 }
 .banner-caption .btn-primary:focus{
-	background:#ff431e;
+	background:#f64625;
 	color:#ffffff;
-	border-color:#ff431e;
+	border-color:#f64625;
 }
 .banner-caption .form-control::-moz-placeholder{color:#90969e;opacity:1}
 .banner-caption .form-control:-ms-input-placeholder{color:#90969e}
@@ -2453,7 +2453,7 @@ span.like-listing.style-2 {
     top: -20px;
 }
 span.listing-price {
-    background: #ff431e;
+    background: #f64625;
 		opacity: 0.8;
     color: #ffffff;
     position: absolute;
