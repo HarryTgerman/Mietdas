@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
-import Logo from '../../img/logo-mietdas-310.png'
+import Logo from '../../img/logo-white.png'
+import { NavLink, Link} from 'react-router-dom'
 
 
 class Footer extends Component{
@@ -10,6 +11,7 @@ class Footer extends Component{
 }
 
         render(){
+          const agbs = "AGB's"
           return(
               <div>
                 <footer className="footer dark-bg">
@@ -18,38 +20,33 @@ class Footer extends Component{
                       <div className="col-md-3 col-sm-12 theme-bg">
                         <div className="footer-widget">
                           <div className="textwidget">
-                          <h3 className="widgettitle widget-title">Kontaktieren Sie uns</h3>
-                          <p>67346 Speyer<br/>
-                          Keplerstraße 10</p>
+                          <h3 className="widgettitle widget-title">Kontaktiere uns</h3>
                           <p><strong>Email:</strong> support@mietdas.de</p>
-                          <p>
-                          <strong>Telefon:</strong> <a>017645636770</a>
-                          </p>
+                          <img src={Logo} alt="Footer logo" className="img-responsive" />
                           </div>
                         </div>
                       </div>
                       <div className="col-md-5 col-sm-4">
                         <div className="footer-widget">
-                        <h3 className="widgettitle widget-title">About Us</h3>
+                        <h3 className="widgettitle widget-title">Routes</h3>
                         <ul className="footer-navigation">
-                          <li><a href="/">Home</a></li>
-                          <li><a href="/mieten">Mieten</a></li>
-                          <li><a href="/vermieten">Vermieten</a></li>
-                          <li><a href="vermieten">Home Version 3</a></li>
-                          <li><a href="/benutzeraccount">BenutzerProfil</a></li>
+                          <Link to="/"><li><a>Home</a></li></Link>
+                          <Link to="/mieten"><li><a >Mieten</a></li></Link>
+                          <Link to="/vermieten"><li><a>Vermieten</a></li></Link>
+                          <Link to="/benutzeraccount"><li><a>BenutzerProfil</a></li></Link>
+                          <Link to="/impressum"><li><a>Impressum</a></li></Link>
+                          <Link to="/agb"><li><a>{agbs}</a></li></Link>
                         </ul>
                         </div>
                       </div>
                       <div className="col-md-4 col-sm-6">
                         <div className="footer-widget">
+
                           <h3 className="widgettitle widget-title">folge uns</h3>
-                          <img src={Logo} alt="Footer logo" className="img-responsive" />
                           <ul className="footer-social">
-                            <li><a href="#"><i className="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i className="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i className="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i className="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i className="fa fa-pinterest"></i></a></li>
+                            <li><a href="#"><i className="ti-facebook"></i></a></li>
+                            <li><a href="#"><i className="ti-instagram"></i></a></li>
+                            <li><a href="#"><i className="ti-youtube"></i></a></li>
                           </ul>
                         </div>
                       </div>

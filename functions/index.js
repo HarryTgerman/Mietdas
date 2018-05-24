@@ -1,13 +1,8 @@
-const express = require('express');
 const functions = require('firebase-functions');
 const bodyParser = require('body-parser');
 const request = require('request');
 const nodemailer = require('nodemailer');
-const xoauth2 = require('xoauth2');
 const hbs = require('nodemailer-express-handlebars')
-const rp = require('request-promise')
-
-
 
 
 
@@ -20,32 +15,27 @@ exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfra
   let bis = snapshot.val().mietende;
 
 
-var transporter = nodemailer.createTransport('SMTP', {
-    host: 'salfa3210.alfahosting-server.de',
-    port: 465,
-    auth: {
-      user: 'Mietdas.de',
-      pass: 'QnWExEpbVab!q.v'
-    }
-});
+  var transporter = nodemailer.createTransport({
+      host: 'alfa3210.alfahosting-server.de',
+      port: 465,
+      secure: true, // use TLS
+      auth: {
+        user: 'web29692594p2',
+        pass: '7XZkop5L'
+      },
+      tls:{
+        rejectUnauthorized: false
+      }
+  });
 
-  // const transporter = nodemailer.createTransport({
-  //    service: 'gmail',
-  //    auth: {xoauth2: xoauth2.createXOAuth2Generator({
-  //           user: 'support@mietdas.de',
-  //           clientId: '153684144787-i6lneuuequuf6ob4o82956ior38svklu.apps.googleusercontent.com',
-  //           clientSecret: 'rAGQ0V5zQAol8IvaGC1iahqd',
-  //           refreshToken: '1/eylspJXcm3Yfr7NxBjOrKmL9BNfJUWYGgogZ_Us5X_s',
-  //           })
-  //       }
-  //   })
     transporter.use('compile',hbs({
       viewPath: './emailTemplate',
       extName: '.hbs'
     }))
 
-    const mailOptions = {
-      from: 'NoReply@MietDas <support@mietdas.de>', // sender address
+
+   transporter.sendMail({
+      from: 'noreply@mietdas.com', // sender address
       to: sendToMail, // list of receivers
       subject: 'Sie haben eine neue Anfrage',
       template: 'index',
@@ -54,10 +44,8 @@ var transporter = nodemailer.createTransport('SMTP', {
         article: article,
         von: von,
         bis: bis,
-      }
-      };
-
-    return transporter.sendMail(mailOptions, function (err, info) {
+        }
+      }, function (err, info) {
          if(err)
            console.log(err)
          else
@@ -74,23 +62,26 @@ exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/mitteilu
   let bis = snapshot.val().anfrage.mietende;
 
 
-  const transporter = nodemailer.createTransport({
-     service: 'gmail',
-     auth: {xoauth2: xoauth2.createXOAuth2Generator({
-            user: 'support@mietdas.de',
-            clientId: '153684144787-i6lneuuequuf6ob4o82956ior38svklu.apps.googleusercontent.com',
-            clientSecret: 'rAGQ0V5zQAol8IvaGC1iahqd',
-            refreshToken: '1/eylspJXcm3Yfr7NxBjOrKmL9BNfJUWYGgogZ_Us5X_s',
-            })
-        }
-    })
+  var transporter = nodemailer.createTransport({
+      host: 'alfa3210.alfahosting-server.de',
+      port: 465,
+      secure: false,
+      auth: {
+        user: 'web29692594p2',
+        pass: '7XZkop5L'
+      },
+      tls:{
+        rejectUnauthorized: false
+      }
+  });
     transporter.use('compile',hbs({
       viewPath: './emailTemplate',
       extName: '.hbs'
     }))
 
-    const mailOptions = {
-      from: 'NoReply@MietDas <support@mietdas.de>', // sender address
+
+   transporter.sendMail({
+      from: 'noreply@mietdas.com', // sender address
       to: sendToMail, // list of receivers
       subject: 'Ihre Anfrage für ' +article+ ' wurde leieder abgelehnt',
       template: 'mitteilung',
@@ -99,9 +90,7 @@ exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/mitteilu
         von: von,
         bis: bis,
       }
-      };
-
-    return transporter.sendMail(mailOptions, function (err, info) {
+    },  (err, info)=> {
          if(err)
            console.log(err)
          else

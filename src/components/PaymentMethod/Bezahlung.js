@@ -113,6 +113,7 @@ componentWillMount(){
                 <div className="title-transparent page-title" style={{backgroundImage: `url(${AccountImg})`, marginBottom:"-50px"}}>
                   <div className="container">
                     <div className="title-content">
+
                     </div>
                   </div>
                 </div>

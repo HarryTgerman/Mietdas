@@ -4,15 +4,15 @@ import {Redirect, NavLink, Link} from 'react-router-dom'
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
 import Logo from '../../../../img/logo.png'
+import update from 'react-addons-update'; // ES6
 
 
 class MashineDetails extends Component{
   constructor (props){
   super(props)
   this.state={
-      endDate: "",
-    startDate: "",
-    focusedInput: "",
+    editBeschreibung:true,
+    bearbeiten:true,
     loading: false,
     textShort: true,
     vermieterLoading: true,
@@ -92,6 +92,187 @@ löschen(){
 
   })
 }
+saveArtikel(){
+  firebase.database().ref('app').child('cards').child(this.state.urlId).update(this.state.snap)
+  this.setState({bearbeiten:true})
+}
+saveBeschreibung(){
+  firebase.database().ref('app').child('cards').child(this.state.urlId).child('cardDesc').set(this.state.snap.cardDesc)
+  this.setState({editBeschreibung:true})
+}
+handleBeschreibung(e){
+  this.setState({ snap: { ...this.state.snap, cardDesc: e.target.value} });
+}
+handleGewicht(e){
+  this.setState({ snap: { ...this.state.snap, gewicht: e.target.value} });
+}
+handleHersteller(e){
+  this.setState({ snap: { ...this.state.snap, hersteller: e.target.value} })
+}
+handleLaenge(e){
+  this.setState({ snap: { ...this.state.snap, laenge: e.target.value} })
+}
+handleTrog(e){
+  this.setState({ snap: { ...this.state.snap, trog: e.target.value} })
+}
+handleAbmessungen(e){
+  this.setState({ snap: { ...this.state.snap, abmessungen: e.target.value} })
+}
+handleFraese(e){
+  this.setState({ snap: { ...this.state.snap, fraese: e.target.value} })
+}
+handleMotor(e){
+  this.setState({ snap: { ...this.state.snap, motor: e.target.value} })
+}
+handleSchnitttiefe(e){
+  this.setState({ snap: { ...this.state.snap, schnitttiefe: e.target.value} })
+}
+handleGerauuschpegel(e){
+  this.setState({ snap: { ...this.state.snap, gerauuschpegel: e.target.value} })
+}
+handleDurchmesser(e){
+  this.setState({ snap: { ...this.state.snap, durchmesser: e.target.value} })
+}
+handleSchnittlaenge(e){
+  this.setState({ snap: { ...this.state.snap, schnittlaenge: e.target.value} })
+}
+handleSchnittbreite(e){
+  this.setState({ snap: { ...this.state.snap, schnittbreite: e.target.value} })
+}
+handleBandagenbreite(e){
+  this.setState({ snap: { ...this.state.snap, bandagenbreite: e.target.value} })
+}
+handleMaxFuellmenge(e){
+  this.setState({ snap: { ...this.state.snap, maxFuellmenge: e.target.value} })
+}
+handleSpannung(e){
+  this.setState({ snap: { ...this.state.snap, spannung: e.target.value} })
+}
+handleEinzelschlagstärke(e){
+  this.setState({ snap: { ...this.state.snap, einzelschlagstärke: e.target.value} })
+}
+handleAufname(e){
+  this.setState({ snap: { ...this.state.snap, aufname: e.target.value} })
+}
+handleBohrdurchmesser(e){
+  this.setState({ snap: { ...this.state.snap, bohrdurchmesser: e.target.value} })
+}
+handleBohrkrone(e){
+  this.setState({ snap: { ...this.state.snap, bohrkrone: e.target.value} })
+}
+handleMuldeninhalt(e){
+  this.setState({ snap: { ...this.state.snap, muldeninhalt: e.target.value} })
+}
+handleBreite(e){
+  this.setState({ snap: { ...this.state.snap, breite: e.target.value} })
+}
+handleHoehe(e){
+  this.setState({ snap: { ...this.state.snap, hoehe: e.target.value} })
+}
+handleReichweite(e){
+  this.setState({ snap: { ...this.state.snap, reichweite: e.target.value} })
+}
+handleSchuetthoehe(e){
+  this.setState({ snap: { ...this.state.snap, schuetthoehe: e.target.value} })
+}
+handleGrabtiefe(e){
+  this.setState({ snap: { ...this.state.snap, grabtiefe: e.target.value} })
+}
+handleGesamtgewicht(e){
+  this.setState({ snap: { ...this.state.snap, gesamtgewicht: e.target.value} })
+}
+handleNutzlast(e){
+  this.setState({ snap: { ...this.state.snap, nutzlast: e.target.value} })
+}
+handleAuflaufbremse(e){
+  this.setState({ snap: { ...this.state.snap, auflaufbremse: e.target.value} })
+}
+handleGesamthoeheLadeboard(e){
+  this.setState({ snap: { ...this.state.snap, gesamthoeheLadeboard: e.target.value} })
+}
+handleGesamthoeheSpriegel(e){
+  this.setState({ snap: { ...this.state.snap, gesamthoeheSpriegel: e.target.value} })
+}
+handleGesamtbreite(e){
+  this.setState({ snap: { ...this.state.snap, gesamtbreite: e.target.value} })
+}
+handleGesamtlaengeesamtbreite(e){
+  this.setState({ snap: { ...this.state.snap, gesamtlaenge: e.target.value} })
+}
+handleInnenhoehe(e){
+  this.setState({ snap: { ...this.state.snap, innenhoehe: e.target.value} })
+}
+handleInnenladehoehe(e){
+  this.setState({ snap: { ...this.state.snap, innenladehoehe: e.target.value} })
+}
+handleInnenbreite(e){
+  this.setState({ snap: { ...this.state.snap, innenbreite: e.target.value} })
+}
+handleInnenlaenge(e){
+  this.setState({ snap: { ...this.state.snap, innenlaenge: e.target.value} })
+}
+handleLadehöhe(e){
+  this.setState({ snap: { ...this.state.snap, ladehöhe: e.target.value} })
+}
+handleHundertkmh(e){
+  this.setState({ snap: { ...this.state.snap, hundertkmh: e.target.value} })
+}
+handleArbeitsbreite(e){
+  this.setState({ snap: { ...this.state.snap, arbeitsbreite: e.target.value} })
+}
+handleKraftstoff(e){
+  this.setState({ snap: { ...this.state.snap, kraftstoff: e.target.value} })
+}
+handleRuettelkraft(e){
+  this.setState({ snap: { ...this.state.snap, ruettelkraft: e.target.value} })
+}
+handleSchaufelinhalt(e){
+  this.setState({ snap: { ...this.state.snap, schaufelinhalt: e.target.value} })
+}
+handleLaengeDerLadeflaeche(e){
+  this.setState({ snap: { ...this.state.snap, laengeDerLadeflaeche: e.target.value} })
+}
+handleBreiteDerLadeflaeche(e){
+  this.setState({ snap: { ...this.state.snap, breiteDerLadeflaeche: e.target.value} })
+}
+handleHoeheDerLadeflaeche(e){
+  this.setState({ snap: { ...this.state.snap, hoeheDerLadeflaeche: e.target.value} })
+}
+handleLaderaumvolumen(e){
+  this.setState({ snap: { ...this.state.snap, laderaumvolumen: e.target.value} })
+}
+handleVolumenstrom(e){
+  this.setState({ snap: { ...this.state.snap, volumenstrom: e.target.value} })
+}
+handleLeerGewicht(e){
+  this.setState({ snap: { ...this.state.snap, leerGewicht: e.target.value} })
+}
+handleGesamtGewicht(e){
+  this.setState({ snap: { ...this.state.snap, gesamtGewicht: e.target.value} })
+}
+handleSitzplaetze(e){
+  this.setState({ snap: { ...this.state.snap, sitzplaetze: e.target.value} })
+}
+handleLeistung(e){
+  this.setState({ snap: { ...this.state.snap, leistung: e.target.value} })
+}
+handleDruckbereich(e){
+  this.setState({ snap: { ...this.state.snap, druckbereich: e.target.value} })
+}
+handleAnhaengerlastUngebremst(e){
+  this.setState({ snap: { ...this.state.snap, anhaengerlastUngebremst: e.target.value} })
+}
+handleAnhaengerlastGebremst(e){
+  this.setState({ snap: { ...this.state.snap, anhaengerlastGebremst: e.target.value} })
+}
+handleStuetzlast(e){
+  this.setState({ snap: { ...this.state.snap, stuetzlast: e.target.value} })
+}
+handleFuehrerschein(e){
+  this.setState({ snap: { ...this.state.snap, fuehrerschein: e.target.value} })
+}
+
+
 
 
         render(){
@@ -179,7 +360,7 @@ löschen(){
                 											</div>
                 										</div>
                 									</div>
-                                  <figure className="img-holder ">
+                                  <figure  className="img-holder ">
                                     <a><ImageGallery  items={this.state.images} showPlayButton={false} className="detailsImg" alt="News"/></a>
                                     <div className="blog-post-date theme-bg">
                 											{this.state.snap.cardPreis}€ Pro Tag
@@ -187,14 +368,20 @@ löschen(){
                                   </figure>
                 								</div>
                 							</div>
-
+                              <div className="editProfile">
+                              <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
+                                  return {bearbeiten: !prevState.bearbeiten};
+                                })}}>{this.state.bearbeiten?("bearbeiten"):("abbrechen")}</a><a> </a>
+    {this.state.bearbeiten?(null):(<a className="editProfile" onClick={this.saveArtikel.bind(this)}>speichern</a>)}
+                            </div>
                 							<div className="detail-wrapper">
                 								<div className="detail-wrapper-header">
           							         <h4>Technische Daten</h4>
                 								</div>
+
                                 <div className="widget-boxed-body">
                                   <div className="side-list">
-                                    <div className="reviews-box">
+                                    {this.state.bearbeiten?(<div className="reviews-box">
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Gewicht
                                       </div>
@@ -710,11 +897,538 @@ löschen(){
                                         </div>
                                       </React.Fragment>):(null)}
                                       </div>
-                                    </div>
+                                    </div>):
+
+
+
+
+
+                                    (<div className="reviews-box">
+                                      <div className="detailsCategory col-sm-5 col-md-5">
+                                        Gewicht
+                                      </div>
+                                      <div className="col-sm-5 col-md-5">
+                                        <input type="text" className="form-control" onChange={this.handleGewicht.bind(this)} value={this.state.snap.gewicht} />
+                                      </div>
+                                      <div className="detailsCategory col-sm-5 col-md-5">
+                                        Hersteller
+                                      </div>
+                                      <div className="col-sm-5 col-md-5">
+                                        <input type="text" className="form-control" onChange={this.handleHersteller.bind(this)} value={this.state.snap.hersteller}/>
+                                      </div>
+                                      <div>
+                                        {this.state.snap.laenge?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Länge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleLaenge.bind(this)} value={this.state.snap.laenge} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.trog?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Trog
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleTrog.bind(this)} value={this.state.snap.trog} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.abmessungen?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Abmessungen
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleAbmessungen.bind(this)} value={this.state.snap.abmessungen} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.fraese?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Frästiefe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleFraese.bind(this)} value={this.state.snap.fraese} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.motor?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Motor
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleMotor.bind(this)} value={this.state.snap.motor}/>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schnitttiefe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schnitttiefe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleSchnitttiefe.bind(this)} value={this.state.snap.schnitttiefe} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.gerauuschpegel?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Geräuschpegel
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleGerauuschpegel.bind(this)} value={this.state.snap.gerauuschpegel} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.durchmesser?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Durchmesser
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleDurchmesser.bind(this)} value={this.state.snap.durchmesser} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schnittlaenge?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schnittlänge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleSchnittlaenge.bind(this)} value={this.state.snap.schnittlaenge} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schnittbreite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schnittbreite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleSchnittbreite.bind(this)} value={this.state.snap.schnittbreite} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.bandagenbreite?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Bandagenbreite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleBandagenbreite.bind(this)} value={this.state.snap.bandagenbreite} />
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.maxFuellmenge?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Max. Füllmenge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleMaxFuellmenge.bind(this)} value={this.state.snap.maxFuellmenge} />
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.spannung?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Spannung
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleSpannung.bind(this)} value={this.state.snap.spannung} />
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.einzelschlagstärke?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Einzelschlagstärke
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleEinzelschlagstärke.bind(this)} value={this.state.snap.einzelschlagstärke} />
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.aufname?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Aufname
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleAufname.bind(this)} value={this.state.snap.aufname}/>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.bohrdurchmesser?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Bohrdurchmesser
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleBohrdurchmesser.bind(this)} value={this.state.snap.bohrdurchmesser} />
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.bohrkrone?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Bohrkrone
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleBohrkrone.bind(this)} value={this.state.snap.bohrkrone}/>
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.muldeninhalt?(
+                                        <React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Muldeninhalt
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleMuldeninhalt.bind(this)} value={this.state.snap.muldeninhalt} />
+                                          </div>
+                                        </React.Fragment>):(null)}
+                                        {this.state.snap.breite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Breite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleBreite.bind(this)} value={this.state.snap.breite} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.hoehe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Höhe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleHoehe.bind(this)} value={this.state.snap.hoehe} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.reichweite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Reichweite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleReichweite.bind(this)} value={this.state.snap.reichweite} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.schuetthoehe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Schütthöhe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <input type="text" className="form-control" onChange={this.handleSchuetthoehe.bind(this)} value={this.state.snap.schuetthoehe} />
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                      {this.state.snap.grabtiefe?
+                                      (<React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Grabtiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGrabtiefe.bind(this)} value={this.state.snap.grabtiefe} />
+                                        </div>
+                                      </React.Fragment>
+                                      ):(null)}
+                                      {this.state.snap.gesamtgewicht?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtgewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamtgewicht.bind(this)} value={this.state.snap.gesamtgewicht} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.nutzlast?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Nutzlast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleNutzlast.bind(this)} value={this.state.snap.nutzlast} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.auflaufbremse?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Auflaufbremse
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleAuflaufbremse.bind(this)} value={this.state.snap.auflaufbremse}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamthoeheLadeboard?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe Ladeboard
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamthoeheLadeboard.bind(this)} value={this.state.snap.gesamthoeheLadeboard} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamthoeheSpriegel?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe Spriegel
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamthoeheSpriegel.bind(this)} value={this.state.snap.gesamthoeheSpriegel} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamtbreite.bind(this)} value={this.state.snap.gesamtbreite} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtlaenge?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamtlaenge.bind(this)} value={this.state.snap.gesamtlaenge} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenhoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenhöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleInnenhoehe.bind(this)} value={this.state.snap.innenhoehe} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenladehoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleInnenladehoehe.bind(this)} value={this.state.snap.innenladehoehe} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleInnenbreite.bind(this)} value={this.state.snap.innenbreite} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.innenlaenge?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleInnenlaenge.bind(this)} value={this.state.snap.innenlaenge} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.ladehöhe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Ladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleLadehöhe.bind(this)} value={this.state.snap.ladehöhe} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.hundertkmh?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          100 km/h Zulassung
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleHundertkmh.bind(this)} value={this.state.snap.hundertkmh}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.arbeitsbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Arbeitsbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleArbeitsbreite.bind(this)} value={this.state.snap.arbeitsbreite} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.kraftstoff?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Kraftstoff
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleKraftstoff.bind(this)} value={this.state.snap.kraftstoff}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.ruettelkraft?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Rüttelkraft
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleRuettelkraft.bind(this)} value={this.state.snap.ruettelkraft} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.schaufelinhalt?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Schaufelinhalt
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleSchaufelinhalt.bind(this)} value={this.state.snap.schaufelinhalt} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.laengeDerLadeflaeche?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Länge der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleLaengeDerLadeflaeche.bind(this)} value={this.state.snap.laengeDerLadeflaeche} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.breiteDerLadeflaeche?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Breite der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleBreiteDerLadeflaeche.bind(this)} value={this.state.snap.breiteDerLadeflaeche} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.hoeheDerLadeflaeche?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Höhe der Ladefläche
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleHoeheDerLadeflaeche.bind(this)} value={this.state.snap.hoeheDerLadeflaeche} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.laderaumvolumen?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Laderaumvolumen
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleLaderaumvolumen.bind(this)} value={this.state.snap.laderaumvolumen} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.volumenstrom?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Volumenstrom
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleVolumenstrom.bind(this)} value={this.state.snap.volumenstrom} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.leerGewicht?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Leergewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleLeerGewicht.bind(this)} value={this.state.snap.leerGewicht} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamtGewicht?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamtgewicht
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamtGewicht.bind(this)} value={this.state.snap.gesamtGewicht} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.sitzplaetze?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Sitzplätze
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleSitzplaetze.bind(this)} value={this.state.snap.sitzplaetze}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.leistung?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Leistung
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleLeistung.bind(this)} value={this.state.snap.leistung} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.druckbereich?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Druckbereich
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleDruckbereich.bind(this)} value={this.state.snap.druckbereich} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.anhaengerlastUngebremst?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Ungebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleAnhaengerlastUngebremst.bind(this)} value={this.state.snap.anhaengerlastUngebremst} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.anhaengerlastGebremst?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Gebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleAnhaengerlastGebremst.bind(this)} value={this.state.snap.anhaengerlastGebremst} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.stuetzlast?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Stützlast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleStuetzlast.bind(this)} value={this.state.snap.stuetzlast} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.fuehrerschein?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Führerscheinklasse
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleFuehrerschein.bind(this)} value={this.state.snap.fuehrerschein}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      </div>
+                                    </div>)}
                                   </div>
                                 </div>
                               </div>
-
+                              <div className="editProfile">
+                              <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
+                                  return {editBeschreibung: !prevState.editBeschreibung};
+                                })}}>{this.state.editBeschreibung?("bearbeiten"):("abbrechen")}</a><a> </a>
+    {this.state.editBeschreibung?(null):(<a className="editProfile" onClick={this.saveBeschreibung.bind(this)}>speichern</a>)}
+                            </div>
                               <div className="detail-wrapper">
                 								<div className="detail-wrapper-header">
           							         <h4>Beschreibung</h4>
@@ -725,9 +1439,13 @@ löschen(){
                                       <div className="detailsCategory col-sm-5 col-md-5">
                                         Beschreibung
                                       </div>
-                                      <div className="col-sm-5 col-md-5">
+                                      {this.state.editBeschreibung?(<div className="col-sm-5 col-md-5">
                                         <p>{this.state.snap.cardDesc} </p>
-                                      </div>
+                                      </div>):(
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleBeschreibung.bind(this)} value={this.state.snap.cardDesc}/>
+                                        </div>
+                                      )}
                                     </div>
                                   </div>
                                 </div>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, withProps ,Redirect} from 'react-router-dom';
+import {BrowserRouter, Route, withProps ,Redirect, Link} from 'react-router-dom';
 import firebase from 'firebase'
 import Logo from'./img/logo.png'
 import ReCAPTCHA from 'react-google-recaptcha';
@@ -15,6 +15,8 @@ import Bezahlung from './components/PaymentMethod/Bezahlung'
 import Artikelbearbeiten from './components/view/Account/Artikelbearbeiten/Artikelbearbeiten'
 import MietDetails from './components/view/Mieten/MietDetails/MietDetails'
 import Footer from './components/Footer/Footer'
+import Impressum from './components/Footer/Impressum'
+import AGB from './components/Footer/AGB'
 import Reservierung from './components/view/Mieten/MietDetails/Reservierung'
 import Vermieten from './components/view/Vermieten/Vermieten'
 import AccountErstellen from './components/view/AccountErstellen/AccountErstellen'
@@ -38,7 +40,9 @@ class Routes extends Component{
     this.state= {
       registerRedirect: false,
       forgottPw: false,
-      isCaptcha: false
+      isCaptcha: false,
+      agb: false,
+
     }
 }
 
@@ -136,7 +140,7 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
     }
 
 register(){
-
+  if(this.state.agb === false){return 0}
   if(this.createPassword.value.length > 8){
 
     if(this.state.isCaptcha){
@@ -182,6 +186,7 @@ register(){
 }
 
 registerWithFacebook(){
+  if(this.state.agb === false){return 0}
   let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
     .then((result, error) => {
       if (error) {
@@ -201,6 +206,7 @@ registerWithFacebook(){
     })
 }
 registerWithGmail(){
+  if(this.state.agb === false){return 0}
   let whenGmailAuth = firebase.auth().signInWithPopup(gmailProvider)
     .then((result, error) => {
       if (error) {
@@ -232,7 +238,7 @@ sendPwReset(){
 });
 }
         render(){
-
+          const agbs = "AGB's"
           return(
                 <BrowserRouter>
                   <div >
@@ -250,7 +256,8 @@ sendPwReset(){
                       <Route name= 'AccountErstellen' path='/account-erstellen' component={AccountErstellen}/>
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
                       <Route name= 'MashineDetails' path='/mashineDetails/search=:type/:id' component={MashineDetails}/>
-
+                      <Route name= 'Impressum' path='/impressum' component={Impressum}/>
+                      <Route name= 'Impressum' path='/agb' component={AGB}/>
                       {this.state.registerRedirect ?
                         (<Redirect to='/account-erstellen' />):(null)
                       }
@@ -305,11 +312,17 @@ sendPwReset(){
                                       <div className="form-group">
                                         <input type="email"  name="email" className="form-control" placeholder="Deine Email" ref={(input) => { this.emailInput = input; }} required=""/>
                                         <input type="password"  name="password" className="form-control" placeholder="Passwort" ref={(input) => { this.createPassword = input; }} required=""/>
+                                        <div className="left" style={{textAlign: "left"}}>
+                                        <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
+                                        return {agb: !prevState.agb};})}}/>
+                                        Ich akzeptiere die <a href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2FAGB%20Allgemein%20PDF.pdf?alt=media&token=748d0b45-efb5-461b-b3ef-afec01b0a5e7'>{agbs}</a>
+                                        </div>
                                         <div className="center"  >
                                           <ReCAPTCHA style={{marginBottom: "10px"}}
                                           ref="recaptcha"
                                           sitekey="6LeEWlYUAAAAAOITMgxX0pcih46KC23uxTQQwD72"
                                           onChange={this.checkCaptcha.bind(this)}/>
+
                                         <button  type = "button" className="btn btn-midium btn-primary btn-radius width-200" style={{borderRadius: "50px", width: "200px", margin:"5px"}} onClick={this.registerWithFacebook}>
                                           Log-In mit Facebook
                                         </button>
