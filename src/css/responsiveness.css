@@ -40,13 +40,13 @@
 		padding: 15px 9px 18px 9px;
 	}
 	body .navbar.bootsnav.navbar-transparent ul.nav > li > a.addlist {
-		background:#ff431e !important;
+		background:#f64625 !important;
 	}
 	body.home-2 .navbar.bootsnav.navbar-transparent ul.nav > li > a.addlist {
 		background:transparent !important;
 	}
 	body .navbar.bootsnav ul.nav > li > a.addlist {
-		background: #ff431e !important;
+		background: #f64625 !important;
 		color: #ffffff !important;
 		border-radius: 0;
 		padding: 20.5px 35px !important;
@@ -98,7 +98,7 @@
 		border-bottom: 1px solid #f1f6f9;
 	}
 	.navbar.bootsnav li.dropdown ul.dropdown-menu > li > a:hover, .navbar.bootsnav li.dropdown ul.dropdown-menu > li > a:focus{
-		color:#ff431e;
+		color:#f64625;
 	}
 	.navbar.bootsnav ul.nav > li > a {
     padding: 16.5px 10px 16.5px 10px;

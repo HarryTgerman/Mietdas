@@ -6,7 +6,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import request from 'request';
 import Q from 'bluebird';
 
-
+import MashineDetails from './components/view/Account/MashineDetails/MashineDetails'
 import Home from './components/view/Home/Home'
 import Mieten from './components/view/Mieten/Mieten'
 import Logout from './components/Logout/Logout'
@@ -249,6 +249,8 @@ sendPwReset(){
                       <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>
                       <Route name= 'AccountErstellen' path='/account-erstellen' component={AccountErstellen}/>
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
+                      <Route name= 'MashineDetails' path='/mashineDetails/search=:type/:id' component={MashineDetails}/>
+
                       {this.state.registerRedirect ?
                         (<Redirect to='/account-erstellen' />):(null)
                       }
