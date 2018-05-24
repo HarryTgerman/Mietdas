@@ -39,8 +39,6 @@
     "urlencode": "^1.1.0"
   },
   "scripts": {
-    "startBackend": "node server.js",
-    "server": "nodemon ./Backend/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
