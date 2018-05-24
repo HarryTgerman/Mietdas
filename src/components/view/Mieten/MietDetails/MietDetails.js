@@ -37,7 +37,7 @@ componentWillMount(){
           this.setState ({
             snap: snap.val(),
             cardId: snap.key,
-            imageUrl: snap.val().imageUrl
+            imageUrl: snap.val().imageUrl,
           },()=>{
             const images =[{original:this.state.imageUrl, thumbnail:this.state.imageUrl}]
               this.state.snap.imageArr.map(img =>{
@@ -47,16 +47,15 @@ componentWillMount(){
                 })
               })
               this.setState({
-                images: images
+                images: images,
+                loading: true,
               })
             if (this.state.numberOfDays == undefined) {this.setState({numberOfDays : "1 Tag", Diff: 1}) }
             firebase.database().ref().child('app').child('users/' +this.state.snap.uid)
             .once('value', snap =>{
               this.setState({
                 vermieterLoading: false,
-                vermieter: snap.val().name,
                 vermieterUrl: snap.val().url,
-                loading: true,
               },resolve())
             })
           })
@@ -732,7 +731,7 @@ componentWillMount(){
                 													</div>
                                         </div>
                                         <div className="col-sm-12 col-md-5">
-                                          <a>{this.state.vermieter}</a>
+                                          <a>{this.state.snap.vermieter}</a>
                                         </div>
                                       </div>
                                     </div>

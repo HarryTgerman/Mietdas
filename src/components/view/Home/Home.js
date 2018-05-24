@@ -238,7 +238,7 @@ if (this.state.selectValue.value == "") {
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading">
                                   <h2>Baumaschinen &  <span> Geräte </span></h2>
-                                  <p>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Günstig.</p>
+                                  <p>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Kostenlos.</p>
                                 </div>
                                 </div>
                               </div>
