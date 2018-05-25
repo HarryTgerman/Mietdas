@@ -84,7 +84,7 @@ firedata() {
   loadAnfragen(){
     const uid = this.state.uid;
     firebase.database().ref('app/').child('users/'+uid)
-    .on('value', snap => {
+    .once('value', snap => {
         if(snap.val()){
           if(snap.val().anfragen == null){
           this.setState({
@@ -118,7 +118,7 @@ firedata() {
   })
   const mitteilung = [];
     firebase.database().ref().child('app').child('users/').child(this.state.uid)
-    .child('mitteilung').on('value' ,snap => {
+    .child('mitteilung').once('value' ,snap => {
       snap.forEach(childSnapshot => {
       mitteilung.push ({
         id: childSnapshot.key,

@@ -65,7 +65,7 @@ changeLocation(){
                 </div>
               </div>
             </div>):(
-              <div className="listing-shot-info ">
+              <div className="listing-shot-info " style={{marginRight:"15px"}}>
                   <span><label>Adresse eingeben</label></span>
                   <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}>aktualisieren</button></span>
               </div>
@@ -73,7 +73,7 @@ changeLocation(){
             <div className="listing-shot-info rating">
               <div className="row extra">
                 <div className="col-sm-6" >
-                  <Link to={'mashineDetails/search='+this.props.snap.kategorie+'/'+this.props.cardId}><a  className="detail-link">Details</a></Link>
+                  <Link to={'mashineDetails/search='+this.props.snap.kategorie+'/'+this.props.cardId}><a  className="detail-link">Bearbeiten</a></Link>
                 </div>
                 <div className="col-sm-6" style={{textAlign:"right"}}>
                   <a onClick={()=>{this.setState({toggle:!this.state.toggle})}} href="#" className="detail-link">{this.state.toggle?('Standort verändern'):('abbrechen')}</a>

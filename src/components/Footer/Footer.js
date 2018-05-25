@@ -33,7 +33,7 @@ class Footer extends Component{
                           <Link to="/"><li><a>Home</a></li></Link>
                           <Link to="/mieten"><li><a >Mieten</a></li></Link>
                           <Link to="/vermieten"><li><a>Vermieten</a></li></Link>
-                          <Link to="/benutzeraccount"><li><a>BenutzerProfil</a></li></Link>
+                          <Link to="/benutzeraccount"><li><a>Benutzer Profil</a></li></Link>
                           <Link to="/impressum"><li><a>Impressum</a></li></Link>
                           <Link to="/agb"><li><a>{agbs}</a></li></Link>
                         </ul>

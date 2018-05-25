@@ -3857,7 +3857,7 @@ color:#ffffff;
 .footer-social li a i{
 	width:48px;
 	height:48px;
-	font-size:17px;
+	font-size:30px;
 	border-radius:6%;
 	line-height:48px;
 	text-align:center;
@@ -3874,7 +3874,7 @@ color:#ffffff;
 	width:100%;
 	display:inline-block;
 	text-align:center;
-	padding:15px 20px 8px 20px;
+	padding:10px 20px 1px 20px;
 }
 
 ul.footer-navigation {

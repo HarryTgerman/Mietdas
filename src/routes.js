@@ -140,7 +140,7 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
     }
 
 register(){
-  if(this.state.agb === false){return 0}
+  if(this.state.agb === false || this.state.dae === false){return 0}
   if(this.createPassword.value.length > 8){
 
     if(this.state.isCaptcha){
@@ -186,7 +186,7 @@ register(){
 }
 
 registerWithFacebook(){
-  if(this.state.agb === false){return 0}
+  if(this.state.agb === false || this.state.dae === false){return 0}
   let whenFacebookAuth = firebase.auth().signInWithPopup(facebookProvider)
     .then((result, error) => {
       if (error) {
@@ -206,7 +206,7 @@ registerWithFacebook(){
     })
 }
 registerWithGmail(){
-  if(this.state.agb === false){return 0}
+  if(this.state.agb === false || this.state.dae === false){return 0}
   let whenGmailAuth = firebase.auth().signInWithPopup(gmailProvider)
     .then((result, error) => {
       if (error) {
@@ -248,7 +248,7 @@ sendPwReset(){
                       <Route path='/mieten/city=:id/type=:id/' exact component={Mieten}/>
                       <Route path='/logout' exact component={Logout}/>
                       <Route path='/benutzeraccount' exact component={Account}/>
-                      <Route path='/bezahlung?:' exact component={Bezahlung}/>
+                      <Route path='/bezahlung' exact component={Bezahlung}/>
                       <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
                       <Route name= 'details' path='/details/search=:type/:id' component={MietDetails}/>
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Reservierung}/>
@@ -315,7 +315,12 @@ sendPwReset(){
                                         <div className="left" style={{textAlign: "left"}}>
                                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
                                         return {agb: !prevState.agb};})}}/>
-                                        Ich akzeptiere die <a href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2FAGB%20Allgemein%20PDF.pdf?alt=media&token=748d0b45-efb5-461b-b3ef-afec01b0a5e7'>{agbs}</a>
+                                        Ich akzeptiere die <a href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2Fmerged.pdf?alt=media&token=0dac7549-502d-49a8-be64-17a885333157'>{agbs}</a>
+                                        </div>
+                                        <div className="left" style={{textAlign: "left"}}>
+                                        <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
+                                        return {dae: !prevState.dae};})}}/>
+                                        Ich akzeptiere die <a href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2F25.%20Mai%202018%20DAE.pdf?alt=media&token=20bd2399-4324-4b8b-941e-353c773fa6c0'>Datenschutzerklärung</a>
                                         </div>
                                         <div className="center"  >
                                           <ReCAPTCHA style={{marginBottom: "10px"}}

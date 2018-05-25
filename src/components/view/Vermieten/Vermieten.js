@@ -50,7 +50,8 @@ class Vermieten extends Component{
     this.state = {
        authenticated: false,
        redirect: false,
-       accoutDataRedirect: false
+       accoutDataRedirect: false,
+       bankDataRedirect: false,
     }
 }
 
@@ -69,7 +70,7 @@ componentWillMount(){
       },()=>{
          this.auth.child(this.state.uid)
            .on('value', snapshot => {
-
+             if(snapshot.val().bankData == undefined){this.setState({bankDataRedirect: true})}
              if(snapshot.val()){var adresse = snapshot.val().adresse;
              var ort = snapshot.val().ort;
              var telefon = snapshot.val().telefon;
@@ -125,6 +126,10 @@ onDrop(imageFiles) {
           if(this.state.redirect === true) {
             alert('Sie müssen sich zuerst Registrieren')
             return  <Redirect to="/"/>
+          }
+          if(this.state.bankDataRedirect === true) {
+            alert('Sie müssen zuerst Ihre Bankdataten ergänzen damit wir Ihnen Ihr Geld überweisen können \nunter Profil->Bankdaten hinzufügen')
+            return  <Redirect to="/benutzeraccount"/>
           }
           if(this.state.accoutDataRedirect === true){
             alert('Sie müssen Ihre Daten ergänzen')

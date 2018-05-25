@@ -33,13 +33,15 @@ this.setState({
     this.setState({
       iban: "bitte angeben",
       bic: "bitte  angeben",
-      inhaber: "bitte angeben"
+      inhaber: "bitte angeben",
+      bankName: "bitte angeben"
     })
   }else {
     this.setState({
       iban: this.props.snap.bankData.iban,
       bic: this.props.snap.bankData.bic,
-      inhaber: this.props.snap.bankData.kontoinhaber
+      inhaber: this.props.snap.bankData.kontoinhaber,
+      bankName: this.props.snap.bankData.bankName,
     })
   }
 }
@@ -123,6 +125,14 @@ handleChangeName(event) {
         this.setState({inhaberError: '', isError: false,inhaber: e.target.value})
       }
     }
+    checkBankName(e) {
+      if (this.inhaberInput.value.length < 2){
+        const error = "Bitte geben Sie den vollstädigen Namen des Konotinhabers ein.";
+        this.setState({bankNameError: error, isError: true,bankName: e.target.value})
+     }else{
+        this.setState({bankNameError: '', isError: false,bankName: e.target.value})
+      }
+    }
 
 
 handleChange(event){
@@ -140,8 +150,8 @@ savePersonel(){
   firebase.database().ref().child('app/users').child(this.props.uid).update({
     telefon: this.state.telefon,
     geburtsDatum: this.state.geburtsDatum,
-    editProfile: false
   })
+  this.setState({editProfile: false})
 
 }
 saveLocation(){
@@ -150,6 +160,8 @@ saveLocation(){
     plz: this.state.plz,
     bundesLand: this.state.bundesLand,
     stadt: this.state.stadt,
+  })
+  this.setState({
     editLocation:false,
   })
 
@@ -159,7 +171,10 @@ saveBankData(){
     iban: this.state.iban,
     bic: this.state.bic,
     kontoinhaber: this.state.inhaber,
-    editBankData:false,
+    bankName: this.state.bankName,
+  })
+  this.setState({
+      editBankData: false,
   })
 
 }
@@ -268,7 +283,7 @@ componentDidMount(){
                         <div  className="listing-box-header">
                           <i className="ti-wallet theme-cl"></i>
                           <h3>Bank Daten</h3>
-                          <p>Füllen Sie Ihre Bankdaten </p>
+                          <p>Füllen Sie Ihre Bankdaten aus</p>
                         </div>
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-md-12">
@@ -291,6 +306,17 @@ componentDidMount(){
                                 <div className="row mrg-0">
                                   <div className="col-md-12 mob-padd-0">
                                     <div className="form-group">
+                                      <label>Bank Name</label>
+                                      {this.state.editBankData ?(<div><div className="input-group">
+                                        <input onChange={this.checkBankName.bind(this)} ref={(input) => { this.bankNameInput = input; }} type="text" className="form-control" placeholder="..." value={this.state.bankName}/>
+                                        <span className="input-group-addon"><span className="glyphicon glyphicon-lock"></span></span>
+                                      </div>  <p className="errorMessage">{this.state.bankNameError}</p></div>)
+                                      :(<p>{this.state.bankName}</p>)}
+                                    </div>
+                                  </div>
+                                <div className="row mrg-0">
+                                  <div className="col-md-12 mob-padd-0">
+                                    <div className="form-group">
                                       <label>IBAN</label>
                                       {this.state.editBankData ?(<div><div className="input-group">
                                         <input onChange={this.checkIban.bind(this)} ref={(input) => { this.ibanInput = input; }} type="text" className="form-control" placeholder="mindestens 22 Zeichen" value={this.state.iban}/>
@@ -310,6 +336,7 @@ componentDidMount(){
                                       </div>  <p className="errorMessage">{this.state.bicError}</p></div>)
                                       :(<p>{this.state.bic}</p>)}
                                     </div>
+                                  </div>
                                   </div>
                                   <div className="editProfile">
                                   <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{

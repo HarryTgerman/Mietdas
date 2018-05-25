@@ -50,13 +50,14 @@ componentWillMount(){
               .set({
                 paymentData: this.state.snap,
                 pspReference: pspReference,
-                paymentMethod: paymentMethod
+                paymentMethod: paymentMethod,
+                submitPayout: false,
               })
               firebase.database().ref().child('app/users').child(this.state.ownerId).child('anfragen')
               .child(merchantReference).remove()
               firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
               .child(merchantReference).remove()
-
+              
             })
           })
         }else{
@@ -123,7 +124,7 @@ componentWillMount(){
                       <i className="ti-close preview-icon" aria-hidden="true"></i>
                       <h2 className="mrg-top-15">OUPS da ist wohl etwas schief gelaufen!</h2>
                       <p>Versuche es mit einer anderen Bezahlmethode</p>
-                      <a href="/benutzeraccount" className="btn theme-btn-trans mrg-top-20">Zurück zum Benutzeraccount</a>
+                      <a href="/benutzeraccount" className="btn theme-btn-trans mrg-top-20">Zurück zum Benutzerprofil</a>
                     </div>
                   </div>
                 </section>):(null)}
@@ -133,7 +134,7 @@ componentWillMount(){
                     <i className="ti-check preview-icon" aria-hidden="true"></i>
                     <h2 className="mrg-top-15">Du hast den Bezahlvorgang erfolgreich abgeschlossen</h2>
                     <p>Du erhälst in kürze eine bestätigungs E-Mail</p>
-                    <Link to="/benutzeraccount"><a className="btn theme-btn-trans mrg-top-20">Zurück zum Benutzeraccount</a></Link>
+                    <Link to="/benutzeraccount"><a className="btn theme-btn-trans mrg-top-20">Zurück zum Benutzerprofil</a></Link>
                   </div>
                 </div>
               </section>):(null)}

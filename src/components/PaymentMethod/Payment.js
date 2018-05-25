@@ -213,7 +213,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                           </div>
                         </header>
                       </div>)
-                       })): (null)}
+                    })): (<div className="loader"></div>)}
                      {this.state.loading?(<h4>Lade...</h4>):(null)}
                     </div>
                   </div>

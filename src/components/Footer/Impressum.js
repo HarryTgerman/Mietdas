@@ -11,7 +11,7 @@ class Impressum extends Component{
         render(){
           return(
               <div className="container">
-              <div className='impressum'><h1>Impressum</h1><p>Angaben gemäß § 5 TMG</p><p>Andreas Winter <br/>
+              <div className='impressum'><h1>Impressum</h1><p>Angaben gemäß § 5 TMG</p><p>MietDas <br/>
                   Alte Schiffbrückenstraße 8<br/>
                   76726 Germersheim <br/>
                   </p><p> <strong>Vertreten durch: </strong><br/>

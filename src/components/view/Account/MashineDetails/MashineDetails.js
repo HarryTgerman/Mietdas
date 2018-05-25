@@ -1443,7 +1443,7 @@ handleFuehrerschein(e){
                                         <p>{this.state.snap.cardDesc} </p>
                                       </div>):(
                                         <div className="col-sm-5 col-md-5">
-                                          <input type="text" className="form-control" onChange={this.handleBeschreibung.bind(this)} value={this.state.snap.cardDesc}/>
+                                        <textarea className="h-100 form-control" className="form-control" onChange={this.handleBeschreibung.bind(this)} value={this.state.snap.cardDesc}></textarea>
                                         </div>
                                       )}
                                     </div>

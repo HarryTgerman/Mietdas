@@ -8,6 +8,9 @@ import {Link} from 'react-router-dom';
 class Anfragen extends Component{
   constructor(props){
     super(props)
+    this.state={
+      remove:false
+    }
   }
 
 
@@ -25,18 +28,21 @@ class Anfragen extends Component{
   }
 
   Absagen(){
-    const num = this.props.name + this.props.num
+    let ref = this.props.name.split(' ').join('-') + this.props.num;
     firebase.database().ref().child('app').child('users/' + this.props.uid)
-    .child('anfragen').child(num)
+    .child('anfragen').child(ref)
     .remove()
     firebase.database().ref().child('app').child('users/' + this.props.anfrage.uid)
-    .child('mitteilung').child(num)
+    .child('mitteilung').child(ref)
     .remove()
+    firebase.database().ref().child('app/users').child(this.props.anfrage.uid).child('gestellteAnfragen')
+    .child(ref).remove()
+    this.setState({remove: true})
   }
 
         render(){
-          return(
-              <div className="col-sm-12" style={{ overflow: "hidden"}}>
+          return(<div>
+              {this.state.remove?(null):(<div className="col-sm-12" style={{ overflow: "hidden"}}>
                   <div className="col-md-12 col-sm-12">
                       <div className="verticleilist listing-shot">
                         <a className="listing-item">
@@ -99,6 +105,7 @@ class Anfragen extends Component{
                       </div>
                     </div>
                   </div>
+              </div>)}
               </div>
             )
         }

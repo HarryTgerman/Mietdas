@@ -52,7 +52,6 @@ loadUser(){
     firebase.database().ref('app/').child('users/'+uid)
     .on('value', snap => {
         if(snap.val()){
-          console.log('this is snap', snap.val());
           if(snap.val().anfragen == null){
           this.setState({
             controll: true,
@@ -122,6 +121,13 @@ loadUser(){
     .set({ bestätigt: false,
               cardId: this.props.location.query.cardId,
               anfrage: anfObj,
+            })
+    firebase.database().ref().child('app').child('users/' + this.state.uid)
+    .child('/gestellteAnfragen/').child(ref)
+    .set({ cardHeading:this.props.location.query.snap.cardHeading,
+            mietbeginn:startDate,
+            mietende:endDate,
+            email:email
             })
     var Time = moment().format("HH:MM")
     var Date = moment().format("DD-MM-YY")

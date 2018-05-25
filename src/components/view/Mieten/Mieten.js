@@ -297,7 +297,7 @@ whenGeoCode.then(() =>{
                           <div className="row">
 
                             <div s className="col-md-12 col-sm-12 no-padd">
-                              <h3>Finde deine Baumaschinen deiner Umgebung</h3>
+                              <h3>Finde deine Baumaschinen in deiner Umgebung</h3>
                               <p>Suche nach Ort und Kategorie</p>
                             </div>
 

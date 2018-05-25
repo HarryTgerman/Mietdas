@@ -91,11 +91,7 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+    
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -105,7 +101,6 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
 
         const transportbreite = this.transportbreiteVonInput.value;
         const transporthoehe = this.transporthoeheVonInput.value;
@@ -117,7 +112,6 @@ onDrop(imageFiles) {
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const timeInMs = Date.now();
 
@@ -163,9 +157,6 @@ onDrop(imageFiles) {
                          kategorie:"grabenwalze",
                          email: this.props.email,
                          hersteller: hersteller,
-                         bedienung: bedienung,
-
-
                          breite: breite,
                          hoehe: hoehe,
                          ruettelkraft: ruettelkraft,
@@ -173,7 +164,6 @@ onDrop(imageFiles) {
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          kraftstoff: kraftstoff,
                          address: this.props.address,
@@ -286,10 +276,6 @@ onDrop(imageFiles) {
                                     <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
                                   </div>
 
-                                  <div className="col-sm-12">
-                                    <label>Mietbedingungen</label>
-                                    <textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
-                                  </div>
                                 </div>
                                 <div className="listing-box-header">
                                   <i className="ti-gallery theme-cl"></i>

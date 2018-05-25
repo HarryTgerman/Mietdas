@@ -41,24 +41,7 @@ class  Cards extends Component {
       <div >
         <div className="col-md-4 col-sm-12">
           <div className="listing-shot grid-style">
-            <Link Link style={{ textDecoration: 'none' }} to={{
-              pathname: `/details/search=${this.props.kategorie+"/"+this.props.id}`,
-            state: {
-            kategorie: this.props.kategorie,
-            snap: this.snap,
-            cardHeading: this.cardHeading,
-            cardDesc: this.cardDesc,
-            id: this.id,
-            standOrt: this.standOrt,
-            cardPreis: this.cardPreis,
-            imageUrl: this.url,
-            imageArr: this.imageArr,
-            gewicht: this.gewicht,
-            grabtiefe: this.grabtiefe,
-            transportbreite: this.transportbreite,
-            transporthoehe: this.transporthoehe,
-              }
-            }}>
+
               <div className="listing-shot-img">
                 <img src={this.url}  className="img-responsive" alt=""/>
                 <span className="listing-price">{this.cardPreis}€</span>
@@ -67,7 +50,6 @@ class  Cards extends Component {
                 <h4>{this.cardHeading}</h4>
                 <p className="listing-location">{this.standOrt}</p>
               </div>
-            </Link>
             <div className="listing-shot-info">
               <div className="row extra">
                 <div className="col-md-12">
@@ -79,7 +61,25 @@ class  Cards extends Component {
               <div className="row extra">
                 <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                  <a href="#" className="detail-link">Gehe zu</a>
+                <Link Link style={{ textDecoration: 'none' }} to={{
+                  pathname: `/details/search=${this.props.kategorie+"/"+this.props.id}`,
+                state: {
+                kategorie: this.props.kategorie,
+                snap: this.snap,
+                cardHeading: this.cardHeading,
+                cardDesc: this.cardDesc,
+                id: this.id,
+                standOrt: this.standOrt,
+                cardPreis: this.cardPreis,
+                imageUrl: this.url,
+                imageArr: this.imageArr,
+                gewicht: this.gewicht,
+                grabtiefe: this.grabtiefe,
+                transportbreite: this.transportbreite,
+                transporthoehe: this.transporthoehe,
+                  }
+                }}><a href="#" className="detail-link">Gehe zu</a></Link>
+
                 </div>
               </div>
             </div>
