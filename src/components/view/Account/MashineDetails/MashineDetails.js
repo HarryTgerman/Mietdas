@@ -100,6 +100,18 @@ saveBeschreibung(){
   firebase.database().ref('app').child('cards').child(this.state.urlId).child('cardDesc').set(this.state.snap.cardDesc)
   this.setState({editBeschreibung:true})
 }
+
+handleInklAnhängerplane(e){
+  this.setState({ snap: { ...this.state.snap, inklAnhängerplane: e.target.value} });
+}
+
+handleDreiseitenkipper(e){
+  this.setState({ snap: { ...this.state.snap, dreiseitenkipper: e.target.value} });
+}
+handleInklAuffahrampen(e){
+  this.setState({ snap: { ...this.state.snap, inklAuffahrampen: e.target.value} });
+}
+
 handleBeschreibung(e){
   this.setState({ snap: { ...this.state.snap, cardDesc: e.target.value} });
 }
@@ -435,6 +447,16 @@ handleFuehrerschein(e){
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
+                                        {this.state.snap.inklAuffahrampen?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Frästiefe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.inklAuffahrampen} mm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
                                         {this.state.snap.motor?
                                         (<React.Fragment>
                                           <div className="detailsCategory col-sm-5 col-md-5">
@@ -698,6 +720,15 @@ handleFuehrerschein(e){
                                           <p>{this.state.snap.innenladehoehe} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
+                                      {this.state.snap.inklAnhängerplane?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Innenladehöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.inklAnhängerplane} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
                                       {this.state.snap.innenbreite?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
@@ -876,6 +907,15 @@ handleFuehrerschein(e){
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.anhaengerlastGebremst} kg</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.dreiseitenkipper?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Anhängerlast Gebremst
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.dreiseitenkipper} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.stuetzlast?(
@@ -1364,6 +1404,34 @@ handleFuehrerschein(e){
                                           <input type="text" className="form-control" onChange={this.handleSitzplaetze.bind(this)} value={this.state.snap.sitzplaetze}/>
                                         </div>
                                       </React.Fragment>):(null)}
+                                      {this.state.snap.sitzplaetze?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Sitzplätze
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleInklAuffahrampen.bind(this)} value={this.state.snap.inklAuffahrampen}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.dreiseitenkipper?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Sitzplätze
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleDreiseitenkipper.bind(this)} value={this.state.snap.dreiseitenkipper}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.inklAnhängerplane?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Sitzplätze
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleInklAnhängerplane.bind(this)} value={this.state.snap.inklAnhängerplane}/>
+                                        </div>
+                                      </React.Fragment>):(null)}
+
                                       {this.state.snap.leistung?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">

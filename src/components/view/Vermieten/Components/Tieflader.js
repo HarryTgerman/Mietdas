@@ -67,11 +67,7 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.GesamthoeheLadeboarddesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamthöhe (Ladeboardwand)"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+
     if (this.GesamthoeheSpriegeldesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Gesamthöhe (inkl. Spriegel)"
     this.setState({alert: alert, showAlert: true})
@@ -87,36 +83,13 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.InnenhoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenhöhe (Ladeboardwandhöhe)"
+    if (this.inklAuffahrrampenInput.value == "") {
+    const alert = "Geben Sie Auskunft über Auffahrrampen"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.InnenladehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenladehöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.InnenbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenbreite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.InnenlaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenlänge"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.LadehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Ladehöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.HundertkmhdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die 100 km/h Zulassung"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+
+
     if (this.priceInput.value == "") {
     const alert = "Legen Sie einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -139,18 +112,12 @@ onDrop(imageFiles) {
         const gesamtgewicht = this.GesamtgewichtdesArtikelsInput.value;
         const nutzlast = this.NutzlastdesArtikelsInput.value;
         const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
-        const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
         const gesamthoeheSpriegel = this.GesamthoeheSpriegeldesArtikelsInput.value;
         const gesamtbreite = this.GesamtbreitedesArtikelsInput.value;
         const gesamtlaenge = this.GesamtlaengedesArtikelsInput.value;
-        const innenhoehe = this.InnenhoehedesArtikelsInput.value;
-        const innenladehoehe = this.InnenladehoehedesArtikelsInput.value;
-        const innenbreite = this.InnenbreitedesArtikelsInput.value;
-        const innenlaenge = this.InnenlaengedesArtikelsInput.value;
-        const ladehoehe = this.LadehoehedesArtikelsInput.value;
-        const hundertkmh = this.HundertkmhdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
+        const inklAuffahrampen = this.inklAuffahrrampenInput.value
 
         const timeInMs = Date.now();
 
@@ -193,6 +160,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
+                         inklAuffahrampen:inklAuffahrampen,
                          kategorie:"tieflader",
                          email: this.props.email,
                          hersteller: hersteller,
@@ -202,16 +170,9 @@ onDrop(imageFiles) {
                          gesamtgewicht: gesamtgewicht,
                          nutzlast: nutzlast,
                          auflaufbremse: auflaufbremse,
-                         gesamthoeheLadeboard: gesamthoeheLadeboard,
                          gesamthoeheSpriegel: gesamthoeheSpriegel,
                          gesamtbreite: gesamtbreite,
                          gesamtlaenge: gesamtlaenge,
-                         innenhoehe: innenhoehe,
-                         innenladehoehe: innenladehoehe,
-                         innenbreite: innenbreite,
-                         innenlaenge: innenlaenge,
-                         ladehoehe: ladehoehe,
-                         hundertkmh: hundertkmh,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -301,10 +262,6 @@ onDrop(imageFiles) {
                                     <input type="text" className="form-control" ref={(input) => { this.AuflaufbremsedesArtikelsInput = input}} placeholder="Ja/Nein"/>
                                   </div>
 
-                                  <div className="col-sm-6">
-                                    <label> Gesamthöhe (Ladeboardwand)</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
-                                  </div>
 
                                   <div className="col-sm-6">
                                     <label>Gesamthöhe (inkl. Spriegel)</label>
@@ -322,33 +279,11 @@ onDrop(imageFiles) {
                                   </div>
 
                                   <div className="col-sm-6">
-                                    <label>Innenhöhe (Ladeboardwandhöhe)</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.InnenhoehedesArtikelsInput = input}} placeholder="in mm"/>
-                                  </div>
-
-                                  <div className="col-sm-6">
-                                    <label>Innenladehöhe</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.InnenladehoehedesArtikelsInput = input}} placeholder="in mm"/>
-                                  </div>
-
-                                  <div className="col-sm-6">
-                                    <label>Innenbreite</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.InnenbreitedesArtikelsInput = input}} placeholder="in mm"/>
-                                  </div>
-
-                                  <div className="col-sm-6">
-                                    <label>Innenlänge</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.InnenlaengedesArtikelsInput = input}} placeholder="in mm"/>
-                                  </div>
-
-                                  <div className="col-sm-6">
-                                    <label>Ladehöhe</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in mm"/>
-                                  </div>
-
-                                  <div className="col-sm-6">
-                                    <label> 100 km/h Zulassung</label>
-                                    <input type="text" className="form-control" ref={(input) => { this.HundertkmhdesArtikelsInput = input}} placeholder="Ja/Nein"/>
+                                    <label>Inkl. Auffahrrampen</label>
+                                    <select  className="form-control" ref={select => this.inklAuffahrrampenInput = select}  name="inklAuffahrrampenInput">>
+                                      <option value="Nein">Nein</option>
+                                      <option value="Ja">Ja</option>
+                                    </select>
                                   </div>
 
                                   <div className="col-sm-6">

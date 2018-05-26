@@ -684,6 +684,36 @@ componentWillMount(){
                                           <p>{this.state.snap.stuetzlast} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
+                                      {this.state.snap.inklAuffahrampen?
+                                      (<React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Frästiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.inklAuffahrampen} mm</p>
+                                        </div>
+                                      </React.Fragment>
+                                      ):(null)}
+                                      {this.state.snap.inklAnhängerplane?
+                                      (<React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Frästiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.inklAnhängerplane} mm</p>
+                                        </div>
+                                      </React.Fragment>
+                                      ):(null)}
+                                      {this.state.snap.dreiseitenkipper?
+                                      (<React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Frästiefe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.dreiseitenkipper} mm</p>
+                                        </div>
+                                      </React.Fragment>
+                                      ):(null)}
                                       {this.state.snap.fuehrerschein?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">

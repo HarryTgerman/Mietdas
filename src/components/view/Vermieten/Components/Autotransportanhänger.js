@@ -62,21 +62,8 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.AuflaufbremsedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Auflaufbremse"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.GesamthoeheLadeboarddesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamthöhe (Ladeboardwand)"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.GesamthoeheSpriegeldesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamthöhe (inkl. Spriegel)"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+
+
     if (this.GesamtbreitedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Gesamtbreite"
     this.setState({alert: alert, showAlert: true})
@@ -84,36 +71,6 @@ onDrop(imageFiles) {
     }
     if (this.GesamtlaengedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Gesamtlänge"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.InnenhoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenhöhe (Ladeboardwandhöhe)"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.InnenladehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenladehöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.InnenbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenbreite"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.InnenlaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenlänge"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.LadehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Ladehöhe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.HundertkmhdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die 100 km/h Zulassung"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -131,6 +88,11 @@ onDrop(imageFiles) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
     }
+    if (this.inklAuffahrrampenInput.value == "") {
+    const alert = "Geben Sie Auskunft über Auffahrrampen"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
 
         const db = firebase.database().ref('app').child('cards').child('autotransportanhänger');
         const userId = this.props.user;
@@ -138,19 +100,11 @@ onDrop(imageFiles) {
         const hersteller = this.herstellerInput.value;
         const gesamtgewicht = this.GesamtgewichtdesArtikelsInput.value;
         const nutzlast = this.NutzlastdesArtikelsInput.value;
-        const auflaufbremse = this.AuflaufbremsedesArtikelsInput.value;
-        const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
-        const gesamthoeheSpriegel = this.GesamthoeheSpriegeldesArtikelsInput.value;
         const gesamtbreite = this.GesamtbreitedesArtikelsInput.value;
         const gesamtlaenge = this.GesamtlaengedesArtikelsInput.value;
-        const innenhoehe = this.InnenhoehedesArtikelsInput.value;
-        const innenladehoehe = this.InnenladehoehedesArtikelsInput.value;
-        const innenbreite = this.InnenbreitedesArtikelsInput.value;
-        const innenlaenge = this.InnenlaengedesArtikelsInput.value;
-        const ladehoehe = this.LadehoehedesArtikelsInput.value;
-        const hundertkmh = this.HundertkmhdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
+        const inklAuffahrampen = this.inklAuffahrrampenInput.value
 
 
         const timeInMs = Date.now();
@@ -192,7 +146,7 @@ onDrop(imageFiles) {
         Promise.all(keysPromises).then(() => {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
-               db.push({
+             db.push({   inklAuffahrampen:inklAuffahrampen,
                          kategorie:"autotransportanhänger",
                          email: this.props.email,
                          hersteller: hersteller,
@@ -201,17 +155,8 @@ onDrop(imageFiles) {
                          cardDesc: desc,
                          gesamtgewicht: gesamtgewicht,
                          nutzlast: nutzlast,
-                         auflaufbremse: auflaufbremse,
-                         gesamthoeheLadeboard: gesamthoeheLadeboard,
-                         gesamthoeheSpriegel: gesamthoeheSpriegel,
                          gesamtbreite: gesamtbreite,
                          gesamtlaenge: gesamtlaenge,
-                         innenhoehe: innenhoehe,
-                         innenladehoehe: innenladehoehe,
-                         innenbreite: innenbreite,
-                         innenlaenge: innenlaenge,
-                         ladehoehe: ladehoehe,
-                         hundertkmh: hundertkmh,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -294,21 +239,6 @@ onDrop(imageFiles) {
                                     </div>
 
                                     <div className="col-sm-6">
-                                      <label>Auflaufbremse</label>
-                                      <input type="text" className="form-control" ref={(input) => { this.AuflaufbremsedesArtikelsInput = input}} placeholder="Ja/Nein"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label> Gesamthöhe (Ladeboardwand)</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label>Gesamthöhe (inkl. Spriegel)</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.GesamthoeheSpriegeldesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
                                       <label>Gesamtbreite</label>
                                       <input type="number" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in mm"/>
                                     </div>
@@ -317,35 +247,13 @@ onDrop(imageFiles) {
                                       <label>Gesamtlänge</label>
                                       <input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
                                     </div>
-
+                                    
                                     <div className="col-sm-6">
-                                      <label>Innenhöhe (Ladeboardwandhöhe)</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.InnenhoehedesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label>Innenladehöhe</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.InnenladehoehedesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label>Innenbreite</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.InnenbreitedesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label>Innenlänge</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.InnenlaengedesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label>Ladehöhe</label>
-                                      <input type="number" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in mm"/>
-                                    </div>
-
-                                    <div className="col-sm-6">
-                                      <label> 100 km/h Zulassung</label>
-                                      <input type="text" className="form-control" ref={(input) => { this.HundertkmhdesArtikelsInput = input}} placeholder="Ja/Nein"/>
+                                      <label>Inkl. Auffahrrampen</label>
+                                      <select  className="form-control" ref={select => this.inklAuffahrrampenInput = select}  name="inklAuffahrrampenInput">>
+                                        <option value="Nein">Nein</option>
+                                        <option value="Ja">Ja</option>
+                                      </select>
                                     </div>
 
                                     <div className="col-sm-6">
