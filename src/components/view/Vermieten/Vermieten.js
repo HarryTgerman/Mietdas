@@ -242,7 +242,7 @@ onDrop(imageFiles) {
                            </ul>
                         </li>
                         <li className="dropdown">
-                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Landschaftstechnik
+                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Gartengeräte
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
                             <li role="presentation" className=""><a href="#bodenfraese" aria-controls="bodenfraese" role="tab" data-toggle="tab">Bodenfräse</a></li>

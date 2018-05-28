@@ -85,11 +85,17 @@ toggle(){
   });
 }
 löschen(){
+  this.state.snap.imageArr.map((i) =>{
+       var desertRef = firebase.storage().refFromURL(i)
+       desertRef.delete().then(function() {
+       }).catch(function(error) {
+       });
+  })
   this.setState({
     load:true
   },()=>{
-    firebase.database().ref('app').child('cards').child(this.state.urlId).remove()
 
+      firebase.database().ref('app').child('cards').child(this.state.urlId).remove()
   })
 }
 saveArtikel(){

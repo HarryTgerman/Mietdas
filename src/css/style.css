@@ -4156,7 +4156,9 @@ button.btn.remove-field.light-gray-btn {
     overflow: hidden;
     display: inline-block;
     bottom: -3px;
-    left: 0;
+    left: -30px;
+		cursor: pointer;
+		right:;
 }
 .loader {
 	display:block;
@@ -4188,7 +4190,9 @@ button.btn.remove-field.light-gray-btn {
   font-size: 100px;
   position: absolute;
   left: 0;
+	right:0;
   top: 0;
+	cursor: pointer;
   opacity: 0;
 }
 
