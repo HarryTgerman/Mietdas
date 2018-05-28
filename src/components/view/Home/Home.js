@@ -5,6 +5,8 @@ import Slider from 'react-slick'
 import Select from 'react-select';
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
+import Arrow from '../../../img/arrowDown.svg.png'
+import scrollToComponent from 'react-scroll-to-component';
 
 
 
@@ -53,14 +55,6 @@ componentWillMount(){
     })
   }
 
-
-
-
-
-
-
-
-
 handleSubmit(event){
   event.preventDefault();
 if (this.state.selectValue.value == "") {
@@ -68,6 +62,17 @@ if (this.state.selectValue.value == "") {
     this.setState({alert: alert, showAlert: true})
     return 0
   }else {this.setState({kat:true})}
+}
+
+scrollToSection2(){
+  scrollToComponent(this.section2)
+}
+
+scrollToSection3(){
+  scrollToComponent(this.section3)
+}
+scrollToSection4(){
+  scrollToComponent(this.section4)
 }
 
         render(){
@@ -222,11 +227,12 @@ if (this.state.selectValue.value == "") {
                                         <button type="submit" className="btn theme-btn btn-default">Suchen</button>
                                       </div>
                                     </form>
-
+                                    <img src={Arrow} style={{height: "160px", width: "220px", color: "#E35436", cursor: "pointer", marginTop: "100px"}} className="logo logo-scrolled" alt="" onClick={this.scrollToSection2.bind(this)}/>
                                 </div>
                               </div>
                             </div>
                           </div>
+
                           <div className="clearfix"></div>
                            {/*Main Banner Section End*/}
 
@@ -236,13 +242,13 @@ if (this.state.selectValue.value == "") {
                             <div className="container">
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
-                                <div className="heading">
+                                <div className="heading" >
                                   <h2>Baumaschinen &  <span> Geräte </span></h2>
                                   <p>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Kostenlos.</p>
                                 </div>
                                 </div>
                               </div>
-                              <div className="col-md-4 col-sm-4">
+                              <div className="col-md-4 col-sm-4" ref={(section) => { this.section2 = section; }}>
                                 <div className="feature-box">
                                   <span className="ti-map-alt"></span>
                                   <h4>In Ihrer Nähe</h4>
@@ -263,9 +269,11 @@ if (this.state.selectValue.value == "") {
                                   <p>Klären Sie die Abholung oder Lieferung Ihrer Maschinen.</p>
                                 </div>
                               </div>
+                              <div className="col-md-12 col-sm-12 banner-text">
+                              <img src={Arrow} style={{height: "160px", width: "220px", color: "#E35436", cursor: "pointer"}} className="logo logo-scrolled" alt="" onClick={this.scrollToSection3.bind(this)}/>
+                              </div>
                             </div>
-
-                          </section>
+                                </section>
                            {/*End Services Section*/}
 
                            {/*Popular Listing Section*/}
@@ -273,14 +281,14 @@ if (this.state.selectValue.value == "") {
                             <div className="container">
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
-                                <div className="heading">
+                                <div className="heading" >
                                   <h2>Beliebte <span>Anzeigen</span></h2>
                                   <p>Ein Auszug der meistvermieteten Maschinen & Geräte.</p>
                                 </div>
                                 </div>
                               </div>
 
-                              <div className="row">
+                              <div className="row" ref={(section) => { this.section3 = section; }}>
                                 <div className="col-md-4 col-sm-6">
                                   <div className="listing-shot grid-style">
                                     <a href="#">
@@ -370,6 +378,9 @@ if (this.state.selectValue.value == "") {
                                   </div>
                                 </div>
                               </div>
+                              <div className="col-md-12 col-sm-12 banner-text">
+                              <img src={Arrow} style={{height: "160px", width: "220px", color: "#E35436", cursor: "pointer"}} className="logo logo-scrolled" alt="" onClick={this.scrollToSection4.bind(this)}/>
+                              </div>
                             </div>
                           </section>
                            {/*End Popular Listing Section*/}
@@ -392,7 +403,7 @@ if (this.state.selectValue.value == "") {
                                 </div>
                               </div>
 
-                              <div className="col-md-4 col-sm-6">
+                              <div className="col-md-4 col-sm-6" ref={(section) => { this.section4 = section; }}>
                                 <div className="service-box">
                                   <div className="service-icon">
                                     <i className="ti-mobile"></i>
