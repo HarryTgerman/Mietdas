@@ -117,11 +117,10 @@ onDrop(imageFiles) {
         const gesamthoeheLadeboard = this.GesamthoeheLadeboarddesArtikelsInput.value;
         const gesamtbreite = this.GesamtbreitedesArtikelsInput.value;
         const gesamtlaenge = this.GesamtlaengedesArtikelsInput.value;
-        const innenbreite = this.InnenbreitedesArtikelsInput.value;
         const ladehoehe = this.LadehoehedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const inklAnhängerplane = this.inklInklAnhängerplane.value
+        const inklAnhängerplane = this.inklAnhängerplaneInput.value
 
         const timeInMs = Date.now();
 

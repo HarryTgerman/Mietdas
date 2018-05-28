@@ -258,7 +258,7 @@ onDrop(imageFiles) {
                                   </div>
 
                                   <div className="col-sm-6">
-                                    <label> Gesamthöhe (Ladeboardwand)</label>
+                                    <label>Ladeboardwand</label>
                                     <input type="number" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
                                   </div>
 

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AvatarImg from'../../../img/avatar.jpg'
 import firebase from 'firebase';
 import {NavLink, Redirect} from 'react-router-dom'
 
@@ -7,10 +6,9 @@ import {NavLink, Redirect} from 'react-router-dom'
 class AccountErstellen extends Component{
   constructor(props){
     super(props)
-    this.avatarImg = AvatarImg
     this.Ref = firebase.database().ref('app').child('users');
     this.state = {
-      avatarImg : this.avatarImg
+      avatarImg : 'https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fpimgaes%2Favatar.jpg?alt=media&token=0a6f964d-ce1f-488b-99de-f65fc9b047d5'
     }
 }
 componentWillMount(){
@@ -74,7 +72,7 @@ componentWillMount(){
 
   checkGeburtstag = () =>{
     if (this.dateInput.value.length < 10){
-      const error = "Bitte geben Sie Ihr Gebrutsdatum im diesem Format 'TT.MM.JJJ' ein";
+      const error = "Bitte geben Sie Ihr Gebrutsdatum im diesem Format 'TT.MM.JJJJ' ein";
       this.setState({geburtstagError: error, isError: true})
    }else{
       this.setState({geburtstagError: '', isError: false})
@@ -109,8 +107,8 @@ componentWillMount(){
   }
 
   checkBundesland = () =>{
-    if (this.bundeslandInput.value.length < 2){
-      const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
+    if (this.bundeslandInput.value ==" "){
+      const error = "Bitte wählen Sie ein Bundesland";
       this.setState({bundeslandError: error, isError: true})
    }else{
       this.setState({bundeslandError: '', isError: false})
@@ -126,14 +124,7 @@ componentWillMount(){
     }
   }
 
-  checkPicture = () => {
-    if(this.profilePic.files.length < 1){
-      const error = "Bitte laden Sie ein Profilbild hoch.";
-      this.setState({bildError: error, isError: true})
-    }else{
-       this.setState({bildError: '', isError: false})
-     }
-  }
+
 
 
 
@@ -149,7 +140,6 @@ createUserProfil(event){
     this.checkPlz();
     this.checkBundesland();
     this.checkLand();
-    this.checkPicture();
 
     const name = this.nameInput.value;
     const email = this.emailInput.value;
@@ -170,11 +160,15 @@ createUserProfil(event){
       const alert = "Bitte füllen Sie alle Felder richtig aus."
       this.setState({alert: alert, showAlert: true})
     }else{
-      firebase.storage().ref('images/pimgaes/').child(userId).child('pimage').put(userImage)
-      .then(()=>{
-      firebase.storage().ref('images/pimgaes/').child(userId).child('pimage')
-      .getDownloadURL().then((url) => {
-        const Url = url
+
+      if(userImage == undefined){
+        let Url = 'https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fpimgaes%2Favatar.jpg?alt=media&token=0a6f964d-ce1f-488b-99de-f65fc9b047d5';
+        user.updateProfile({
+          displayName: name,
+          photoURL: Url,
+        }).catch(function(error) {
+        console.error(error);
+        });
         this.Ref.child(userId).update({
                           bankAccount: false,
                           name: name,
@@ -185,34 +179,54 @@ createUserProfil(event){
                           straße: straße,
                           stadt: stadt,
                           plz:plz,
-                          address: adresse,
+                          land: land,
+                          bundesLand: bundesLand,
+                          ort: ort,
+                          telefon: telefon,
+                          uid: userId,
+                        }).then(() => {
+                              this.setState({
+                                redirect: true
+                              })
+                            })
+      }else{
+
+      firebase.storage().ref('images/pimgaes/').child(userId).child('pimage').put(userImage)
+      .then(()=>{
+      firebase.storage().ref('images/pimgaes/').child(userId).child('pimage')
+      .getDownloadURL().then((url) => {
+        const Url = url
+        user.updateProfile({
+          displayName: name,
+          photoURL: Url,
+        }).catch(function(error) {
+        console.error(error);
+        });
+        this.Ref.child(userId).update({
+                          bankAccount: false,
+                          name: name,
+                          email: email,
+                          url : Url,
+                          geburtsDatum: date,
+                          adresse: adresse,
+                          straße: straße,
+                          stadt: stadt,
+                          plz:plz,
                           land: land,
                           bundesLand: bundesLand,
                           ort: ort,
                           telefon: telefon,
                           uid: userId,
                         })
-        user.updateProfile({
-          photoUrl: Url,
-          telefon: telefon,
-          adresse: adresse,
-
-        }).catch(function(error) {
-        // An error happened.
-        console.error(error);
-        });
-
-
-      })
-    })
-      .then(() => {
+                      })
+                    })
+        .then(() => {
           this.setState({
             redirect: true
+            })
           })
-        })
-
-    }
-
+        }
+      }
 }
 
 handleChange(event){
@@ -300,8 +314,8 @@ handleChange(event){
                             :(null)
                           }
                             <div className="avater-box">
-                            <img src={this.state.avatarImg } style={{height:"130px",width:"130px"}} className="img-responsive img-circle edit-avater" alt="" />
-                            <div style={{marginLeft:"11px"}} className="upload-btn-wrapper">
+                            <img src={this.state.avatarImg} style={{height:"130px",width:"130px"}} className="img-responsive img-circle edit-avater" alt="" />
+                            <div className="upload-btn-wrapper">
                               <button className="btn theme-btn">Profilbild hochladen + </button>
                               <input type="file" name="myfile"   ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
                           </div>
@@ -313,7 +327,7 @@ handleChange(event){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-6">
                                 <label>Name/Firma</label>
-                                <input type="text" ref={(input) => { this.nameInput = input; }} onChange={this.checkName} className="form-control" value={this.state.name}/>
+                                <input type="text" ref={(input) => { this.nameInput = input; }} onChange={this.checkName} className="form-control" value={this.state.name} />
                                 <p className="errorMessage">{this.state.vornameError}</p>
                               </div>
                               <div className="col-sm-6">
@@ -323,7 +337,7 @@ handleChange(event){
                               </div>
                               <div className="col-sm-6">
                                 <label>Telefonnummer</label>
-                                <input type="text" className="form-control" ref={(input) => { this.nummerInput = input; }} onChange={this.checkNummer} placeholder="Telefon Nummer"/>
+                                <input type="number" className="form-control" ref={(input) => { this.nummerInput = input; }} onChange={this.checkNummer} placeholder="Telefon Nummer"/>
                                 <p className="errorMessage">{this.state.telefonError}</p>
                               </div>
                               <div className="col-sm-6">
@@ -366,8 +380,26 @@ handleChange(event){
                               </div>
                               <div className="col-sm-6">
                                 <label>Bundesland</label>
-                                <input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} onChange={this.checkBundesland} placeholder="Bundesland"/>
-                                <p className="errorMessage">{this.state.bundeslandError}</p>
+                                <select  className="form-control" ref={select => this.bundeslandInput = select}  name="inklAuffahrrampenInput">>
+                                  <option value=" ">...</option>
+                                  <option value="Baden-Württemberg">Baden-Württemberg</option>
+                                  <option value="Bayern">Bayern</option>
+                                  <option value="Berlin">Berlin</option>
+                                  <option value="Brandenburg">Brandenburg</option>
+                                  <option value="Bremen">Bremen</option>
+                                  <option value="Hamburg">Hamburg</option>
+                                  <option value="Hessen">Hessen</option>
+                                  <option value="Mecklenburg-Vorpommern">Mecklenburg-Vorpommern</option>
+                                  <option value="Niedersachsen">Niedersachsen</option>
+                                  <option value="Nordrhein-Westfalen">Nordrhein-Westfalen</option>
+                                  <option value="Rheinland-Pfalz">Rheinland-Pfalz</option>
+                                  <option value="Saarland">Saarland</option>
+                                  <option value="Sachsen">Sachsen</option>
+                                  <option value="Sachsen-Anhalt">Sachsen-Anhalt</option>
+                                  <option value="Schleswig-Holstein">Schleswig-Holstein</option>
+                                  <option value="Thüringen">Thüringen</option>
+                                </select>
+                                  <p className="errorMessage">{this.state.bundeslandError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Land</label>
