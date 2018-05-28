@@ -176,22 +176,26 @@ a:hover{
 .gm-style-lw{
 	padding: 0;
 }
+
 .arrow-down{
-height: 160px;
-width: 320px;
-color: #f64625;
-opacity: 0.2;
-cursor: pointer;
-margin-left: auto;
-    margin-right: auto;
-margin-top: 150px;
-
+	position: absolute;
+	cursor: pointer;
+	bottom: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid #f64625;
+    border-bottom: 1px solid #f64625;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
 }
+
 .arrow-down:hover{
-
-opacity: 0.5;
-
+	opacity: 0.5
 }
+
 .nav.navbar-center{
 		 float:none;
 		 margin: 0 auto;

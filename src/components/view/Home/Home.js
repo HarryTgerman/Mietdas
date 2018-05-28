@@ -5,7 +5,6 @@ import Slider from 'react-slick'
 import Select from 'react-select';
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
-import Arrow from '../../../img/arrowDown.png'
 import scrollToComponent from 'react-scroll-to-component';
 
 
@@ -223,17 +222,20 @@ scrollToSection4(){
                                         />
                                         </div>
                                       <div className="col-md-2 col-sm-2 no-padd">
-
                                         <button type="submit" className="btn theme-btn btn-default">Suchen</button>
                                       </div>
                                     </form>
-                                    <img src={Arrow} className="logo logo-scrolled arrow-down" alt="" onClick={this.scrollToSection2.bind(this)}/>
-                                </div>
+                                    <div className="col-md-12 col-sm-12 banner-text">
+                                    <span className="arrow-down" onClick={this.scrollToSection2.bind(this)}></span>
+                                    </div>
+                                  </div>
                               </div>
                             </div>
                           </div>
 
+
                           <div className="clearfix"></div>
+
                            {/*Main Banner Section End*/}
 
                            {/*Services Section*/}
@@ -269,9 +271,10 @@ scrollToSection4(){
                                   <p>Klären Sie die Abholung oder Lieferung Ihrer Maschinen.</p>
                                 </div>
                               </div>
-                              <div className="col-md-12 col-sm-12 banner-text">
-                              <img src={Arrow}  className="logo logo-scrolled arrow-down" alt="" onClick={this.scrollToSection3.bind(this)}/>
+                              <div className="col-md-12 col-sm-12 banner-text" style={{marginTop:"200px"}}>
+                              <span className="arrow-down" onClick={this.scrollToSection3.bind(this)}></span>
                               </div>
+
                             </div>
                                 </section>
                            {/*End Services Section*/}
@@ -379,7 +382,7 @@ scrollToSection4(){
                                 </div>
                               </div>
                               <div className="col-md-12 col-sm-12 banner-text">
-                              <img src={Arrow}  className="logo logo-scrolled arrow-down" alt="" onClick={this.scrollToSection4.bind(this)}/>
+                              <span className="arrow-down" onClick={this.scrollToSection4.bind(this)} ></span>
                               </div>
                             </div>
                           </section>
