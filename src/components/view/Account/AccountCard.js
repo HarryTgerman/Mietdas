@@ -51,7 +51,7 @@ changeLocation(){
                 <img src={this.props.snap.imageUrl}  className="img-responsive" alt=""/>
               </div>
             <div className="listing-shot-caption">
-              <h4>{this.props.snap.cardHeading}</h4>
+              <h4>{this.props.snap.hersteller +" " +this.props.snap.cardHeading +" "+this.props.snap.gewicht+"Kg"}</h4>
             </div>
             {this.state.toggle ?
           (

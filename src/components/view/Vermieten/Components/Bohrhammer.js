@@ -210,7 +210,7 @@ onDrop(imageFiles) {
 
                               <div className="row mrg-r-10 mrg-l-10">
                                 <div className="col-sm-6">
-                                  <label>Bezeichnung</label>
+                                  <label>Model</label>
                                   <input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
                                 </div>
 

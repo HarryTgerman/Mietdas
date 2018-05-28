@@ -73,6 +73,7 @@ class Mieten extends Component{
    const strCity = ref[1];
    const city = strCity.replace(/\/type/i, "")
    const type = ref[2]
+   this.setState({type:type})
    let whenGeoCode = geocodeByAddress(city)
    .then(results =>{
      getLatLng(results[0])
@@ -239,6 +240,7 @@ whenGeoCode.then(() =>{
         }
         const { selectedOption } = this.state;
     const value = selectedOption && selectedOption.value
+
           return(
               <div>
                 <div>
@@ -382,7 +384,7 @@ whenGeoCode.then(() =>{
                           {/* All Listing */}
                           <div className="row mrg-bot-20">
                             <div className="col-md-12">
-                              <h5>{this.state.cards.length} Ergebnisse</h5>
+                              <h5>{this.state.cards.length} Ergebnisse {this.state.selectValue.value?('für '+this.state.selectValue.label):(null)}</h5>
                             </div>
                           </div>
 

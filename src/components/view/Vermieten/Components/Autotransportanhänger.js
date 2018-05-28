@@ -219,7 +219,7 @@ onDrop(imageFiles) {
 
                                   <div className="row mrg-r-10 mrg-l-10">
                                     <div className="col-sm-6">
-                                      <label>Bezeichnung</label>
+                                      <label>Model</label>
                                       <input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
                                     </div>
 
@@ -247,7 +247,7 @@ onDrop(imageFiles) {
                                       <label>Gesamtlänge</label>
                                       <input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
                                     </div>
-                                    
+
                                     <div className="col-sm-6">
                                       <label>Inkl. Auffahrrampen</label>
                                       <select  className="form-control" ref={select => this.inklAuffahrrampenInput = select}  name="inklAuffahrrampenInput">>

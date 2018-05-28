@@ -4,8 +4,68 @@ const request = require('request');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars')
 const admin = require('firebase-admin');
+const gcs = require('@google-cloud/storage')();
+const os = require('os');
+const path = require('path');
+const spawn = require('child-process-promise').spawn;
 
 admin.initializeApp(functions.config().firebase);
+
+
+
+
+const gcs = require('@google-cloud/storage')();
+const os = require('os');
+const path = require('path');
+const spawn = require('child-process-promise').spawn;
+
+// // Create and Deploy Your First Cloud Functions
+// // https://firebase.google.com/docs/functions/write-firebase-functions
+//
+// exports.fileResizer =  functions.database.ref('app/card/{wildCardcat}/{wildcardMessge}')
+// .onCreate((snapshot, context) => {
+//   let imageArr = snapshot.val().imageArr
+//   return imageArr.map(i=>{
+//     functions.storage.refFromURL(i).object().on(event => {
+//         const object = event.data;
+//         const bucket = object.bucket;
+//         const contentType = object.contentType;
+//         const filePath = object.name;
+//         console.log('File change detected, function execution started');
+//
+//         if (object.resourceState === 'not_exists') {
+//             console.log('We deleted a file, exit...');
+//             return;
+//         }
+//
+//         if (path.basename(filePath).startsWith('resized-')) {
+//             console.log('We already renamed that file!');
+//             return;
+//         }
+//
+//         const destBucket = gcs.bucket(bucket);
+//         const tmpFilePath = path.join(os.tmpdir(), path.basename(filePath));
+//         const metadata = { contentType: contentType };
+//         return destBucket.file(filePath).download({
+//             destination: tmpFilePath
+//         }).then(() => {
+//             return spawn('convert', [tmpFilePath, '-resize', '500x500', tmpFilePath]);
+//         }).then(() => {
+//             return destBucket.upload(tmpFilePath, {
+//                 destination: 'resized-' + path.basename(filePath),
+//                 metadata: metadata
+//             })
+//         });
+//     })
+//   })
+// }
+
+
+
+
+
+
+
 
 
 exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfragen/{wildcardMessge}')

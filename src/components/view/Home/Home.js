@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 import Select from 'react-select';
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
-import Arrow from '../../../img/arrowDown.svg.png'
+import Arrow from '../../../img/arrowDown.png'
 import scrollToComponent from 'react-scroll-to-component';
 
 
@@ -227,7 +227,7 @@ scrollToSection4(){
                                         <button type="submit" className="btn theme-btn btn-default">Suchen</button>
                                       </div>
                                     </form>
-                                    <img src={Arrow} style={{height: "160px", width: "220px", color: "#E35436", cursor: "pointer", marginTop: "100px"}} className="logo logo-scrolled" alt="" onClick={this.scrollToSection2.bind(this)}/>
+                                    <img src={Arrow} className="logo logo-scrolled arrow-down" alt="" onClick={this.scrollToSection2.bind(this)}/>
                                 </div>
                               </div>
                             </div>
@@ -270,7 +270,7 @@ scrollToSection4(){
                                 </div>
                               </div>
                               <div className="col-md-12 col-sm-12 banner-text">
-                              <img src={Arrow} style={{height: "160px", width: "220px", color: "#E35436", cursor: "pointer"}} className="logo logo-scrolled" alt="" onClick={this.scrollToSection3.bind(this)}/>
+                              <img src={Arrow}  className="logo logo-scrolled arrow-down" alt="" onClick={this.scrollToSection3.bind(this)}/>
                               </div>
                             </div>
                                 </section>
@@ -379,7 +379,7 @@ scrollToSection4(){
                                 </div>
                               </div>
                               <div className="col-md-12 col-sm-12 banner-text">
-                              <img src={Arrow} style={{height: "160px", width: "220px", color: "#E35436", cursor: "pointer"}} className="logo logo-scrolled" alt="" onClick={this.scrollToSection4.bind(this)}/>
+                              <img src={Arrow}  className="logo logo-scrolled arrow-down" alt="" onClick={this.scrollToSection4.bind(this)}/>
                               </div>
                             </div>
                           </section>

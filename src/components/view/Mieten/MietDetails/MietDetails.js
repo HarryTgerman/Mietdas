@@ -39,7 +39,7 @@ componentWillMount(){
             cardId: snap.key,
             imageUrl: snap.val().imageUrl,
           },()=>{
-            const images =[{original:this.state.imageUrl, thumbnail:this.state.imageUrl}]
+            const images =[]
               this.state.snap.imageArr.map(img =>{
                 images.push({
                   original: img,
