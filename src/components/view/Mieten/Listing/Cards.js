@@ -56,25 +56,7 @@ class  Cards extends Component {
               <div className="row extra">
                 <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                <Link Link style={{ textDecoration: 'none' }} to={{
-                  pathname: `/details/search=${this.props.kategorie+"/"+this.props.id}`,
-                state: {
-                kategorie: this.props.kategorie,
-                snap: this.snap,
-                cardHeading: this.cardHeading,
-                cardDesc: this.cardDesc,
-                id: this.id,
-                standOrt: this.standOrt,
-                cardPreis: this.cardPreis,
-                imageUrl: this.url,
-                imageArr: this.imageArr,
-                gewicht: this.gewicht,
-                grabtiefe: this.grabtiefe,
-                transportbreite: this.transportbreite,
-                transporthoehe: this.transporthoehe,
-                  }
-                }}><a href="#" className="detail-link">Gehe zu</a></Link>
-
+                <Link Link style={{ textDecoration: 'none' }} to={`/details/search=${this.props.kategorie+"/"+this.props.id}`}><a href="#" className="detail-link">Gehe zu</a></Link>
                 </div>
               </div>
             </div>

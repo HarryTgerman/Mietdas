@@ -283,106 +283,71 @@ scrollToSection4(){
                           <section className="gray-bg">
                             <div className="container">
                               <div className="row">
-                                <div className="col-md-10 col-md-offset-1">
-                                <div className="heading" >
-                                  <h2>Beliebte <span>Anzeigen</span></h2>
-                                  <p>Ein Auszug der meistvermieteten Maschinen & Geräte.</p>
+                                <div className="col-md-12">
+                                  <div className="heading" >
+                                    <h2>Beliebte <span>Anzeigen</span></h2>
+                                    <p>Ein Auszug der meistvermieteten Maschinen & Geräte.</p>
+                                  </div>
                                 </div>
-                                </div>
-                              </div>
-
-                              <div className="row" ref={(section) => { this.section3 = section; }}>
-                                <div className="col-md-4 col-sm-6">
-                                  <div className="listing-shot grid-style">
-                                    <a href="#">
+                                <div ref={(section) => { this.section3 = section; }}>
+                                  <div className="col-md-4 col-sm-12">
+                                    <div className="listing-shot grid-style">
                                       <div className="listing-shot-img">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2FBomag%20Platte.jpg?alt=media&token=6c4aa3f6-67d0-47fa-9665-ee432ad5c2a3" className="img-responsive" alt=""/>
-                                        <span className="listing-price">ab 89€</span>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2FJErCZbfivYS4jpWsPqqi0xAuUPx2%2Fartikel%2FTB%20250%2F465cbee7-afc6-457a-a072-6f2fc5dcf6dd.jpg?alt=media&token=e70c0013-f6e4-4359-86bc-27126c320b54"  className="img-responsive" alt=""/>
+                                        <span className="listing-price">160€</span>
                                       </div>
                                       <div className="listing-shot-caption">
-                                        <h4>Bomag Rüttelplatte BPR35/60 Diesel</h4>
-                                        <p className="listing-location">67059 Ludwigshafen</p>
+                                        <h4 style={{marginBottom: "10px"}}>Takeuchi TB 250 4965Kg</h4>
+                                        <p className="listing-location">76726 Germersheim</p>
                                       </div>
-                                    </a>
-
-                                    <div className="listing-shot-info rating">
-                                      <div className="row extra">
-                                        <div className="col-md-7 col-sm-7 col-xs-6">
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                                          <i className="fa fa-star" aria-hidden="true"></i>
-                                        </div>
-                                        <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <a href="#" className="detail-link">gehe zu</a>
+                                      <div className="listing-shot-info rating">
+                                        <div className="row extra">
+                                          <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
+                                            <Link Link style={{ textDecoration: 'none' }} to='/details/search=kompaktbagger/-LDGM3hU1fQGagvbQ86l'><a href="#" className="detail-link">Gehe zu</a></Link>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                                <div className="col-md-4 col-sm-6">
+                                <div className="col-md-4 col-sm-12">
                                   <div className="listing-shot grid-style">
-                                    <a href="#">
-                                      <div className="listing-shot-img">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2FBagger.png?alt=media&token=b5ca1a3d-3092-47aa-8c8a-42ce6221698b" className="img-responsive" alt=""/>
-                                        <span className="listing-price">ab 200€</span>
-                                      </div>
-                                      <div className="listing-shot-caption">
-                                        <h4>Kompaktbagger Takeuchi TB216</h4>
-                                        <p className="listing-location">67346 Speyer</p>
-                                      </div>
-                                    </a>
-
+                                    <div className="listing-shot-img">
+                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2FJErCZbfivYS4jpWsPqqi0xAuUPx2%2Fartikel%2FAR%2060%2F449f2e58-d83b-46fc-b7db-880e911c99be.jpg?alt=media&token=3a096ca8-d7eb-49d3-8014-2d8c284529a2"  className="img-responsive" alt=""/>
+                                      <span className="listing-price">160€</span>
+                                    </div>
+                                    <div className="listing-shot-caption">
+                                      <h4 style={{marginBottom: "10px"}}>Atlas AR 60 4650Kg</h4>
+                                      <p className="listing-location">76726 Germersheim</p>
+                                    </div>
                                     <div className="listing-shot-info rating">
                                       <div className="row extra">
-                                        <div className="col-md-7 col-sm-7 col-xs-6">
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                                          <i className="fa fa-star" aria-hidden="true"></i>
-                                        </div>
                                         <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <a href="#" className="detail-link">gehe zu</a>
+                                          <Link Link style={{ textDecoration: 'none' }} to='/details/search=radlader/-LDGjUc5Gw2VHm_9wmY7'><a href="#" className="detail-link">Gehe zu</a></Link>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-
-                                <div className="col-md-4 col-sm-6">
+                                <div className="col-md-4 col-sm-12">
                                   <div className="listing-shot grid-style">
-                                    <a href="#">
-                                      <div className="listing-shot-img">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/layoutapp-1505919280943.appspot.com/o/images%2FPKW%20Anha%CC%88nger.jpg?alt=media&token=88f95ce4-4607-4912-92b5-da934846e6b7" className="img-responsive" alt=""/>
-                                        <span className="listing-price">ab 120€</span>
-                                      </div>
-                                      <div className="listing-shot-caption">
-                                        <h4>Tieflader bis 3t</h4>
-                                        <p className="listing-location">67346 Speyer</p>
-                                      </div>
-                                    </a>
-
+                                    <div className="listing-shot-img">
+                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2FJErCZbfivYS4jpWsPqqi0xAuUPx2%2Fartikel%2FU%2010-3%2FKubota%20U%2010%20.JPG?alt=media&token=db1f941d-0b12-451e-9755-ca4c26e3df54"  className="img-responsive" alt=""/>
+                                      <span className="listing-price">90€</span>
+                                    </div>
+                                    <div className="listing-shot-caption">
+                                      <h4 style={{marginBottom: "10px"}}>Kubota U 10-3 1000Kg</h4>
+                                      <p className="listing-location">76726 Germersheim</p>
+                                    </div>
                                     <div className="listing-shot-info rating">
                                       <div className="row extra">
-                                        <div className="col-md-7 col-sm-7 col-xs-6">
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star" aria-hidden="true"></i>
-                                          <i className="color fa fa-star-half-o" aria-hidden="true"></i>
-                                          <i className="fa fa-star" aria-hidden="true"></i>
-                                        </div>
                                         <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <a href="#" className="detail-link">gehe zu</a>
+                                          <Link Link style={{ textDecoration: 'none' }} to='/details/search=minibagger/-LDGfSd8oC7Evl_X4Bpj'><a href="#" className="detail-link">Gehe zu</a></Link>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                              </div>
-                              <div className="col-md-12 col-sm-12 banner-text">
-                              <span className="arrow-down" onClick={this.scrollToSection4.bind(this)} ></span>
                               </div>
                             </div>
                           </section>
