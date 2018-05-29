@@ -51,7 +51,7 @@ artikelHochladen(event) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.schnitttiefe.value == "") {
+    if (this.schnitttiefeInput.value == "") {
     const alert = "Geben Sie Auskunft über die Schnitttiefe"
     this.setState({alert: alert, showAlert: true})
     return 0
