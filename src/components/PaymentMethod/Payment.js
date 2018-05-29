@@ -5,6 +5,8 @@ import {NavLink, Redirect} from 'react-router-dom';
 import backgroundImg from '../../img/backgroundPayment.jpg';
 import firebase from 'firebase';
 import Logo from'../../img/logo.png'
+import PayPal from'../../img/paypal.png'
+import Rechnung from'../../img/text-rechnung.png'
 import moment from 'moment'
 import LogoWhite from'../../img/logo-white.png'
 import request from 'request';
@@ -49,31 +51,31 @@ class Payment extends Component{
         })
         }
       })
-      this.getPaymentMethods()
+      // this.getPaymentMethods()
     }
 
 
-  post(path, params, method) {
-     method = method || "post";
-
-     var form = document.createElement("form");
-     form.setAttribute("method", method);
-     form.setAttribute("action", path);
-
-     for(var key in params) {
-         if(params.hasOwnProperty(key)) {
-             var hiddenField = document.createElement("input");
-             hiddenField.setAttribute("type", "hidden");
-             hiddenField.setAttribute("name", key);
-             hiddenField.setAttribute("value", params[key]);
-
-             form.appendChild(hiddenField);
-         }
-     }
-
-     document.body.appendChild(form);
-     form.submit();
-  }
+  // post(path, params, method) {
+  //    method = method || "post";
+  //
+  //    var form = document.createElement("form");
+  //    form.setAttribute("method", method);
+  //    form.setAttribute("action", path);
+  //
+  //    for(var key in params) {
+  //        if(params.hasOwnProperty(key)) {
+  //            var hiddenField = document.createElement("input");
+  //            hiddenField.setAttribute("type", "hidden");
+  //            hiddenField.setAttribute("name", key);
+  //            hiddenField.setAttribute("value", params[key]);
+  //
+  //            form.appendChild(hiddenField);
+  //        }
+  //    }
+  //
+  //    document.body.appendChild(form);
+  //    form.submit();
+  // }
 
 
  getPaymentMethods(){
@@ -119,6 +121,11 @@ class Payment extends Component{
       })
 
  }
+
+
+
+
+
 
 
   render(){
@@ -174,7 +181,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
             <section className="title-transparent page-title" style={{ background:`url(${backgroundImg})`}}>
               <div className="container">
                 <div className="title-content">
-                  <h1>Reservieren Sie Jetzt einfach und unverbindlich</h1>
+                  <h1>Reservieren Sie etzt einfach und unverbindlich</h1>
                   <div className="breadcrumbs">
                     <a href="#">Wählen Sie Ihre</a>
                     <span className="gt3_breadcrumb_divider"></span>
@@ -200,7 +207,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                     <div className="detail-wrapper-body">
 
 
-            {this.state.requestPaymentMethods?
+            {/*this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{
                   return(
                       <div className="payment-card" onClick={()=>{this.setState({meth:meth, loading:true},this.recalcRequest(meth))}}>
@@ -214,7 +221,51 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                         </header>
                       </div>)
                     })): (<div className="loader"></div>)}
-                     {this.state.loading?(<h4>Lade...</h4>):(null)}
+                     {this.state.loading?(<h4>Lade...</h4>):(null)*/}
+                     <div className="payment-card" onClick={()=>{this.setState({meth:'paypal', loading:true})}} data-toggle="collapse" href="#collapsePaypal" role="button" aria-expanded="false" aria-controls="collapsePaypal">
+                       <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
+                         <div className="payment-card-title flexbox">
+                           <h4>Bezahle mit PayPal</h4>
+                         </div>
+                         <div className="pull-right">
+                           <img src={PayPal} style={{width:"100px", height:"70px"}} className="img-responsive" alt=""/>
+                         </div>
+                       </header>
+                     </div>
+                    <div className="collapse" id="collapsePaypal">
+                      <div className="card card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      </div>
+                    </div>
+                     <div className="payment-card" onClick={()=>{this.setState({meth:'rechnung', loading:true})}} data-toggle="collapse" href="#collapseRechnung" role="button" aria-expanded="false" aria-controls="collapseRechnung">
+                       <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
+                         <div className="payment-card-title flexbox">
+                           <h4>Auf Rechnung</h4>
+                         </div>
+                         <div className="pull-right">
+                           <img src={Rechnung} style={{width:"100px", height:"70px"}} className="img-responsive" alt=""/>
+                         </div>
+                       </header>
+                     </div>
+                     <div className="collapse" id="collapseRechnung">
+                       <div className="card card-body">
+                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                       </div>
+                     </div>
+                     <div className="payment-card" onClick={()=>{this.setState({meth:'barzahlen', loading:true})}} data-toggle="collapse" href="#collapseBar" role="button" aria-expanded="false" aria-controls="collapseBar">
+                       <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
+                         <div className="payment-card-title flexbox">
+                           <h4>Bar Bezahlen</h4>
+                         </div>
+                         <div className="pull-right">
+                         </div>
+                       </header>
+                     </div>
+                     <div className="collapse" id="collapseBar">
+                       <div className="card card-body">
+                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                       </div>
+                     </div>
                     </div>
                   </div>
                 </div>
