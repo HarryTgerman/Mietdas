@@ -83,7 +83,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('kernbohrmaschiene');
+        const db = firebase.database().ref('app').child('cards').child('kernbohrmachiene');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
@@ -100,69 +100,68 @@ onDrop(imageFiles) {
         const array = []
         const imageFiles = this.state.imageFiles
 
-        let keysPromises = imageFiles.map(
-          img =>
-            new Promise((resolve, reject) => {
-              const imageFile = img;
-              firebase
-                .storage()
-                .ref("images")
-                .child("artikelimgaes/" + userId)
-                .child("artikel/")
-                .child(titel)
-                .child(imageFile.name)
-                .put(imageFile)
-                .then(() => {
-                  firebase
-                    .storage()
-                    .ref("images")
-                    .child("artikelimgaes/" + userId)
-                    .child("artikel/")
-                    .child(titel)
-                    .child(imageFile.name)
-                    .getDownloadURL()
-                    .then(url => {
-                      const imgUrl = url;
-                      array.push(url);
-                      this.setState({ Arr: array }, resolve());
-                    });
-                });
-            })
-          );
+       let keysPromises = imageFiles.map(
+           img =>
+             new Promise((resolve, reject) => {
+               const imageFile = img;
+               firebase
+                 .storage()
+                 .ref("images")
+                 .child("artikelimgaes/" + userId)
+                 .child("artikel/")
+                 .child(titel)
+                 .child(imageFile.name)
+                 .put(imageFile)
+                 .then(() => {
+                   firebase
+                     .storage()
+                     .ref("images")
+                     .child("artikelimgaes/" + userId)
+                     .child("artikel/")
+                     .child(titel)
+                     .child(imageFile.name)
+                     .getDownloadURL()
+                     .then(url => {
+                       const imgUrl = url;
+                       array.push(url);
+                       this.setState({ Arr: array }, resolve());
+                     });
+                 });
+             })
+           );
 
-        Promise.all(keysPromises).then(() => {
+         Promise.all(keysPromises).then(() => {
 
-               const images = this.state.Arr;
-               const imageUrl = this.state.Arr[0]
-               db.push({
-                         kategorie:"kernbohrmachiene",
+                const images = this.state.Arr;
+                const imageUrl = this.state.Arr[0]
+                db.push({
+                          kategorie:"kernbohrmachiene",
+                          email: this.props.email,
+                          hersteller: hersteller,
+                          bohrkrone: bohrkrone,
+                          laenge : laenge,
+                          breite : breite,
+                          cardHeading:titel,
+                          cardPreis: preis,
+                          gewicht: gewicht,
+                          address: this.props.address,
+                          ort: this.props.ort,
+                          gemietet: 0,
+                          cords: this.props.cords,
+                          telefon:this.props.telefon ,
+                          imageArr: images,
+                          imageUrl: imageUrl,
+                          gebiet: this.props.gebiet,
+                          bundesland: this.props.bundesland,
+                          uid: userId,
+                          vermieter: this.props.vermieter,
 
-                         email: this.props.email,
-                         hersteller: hersteller,
-                         bohrkrone: bohrkrone,
-                         laenge : laenge,
-                         breite : breite,
-                         cardHeading:titel,
-                         cardPreis: preis,
-                         gewicht: gewicht,
-                         address: this.props.address,
-                         ort: this.props.ort,
-                         gemietet: 0,
-                         cords: this.props.cords,
-                         telefon:this.props.telefon ,
-                         imageArr: images,
-                         imageUrl: imageUrl,
-                         gebiet: this.props.gebiet,
-                         bundesland: this.props.bundesland,
-                         uid: userId,
-                         vermieter: this.props.vermieter,
-
-                       })
-                       this.setState({
-                         loading: false,
-                         redirect: true
-                       })
-                     })
+                        })
+                        this.setState({
+                          loading: false,
+                          redirect: true
+                        })
+                      })
           }
 
 
@@ -216,7 +215,7 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Breite</label>
-                                    <input type="number" ref={(input) => { this.breiteVonInput = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
                                   </div>
 
 

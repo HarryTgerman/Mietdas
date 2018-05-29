@@ -102,12 +102,10 @@ onDrop(imageFiles) {
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
 
-        const transportbreite = this.transportbreiteVonInput.value;
-        const transporthoehe = this.transporthoeheVonInput.value;
         const ruettelkraft = this.ruettelkraftInput.value;
         const breite = this.breiteInput.value;
         const hoehe = this.hoeheInput.value;
-        const bandagenbreite = this.bandagenbreite.value;
+        const bandagenbreite = this.bandagenbreiteInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;

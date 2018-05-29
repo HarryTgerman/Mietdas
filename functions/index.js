@@ -113,7 +113,6 @@ return   transporter.sendMail({
          else
            console.log(info);
       });
-
 })
 
 exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/gestellteAnfragen/{wildcardMessge}')
