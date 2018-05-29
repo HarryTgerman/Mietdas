@@ -101,7 +101,6 @@ onDrop(imageFiles) {
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const bedienung = this.bedienungInput.value;
         const laenge = this.laengeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const breite = this.BreitedesArtikelsInput.value;

@@ -34,7 +34,7 @@ this.setState({
       iban: "bitte angeben",
       bic: "bitte  angeben",
       inhaber: "bitte angeben",
-      bankName: "bitte angeben"
+      bankName: "bitte angeben",
     })
   }else {
     this.setState({
@@ -44,6 +44,16 @@ this.setState({
       bankName: this.props.snap.bankData.bankName,
     })
   }
+  if(this.props.snap.bankData.paypal == undefined){
+    this.setState({
+      paypal: "optional angeben",
+    })
+  }else {
+    this.setState({
+      paypal: this.props.snap.bankData.paypal,
+    })
+  }
+
 }
 
 handleChangeName(event) {
@@ -133,6 +143,12 @@ handleChangeName(event) {
         this.setState({bankNameError: '', isError: false,bankName: e.target.value})
       }
     }
+    checkPaypal(e) {
+
+        this.setState({paypal: e.target.value})
+
+    }
+
 
 
 handleChange(event){
@@ -167,15 +183,28 @@ saveLocation(){
 
 }
 saveBankData(){
-  firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
-    iban: this.state.iban,
-    bic: this.state.bic,
-    kontoinhaber: this.state.inhaber,
-    bankName: this.state.bankName,
-  })
-  this.setState({
-      editBankData: false,
-  })
+  if (this.state.paypal == "optional angeben"){
+    firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
+      iban: this.state.iban,
+      bic: this.state.bic,
+      kontoinhaber: this.state.inhaber,
+      bankName: this.state.bankName,
+    })
+    this.setState({
+        editBankData: false,
+    })
+  }else {
+    firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
+      iban: this.state.iban,
+      bic: this.state.bic,
+      kontoinhaber: this.state.inhaber,
+      bankName: this.state.bankName,
+      paypal: this.state.paypal
+    })
+    this.setState({
+        editBankData: false,
+    })
+  }
 
 }
 componentDidMount(){
@@ -337,6 +366,24 @@ componentDidMount(){
                                       :(<p>{this.state.bic}</p>)}
                                     </div>
                                   </div>
+                                </div>
+                                <div className="row mrg-0">
+                                  <div className="col-md-12 mob-padd-0">
+                                    <div className="form-group">
+                                      <label>PayPal Me Link</label>
+                                      {this.state.editBankData ?(<div><div className="input-group">
+                                        <input onChange={this.checkPaypal.bind(this)} ref={(input) => { this.paypalInput = input; }} type="text" className="form-control" placeholder="z.b. paypal.me/maxmustermann" />
+                                        <span className="input-group-addon"><span className="glyphicon glyphicon-lock"></span></span>
+                                      </div>
+                                      <div >
+                                        <div className="card card-body">
+                                          Mit einem PayPal.Me-Link können Sie persönliche oder geschäftliche Zahlungen von anderen über PayPal anfordern und empfangen.
+                                        </div>
+                                      </div>
+                                      </div>)
+                                      :(<p>{this.state.paypal}</p>)}
+                                    </div>
+                                  </div>
                                   </div>
                                   <div className="editProfile">
                                   <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
@@ -344,8 +391,7 @@ componentDidMount(){
                                     })}}>{this.state.editBankData?("abbrechen"):("bearbeiten ")}</a><a> </a>
         {this.state.editBankData?(<a className="editProfile" onClick={this.saveBankData.bind(this)}>speichern</a>):(null)}
                                 </div>
-                                </div>
-
+                              </div>
                               </form>
                             </div>
                           </div>

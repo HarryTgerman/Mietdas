@@ -91,11 +91,7 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -113,7 +109,6 @@ onDrop(imageFiles) {
         const kraftstoff = this.KraftstoffdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const timeInMs = Date.now();
 

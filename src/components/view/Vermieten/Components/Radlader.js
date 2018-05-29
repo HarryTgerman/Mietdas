@@ -97,11 +97,7 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
+
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
@@ -120,7 +116,6 @@ onDrop(imageFiles) {
         const nutzlast = this.NutzlastdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
 
         const timeInMs = Date.now();
@@ -170,7 +165,6 @@ onDrop(imageFiles) {
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          breite: breite,
                          hoehe: hoehe,
@@ -289,11 +283,6 @@ onDrop(imageFiles) {
                                   <div className="col-sm-12">
                                     <label>Artikelbeschreibung</label>
                                     <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
-                                  </div>
-
-                                  <div className="col-sm-12">
-                                    <label>Mietbedingungen</label>
-                                    <textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
                                   </div>
                                 </div>
                                 <div className="listing-box-header">

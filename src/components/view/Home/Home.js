@@ -226,7 +226,7 @@ scrollToSection4(){
                                       </div>
                                     </form>
                                     <div className="col-md-12 col-sm-12 banner-text">
-                                    <span className="arrow-down" onClick={this.scrollToSection2.bind(this)}></span>
+                                    <span className="arrow-down-white" onClick={this.scrollToSection2.bind(this)}></span>
                                     </div>
                                   </div>
                               </div>
@@ -251,7 +251,7 @@ scrollToSection4(){
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4" ref={(section) => { this.section2 = section; }}>
-                                <div className="feature-box">
+                                <div className="feature-box" >
                                   <span className="ti-map-alt"></span>
                                   <h4>In Ihrer Nähe</h4>
                                   <p>Suchen Sie in jedem Umkreis nach benötigten Maschinen & Geräten.</p>
@@ -271,10 +271,9 @@ scrollToSection4(){
                                   <p>Klären Sie die Abholung oder Lieferung Ihrer Maschinen.</p>
                                 </div>
                               </div>
-                              <div className="col-md-12 col-sm-12 banner-text" style={{marginTop:"200px"}}>
+                              <div className="col-md-12 col-sm-12 banner-text"  >
                               <span className="arrow-down" onClick={this.scrollToSection3.bind(this)}></span>
                               </div>
-
                             </div>
                                 </section>
                            {/*End Services Section*/}
@@ -289,8 +288,8 @@ scrollToSection4(){
                                     <p>Ein Auszug der meistvermieteten Maschinen & Geräte.</p>
                                   </div>
                                 </div>
-                                <div ref={(section) => { this.section3 = section; }}>
-                                  <div className="col-md-4 col-sm-12">
+                                <div >
+                                  <div ref={(section) => { this.section3 = section; }} className="col-md-4 col-sm-12">
                                     <div className="listing-shot grid-style">
                                       <div className="listing-shot-img">
                                         <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2FJErCZbfivYS4jpWsPqqi0xAuUPx2%2Fartikel%2FTB%20250%2F465cbee7-afc6-457a-a072-6f2fc5dcf6dd.jpg?alt=media&token=e70c0013-f6e4-4359-86bc-27126c320b54"  className="img-responsive" alt=""/>
@@ -348,6 +347,9 @@ scrollToSection4(){
                                     </div>
                                   </div>
                                 </div>
+                              </div>
+                              <div className="col-md-12 col-sm-12 banner-text" >
+                              <span className="arrow-down" onClick={this.scrollToSection4.bind(this)}></span>
                               </div>
                             </div>
                           </section>
