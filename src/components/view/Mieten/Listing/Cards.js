@@ -47,7 +47,7 @@ class  Cards extends Component {
                 <span className="listing-price">{this.cardPreis}€</span>
               </div>
               <div className="listing-shot-caption">
-                <h4 style={{marginBottom: "10px"}}>{this.props.snap.hersteller +" " +this.cardHeading +" "+this.props.snap.gewicht+"Kg"}</h4>
+                <h4 style={{marginBottom: "10px"}}>{this.props.snap.hersteller?(this.props.snap.hersteller+" "):(null)}{this.props.snap.cardHeading}{this.props.snap.gewicht?(" "+this.props.snap.gewicht+"Kg"):(null)}</h4>
                 <p className="listing-location">{this.standOrt}</p>
               </div>
 

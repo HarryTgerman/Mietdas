@@ -228,7 +228,7 @@ componentDidMount(){
                         <div className="listing-box-header">
                           <div className="avater-box">
                           <img style={{height:"130px" ,width:"130px"}} src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />
-                          <div style={{marginLeft:"12px"}} className="upload-btn-wrapper">
+                          <div style={{marginLeft:"12px"}} className="upload-btn-wrapper2">
                             <button className="btn theme-btn" >Profilbild</button>
                             <input type="file" name="myfile"  style={{cursor:"pointer"}} ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
                           </div>
@@ -378,6 +378,7 @@ componentDidMount(){
                                       <div >
                                         <div className="card card-body">
                                           Mit einem PayPal.Me-Link können Sie persönliche oder geschäftliche Zahlungen von anderen über PayPal anfordern und empfangen.
+                                          Jetzt kostenlos PayPal.Me Link generieren. <a target="_blank" className="theme-cl" href="https://www.paypal.com/paypalme/grab?locale.x=de_DE&country.x=CH">https://www.paypal.com/paypalme/grab?locale.x=de_DE&country.x=CH</a>
                                         </div>
                                       </div>
                                       </div>)

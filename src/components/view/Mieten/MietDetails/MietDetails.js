@@ -146,7 +146,7 @@ componentWillMount(){
                 							<div className="detail-wrapper">
                 								<div className="detail-wrapper-body">
                 									<div className="listing-title-bar">
-                										<h3>{this.state.snap.hersteller +" " +this.state.snap.cardHeading +" "+this.state.snap.gewicht+"Kg"}</h3>
+                										<h3>{this.state.snap.hersteller?(this.state.snap.hersteller+" "):(null)}{this.state.snap.cardHeading}{this.state.snap.gewicht?(" "+this.state.snap.gewicht+"Kg"):(null)}</h3>
                 										<div className="row">
                 											<a href="#listing-location" className="listing-address col-sm-5">
                 												<i className="ti-location-pin mrg-r-5"></i>

@@ -28,7 +28,7 @@ class LaufendeAnfragen extends Component{
                 <div className="verticle-listing-caption">
 
                   <div className="listing-shot-caption">
-                    <h4>{this.props.anfrage.cardHeading}</h4>
+                    <h4>{this.props.anfrage.hersteller?(this.props.anfrage.hersteller+" "):(null)}{this.props.anfrage.cardHeading}{this.props.anfrage.gewicht?(" "+this.props.anfrage.gewicht+"Kg"):(null)}</h4>
                   </div>
 
                   <div className="listing-shot-info">
