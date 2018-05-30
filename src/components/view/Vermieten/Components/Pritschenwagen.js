@@ -110,11 +110,6 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.StützlastdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Stützlast"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
     if (this.FührerscheinklassedesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über die Führerscheinklasse"
     this.setState({alert: alert, showAlert: true})
