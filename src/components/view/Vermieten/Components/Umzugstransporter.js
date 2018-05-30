@@ -172,7 +172,6 @@ onDrop(imageFiles) {
         const fuehrerschein = this.FührerscheinklassedesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
-        const Mietbedingungen = this.mietbedingungenInput.value;
 
         const timeInMs = Date.now();
 
@@ -221,7 +220,6 @@ onDrop(imageFiles) {
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         mietbedingungen: Mietbedingungen,
                          gewicht: gewicht,
                          laenge: laenge,
                          breite: breite,
