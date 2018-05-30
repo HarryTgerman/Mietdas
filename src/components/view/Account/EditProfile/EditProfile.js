@@ -35,7 +35,9 @@ this.setState({
       bic: "bitte  angeben",
       inhaber: "bitte angeben",
       bankName: "bitte angeben",
+      paypal: "optional angeben",
     })
+
   }else {
     this.setState({
       iban: this.props.snap.bankData.iban,
@@ -43,16 +45,17 @@ this.setState({
       inhaber: this.props.snap.bankData.kontoinhaber,
       bankName: this.props.snap.bankData.bankName,
     })
+    if(this.props.snap.bankData.paypal == undefined){
+      this.setState({
+        paypal: "optional angeben",
+      })
+    }else {
+      this.setState({
+        paypal: this.props.snap.bankData.paypal,
+      })
+    }
   }
-  if(this.props.snap.bankData.paypal == undefined){
-    this.setState({
-      paypal: "optional angeben",
-    })
-  }else {
-    this.setState({
-      paypal: this.props.snap.bankData.paypal,
-    })
-  }
+
 
 }
 

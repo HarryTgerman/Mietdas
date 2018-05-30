@@ -10,7 +10,7 @@ class Kernbohrmachiene extends Component{
     super(props)
     this.state = {
        redirect: false,
-       imageFiles: [],
+       imageFiles: "",
        pictures: [],
        showAlert: false,
        alert: "",
@@ -30,11 +30,12 @@ onDrop(imageFiles) {
  artikelHochladen(event) {
 
    event.preventDefault();
-     this.setState({
-       loading: true,
-       imageUpload: false,
 
-     })
+     if (this.state.imageFiles == "") {
+       const alert = "Laden Sie mindestens ein Bild hoch"
+       this.setState({alert: alert, showAlert: true})
+       return 0
+     }
 
      if (this.titelInput.value == "") {
       const alert = "Geben Sie den Namen des Artikels ein"
@@ -78,12 +79,13 @@ onDrop(imageFiles) {
     return 0
     }
 
-    if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
-      this.setState({alert: alert, showAlert: true})
-    }
+    this.setState({
+      loading: true,
+      imageUpload: false,
 
-        const db = firebase.database().ref('app').child('cards').child('kernbohrmachiene');
+    })
+
+        const db = firebase.database().ref('app').child('cards').child('kernbohrmaschiene');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
@@ -135,7 +137,7 @@ onDrop(imageFiles) {
                 const images = this.state.Arr;
                 const imageUrl = this.state.Arr[0]
                 db.push({
-                          kategorie:"kernbohrmachiene",
+                          kategorie:"kernbohrmaschiene",
                           email: this.props.email,
                           hersteller: hersteller,
                           bohrkrone: bohrkrone,
@@ -189,7 +191,7 @@ onDrop(imageFiles) {
                             <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
                               <div className="listing-box-header">
                                 <i className="ti-write theme-cl"></i>
-                                <h3>Kernbohrmachiene Inserieren</h3>
+                                <h3>Kernbohrmaschiene Inserieren</h3>
                                 <p>Fülle das Formular vollständig aus</p>
                               </div>
                               <form onSubmit={this.artikelHochladen.bind(this)}>

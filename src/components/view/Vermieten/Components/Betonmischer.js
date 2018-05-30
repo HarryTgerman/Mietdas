@@ -140,7 +140,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"Betonmischer",
+                         kategorie:"betonmischer",
 
                          email: this.props.email,
                          hersteller: hersteller,
