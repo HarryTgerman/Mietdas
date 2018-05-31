@@ -92,7 +92,11 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-
+    if (this.mietbedingungenInput.value == "") {
+      const alert = "Legen Sie ihre Mietbedingungen fest"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+  }
         const db = firebase.database().ref('app').child('cards').child('abbruchhammer');
         const userId = this.props.user;
         const titel = this.titelInput.value;
@@ -104,6 +108,7 @@ onDrop(imageFiles) {
         const laenge = this.laengeInput.value;
         const breite = this.breiteInput.value;
         const durchmesser = this.durchmesserInput.value;
+        const Mietbedingungen = this.mietbedingungenInput.value;
 
 
         const timeInMs = Date.now();
@@ -148,7 +153,7 @@ onDrop(imageFiles) {
                const imageUrl = this.state.Arr[0]
                db.push({
                          kategorie:"abbruchhammer",
-
+                         mietbedingungen: Mietbedingungen,
                          email: this.props.email,
                          hersteller: hersteller,
                          aufname: aufname,
@@ -268,7 +273,10 @@ onDrop(imageFiles) {
               										<label>Artikelbeschreibung</label>
               										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
               									</div>
-
+                                <div className="col-sm-12">
+   									   	          <label>Mietbedingungen</label>
+									  	            <textarea className="h-100 form-control" ref={(input) => { this.mietbedingungenInput = input}} placeholder="Lege die Mietbedingungen fest"></textarea>
+ 									              </div>
               								</div>
                               <div className="listing-box-header">
                                 <i className="ti-gallery theme-cl"></i>

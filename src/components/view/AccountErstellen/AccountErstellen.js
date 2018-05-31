@@ -52,12 +52,12 @@ componentWillMount(){
 }
 
 
-  checkName =() =>{
+  checkName =(e) =>{
     if (this.nameInput.value.length < 4 ){
       const error = "Geben Sie bitte Ihren Namen ein"
-      this.setState({vornameError: error, isError: true})
+      this.setState({vornameError: error, isError: true, name: e.target.value})
     }else{
-      this.setState({vornameError: '', isError: false})
+      this.setState({vornameError: '', isError: false, name: e.target.value})
     }
   }
 

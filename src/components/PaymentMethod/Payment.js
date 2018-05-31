@@ -6,7 +6,7 @@ import backgroundImg from '../../img/backgroundPayment.jpg';
 import firebase from 'firebase';
 import Logo from'../../img/logo.png'
 import PayPal from'../../img/paypal.png'
-import Rechnung from'../../img/text-rechnung.png'
+import Überweisung from'../../img/text-ueberweisung.png'
 import moment from 'moment'
 import LogoWhite from'../../img/logo-white.png'
 import request from 'request';
@@ -225,7 +225,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                      <div className="payment-card" onClick={()=>{this.setState({meth:'paypal', loading:true})}} data-toggle="collapse" href="#collapsePaypal" role="button" aria-expanded="false" aria-controls="collapsePaypal">
                        <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
                          <div className="payment-card-title flexbox">
-                           <h4>Bezahle mit PayPal</h4>
+                           <h4>Bezahle mit PayPal.Me</h4>
                          </div>
                          <div className="pull-right">
                            <img src={PayPal} style={{width:"100px", height:"70px"}} className="img-responsive" alt=""/>
@@ -234,22 +234,33 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                      </div>
                     <div className="collapse" id="collapsePaypal">
                       <div className="card card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                        Folgende Bedingungne fallen für das bezahlen mit PayPal Me an: Sie verpflichten sich mit der Einwillig
+                        <div className="left" style={{textAlign: "left"}}>
+                        <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
+                        return {dae: !prevState.dae};})}}/>
+                         <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)}über PayPal.Me bezahle</a>
+                         <button className="btn theme-btn">mit paypal.me bezahlen</button>
+                        </div>
                       </div>
                     </div>
                      <div className="payment-card" onClick={()=>{this.setState({meth:'rechnung', loading:true})}} data-toggle="collapse" href="#collapseRechnung" role="button" aria-expanded="false" aria-controls="collapseRechnung">
                        <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
                          <div className="payment-card-title flexbox">
-                           <h4>Auf Rechnung</h4>
+                           <h4>Überweisung</h4>
                          </div>
                          <div className="pull-right">
-                           <img src={Rechnung} style={{width:"100px", height:"70px"}} className="img-responsive" alt=""/>
+                           <img src={Überweisung} style={{width:"100px", height:"70px"}} className="img-responsive" alt=""/>
                          </div>
                        </header>
                      </div>
                      <div className="collapse" id="collapseRechnung">
                        <div className="card card-body">
-                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                       <div className="left" style={{textAlign: "left"}}>
+                       <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
+                       return {dae: !prevState.dae};})}}/>
+                        <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)} per Überweisung bezahle</a>
+                        <button className="btn theme-btn">Kontodaten anfordern</button>
+                       </div>
                        </div>
                      </div>
                      <div className="payment-card" onClick={()=>{this.setState({meth:'barzahlen', loading:true})}} data-toggle="collapse" href="#collapseBar" role="button" aria-expanded="false" aria-controls="collapseBar">
@@ -263,7 +274,12 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                      </div>
                      <div className="collapse" id="collapseBar">
                        <div className="card card-body">
-                         Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                       <div className="left" style={{textAlign: "left"}}>
+                       <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
+                       return {dae: !prevState.dae};})}}/>
+                        <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)} bar vorort bezahle</a>
+                        <button className="btn theme-btn">Auftragsbestätigung anfordern</button>
+                       </div>
                        </div>
                      </div>
                     </div>

@@ -648,7 +648,7 @@ button.btn.dropdown-toggle.btn-default {
 }
 
 .theme-overlap{
-	background:url(../img/Home.jpg);
+	background:url('https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2FHome.jpg?alt=media&token=ff8e09ba-1cf4-4053-b6c2-d9387527e811');
 	background-position:center  ;
 	background-size:cover  ;
 	position:relative;
