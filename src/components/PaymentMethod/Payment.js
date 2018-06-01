@@ -171,7 +171,7 @@ paypalPayment(){
   let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
   artikelName = artikelName.replace('undefined ', '')
   artikelName = artikelName.replace(' undefinedKg', '')
-  if(this.state.paypal === false){
+  if(this.state.paypalAgb  === false){
     alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
   } else {
@@ -346,7 +346,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                       <div className="card card-body">
                         <div className="left" style={{textAlign: "left", padding: "10px"}}>
                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
-                        return {paypal: !prevState.paypal};})}}/>
+                        return {paypalAgb: !prevState.paypalAgb};})}}/>
                          <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)}über PayPal.Me bezahle</a>
                          <button style={{ marginTop: "10px"}} onClick={this.paypalPayment.bind(this)} className="btn theme-btn">mit paypal.me bezahlen</button>
                          <br/>
