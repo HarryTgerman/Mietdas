@@ -88,9 +88,9 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
     let iban = snap.val().bankData.iban;
     let kontoinhaber = snap.val().bankData.kontoinhaber;
     let paypal = snap.val().bankData.paypal;
-    if (paymentMethod == 'payal'){
+    if (paymentMethod == 'PayPal.Me'){
       paymentData = paypal;
-    }else if(paymentMethod == 'überweisung'){
+    }else if(paymentMethod == 'Überweisung'){
        paymentData = "Kontodaten: \nKontoinhaber:" + kontoinhaber +"\nBIC:" + bic+ "\nIBAN:" +iban
 
     }else{
