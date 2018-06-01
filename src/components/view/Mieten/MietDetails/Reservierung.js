@@ -17,7 +17,7 @@ class Reservierung extends Component{
       redirectProfile: false,
       rabatt: false,
       Gesamtsumme: this.props.location.query.Gesamtsumme,
-      value: "Sehr geehrter Vermieter. Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätigen Sie meine Anfrage!",
+      value: "Sehr geehrter "+this.props.location.query.snap.vermieter+". Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätigen Sie meine Anfrage!",
     }
 }
 handleChange(event) {

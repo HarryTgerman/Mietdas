@@ -19,7 +19,8 @@ class Account extends Component{
     this.state ={
       authenticated: false,
       redirect: false,
-      anfragen: [{}],
+      loader: true,
+      anfragen: false,
       editProfile: false,
       messages: [{}]
     }
@@ -89,10 +90,12 @@ firedata() {
           if(snap.val().anfragen == null){
           this.setState({
             anfragen: false,
+            loader: false,
           })
       }else{
             this.setState({
             anfragen: snap.val().anfragen,
+            loader: false,
           })
         }
         if(snap.val().bankData == undefined){
@@ -229,18 +232,25 @@ editBankData(){
                   {/* Tab panes */}
                   <div className="tab-content tabs">
                     <div role="tabpanel" className="tab-pane fade in active" id="home">
-                    { this.state.anfragen ? (keys.map((key) => {
-                       const anfrage = anfragen[key]
-                         return(<Anfragen
-                         anfrage={anfrage} name={anfrage.name} url={anfrage.url}
-                         cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
-                         uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
-                        nummer={anfrage.nummer} email={anfrage.email}
-                         mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
-                         )
-                       })
-                      ) : (<h3>Du hast keine neuen Anfragen</h3>)
-                    }
+                    {this.state.loader?(<div className="loader"></div>):(
+                      <div>
+                      { this.state.anfragen ? (keys.map((key) => {
+                         const anfrage = anfragen[key]
+                           return(<Anfragen
+                           anfrage={anfrage} name={anfrage.name} url={anfrage.url}
+                           cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
+                           uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
+                          nummer={anfrage.nummer} email={anfrage.email}
+                           mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
+                           )
+                         })
+                        ) : (<h3>Du hast keine neuen Anfragen</h3>)
+                      }
+                      </div>
+                    )}
+
+
+
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="meineAnfragen">
                     {this.state.mitteilungen?(this.state.mitteilungen.map((mit)=>{

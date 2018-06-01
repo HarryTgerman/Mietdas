@@ -92,98 +92,98 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
     let bundesLand = snap.val().bundesLand;
     //Kontaktdaten
     let vermieterTelefon =snap.val().telefon;
+    //mail an vermieter---------------------------
+    var transporter = nodemailer.createTransport({
+        host: 'alfa3210.alfahosting-server.de',
+        port: 465,
+        secure: false,
+        auth: {
+          user: 'web29692594p2',
+          pass: '7XZkop5L'
+        },
+        tls:{
+          rejectUnauthorized: false
+        }
+    });
+      transporter.use('compile',hbs({
+        viewPath: './emailTemplate',
+        extName: '.hbs'
+      }))
 
+
+     transporter.sendMail({
+        from: 'noreply@mietdas.com', // sender address
+        to: vermieterEmail, // list of receivers
+        subject: 'Zahlung für den folgenden Artikel ' +artikelName+ ' wurde getätigt',
+        template: 'vermieterMitteilung',
+        context: {
+          artikelName: artikelName,
+          von: von,
+          bis: bis,
+          preis: preis,
+          paymentMethod: paymentMethod,
+          mieterName: mieterName,
+          mieterTelefon: mieterTelefon,
+          rechnungsadresse: rechnungsadresse,
+          straße: straße,
+          plz: plz,
+          stadt: stadt,
+          bundesLand: bundesLand,
+        }
+      },  (err, info)=> {
+           if(err)
+             console.log(err)
+           else
+             console.log(info);
+        });
+
+        //mail an Mieter-----------------------------
+        var transporter = nodemailer.createTransport({
+            host: 'alfa3210.alfahosting-server.de',
+            port: 465,
+            secure: false,
+            auth: {
+              user: 'web29692594p2',
+              pass: '7XZkop5L'
+            },
+            tls:{
+              rejectUnauthorized: false
+            }
+        });
+          transporter.use('compile',hbs({
+            viewPath: './emailTemplate',
+            extName: '.hbs'
+          }))
+
+
+         transporter.sendMail({
+            from: 'noreply@mietdas.com', // sender address
+            to: mieterEmail, // list of receivers
+            subject: 'Du hast die Zahlung für den folgenden Artikel ' +artikelName+ ' getätigt',
+            template: 'mieterMitteilung',
+            context: {
+              artikelName: artikelName,
+              von: von,
+              bis: bis,
+              preis: preis,
+              paymentMethod: paymentMethod,
+              vermieterName: vermieterName,
+              vermieterTelefon: vermieterTelefon,
+              straße: straße,
+              plz: plz,
+              stadt: stadt,
+              bundesLand: bundesLand,
+
+            }
+          },  (err, info)=> {
+               if(err)
+                 console.log(err)
+               else
+                 console.log(info);
+            });
   })
 
-  //mail an vermieter---------------------------
-  var transporter = nodemailer.createTransport({
-      host: 'alfa3210.alfahosting-server.de',
-      port: 465,
-      secure: false,
-      auth: {
-        user: 'web29692594p2',
-        pass: '7XZkop5L'
-      },
-      tls:{
-        rejectUnauthorized: false
-      }
-  });
-    transporter.use('compile',hbs({
-      viewPath: './emailTemplate',
-      extName: '.hbs'
-    }))
 
-
-return   transporter.sendMail({
-      from: 'noreply@mietdas.com', // sender address
-      to: sendToMail, // list of receivers
-      subject: 'Zahlung für den folgenden Artikel ' +artikelName+ ' wurde getätigt',
-      template: 'vermieterMitteilung',
-      context: {
-        artikelName: artikelName,
-        von: von,
-        bis: bis,
-        preis: preis,
-        paymentMethod: paymentMethod,
-        mieterName: mieterName,
-        mieterTelefon: mieterTelefon,
-        rechnungsadresse: rechnungsadresse,
-        straße: straße,
-        plz: plz,
-        stadt: stadt,
-        bundesLand: bundesLand,
-      }
-    },  (err, info)=> {
-         if(err)
-           console.log(err)
-         else
-           console.log(info);
-      });
-
-      //mail an Mieter-----------------------------
-      var transporter = nodemailer.createTransport({
-          host: 'alfa3210.alfahosting-server.de',
-          port: 465,
-          secure: false,
-          auth: {
-            user: 'web29692594p2',
-            pass: '7XZkop5L'
-          },
-          tls:{
-            rejectUnauthorized: false
-          }
-      });
-        transporter.use('compile',hbs({
-          viewPath: './emailTemplate',
-          extName: '.hbs'
-        }))
-
-
-    return   transporter.sendMail({
-          from: 'noreply@mietdas.com', // sender address
-          to: sendToMail, // list of receivers
-          subject: 'Du hast die Zahlung für den folgenden Artikel ' +artikelName+ ' getätigt',
-          template: 'mieterMitteilung',
-          context: {
-            artikelName: artikelName,
-            von: von,
-            bis: bis,
-            preis: preis,
-            paymentMethod: paymentMethod,
-            vermieterName: vermieterName,
-            vermieterTelefon: vermieterTelefon,
-            straße: straße,
-            plz: plz,
-            stadt: stadt,
-            bundesLand: bundesLand,
-
-          }
-        },  (err, info)=> {
-             if(err)
-               console.log(err)
-             else
-               console.log(info);
-          });
 
 })
 
