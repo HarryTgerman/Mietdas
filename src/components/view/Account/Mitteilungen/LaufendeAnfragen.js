@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
 import {Link} from 'react-router-dom';
+import Popover from 'react-awesome-popover';
+import "react-awesome-popover/dest/react-awesome-popover.css";
 
 
 
@@ -8,15 +10,25 @@ class LaufendeAnfragen extends Component{
   constructor(props){
     super(props)
     this.state={
+      delete: false,
     }
 }
-
+deleteAnfrage(){
+  firebase.database().ref().child('app').child('users/' + this.props.anfrage.uid)
+  .child('/mitteilung/').child(this.props.snapId).remove();
+  firebase.database().ref().child('app')
+  .child('users').child(this.props.anfrage.ArtikelOwnerId)
+  .child("anfragen/" +this.props.snapId).remove()
+  this.setState({
+    delete: true,
+  })
+}
 
 
         render(){
           return(
             <div>
-            <div className="col-md-12 col-sm-12">
+            {this.state.delete?(null):(<div className="col-md-12 col-sm-12">
               <div className="verticleilist listing-shot">
                 <a className="listing-item">
                   <div className="listing-shot-img">
@@ -28,6 +40,13 @@ class LaufendeAnfragen extends Component{
                 <div className="verticle-listing-caption">
 
                   <div className="listing-shot-caption">
+                    <div className="right ">
+                      <Popover>
+                      <i className="ti-info LaufendeAnfragen-info"></i>
+                      <div className="tooltipbox" ><a onClick={this.deleteAnfrage.bind(this)}> Anfrage rückgängig machen ?</a></div>
+                     </Popover>
+                   </div>
+
                     <h4>{this.props.anfrage.hersteller?(this.props.anfrage.hersteller+" "):(null)}{this.props.anfrage.cardHeading}{this.props.anfrage.gewicht?(" "+this.props.anfrage.gewicht+"Kg"):(null)}</h4>
                   </div>
 
@@ -36,7 +55,7 @@ class LaufendeAnfragen extends Component{
                       <div className="col-md-12">
                         <div className="listing-detail-info">
                           <span>Zeitraum: <a>{this.props.anfrage.mietbeginn}</a> bis <a>{this.props.anfrage.mietende}</a>  = {this.props.anfrage.tage}</span>
-                          <span>möglicher Umsatz: <a>{this.props.anfrage.umsatz}€</a> Benutzername: <a>{this.props.anfrage.name}</a></span>
+                          <span>Kosten: <a>{this.props.anfrage.umsatz}€</a></span>
                         </div>
                       </div>
                     </div>
@@ -63,7 +82,7 @@ class LaufendeAnfragen extends Component{
                   </div>
                 </div>
               </div>
-            </div>
+            </div>)}
             </div>
             )
         }

@@ -3,12 +3,15 @@
 @import "./css/Chat/Chat.css";
 @import "./css/Chat/styleMessage.css";
 
+
 @import "./css/bootstrap/bootstrap.css";
 @import "./css/bootstrap/bootsnav.css";
 @import "./css/bootstrap/bootstrap-select.min.css";
 @import "./css/bootstrap/bootstrap-theme.css";
 @import "./css/themify-icons.css";
 @import '~react-select/dist/react-select.css';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
 
 @import "./css/style.css";
 @import "./css/colors/main.css";

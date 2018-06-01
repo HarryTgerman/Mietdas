@@ -80,13 +80,18 @@ scrollToSection4(){
           }else if (this.state.registerRedirect === true) {
             return <Redirect to='/account-erstellen' />
           }
-          var slickSettings = {
-              dots: false,
-              infinite: true,
-              speed: 500,
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
+          let settings = {
+             dots: true,
+             centerPadding: '50px',
+             arrows: true,
+             variableWidth: true,
+             infinite: true,
+             speed: 800,
+             adaptiveHeight: true,
+             slidesToShow: 2,
+             slidesToScroll: 2
+           }
+
             const { selectedOption } = this.state;
             const value = selectedOption && selectedOption.value
             if (this.state.kat === true){
@@ -242,6 +247,21 @@ scrollToSection4(){
 
                           <section className="features">
                             <div className="container">
+                              <Slider {...settings}>
+                                <div>
+                                  <img src="https://picsum.photos/400/200" />
+                                  junge
+                                </div>
+                                <div>
+                                  <img src="https://picsum.photos/400/200" />
+                                </div>
+                                <div>
+                                  <img src="https://picsum.photos/400/200" />
+                                </div>
+                                <div>
+                                  <img src="https://picsum.photos/400/200" />
+                                </div>
+                              </Slider>
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading" >
@@ -275,7 +295,8 @@ scrollToSection4(){
                               <span className="arrow-down" onClick={this.scrollToSection3.bind(this)}></span>
                               </div>
                             </div>
-                                </section>
+
+                          </section>
                            {/*End Services Section*/}
 
                            {/*Popular Listing Section*/}

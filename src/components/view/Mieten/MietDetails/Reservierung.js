@@ -83,6 +83,17 @@ loadUser(){
 }
   Mieten(event){
     event.preventDefault;
+    let hersteller =this.props.location.query.snap.hersteller;
+    let gewicht =this.props.location.query.snap.gewicht;
+
+    if (hersteller == undefined){
+       hersteller = 'undefined';
+    }
+    if (gewicht == undefined){
+       gewicht = 'undefined';
+    }
+
+
     const tefNummer = this.numberInput.value;
     const email = this.emailInput.value;
     const message = this.messageInput.value;
@@ -97,6 +108,7 @@ loadUser(){
     }
 
     const anfObj = {
+
       RechnungsAdresse: this.adresseInput.value,
       cardId: this.props.location.query.cardId,
       name: this.state.name,
@@ -114,6 +126,9 @@ loadUser(){
       telefon: this.props.location.query.snap.telefon,
       email: email,
       new: true,
+      vermieter: this.props.location.query.snap.vermieter,
+      hersteller: hersteller,
+      gewicht: gewicht,
     }
 
     firebase.database().ref().child('app').child('users/' + this.state.uid)
@@ -152,6 +167,10 @@ loadUser(){
       nummer: tefNummer,
       email: email,
       new: true,
+      vermieter: this.props.location.query.snap.vermieter,
+      hersteller: hersteller,
+      gewicht: gewicht,
+
     })
 
     firebase.database().ref().child('app').child('messages').push({

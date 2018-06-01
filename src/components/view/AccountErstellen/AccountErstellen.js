@@ -147,7 +147,8 @@ createUserProfil(event){
     const straße = this.straßeInput.value;
     const stadt = this.stadtInput.value;
     const plz = this.plzInput.value
-    const adresse = straße + " " + stadt  + " " + plz;
+    const rechnungadresse = this.rechnungsadresseInput.value;
+    const adresse = straße + " " + plz  + " " + stadt;
     const ort = this.plzInput.value +" "+this.stadtInput.value;
     const telefon = this.nummerInput.value;
     const userImage =  this.profilePic.files[0];
@@ -175,6 +176,7 @@ createUserProfil(event){
                           email: email,
                           url : Url,
                           geburtsDatum: date,
+                          rechnungsadresse:rechnungadresse,
                           adresse: adresse,
                           straße: straße,
                           stadt: stadt,
@@ -366,7 +368,7 @@ handleChange(event){
                               </div>
                               <div className="col-sm-6">
                                 <label>Rechnungsadresse</label>
-                                <input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} onChange={this.checkRechnungsAdresse} placeholder="Vollständige Adresse"/>
+                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsAdresse} placeholder="Vollständige Adresse"/>
                               </div>
                               <div className="col-sm-6">
                                 <label>Stadt</label>

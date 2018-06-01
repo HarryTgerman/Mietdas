@@ -24,8 +24,12 @@ class Payment extends Component{
     // this.ArtikelOwnerId = this.props.query.anfrage.uid
     // this.ArtikelOwnerEmail = this.props.query.anfrage.email
     this.state ={
+      redirect: false,
       authenticated: false,
       price: 0,
+      paypal: false,
+      überweisung: false,
+      bar: false,
     }
   }
 
@@ -50,6 +54,13 @@ class Payment extends Component{
           authenticated: false,
         })
         }
+      })
+      firebase.database().ref('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId)
+      .child('bankData/paypal').once('value', snap=>{
+        console.log(snap.val());
+        this.setState({
+          paypal: snap.val()
+        })
       })
       // this.getPaymentMethods()
     }
@@ -123,13 +134,115 @@ class Payment extends Component{
  }
 
 
+barPayment(){
+  let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
+  let artikelName1 = artikelName.replace('undefined ', '')
+  let artikelName2 = artikelName1.replace(' undefinedKg', '')
+  if(this.state.bar === false){
+    alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
+    return 0;
+  } else {
+    firebase.database().ref('app/paymenst').push({
+      vermieterId:this.props.location.query.anfrage.ArtikelOwnerId,
+      vermieterEmail:this.props.location.query.anfrage.ArtikelOwnerEmail,
+      mieterEmail:this.props.location.query.anfrage.email,
+      mieterId:this.state.uid,
+      vermieterName: this.props.location.query.anfrage.vermieter,
+      mieterName:this.state.name,
+      artikelId:this.props.location.query.cardid,
+      artikelName:artikelName2,
+      preis:this.props.location.query.anfrage.umsatz,
+      paymentMethod:'barzahlung',
+      von:this.props.location.query.anfrage.mietbeginn,
+      bis:this.props.location.query.anfrage.mietende,
+      bezahlt: false,
+      rechnungsAdresse: this.props.location.query.anfrage.RechnungsAdresse,
+      telefon: this.props.location.query.anfrage.telefon,
+    })
+    firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
+    .child(this.props.location.query.merchantReference).remove()
+    firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
+    .child(this.props.location.query.merchantReference).remove()
+    this.setState({redirect: true})
 
+  }
+}
+paypalPayment(){
+  let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
+  let artikelName1 = artikelName.replace('undefined ', '')
+  let artikelName2 = artikelName1.replace(' undefinedKg', '')
+  if(this.state.paypal === false){
+    alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
+    return 0;
+  } else {
+    firebase.database().ref('app/payments').push({
+      vermieterId:this.props.location.query.anfrage.ArtikelOwnerId,
+      vermieterEmail:this.props.location.query.anfrage.ArtikelOwnerEmail,
+      mieterEmail:this.props.location.query.anfrage.email,
+      mieterId:this.state.uid,
+      vermieterName: this.props.location.query.anfrage.vermieter,
+      mieterName:this.state.name,
+      artikelId:this.props.location.query.cardid,
+      artikelName:artikelName2,
+      preis:this.props.location.query.anfrage.umsatz,
+      paymentMethod:'paypalme',
+      von:this.props.location.query.anfrage.mietbeginn,
+      bis:this.props.location.query.anfrage.mietende,
+      bezahlt: false,
+      rechnungsAdresse: this.props.location.query.anfrage.RechnungsAdresse,
+      telefon: this.props.location.query.anfrage.telefon,
+    })
+    firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
+    .child(this.props.location.query.merchantReference).remove()
+    firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
+    .child(this.props.location.query.merchantReference).remove()
+    this.setState({redirect: true})
+
+  }
+}
+ueberweisungPayment(){
+  let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
+  let artikelName1 = artikelName.replace('undefined ', '')
+  let artikelName2 = artikelName1.replace(' undefinedKg', '')
+  if(this.state.überweisung === false){
+    alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
+    return 0;
+  } else {
+    firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
+    .child(this.props.location.query.merchantReference).remove()
+    firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
+    .child(this.props.location.query.merchantReference).remove()
+    firebase.database().ref('app/payments').push({
+      vermieterId:this.props.location.query.anfrage.ArtikelOwnerId,
+      vermieterEmail:this.props.location.query.anfrage.ArtikelOwnerEmail,
+      mieterEmail:this.props.location.query.anfrage.email,
+      mieterId:this.state.uid,
+      vermieterName: this.props.location.query.anfrage.vermieter,
+      mieterName:this.state.name,
+      artikelId:this.props.location.query.cardid,
+      artikelName:artikelName2,
+      preis:this.props.location.query.anfrage.umsatz,
+      paymentMethod:'überweisung',
+      von:this.props.location.query.anfrage.mietbeginn,
+      bis:this.props.location.query.anfrage.mietende,
+      bezahlt: false,
+      rechnungsAdresse: this.props.location.query.anfrage.RechnungsAdresse,
+      telefon: this.props.location.query.anfrage.telefon,
+    })
+    this.setState({redirect: true})
+  }
+}
 
 
 
 
   render(){
-
+    if(this.state.redirect === true) {
+        return  <Redirect to="/benutzeraccount"/>
+      }
+      let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
+      let artikelName1 = artikelName.replace('undefined ', '')
+      let artikelName2 = artikelName1.replace(' undefinedKg', '')
 let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
     return(
         <div>
@@ -205,7 +318,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                       <h4><i className="ti-credit-card theme-cl mrg-r-5 "></i>Bezahlmethoden</h4>
                     </div>
                     <div className="detail-wrapper-body">
-
+                    <div>{artikelName2}</div>
 
             {/*this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{
@@ -222,7 +335,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                       </div>)
                     })): (<div className="loader"></div>)}
                      {this.state.loading?(<h4>Lade...</h4>):(null)*/}
-                     <div className="payment-card" onClick={()=>{this.setState({meth:'paypal', loading:true})}} data-toggle="collapse" href="#collapsePaypal" role="button" aria-expanded="false" aria-controls="collapsePaypal">
+                    {this.state.paypal?(<div className="payment-card" onClick={()=>{this.setState({meth:'paypal', loading:true})}} data-toggle="collapse" href="#collapsePaypal" role="button" aria-expanded="false" aria-controls="collapsePaypal">
                        <header className="payment-card-header cursor-pointer collapsed" data-toggle="collapse" data-target="#paypal" aria-expanded="false">
                          <div className="payment-card-title flexbox">
                            <h4>Bezahle mit PayPal.Me</h4>
@@ -231,15 +344,15 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                            <img src={PayPal} style={{width:"100px", height:"70px"}} className="img-responsive" alt=""/>
                          </div>
                        </header>
-                     </div>
+                     </div>):(null)}
                     <div className="collapse" id="collapsePaypal">
                       <div className="card card-body">
-                        Folgende Bedingungne fallen für das bezahlen mit PayPal Me an: Sie verpflichten sich mit der Einwillig
-                        <div className="left" style={{textAlign: "left"}}>
+                        <div className="left" style={{textAlign: "left", padding: "10px"}}>
                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
-                        return {dae: !prevState.dae};})}}/>
+                        return {paypal: !prevState.paypal};})}}/>
                          <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)}über PayPal.Me bezahle</a>
-                         <button className="btn theme-btn">mit paypal.me bezahlen</button>
+                         <button style={{ marginTop: "10px"}} onClick={this.paypalPayment.bind(this)} className="btn theme-btn">mit paypal.me bezahlen</button>
+                         <br/>
                         </div>
                       </div>
                     </div>
@@ -255,12 +368,13 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                      </div>
                      <div className="collapse" id="collapseRechnung">
                        <div className="card card-body">
-                       <div className="left" style={{textAlign: "left"}}>
-                       <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
-                       return {dae: !prevState.dae};})}}/>
-                        <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)} per Überweisung bezahle</a>
-                        <button className="btn theme-btn">Kontodaten anfordern</button>
-                       </div>
+                         <div className="left"  style={{textAlign: "left", padding: "10px"}}>
+                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
+                         return {überweisung: !prevState.überweisung};})}}/>
+                          <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)} per Überweisung bezahle</a>
+                          <br/>
+                          <button style={{ marginTop: "10px"}} onClick={this.ueberweisungPayment.bind(this)} className="btn theme-btn">Kontodaten anfordern</button>
+                         </div>
                        </div>
                      </div>
                      <div className="payment-card" onClick={()=>{this.setState({meth:'barzahlen', loading:true})}} data-toggle="collapse" href="#collapseBar" role="button" aria-expanded="false" aria-controls="collapseBar">
@@ -274,11 +388,12 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                      </div>
                      <div className="collapse" id="collapseBar">
                        <div className="card card-body">
-                       <div className="left" style={{textAlign: "left"}}>
+                       <div className="left" style={{textAlign: "left", padding: "10px"}}>
                        <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
-                       return {dae: !prevState.dae};})}}/>
+                       return {bar: !prevState.bar};})}}/>
                         <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)} bar vorort bezahle</a>
-                        <button className="btn theme-btn">Auftragsbestätigung anfordern</button>
+                        <br/>
+                        <button  style={{ marginTop: "10px"}} onClick={this.barPayment.bind(this)} className="btn theme-btn">Auftragsbestätigung anfordern</button>
                        </div>
                        </div>
                      </div>

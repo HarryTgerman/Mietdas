@@ -251,6 +251,30 @@ a:hover{
   }
 }
 */
+
+.tooltipbox{
+ width: 280px;
+ background-color: #f4f5f7;
+ text-align: center;
+ padding: 5px 0;
+ border-radius: 6px;
+ /* Position the tooltip text - see examples below! */
+}
+.tooltipbox a:hover{
+	color: #f64625;
+	cursor: pointer;
+}
+ .LaufendeAnfragen-info{
+	cursor: pointer;
+	font-size:17px;
+}
+.LaufendeAnfragen-info:hover{
+	font-weight:600;
+	color: #f64625;
+}
+.right {
+    float: right;
+}
 .arrow-down:hover{
 	opacity: 0.5
 }

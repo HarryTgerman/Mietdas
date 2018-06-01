@@ -22,7 +22,7 @@ this.setState({
   email:this.props.snap.email,
   telefon:this.props.snap.telefon,
   geburtsDatum:this.props.snap.geburtsDatum,
-  adresse:this.props.snap.adresse,
+  rechnungsadresse:this.props.snap.rechnungsadresse,
   straße:this.props.snap.straße,
   stadt:this.props.snap.stadt,
   plz:this.props.snap.plz,
@@ -106,12 +106,12 @@ handleChangeName(event) {
         this.setState({bundeslandError: '', isError: false,bundesLand: e.target.value})
       }
     }
-    checkRechnungsAdresse(e) {
+    checkRechnungsadresse(e) {
       if (this.bundeslandInput.value.length < 2){
-        const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
-        this.setState({rechnungsAdresseError: error, isError: true,adresse: e.target.value})
+        const error = "Bitte geben Sie ihre vollstädinge Rechnungsadresse an";
+        this.setState({rechnungsAdresseError: error, isError: true,rechnungsadresse: e.target.value})
      }else{
-        this.setState({rechnungsAdresseError: '', isError: false,adresse: e.target.value})
+        this.setState({rechnungsAdresseError: '', isError: false,rechnungsadresse: e.target.value})
       }
     }
     checkIban(e) {
@@ -174,11 +174,16 @@ savePersonel(){
 
 }
 saveLocation(){
+  let ort = this.state.plz + " " + this.state.stadt
+  let adresse = this.state.straße + " " + this.state.plz + " " + this.state.stadt
   firebase.database().ref().child('app/users').child(this.props.uid).update({
     straße: this.state.straße,
     plz: this.state.plz,
     bundesLand: this.state.bundesLand,
     stadt: this.state.stadt,
+    adresse:adresse,
+    rechnungsadresse: this.state.rechnungsadresse,
+    ort: ort,
   })
   this.setState({
     editLocation:false,
@@ -281,9 +286,9 @@ componentDidMount(){
                               :(<p>{this.state.straße}</p>)}
                             </div>
                             <div className="col-sm-6">
-                              <label>Rechnungsadresse</label>
-                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.rechnungsAdresseInput = input; }} onChange={this.checkRechnungsAdresse.bind(this)} value={this.state.adresse} /><p className="errorMessage">{this.state.rechnungsAdresseError}</p></div>)
-                              :(<p>{this.state.adresse}</p>)}
+                              <label>Rechnungsadresse (Straße Plz Stadt)</label>
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsadresse.bind(this)} value={this.state.rechnungsadresse} /><p className="errorMessage">{this.state.rechnungsadresseError}</p></div>)
+                              :(<p>{this.state.rechnungsadresse}</p>)}
                             </div>
                             <div className="col-sm-6">
                               <label>Stadt</label>
@@ -381,7 +386,7 @@ componentDidMount(){
                                       <div >
                                         <div className="card card-body">
                                           Mit einem PayPal.Me-Link können Sie persönliche oder geschäftliche Zahlungen von anderen über PayPal anfordern und empfangen.
-                                          Jetzt kostenlos PayPal.Me Link generieren. <a target="_blank" className="theme-cl" href="https://www.paypal.com/paypalme/grab?locale.x=de_DE&country.x=CH">https://www.paypal.com/paypalme/grab?locale.x=de_DE&country.x=CH</a>
+                                        <a target="_blank" className="theme-cl" href="https://www.paypal.com/paypalme/grab?locale.x=de_DE&country.x=CH">  Jetzt kostenlos PayPal.Me Link generieren </a>
                                         </div>
                                       </div>
                                       </div>)
