@@ -247,21 +247,7 @@ scrollToSection4(){
 
                           <section className="features">
                             <div className="container">
-                              <Slider {...settings}>
-                                <div>
-                                  <img src="https://picsum.photos/400/200" />
-                                  junge
-                                </div>
-                                <div>
-                                  <img src="https://picsum.photos/400/200" />
-                                </div>
-                                <div>
-                                  <img src="https://picsum.photos/400/200" />
-                                </div>
-                                <div>
-                                  <img src="https://picsum.photos/400/200" />
-                                </div>
-                              </Slider>
+                            
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading" >

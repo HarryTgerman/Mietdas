@@ -136,8 +136,8 @@ class Payment extends Component{
 
 barPayment(){
   let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
-  let artikelName1 = artikelName.replace('undefined ', '')
-  let artikelName2 = artikelName1.replace(' undefinedKg', '')
+  artikelName = artikelName.replace('undefined ', '')
+  artikelName = artikelName.replace(' undefinedKg', '')
   if(this.state.bar === false){
     alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
@@ -150,7 +150,7 @@ barPayment(){
       vermieterName: this.props.location.query.anfrage.vermieter,
       mieterName:this.state.name,
       artikelId:this.props.location.query.cardid,
-      artikelName:artikelName2,
+      artikelName:artikelName,
       preis:this.props.location.query.anfrage.umsatz,
       paymentMethod:'barzahlung',
       von:this.props.location.query.anfrage.mietbeginn,
@@ -169,8 +169,8 @@ barPayment(){
 }
 paypalPayment(){
   let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
-  let artikelName1 = artikelName.replace('undefined ', '')
-  let artikelName2 = artikelName1.replace(' undefinedKg', '')
+  artikelName = artikelName.replace('undefined ', '')
+  artikelName = artikelName.replace(' undefinedKg', '')
   if(this.state.paypal === false){
     alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
@@ -183,7 +183,7 @@ paypalPayment(){
       vermieterName: this.props.location.query.anfrage.vermieter,
       mieterName:this.state.name,
       artikelId:this.props.location.query.cardid,
-      artikelName:artikelName2,
+      artikelName:artikelName,
       preis:this.props.location.query.anfrage.umsatz,
       paymentMethod:'paypalme',
       von:this.props.location.query.anfrage.mietbeginn,
@@ -202,8 +202,8 @@ paypalPayment(){
 }
 ueberweisungPayment(){
   let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
-  let artikelName1 = artikelName.replace('undefined ', '')
-  let artikelName2 = artikelName1.replace(' undefinedKg', '')
+  artikelName = artikelName.replace('undefined ', '')
+  artikelName = artikelName.replace(' undefinedKg', '')
   if(this.state.überweisung === false){
     alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
@@ -220,7 +220,7 @@ ueberweisungPayment(){
       vermieterName: this.props.location.query.anfrage.vermieter,
       mieterName:this.state.name,
       artikelId:this.props.location.query.cardid,
-      artikelName:artikelName2,
+      artikelName:artikelName,
       preis:this.props.location.query.anfrage.umsatz,
       paymentMethod:'überweisung',
       von:this.props.location.query.anfrage.mietbeginn,
@@ -240,9 +240,7 @@ ueberweisungPayment(){
     if(this.state.redirect === true) {
         return  <Redirect to="/benutzeraccount"/>
       }
-      let artikelName = this.props.location.query.anfrage.hersteller+" "+this.props.location.query.anfrage.cardHeading +" "+ this.props.location.query.anfrage.gewicht+"Kg"
-      let artikelName1 = artikelName.replace('undefined ', '')
-      let artikelName2 = artikelName1.replace(' undefinedKg', '')
+
 let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
     return(
         <div>
@@ -318,7 +316,6 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                       <h4><i className="ti-credit-card theme-cl mrg-r-5 "></i>Bezahlmethoden</h4>
                     </div>
                     <div className="detail-wrapper-body">
-                    <div>{artikelName2}</div>
 
             {/*this.state.requestPaymentMethods?
               (this.state.requestPaymentMethods.map((meth) =>{

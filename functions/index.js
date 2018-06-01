@@ -4,61 +4,9 @@ const request = require('request');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars')
 const admin = require('firebase-admin');
-const gcs = require('@google-cloud/storage')();
-const os = require('os');
-const path = require('path');
-const spawn = require('child-process-promise').spawn;
 
 admin.initializeApp(functions.config().firebase);
 
-
-
-
-const gcs = require('@google-cloud/storage')();
-const os = require('os');
-const path = require('path');
-const spawn = require('child-process-promise').spawn;
-
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.fileResizer =  functions.database.ref('app/card/{wildCardcat}/{wildcardMessge}')
-// .onCreate((snapshot, context) => {
-//   let imageArr = snapshot.val().imageArr
-//   return imageArr.map(i=>{
-//     functions.storage.refFromURL(i).object().on(event => {
-//         const object = event.data;
-//         const bucket = object.bucket;
-//         const contentType = object.contentType;
-//         const filePath = object.name;
-//         console.log('File change detected, function execution started');
-//
-//         if (object.resourceState === 'not_exists') {
-//             console.log('We deleted a file, exit...');
-//             return;
-//         }
-//
-//         if (path.basename(filePath).startsWith('resized-')) {
-//             console.log('We already renamed that file!');
-//             return;
-//         }
-//
-//         const destBucket = gcs.bucket(bucket);
-//         const tmpFilePath = path.join(os.tmpdir(), path.basename(filePath));
-//         const metadata = { contentType: contentType };
-//         return destBucket.file(filePath).download({
-//             destination: tmpFilePath
-//         }).then(() => {
-//             return spawn('convert', [tmpFilePath, '-resize', '500x500', tmpFilePath]);
-//         }).then(() => {
-//             return destBucket.upload(tmpFilePath, {
-//                 destination: 'resized-' + path.basename(filePath),
-//                 metadata: metadata
-//             })
-//         });
-//     })
-//   })
-// }
 
 
 
@@ -120,7 +68,6 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
   let vermieterName =snapshot.val().vermieterName;
   let vermieterId = snapshot.val().vermieterId;
   let mieterId = snapshot.val().mieterId;
-  let vermieterEmail =snapshot.val().vermieterEmail;
   let mieterTelefon =snapshot.val().telefon;
   let preis =snapshot.val().preis;
   let paymentMethod =snapshot.val().paymentMethod;
@@ -284,90 +231,3 @@ return   transporter.sendMail({
       });
 
 })
-
-// exports.submitPayout =  functions.database.ref('app/payments/{wildCard}/{wildcardRef}')
-// .onCreate((snapshot, context) => {
-//   let uid =snapshot.val().paymentData.anfrage.uid
-//   let email =snapshot.val().paymentData.anfrage.email
-//   let name =snapshot.val().paymentData.anfrage.name.split(' ')
-//   let firstName= name[0]
-//   let lastName= name[1]
-//   let article = snapshot.val().paymentData.anfrage.cardHeading;
-//   let von = snapshot.val().paymentData.anfrage.mietbeginn;
-//   let bis = snapshot.val().paymentData.anfrage.mietende;
-//   let amount = snapshot.val().paymentData.anfrage.umsatz * 0.88 + "00";
-//
-//   admin.database().ref('app/users/'+uid).once('value', snap=>{
-//     let dateOfBirth = snap.val().geburtsDatum
-//     let bankData = snap.val().bankData
-//     request.post({headers: {'content-type' : 'application/x-www-form-urlencoded'},
-//                 url:'https://pal-test.adyen.com/pal/servlet/Payout/v30/storeDetailAndSubmitThirdParty',
-//                 body: {
-//                     "merchantAccount" : "MietDasCOM",
-//                     "recurring": {
-//                         "contract" : "RECURRING,PAYOUT"
-//                     },
-//
-//                     "amount" : {
-//                         "value" : amount,
-//                         "currency" : "EUR"
-//                     },
-//                     "bank" : {
-//                         "bankName" : bankData.bankName,
-//                         "iban" : bankData.iban,
-//                         "countryCode" : "DE",
-//                         "ownerName" : bankData.kontoinhaber
-//                     },
-//
-//                     "reference" : "Mietdas Auszahlung",
-//                     "shopperEmail" : email,
-//                     "shopperIP" : uid,
-//                     "shopperReference" : "Mietdas Auszahlung",
-//                     "shopperName" : {
-//                         "firstName" : firstName,
-//                         "lastName" : lastName
-//                     },
-//                     "dateOfBirth" : dateOfBirth,
-//                     "entityType" : "Company",
-//                     "nationality" : "DE"
-//                 }
-//           },(err, response, body) => {
-//             if (err) throw err;
-//             console.log(response, body);
-//             if(reponse){
-//             request.post({headers: {'content-type' : 'application/x-www-form-urlencoded'},
-//                         url:'https://pal-test.adyen.com/pal/servlet/Payout/v30/submitThirdParty',
-//                         body: {
-//                         "amount" : {
-//                             "currency" : "EUR",
-//                             "value" : amount
-//                         },
-//
-//                         "merchantAccount" : "MietDasCOM",
-//
-//                         "recurring" : {
-//                             "contract" : "PAYOUT"
-//                         },
-//
-//                         "reference" : "MietdasPayout",
-//                         "shopperEmail" : email,
-//                         "shopperReference" : "MietdasPayout",
-//                         "shopperName" : {
-//                             "firstName" : firstName,
-//                             "lastName" : lastName
-//                         },
-//                         "dateOfBirth" : dateOfBirth,
-//                         "entityType" : "Company",
-//                         "nationality" : "DE",
-//                         "selectedRecurringDetailReference" : "LATEST"
-//                     }
-//                   },(err, response, body) => {
-//                     if (err) throw err;
-//                     console.log(response, body);
-//                 })
-//               }
-//
-//           })
-//
-//       })
-// })

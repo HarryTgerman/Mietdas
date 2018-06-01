@@ -131,16 +131,6 @@ componentWillMount(){
 
 createUserProfil(event){
     event.preventDefault()
-
-    this.checkName();
-    this.checkNummer();
-    this.checkGeburtstag();
-    this.checkStrasse();
-    this.checkStadt();
-    this.checkPlz();
-    this.checkBundesland();
-    this.checkLand();
-
     const name = this.nameInput.value;
     const email = this.emailInput.value;
     const date = this.dateInput.value;
@@ -329,7 +319,7 @@ handleChange(event){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-6">
                                 <label>Name/Firma</label>
-                                <input type="text" ref={(input) => { this.nameInput = input; }} onChange={this.checkName} className="form-control" value={this.state.name} />
+                                <input type="text" ref={(input) => { this.nameInput = input; }} onChange={this.checkName.bind(this)} className="form-control" value={this.state.name} />
                                 <p className="errorMessage">{this.state.vornameError}</p>
                               </div>
                               <div className="col-sm-6">
@@ -339,12 +329,12 @@ handleChange(event){
                               </div>
                               <div className="col-sm-6">
                                 <label>Telefonnummer</label>
-                                <input type="number" className="form-control" ref={(input) => { this.nummerInput = input; }} onChange={this.checkNummer} placeholder="Telefon Nummer"/>
+                                <input type="number" className="form-control" ref={(input) => { this.nummerInput = input; }} onChange={this.checkNummer.bind(this)} placeholder="Telefon Nummer"/>
                                 <p className="errorMessage">{this.state.telefonError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Geburtstag</label>
-                                <input type="text" ref={(input) => { this.dateInput = input; }} onChange={this.checkGeburtstag} placeholder="TT.MM.JJJJ" className="form-control"/>
+                                <input type="text" ref={(input) => { this.dateInput = input; }} onChange={this.checkGeburtstag.bind(this)} placeholder="TT.MM.JJJJ" className="form-control"/>
                                 <p className="errorMessage">{this.state.geburtstagError}</p>
                               </div>
                             </div>
@@ -363,21 +353,21 @@ handleChange(event){
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-6">
                                 <label>Straße</label>
-                                <input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse} placeholder="Straße Nummer"/>
+                                <input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse.bind(this)} placeholder="Straße Nummer"/>
                                 <p className="errorMessage">{this.state.strasseError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>Rechnungsadresse</label>
-                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsAdresse} placeholder="Vollständige Adresse"/>
+                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsAdresse.bind(this)} placeholder="Vollständige Adresse"/>
                               </div>
                               <div className="col-sm-6">
                                 <label>Stadt</label>
-                                <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt} placeholder="Stadt"/>
+                                <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt.bind(this)} placeholder="Stadt"/>
                                 <p className="errorMessage">{this.state.stadtError}</p>
                               </div>
                               <div className="col-sm-6">
                                 <label>PLZ</label>
-                                <input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz} placeholder="Postleitzahl"/>
+                                <input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz.bind(this)} placeholder="Postleitzahl"/>
                                 <p className="errorMessage">{this.state.plzError}</p>
                               </div>
                               <div className="col-sm-6">
@@ -405,7 +395,7 @@ handleChange(event){
                               </div>
                               <div className="col-sm-6">
                                 <label>Land</label>
-                                <input type="text" className="form-control" ref={(input) => { this.landInput = input; }} onChange={this.checkLand} placeholder="Deutschland"/>
+                                <input type="text" className="form-control" ref={(input) => { this.landInput = input; }} onChange={this.checkLand.bind(this)} placeholder="Deutschland"/>
                                 <p className="errorMessage">{this.state.landError}</p>
                               </div>
                             </div>
