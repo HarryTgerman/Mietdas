@@ -27,6 +27,7 @@
     "path": "^0.12.7",
     "react": "^16.3.2",
     "react-async-script": "^0.9.1",
+    "react-awesome-popover": "^2.0.5",
     "react-dates": "^16.6.1",
     "react-dom": "^16.3.2",
     "react-dropzone": "^4.2.9",
@@ -44,6 +45,7 @@
     "resize-image": "^0.1.0",
     "resize-img": "^1.1.2",
     "sha256": "^0.2.0",
+    "slick-carousel": "^1.8.1",
     "urlencode": "^1.1.0"
   },
   "scripts": {

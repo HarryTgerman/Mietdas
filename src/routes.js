@@ -54,7 +54,7 @@ checkCaptcha(response) {
 
   let captcha = document.querySelector('#g-recaptcha-response').value;
 
-  fetch("Backend/recaptcha.php", {
+  fetch("../../../Backend/recaptcha.php", {
   method: "post",
   headers: {
     'Accept': 'application/json',

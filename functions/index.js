@@ -75,16 +75,31 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
   let mieterEmail =snapshot.val().mieterEmail;
   let rechnungsadresse =snapshot.val().rechnugsadresse;
   let abholadresse =snapshot.val().abholadresse;
-  let von = snapshot.val().mietbeginn;
-  let bis = snapshot.val().mietende;
+  let von = snapshot.val().von;
+  let bis = snapshot.val().bis;
+
+
 
   admin.database().ref('app/users/'+vermieterId).once('value', snap=>{
     //Bankdaten
+    let paymentData;
     let bankName = snap.val().bankData.bankName;
     let bic = snap.val().bankData.bic;
     let iban = snap.val().bankData.iban;
     let kontoinhaber = snap.val().bankData.kontoinhaber;
     let paypal = snap.val().bankData.paypal;
+    if (paymentMethod == 'payal'){
+      paymentData = paypal;
+    }else if(paymentMethod == 'überweisung'){
+       paymentData = " Kontodaten: </br>
+        IBAN:" + iban +"</br>
+        BIC:" + bic+ "</br>
+        IBAN:" +iban+"</br>
+        Kontoinhaber:" + kontoinhaber +"</br>"
+
+    }else{
+      paymentData = "vor Ort Bar zu bazahlen";
+    }
     //Adresse
     let straße = snap.val().straße;
     let plz = snap.val().plz;

@@ -358,7 +358,7 @@ handleChange(event){
                               </div>
                               <div className="col-sm-6">
                                 <label>Rechnungsadresse</label>
-                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsAdresse.bind(this)} placeholder="Vollständige Adresse"/>
+                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }}  placeholder="Vollständige Adresse"/>
                               </div>
                               <div className="col-sm-6">
                                 <label>Stadt</label>
