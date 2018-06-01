@@ -18,13 +18,13 @@ class Anfragen extends Component{
   Zusagen(){
     let ref = this.props.name.split(' ').join('-') + this.props.num;
     alert('Sie haben '+ this.props.name+ ' zugesagt ' +this.props.cardHeading + ' im Zeitraum von '+this.props.mietbeginn + " - " +this.props.mietende+" zu vermieten")
-    firebase.database().ref().child('app').child('users/' + this.props.uid)
+    firebase.database().ref().child('app').child('users/' + this.props.anfrage.uid)
     .child('mitteilung').child(ref)
     .update({ bestätigt: true,
             })
-    firebase.database().ref().child('app').child('users/' + this.props.uid)
-    .child('anfragen').child(ref)
-    .update({new: false})
+    // firebase.database().ref().child('app').child('users/' + this.props.uid)
+    // .child('anfragen').child(ref)
+    // .update({new: false})
   }
 
   Absagen(){

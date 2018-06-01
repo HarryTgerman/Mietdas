@@ -91,11 +91,7 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
     if (paymentMethod == 'payal'){
       paymentData = paypal;
     }else if(paymentMethod == 'überweisung'){
-       paymentData = " Kontodaten: </br>
-        IBAN:" + iban +"</br>
-        BIC:" + bic+ "</br>
-        IBAN:" +iban+"</br>
-        Kontoinhaber:" + kontoinhaber +"</br>"
+       paymentData = "Kontodaten: \nKontoinhaber:" + kontoinhaber +"\nBIC:" + bic+ "\nIBAN:" +iban
 
     }else{
       paymentData = "vor Ort Bar zu bazahlen";
@@ -108,10 +104,10 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
     //Kontaktdaten
     let vermieterTelefon =snap.val().telefon;
     //mail an vermieter---------------------------
-    var transporter = nodemailer.createTransport({
+    var vermieterTransporter = nodemailer.createTransport({
         host: 'alfa3210.alfahosting-server.de',
         port: 465,
-        secure: false,
+        secure: true,
         auth: {
           user: 'web29692594p2',
           pass: '7XZkop5L'
@@ -120,13 +116,13 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
           rejectUnauthorized: false
         }
     });
-      transporter.use('compile',hbs({
+      vermieterTransporter.use('compile',hbs({
         viewPath: './emailTemplate',
         extName: '.hbs'
       }))
 
 
-     transporter.sendMail({
+     vermieterTransporter.sendMail({
         from: 'noreply@mietdas.com', // sender address
         to: vermieterEmail, // list of receivers
         subject: 'Zahlung für den folgenden Artikel ' +artikelName+ ' wurde getätigt',
@@ -144,6 +140,7 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
           plz: plz,
           stadt: stadt,
           bundesLand: bundesLand,
+          paymentData:paymentData,
         }
       },  (err, info)=> {
            if(err)
@@ -153,10 +150,10 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
         });
 
         //mail an Mieter-----------------------------
-        var transporter = nodemailer.createTransport({
+        var mieterTransporter = nodemailer.createTransport({
             host: 'alfa3210.alfahosting-server.de',
             port: 465,
-            secure: false,
+            secure: true,
             auth: {
               user: 'web29692594p2',
               pass: '7XZkop5L'
@@ -165,13 +162,13 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
               rejectUnauthorized: false
             }
         });
-          transporter.use('compile',hbs({
+          mieterTransporter.use('compile',hbs({
             viewPath: './emailTemplate',
             extName: '.hbs'
           }))
 
 
-         transporter.sendMail({
+         mieterTransporter.sendMail({
             from: 'noreply@mietdas.com', // sender address
             to: mieterEmail, // list of receivers
             subject: 'Du hast die Zahlung für den folgenden Artikel ' +artikelName+ ' getätigt',
@@ -188,7 +185,7 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
               plz: plz,
               stadt: stadt,
               bundesLand: bundesLand,
-
+              paymentData:paymentData,
             }
           },  (err, info)=> {
                if(err)

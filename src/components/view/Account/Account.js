@@ -239,7 +239,7 @@ editBankData(){
                            return(<Anfragen
                            anfrage={anfrage} name={anfrage.name} url={anfrage.url}
                            cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}
-                           uid={anfrage.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
+                           uid={this.state.uid} tage={anfrage.tage} umsatz={anfrage.umsatz}
                           nummer={anfrage.nummer} email={anfrage.email}
                            mietende={anfrage.mietende} num={anfrage.num} new={anfrage.new} cardId={anfrage.cardId} yName={this.state.name +" "+this.state.nachName} />
                            )
