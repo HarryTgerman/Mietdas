@@ -63,11 +63,6 @@ const spawn = require('child-process-promise').spawn;
 
 
 
-
-
-
-
-
 exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfragen/{wildcardMessge}')
 .onCreate((snapshot, context) => {
   let sendToMail =snapshot.val().ArtikelOwnerEmail
@@ -115,6 +110,108 @@ return   transporter.sendMail({
       });
 })
 
+//Bestätigungen für die Zahlung
+exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
+.onCreate((snapshot, context) => {
+  let artikelName =snapshot.val().artikelName;
+  let mieterName =snapshot.val().mieterName;
+  let vermieterName =snapshot.val().vermieterName;
+  let vermieterEmail =snapshot.val().vermieterEmail;
+  let vermieterTelefon =snapshot.val().vermieterTelefon;
+  let preis =snapshot.val().preis;
+  let paymentMethod =snapshot.val().paymentMethod;
+  let vermieterEmail =snapshot.val().vermieterEmail;
+  let mieterEmail =snapshot.val().mieterEmail;
+  let rechnungsadresse =snapshot.val().rechnugsadresse;
+  let abholadresse =snapshot.val().abholadresse;
+  let von = snapshot.val().mietbeginn;
+  let bis = snapshot.val().mietende;
+
+  //mail an vermieter---------------------------
+  var transporter = nodemailer.createTransport({
+      host: 'alfa3210.alfahosting-server.de',
+      port: 465,
+      secure: false,
+      auth: {
+        user: 'web29692594p2',
+        pass: '7XZkop5L'
+      },
+      tls:{
+        rejectUnauthorized: false
+      }
+  });
+    transporter.use('compile',hbs({
+      viewPath: './emailTemplate',
+      extName: '.hbs'
+    }))
+
+
+return   transporter.sendMail({
+      from: 'noreply@mietdas.com', // sender address
+      to: sendToMail, // list of receivers
+      subject: 'Zahlung für den folgenden Artikel ' +artikelName+ ' wurde getätigt',
+      template: 'vermieterMitteilung',
+      context: {
+        artikelName: artikelName,
+        von: von,
+        bis: bis,
+        preis: preis,
+        paymentMethod: paymentMethod,
+        mieterName: mieterName,
+        rechnungsadresse: rechnungsadresse,
+      }
+    },  (err, info)=> {
+         if(err)
+           console.log(err)
+         else
+           console.log(info);
+      });
+
+      //mail an Mieter-----------------------------
+      var transporter = nodemailer.createTransport({
+          host: 'alfa3210.alfahosting-server.de',
+          port: 465,
+          secure: false,
+          auth: {
+            user: 'web29692594p2',
+            pass: '7XZkop5L'
+          },
+          tls:{
+            rejectUnauthorized: false
+          }
+      });
+        transporter.use('compile',hbs({
+          viewPath: './emailTemplate',
+          extName: '.hbs'
+        }))
+
+
+    return   transporter.sendMail({
+          from: 'noreply@mietdas.com', // sender address
+          to: sendToMail, // list of receivers
+          subject: 'Du hast die Zahlung für den folgenden Artikel ' +artikelName+ ' getätigt',
+          template: 'mieterMitteilung',
+          context: {
+            artikelName: artikelName,
+            von: von,
+            bis: bis,
+            preis: preis,
+            paymentMethod: paymentMethod,
+            mieterName: mieterName,
+            vermieterEmail: vermieterEmail,
+            vermieterTelefon: vermieterTelefon,
+            abholadresse: abholadresse,
+
+          }
+        },  (err, info)=> {
+             if(err)
+               console.log(err)
+             else
+               console.log(info);
+          });
+
+})
+
 exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/gestellteAnfragen/{wildcardMessge}')
 .onDelete((snapshot, context) => {
   let sendToMail =snapshot.val().email
@@ -144,7 +241,7 @@ exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/gestellt
 return   transporter.sendMail({
       from: 'noreply@mietdas.com', // sender address
       to: sendToMail, // list of receivers
-      subject: 'Ihre Anfrage für ' +article+ ' wurde leieder abgelehnt',
+      subject: 'Ihre Anfrage für ' +article+ ' wurde leider abgelehnt',
       template: 'mitteilung',
       context: {
         article: article,
