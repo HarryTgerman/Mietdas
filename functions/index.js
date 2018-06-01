@@ -110,14 +110,18 @@ return   transporter.sendMail({
       });
 })
 
+
+
 //Bestätigungen für die Zahlung
 exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
 .onCreate((snapshot, context) => {
   let artikelName =snapshot.val().artikelName;
   let mieterName =snapshot.val().mieterName;
   let vermieterName =snapshot.val().vermieterName;
+  let vermieterId = snapshot.val().vermieterId;
+  let mieterId = snapshot.val().mieterId;
   let vermieterEmail =snapshot.val().vermieterEmail;
-  let vermieterTelefon =snapshot.val().vermieterTelefon;
+  let mieterTelefon =snapshot.val().telefon;
   let preis =snapshot.val().preis;
   let paymentMethod =snapshot.val().paymentMethod;
   let vermieterEmail =snapshot.val().vermieterEmail;
@@ -126,6 +130,23 @@ exports.zahlungsMitteilung =  functions.database.ref('app/payments/{wildCard}')
   let abholadresse =snapshot.val().abholadresse;
   let von = snapshot.val().mietbeginn;
   let bis = snapshot.val().mietende;
+
+  admin.database().ref('app/users/'+vermieterId).once('value', snap=>{
+    //Bankdaten
+    let bankName = snap.val().bankData.bankName;
+    let bic = snap.val().bankData.bic;
+    let iban = snap.val().bankData.iban;
+    let kontoinhaber = snap.val().bankData.kontoinhaber;
+    let paypal = snap.val().bankData.paypal;
+    //Adresse
+    let straße = snap.val().straße;
+    let plz = snap.val().plz;
+    let stadt = snap.val().stadt;
+    let bundesLand = snap.val().bundesLand;
+    //Kontaktdaten
+    let vermieterTelefon =snap.val().telefon;
+
+  })
 
   //mail an vermieter---------------------------
   var transporter = nodemailer.createTransport({
@@ -158,7 +179,12 @@ return   transporter.sendMail({
         preis: preis,
         paymentMethod: paymentMethod,
         mieterName: mieterName,
+        mieterTelefon: mieterTelefon,
         rechnungsadresse: rechnungsadresse,
+        straße: straße,
+        plz: plz,
+        stadt: stadt,
+        bundesLand: bundesLand,
       }
     },  (err, info)=> {
          if(err)
@@ -197,10 +223,12 @@ return   transporter.sendMail({
             bis: bis,
             preis: preis,
             paymentMethod: paymentMethod,
-            mieterName: mieterName,
-            vermieterEmail: vermieterEmail,
+            vermieterName: vermieterName,
             vermieterTelefon: vermieterTelefon,
-            abholadresse: abholadresse,
+            straße: straße,
+            plz: plz,
+            stadt: stadt,
+            bundesLand: bundesLand,
 
           }
         },  (err, info)=> {
@@ -257,89 +285,89 @@ return   transporter.sendMail({
 
 })
 
-exports.submitPayout =  functions.database.ref('app/payments/{wildCard}/{wildcardRef}')
-.onCreate((snapshot, context) => {
-  let uid =snapshot.val().paymentData.anfrage.uid
-  let email =snapshot.val().paymentData.anfrage.email
-  let name =snapshot.val().paymentData.anfrage.name.split(' ')
-  let firstName= name[0]
-  let lastName= name[1]
-  let article = snapshot.val().paymentData.anfrage.cardHeading;
-  let von = snapshot.val().paymentData.anfrage.mietbeginn;
-  let bis = snapshot.val().paymentData.anfrage.mietende;
-  let amount = snapshot.val().paymentData.anfrage.umsatz * 0.88 + "00";
-
-  admin.database().ref('app/users/'+uid).once('value', snap=>{
-    let dateOfBirth = snap.val().geburtsDatum
-    let bankData = snap.val().bankData
-    request.post({headers: {'content-type' : 'application/x-www-form-urlencoded'},
-                url:'https://pal-test.adyen.com/pal/servlet/Payout/v30/storeDetailAndSubmitThirdParty',
-                body: {
-                    "merchantAccount" : "MietDasCOM",
-                    "recurring": {
-                        "contract" : "RECURRING,PAYOUT"
-                    },
-
-                    "amount" : {
-                        "value" : amount,
-                        "currency" : "EUR"
-                    },
-                    "bank" : {
-                        "bankName" : bankData.bankName,
-                        "iban" : bankData.iban,
-                        "countryCode" : "DE",
-                        "ownerName" : bankData.kontoinhaber
-                    },
-
-                    "reference" : "Mietdas Auszahlung",
-                    "shopperEmail" : email,
-                    "shopperIP" : uid,
-                    "shopperReference" : "Mietdas Auszahlung",
-                    "shopperName" : {
-                        "firstName" : firstName,
-                        "lastName" : lastName
-                    },
-                    "dateOfBirth" : dateOfBirth,
-                    "entityType" : "Company",
-                    "nationality" : "DE"
-                }
-          },(err, response, body) => {
-            if (err) throw err;
-            console.log(response, body);
-            if(reponse){
-            request.post({headers: {'content-type' : 'application/x-www-form-urlencoded'},
-                        url:'https://pal-test.adyen.com/pal/servlet/Payout/v30/submitThirdParty',
-                        body: {
-                        "amount" : {
-                            "currency" : "EUR",
-                            "value" : amount
-                        },
-
-                        "merchantAccount" : "MietDasCOM",
-
-                        "recurring" : {
-                            "contract" : "PAYOUT"
-                        },
-
-                        "reference" : "MietdasPayout",
-                        "shopperEmail" : email,
-                        "shopperReference" : "MietdasPayout",
-                        "shopperName" : {
-                            "firstName" : firstName,
-                            "lastName" : lastName
-                        },
-                        "dateOfBirth" : dateOfBirth,
-                        "entityType" : "Company",
-                        "nationality" : "DE",
-                        "selectedRecurringDetailReference" : "LATEST"
-                    }
-                  },(err, response, body) => {
-                    if (err) throw err;
-                    console.log(response, body);
-                })
-              }
-
-          })
-
-      })
-})
+// exports.submitPayout =  functions.database.ref('app/payments/{wildCard}/{wildcardRef}')
+// .onCreate((snapshot, context) => {
+//   let uid =snapshot.val().paymentData.anfrage.uid
+//   let email =snapshot.val().paymentData.anfrage.email
+//   let name =snapshot.val().paymentData.anfrage.name.split(' ')
+//   let firstName= name[0]
+//   let lastName= name[1]
+//   let article = snapshot.val().paymentData.anfrage.cardHeading;
+//   let von = snapshot.val().paymentData.anfrage.mietbeginn;
+//   let bis = snapshot.val().paymentData.anfrage.mietende;
+//   let amount = snapshot.val().paymentData.anfrage.umsatz * 0.88 + "00";
+//
+//   admin.database().ref('app/users/'+uid).once('value', snap=>{
+//     let dateOfBirth = snap.val().geburtsDatum
+//     let bankData = snap.val().bankData
+//     request.post({headers: {'content-type' : 'application/x-www-form-urlencoded'},
+//                 url:'https://pal-test.adyen.com/pal/servlet/Payout/v30/storeDetailAndSubmitThirdParty',
+//                 body: {
+//                     "merchantAccount" : "MietDasCOM",
+//                     "recurring": {
+//                         "contract" : "RECURRING,PAYOUT"
+//                     },
+//
+//                     "amount" : {
+//                         "value" : amount,
+//                         "currency" : "EUR"
+//                     },
+//                     "bank" : {
+//                         "bankName" : bankData.bankName,
+//                         "iban" : bankData.iban,
+//                         "countryCode" : "DE",
+//                         "ownerName" : bankData.kontoinhaber
+//                     },
+//
+//                     "reference" : "Mietdas Auszahlung",
+//                     "shopperEmail" : email,
+//                     "shopperIP" : uid,
+//                     "shopperReference" : "Mietdas Auszahlung",
+//                     "shopperName" : {
+//                         "firstName" : firstName,
+//                         "lastName" : lastName
+//                     },
+//                     "dateOfBirth" : dateOfBirth,
+//                     "entityType" : "Company",
+//                     "nationality" : "DE"
+//                 }
+//           },(err, response, body) => {
+//             if (err) throw err;
+//             console.log(response, body);
+//             if(reponse){
+//             request.post({headers: {'content-type' : 'application/x-www-form-urlencoded'},
+//                         url:'https://pal-test.adyen.com/pal/servlet/Payout/v30/submitThirdParty',
+//                         body: {
+//                         "amount" : {
+//                             "currency" : "EUR",
+//                             "value" : amount
+//                         },
+//
+//                         "merchantAccount" : "MietDasCOM",
+//
+//                         "recurring" : {
+//                             "contract" : "PAYOUT"
+//                         },
+//
+//                         "reference" : "MietdasPayout",
+//                         "shopperEmail" : email,
+//                         "shopperReference" : "MietdasPayout",
+//                         "shopperName" : {
+//                             "firstName" : firstName,
+//                             "lastName" : lastName
+//                         },
+//                         "dateOfBirth" : dateOfBirth,
+//                         "entityType" : "Company",
+//                         "nationality" : "DE",
+//                         "selectedRecurringDetailReference" : "LATEST"
+//                     }
+//                   },(err, response, body) => {
+//                     if (err) throw err;
+//                     console.log(response, body);
+//                 })
+//               }
+//
+//           })
+//
+//       })
+// })
