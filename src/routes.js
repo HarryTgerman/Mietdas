@@ -4,7 +4,6 @@ import firebase from 'firebase'
 import Logo from'./img/logo.png'
 import ReCAPTCHA from 'react-google-recaptcha';
 import request from 'request';
-import Q from 'bluebird';
 
 import MashineDetails from './components/view/Account/MashineDetails/MashineDetails'
 import Home from './components/view/Home/Home'
