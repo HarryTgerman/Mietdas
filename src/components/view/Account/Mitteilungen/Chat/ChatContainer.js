@@ -25,7 +25,7 @@ sendMessage(event){
     firebase.database().ref().child('app').child('messages').child(this.props.data.key).child('message')
     .push({
       message: message,
-      name: name,
+      sender: name,
       date: Date,
       time: Time
     })

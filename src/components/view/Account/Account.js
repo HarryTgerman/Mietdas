@@ -84,17 +84,17 @@ firedata() {
 
   loadAnfragen(){
     const uid = this.state.uid;
-    firebase.database().ref('app/').child('users/'+uid)
+    firebase.database().ref('app/').child('users/'+uid).child('anfragen')
     .once('value', snap => {
         if(snap.val()){
-          if(snap.val().anfragen == null){
+          if(snap.val() == undefined){
           this.setState({
             anfragen: false,
             loader: false,
           })
       }else{
             this.setState({
-            anfragen: snap.val().anfragen,
+            anfragen: snap.val(),
             loader: false,
           })
         }
@@ -129,6 +129,7 @@ firedata() {
         bestätigt: childSnapshot.val().bestätigt,
         cardId: childSnapshot.val().cardId,
         zahlungImGang: childSnapshot.val().zahlungImGang,
+        timestamp:childSnapshot.val().timestamp,
       })
       this.setState ({
         mitteilungen: mitteilung,
@@ -332,7 +333,7 @@ editBankData(){
                       </div>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="nachrichten">
-                      <Chat />
+                      <Chat name={this.state.name} uid={this.state.uid}/>
                     </div>
                   </div>
                 </div>

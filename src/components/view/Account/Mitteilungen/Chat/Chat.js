@@ -25,10 +25,11 @@ getChats(){
 
     if(snap.val() !== null){
          const message = {
+         receiver: snap.val().receiver,
          senderUid: snap.val().senderUid,
          uid: this.state.uid,
          read: snap.val().read,
-         SenderName:snap.val().name,
+         SenderName:snap.val().sender,
          time: snap.val().time,
          date: snap.val().date,
          message: snap.val().message,
@@ -46,10 +47,11 @@ firebase.database().ref().child('app/').child('messages').orderByChild('senderUi
 
 if(snap.val() !== null){
      const message = {
+     receiver: snap.val().receiver,
      senderUid: snap.val().senderUid,
      uid: this.state.uid,
      read: snap.val().read,
-     SenderName:snap.val().name,
+     SenderName:snap.val().sender,
      time: snap.val().time,
      date: snap.val().date,
      message: snap.val().message,
@@ -95,7 +97,7 @@ getChatData(data){
     .on('child_added', snap=>{
     const message = {
     msg: snap.val().message,
-    name: snap.val().name,
+    name: snap.val().sender,
     date: snap.val().date,
     read: snap.val().read,
     time:snap.val().time,
@@ -129,8 +131,14 @@ getChatData(data){
 
                                   {this.state.messages.map((msg)=>{
                                     let lastMessage= msg.message[Object.keys(msg.message)[Object.keys(msg.message).length - 1]]
-                                    let start = lastMessage.date +" "+lastMessage.time,
-                                    hours = moment(start, "DD-MM-YY,hh:mm").fromNow()
+                                    let start = lastMessage.date +" "+lastMessage.time
+                                    var name;
+                                    let hours = moment(start, "DD-MM-YY,hh:mm").fromNow()
+                                    if(this.props.name == msg.SenderName ){
+                                      name = msg.receiver
+                                    }else {
+                                      name=msg.SenderName
+                                    }
                                     return(
                                     <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:false},this.getChatData(msg.key))}}>
                                       <a>
@@ -141,7 +149,7 @@ getChatData(data){
                                         <span className="pull-right">{hours}</span>
 
                                           <div  className="message-body-heading">
-                                            <h5>{msg.SenderName}{msg.read ? (<span  className="pending">gelesen</span>):<span  className="unread">ungelesen</span>}</h5>
+                                            <h5>{name}{msg.read ? (<span  className="pending">gelesen</span>):<span  className="unread">ungelesen</span>}</h5>
                                           </div>
                                           <p>{lastMessage.message}</p>
 

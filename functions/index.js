@@ -57,6 +57,57 @@ return   transporter.sendMail({
            console.log(info);
       });
 })
+exports.artikelZugesagt =  functions.database.ref('app/users/{wildCard}/mitteilung/{wildcardMessge}')
+.onUpdate((snapshot, context) => {
+  let bestätigt = snapshot.val().bestätigt;
+  if (bestätigt === false){
+    console.log('nicht bestätigt');
+    return 0
+  }
+  let sendToMail =snapshot.val().anfrage.email
+  let name = snapshot.val().anfrage.name;
+  let article = snapshot.val().anfrage.cardHeading;
+  let von = snapshot.val().anfrage.mietbeginn;
+  let bis = snapshot.val().anfrage.mietende;
+
+
+  var transporter = nodemailer.createTransport({
+      host: 'alfa3210.alfahosting-server.de',
+      port: 465,
+      secure: true, // use TLS
+      auth: {
+        user: 'web29692594p2',
+        pass: '7XZkop5L'
+      },
+      tls:{
+        rejectUnauthorized: false
+      }
+  });
+
+    transporter.use('compile',hbs({
+      viewPath: './emailTemplate',
+      extName: '.hbs'
+    }))
+
+
+return   transporter.sendMail({
+      from: 'noreply@mietdas.com', // sender address
+      to: sendToMail, // list of receivers
+      subject: 'Deine Anfrage für ' +article+ ' wurde bestätigt',
+      template: 'mitteilungBestätigt',
+      context: {
+        name: name,
+        article: article,
+        von: von,
+        bis: bis,
+        }
+      }, function (err, info) {
+         if(err)
+           console.log(err)
+         else
+           console.log(info);
+      });
+})
 
 
 
@@ -210,7 +261,7 @@ exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/gestellt
   var transporter = nodemailer.createTransport({
       host: 'alfa3210.alfahosting-server.de',
       port: 465,
-      secure: false,
+      secure: true,
       auth: {
         user: 'web29692594p2',
         pass: '7XZkop5L'
@@ -228,7 +279,7 @@ exports.deletMitteilung =  functions.database.ref('app/users/{wildCard}/gestellt
 return   transporter.sendMail({
       from: 'noreply@mietdas.com', // sender address
       to: sendToMail, // list of receivers
-      subject: 'Ihre Anfrage für ' +article+ ' wurde leider abgelehnt',
+      subject: 'Deine Anfrage für ' +article+ ' wurde leider abgelehnt',
       template: 'mitteilung',
       context: {
         article: article,

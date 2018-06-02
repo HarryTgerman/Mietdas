@@ -56,7 +56,7 @@ class  Cards extends Component {
               <div className="row extra">
                 <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                <Link Link style={{ textDecoration: 'none' }} to={`/details/search=${this.props.kategorie+"/"+this.props.id}`}><a href="#" className="detail-link">Gehe zu</a></Link>
+                <a href={`/details/search=${this.props.kategorie+"/"+this.props.id}`} className="detail-link" target="_blank" >Gehe zu</a>
                 </div>
               </div>
             </div>
