@@ -101,9 +101,10 @@ class Mieten extends Component{
 
 
 whenGeoCode.then(() =>{
-         const previousCards = this.state.cards
+         let previousCards = this.state.cards
          const previousMarker = this.state.markers;
          let lat = this.state.center.lat - 0.1
+         let searchCords = this.state.center.lat + this.state.center.lng;
          firebase.database().ref().child('app').child('cards').child(type).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
           .once('value', snap => {
             console.log("hier die Liste", snap.val());
@@ -129,19 +130,22 @@ whenGeoCode.then(() =>{
                 cardBewertung: childSnapshot.val().bewertung,
                 cardImage: childSnapshot.val().imageUrl,
                 standOrt: childSnapshot.val().ort,
-                imageArr: childSnapshot.val().imageArr,
                 gewicht: childSnapshot.val().gewicht,
-                grabtiefe: childSnapshot.val().grabtiefe,
-                transportbreite: childSnapshot.val().transportbreite,
-                transporthoehe: childSnapshot.val().transporthoehe,
                 snap: childSnapshot.val(),
               })
-              this.setState ({
-                cards: previousCards,
-                markers: previousMarker
-              })
+            })
+            previousCards.map(i => {
+              i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+            })
+            previousCards = previousCards.sort(function(a, b){
+              return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.previousCards.snap.cords);
+           });
+            this.setState ({
+              cards: previousCards,
+              markers: previousMarker
             })
           })
+
        })
 }
 
@@ -186,9 +190,10 @@ whenGeoCode.then(() =>{
 
 
 whenGeoCode.then(() =>{
-      const previousCards = this.state.cards
+      let previousCards = this.state.cards
       const previousMarker = this.state.markers;
       let lat = this.state.center.lat - 0.1
+      let searchCords = this.state.center.lat + this.state.center.lng;
       firebase.database().ref().child('app').child('cards').child(this.state.selectValue.value).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
        .once('value', snap => {
          snap.forEach(childSnapshot =>{
@@ -207,26 +212,28 @@ whenGeoCode.then(() =>{
            previousCards.push ({
              id: childSnapshot.key,
              kategorie: childSnapshot.val().kategorie,
-             cardDesc: childSnapshot.val().cardDesc,
              cardPreis: childSnapshot.val().cardPreis,
              cardHeading: childSnapshot.val().cardHeading,
              cardBewertung: childSnapshot.val().bewertung,
              cardImage: childSnapshot.val().imageUrl,
              standOrt: childSnapshot.val().ort,
-             imageArr: childSnapshot.val().imageArr,
              gewicht: childSnapshot.val().gewicht,
-             grabtiefe: childSnapshot.val().grabtiefe,
-             transportbreite: childSnapshot.val().transportbreite,
-             transporthoehe: childSnapshot.val().transporthoehe,
              snap: childSnapshot.val(),
            })
-           this.setState ({
-             cards: previousCards,
-             markers: previousMarker
-           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           cards: previousCards,
+           markers: previousMarker
          })
        })
     })
+
 }
 
 
