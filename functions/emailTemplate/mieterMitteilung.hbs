@@ -328,9 +328,10 @@ img {
                         <td>
                           <div class='contentEditableContainer contentTextEditable'>
                             <div class='contentEditable' style='text-align: center;'>
-                              <h2 style="font-size: 20px;">Du hast die Bezahlung getätigt!</h2>
+                              <h2 style="font-size: 20px;">Du hast die Zahlung bestätigt!</h2>
                               <br>
-                              <p>Der Vermieter wurde darüber informiert, dass die Zahlung für den folgenden Artikel "{{artikelName}}"  getätigt wurde.  </p>
+                              <p>Der Vermieter wurde darüber informiert, dass die Zahlung für den folgenden Artikel "{{artikelName}}" in Kürze eingeht.  </p>
+                              <p>Du bist verpflichtet die Zahlung über {{paymentMethod}} zu tätigen.</p>
                               <div style='text-align: left; margin-left:%; margin-top:25px'>
 
                                   <strong>Übersicht der Daten:</strong><br><br>
@@ -343,21 +344,19 @@ img {
 
                               <div style='text-align: left; margin-left:%; margin-top:25px'>
 
-                                  <strong>Das Gerät muss am {{von}} unter der folgenden Adresse abgeholt werden:</strong><br><br>
+                                  <strong>Kontaktdaten von Vermieter:</strong><br><br>
+                                  Name: {{vermieterName}} <br>
+                                  Telefon: {{vermieterTelefon}} <br>
+
                                   Straße: {{straße}}<br>
                                   PLZ: {{plz}}<br>
                                   Stadt: {{stadt}}<br>
                                   Bundesland: {{bundesLand}}<br>
-
                               </div>
 
+                              <p style='margin-top:30px;'> Bitte setze dich mit dem Vermieter in Verbindung und koordiniere die Abholung.</p>
 
-                              <div style='text-align: left; margin-left:%; margin-top:25px'>
-
-                                  <strong>Kontaktdaten von Vermieter:</strong><br><br>
-                                  Name: {{vermieterName}} <br>
-                                  Telefon: {{vermieterTelefon}} <br>
-                              </div>
+                              <p>Vielen Dank für deinen Auftrag!</p>
 
 
                             </div>
