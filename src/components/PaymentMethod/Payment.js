@@ -142,7 +142,7 @@ barPayment(){
     alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
   } else {
-    firebase.database().ref('app/paymenst').push({
+    firebase.database().ref('app/payments').push({
       vermieterId:this.props.location.query.anfrage.ArtikelOwnerId,
       vermieterEmail:this.props.location.query.anfrage.ArtikelOwnerEmail,
       mieterEmail:this.props.location.query.anfrage.email,

@@ -59,6 +59,7 @@ loadUser(){
             cardId: snap.val().cardId,
             url: snap.val().url,
             name: snap.val().name,
+            rechnungsadresse:snap.val().rechnungsadresse,
             adresse: snap.val().adresse,
             geboren: snap.val().geburtsDatum,
             mobil: snap.val().mobil,
@@ -66,6 +67,7 @@ loadUser(){
           })
       }else{
             this.setState({
+            rechnungsadresse:snap.val().rechnungsadresse,
             anfragen: snap.val().anfragen,
             cardId: snap.val().cardId,
             url: snap.val().url,
@@ -85,6 +87,7 @@ loadUser(){
     event.preventDefault;
     let hersteller =this.props.location.query.snap.hersteller;
     let gewicht =this.props.location.query.snap.gewicht;
+    let timestamp =window.Date.now()
 
     if (hersteller == undefined){
        hersteller = 'undefined';
@@ -108,8 +111,8 @@ loadUser(){
     }
 
     const anfObj = {
-
-      RechnungsAdresse: this.adresseInput.value,
+      bestätigt: false,
+      RechnungsAdresse: this.rechnungsadresseInput.value,
       cardId: this.props.location.query.cardId,
       name: this.state.name,
       url: this.props.location.query.snap.imageUrl,
@@ -136,6 +139,7 @@ loadUser(){
     .set({ bestätigt: false,
               cardId: this.props.location.query.cardId,
               anfrage: anfObj,
+              timestamp: timestamp
             })
     firebase.database().ref().child('app').child('users/' + this.state.uid)
     .child('/gestellteAnfragen/').child(ref)
@@ -150,7 +154,9 @@ loadUser(){
     .child('users').child(this.props.location.query.snap.uid)
     .child("anfragen/" +ref);
     UserRef.set({
-      RechnungsAdresse: this.adresseInput.value,
+      timestamp: timestamp,
+      bestätigt: false,
+      RechnungsAdresse: this.rechnungsadresseInput.value,
       cardId: this.props.location.query.cardId,
       name: this.state.name,
       url: this.props.location.query.snap.imageUrl,
@@ -176,10 +182,11 @@ loadUser(){
     firebase.database().ref().child('app').child('messages').push({
       senderUid: this.props.location.query.snap.uid,
       receiverUid:this.state.uid,
-      name: this.state.name,
+      sender: this.state.name,
+      receiver: this.props.location.query.snap.vermieter,
       read: false,
       message:{"-AAAAAAAAAAAAAAAAAAAA":{message: message,
-                          name: this.state.name,
+                          sender: this.state.name,
                           time: Time,
                           date: Date}
               }
@@ -289,8 +296,8 @@ loadUser(){
                                 <input type="text" ref={(input) => { this.numberInput = input; }} value={this.state.telefon} className="form-control" />
                               </div>
                               <div className="col-sm-12">
-                                <label>Adresse</label>
-                                <input type="text" ref={(input) => { this.adresseInput = input; }} value={this.state.adresse} className="form-control"/>
+                                <label>Rechnungsadresse</label>
+                                <input type="text" ref={(input) => { this.rechnungsadresseInput = input; }} value={this.state.rechnungsadresse} className="form-control"/>
                               </div>
                             </div>
                             <div className="col-sm-12">

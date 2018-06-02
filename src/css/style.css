@@ -2596,7 +2596,18 @@ p.listing-description {
 listing Category Style
 ==============================================================*/
 /*----------- listing Category Style 1 -----------*/
-
+.tooltipbox{
+ width: 280px;
+ background-color: #f4f5f7;
+ text-align: center;
+ padding: 5px 0;
+ border-radius: 6px;
+ /* Position the tooltip text - see examples below! */
+}
+.tooltipbox a:hover{
+	color: #f64625;
+	cursor: pointer;
+}
 .pricetag2{
 	position: absolute !important;
 	right:10px;
