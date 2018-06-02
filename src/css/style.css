@@ -2596,6 +2596,38 @@ p.listing-description {
 listing Category Style
 ==============================================================*/
 /*----------- listing Category Style 1 -----------*/
+
+.pricetag2{
+	position: absolute !important;
+	right:10px;
+	bottom:9px;
+	white-space:nowrap;
+	position:relative;
+	displaY:inline-block;
+	height:25px;
+	border-radius: 0 5px 5px 0;
+	padding: 0 25px 0 15px;
+	background:#E8EDF0;
+	border: 1px solid #C7D2D4;
+	color:#999;
+	line-height:23px;
+}
+.pricetag2:before{
+    position:absolute !important;
+    background:#E8EDF0;
+    content:"\25CF";
+    color:#fdd835	;
+    text-shadow: 0 0 1px #aaa;
+    line-height:13px;
+    text-indent:6px;
+    top:3px;
+    left:-10px;
+    width: 18px;
+    height: 18px;
+    transform: rotate(45deg);
+    border-left:1px solid #C7D2D4;
+    border-bottom:1px solid #C7D2D4;
+}
 .pricetag1{
 	position: absolute !important;
 	right:10px;
@@ -2615,7 +2647,7 @@ listing Category Style
     position:absolute !important;
     background:#E8EDF0;
     content:"\25CF";
-    color:#79c879;
+    color:#99d066;
     text-shadow: 0 0 1px #aaa;
     line-height:13px;
     text-indent:6px;

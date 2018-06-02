@@ -77,7 +77,7 @@ class Anfragen extends Component{
                           <div className="row extra">
 
                             <div className="row pull-right">
-                              {this.state.zugesagt?(<span className="pricetag1">{this.state.vermietet?('VERMIETET'):('ZUGESAGT')}</span>):
+                              {this.state.zugesagt?(<div>{this.state.vermietet?(<span className="pricetag1">VERMIETET</span>):(<span className="pricetag2">ZUGESAGT</span>)}</div>):
                               (<div><div className="col-sm-6">
                                 <button onClick={this.Zusagen.bind(this)} className="theme-btn btn-outlined">Zusagen</button>
                               </div>
