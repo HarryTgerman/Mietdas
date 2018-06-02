@@ -9,22 +9,25 @@ class Anfragen extends Component{
   constructor(props){
     super(props)
     this.state={
-      remove:false
+      remove:false,
+      zugesagt: this.props.anfrage.zugesagt,
+      vermietet: this.props.anfrage.zahlungImGang,
     }
   }
 
 
 
   Zusagen(){
+    this.setState({zugesagt:true})
     let ref = this.props.name.split(' ').join('-') + this.props.num;
     alert('Sie haben '+ this.props.name+ ' zugesagt ' +this.props.cardHeading + ' im Zeitraum von '+this.props.mietbeginn + " - " +this.props.mietende+" zu vermieten")
     firebase.database().ref().child('app').child('users/' + this.props.anfrage.uid)
     .child('mitteilung').child(ref)
     .update({ bestätigt: true,
             })
-    // firebase.database().ref().child('app').child('users/' + this.props.uid)
-    // .child('anfragen').child(ref)
-    // .update({new: false})
+    firebase.database().ref().child('app').child('users/' + this.props.uid)
+    .child('anfragen').child(ref)
+    .update({zugesagt: true})
   }
 
   Absagen(){
@@ -74,7 +77,8 @@ class Anfragen extends Component{
                           <div className="row extra">
 
                             <div className="row pull-right">
-                              <div className="col-sm-6">
+                              {this.state.zugesagt?(<span className="pricetag1">{this.state.vermietet?('VERMIETET'):('ZUGESAGT')}</span>):
+                              (<div><div className="col-sm-6">
                                 <button onClick={this.Zusagen.bind(this)} className="theme-btn btn-outlined">Zusagen</button>
                               </div>
                               <Link to={{
@@ -99,6 +103,7 @@ class Anfragen extends Component{
                               <div className="col-sm-6">
                                 <button onClick={this.Absagen.bind(this)} className="theme-btn btn-outlined">Absagen</button>
                               </div>
+                            </div>)}
                             </div>
                           </div>
                         </div>

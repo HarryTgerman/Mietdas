@@ -53,7 +53,7 @@ checkCaptcha(response) {
 
   let captcha = document.querySelector('#g-recaptcha-response').value;
 
-  fetch("../../../Backend/recaptcha.php", {
+  fetch("https://mietdas.de/Backend/recaptcha.php", {
   method: "post",
   headers: {
     'Accept': 'application/json',
@@ -314,12 +314,12 @@ sendPwReset(){
                                         <div className="left" style={{textAlign: "left"}}>
                                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
                                         return {agb: !prevState.agb};})}}/>
-                                        Ich akzeptiere die <a href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2Fmerged.pdf?alt=media&token=0dac7549-502d-49a8-be64-17a885333157'>{agbs}</a>
+                                        Ich akzeptiere die <a target="_blank" href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2Fmerged.pdf?alt=media&token=0dac7549-502d-49a8-be64-17a885333157'>{agbs}</a>
                                         </div>
                                         <div className="left" style={{textAlign: "left"}}>
                                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
                                         return {dae: !prevState.dae};})}}/>
-                                        Ich akzeptiere die <a href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2F25.%20Mai%202018%20DAE.pdf?alt=media&token=20bd2399-4324-4b8b-941e-353c773fa6c0'>Datenschutzerklärung</a>
+                                        Ich akzeptiere die <a target="_blank" href='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/pdf%2Fagbs%2F25.%20Mai%202018%20DAE.pdf?alt=media&token=20bd2399-4324-4b8b-941e-353c773fa6c0'>Datenschutzerklärung</a>
                                         </div>
                                         <div className="center"  >
                                           <ReCAPTCHA style={{marginBottom: "10px"}}

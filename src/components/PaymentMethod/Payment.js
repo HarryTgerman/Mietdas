@@ -160,11 +160,11 @@ barPayment(){
       telefon: this.props.location.query.anfrage.telefon,
     })
     firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
-    .child(this.props.location.query.merchantReference).remove()
+    .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
     firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
-    .child(this.props.location.query.merchantReference).remove()
+    .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
+    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet')
     this.setState({redirect: true})
-
   }
 }
 paypalPayment(){
@@ -193,11 +193,12 @@ paypalPayment(){
       telefon: this.props.location.query.anfrage.telefon,
     })
     firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
-    .child(this.props.location.query.merchantReference).remove()
+    .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
     firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
-    .child(this.props.location.query.merchantReference).remove()
+    .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
+    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet')
+    window.open("https://"+this.state.paypal,"_blank")
     this.setState({redirect: true})
-
   }
 }
 ueberweisungPayment(){
@@ -209,9 +210,9 @@ ueberweisungPayment(){
     return 0;
   } else {
     firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
-    .child(this.props.location.query.merchantReference).remove()
+    .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
     firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
-    .child(this.props.location.query.merchantReference).remove()
+    .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
     firebase.database().ref('app/payments').push({
       vermieterId:this.props.location.query.anfrage.ArtikelOwnerId,
       vermieterEmail:this.props.location.query.anfrage.ArtikelOwnerEmail,
@@ -229,6 +230,7 @@ ueberweisungPayment(){
       rechnungsAdresse: this.props.location.query.anfrage.RechnungsAdresse,
       telefon: this.props.location.query.anfrage.telefon,
     })
+    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet')
     this.setState({redirect: true})
   }
 }
@@ -348,8 +350,8 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                         <input type="checkbox" onClick={()=>{  this.setState((prevState)=>{
                         return {paypalAgb: !prevState.paypalAgb};})}}/>
                          <a> Hiermit bestätige ich dass ich den Artikel {this.props.location.query.anfrage.hersteller?(this.props.location.query.anfrage.hersteller+" "):(null)}{this.props.location.query.anfrage.cardHeading}{this.props.location.query.anfrage.gewicht?(" "+this.props.location.query.anfrage.gewicht+"Kg"):(null)}über PayPal.Me bezahle</a>
-                         <button style={{ marginTop: "10px"}} onClick={this.paypalPayment.bind(this)} className="btn theme-btn">mit paypal.me bezahlen</button>
                          <br/>
+                         <button style={{ marginTop: "10px"}} onClick={this.paypalPayment.bind(this)} className="btn theme-btn">mit paypal.me bezahlen</button>
                         </div>
                       </div>
                     </div>

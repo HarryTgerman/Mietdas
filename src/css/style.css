@@ -177,104 +177,21 @@ a:hover{
 	padding: 0;
 }
 
-
-
 .arrow-down{
 	position: absolute;
 	cursor: pointer;
-	top: 0;
-	left: 50%;
-	width: 24px;
-	height: 24px;
-	margin-left: -12px;
-	border-left: 1px solid #f64625;
-	border-bottom: 1px solid #f64625;
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-	box-sizing: border-box;
-}
-.arrow-down-white{
-	position: absolute;
-	cursor: pointer;
-  top: 0;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  margin-left: -12px;
-  border-left: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  box-sizing: border-box;
+	bottom: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid #f64625;
+    border-bottom: 1px solid #f64625;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    box-sizing: border-box;
 }
 
-/*.arrow-down{
-  position: absolute;
-	cursor: pointer;
-  top: 0;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  margin-left: -12px;
-  border-left: 1.5px solid #f64625;
-  border-bottom: 1.5px solid #f64625;
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  -webkit-animation: sdb05 1.5s infinite;
-  animation: sdb05 1.5s infinite;
-  box-sizing: border-box;
-}
-@-webkit-keyframes sdb05 {
-  0% {
-    -webkit-transform: rotate(-45deg) translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: rotate(-45deg) translate(-10px, 10px);
-    opacity: 0;
-  }
-}
-@keyframes sdb05 {
-  0% {
-    transform: rotate(-45deg) translate(0, 0);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: rotate(-45deg) translate(-10px, 10px);
-    opacity: 0;
-  }
-}
-*/
-
-.tooltipbox{
- width: 280px;
- background-color: #f4f5f7;
- text-align: center;
- padding: 5px 0;
- border-radius: 6px;
- /* Position the tooltip text - see examples below! */
-}
-.tooltipbox a:hover{
-	color: #f64625;
-	cursor: pointer;
-}
- .LaufendeAnfragen-info{
-	cursor: pointer;
-	font-size:17px;
-}
-.LaufendeAnfragen-info:hover{
-	font-weight:600;
-	color: #f64625;
-}
-.right {
-    float: right;
-}
 .arrow-down:hover{
 	opacity: 0.5
 }
@@ -672,7 +589,7 @@ button.btn.dropdown-toggle.btn-default {
 }
 
 .theme-overlap{
-	background:url('https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2FHome.jpg?alt=media&token=ff8e09ba-1cf4-4053-b6c2-d9387527e811');
+	background:url(../img/Home.jpg);
 	background-position:center  ;
 	background-size:cover  ;
 	position:relative;
@@ -2679,7 +2596,37 @@ p.listing-description {
 listing Category Style
 ==============================================================*/
 /*----------- listing Category Style 1 -----------*/
-
+.pricetag1{
+	position: absolute !important;
+	right:10px;
+	bottom:9px;
+	white-space:nowrap;
+	position:relative;
+	displaY:inline-block;
+	height:25px;
+	border-radius: 0 5px 5px 0;
+	padding: 0 25px 0 15px;
+	background:#E8EDF0;
+	border: 1px solid #C7D2D4;
+	color:#999;
+	line-height:23px;
+}
+.pricetag1:before{
+    position:absolute !important;
+    background:#E8EDF0;
+    content:"\25CF";
+    color:#79c879;
+    text-shadow: 0 0 1px #aaa;
+    line-height:13px;
+    text-indent:6px;
+    top:3px;
+    left:-10px;
+    width: 18px;
+    height: 18px;
+    transform: rotate(45deg);
+    border-left:1px solid #C7D2D4;
+    border-bottom:1px solid #C7D2D4;
+}
 .pricetag{
 		position: absolute !important;
 		right:10px;
@@ -4297,25 +4244,6 @@ button.btn.remove-field.light-gray-btn {
 	cursor: pointer;
   opacity: 0;
 }
-.upload-btn-wrapper2 input[type=file] {
-  font-size: 100px;
-  position: absolute;
-  left: 0;
-	right:0;
-  top: 0;
-	cursor: pointer;
-  opacity: 0;
-}
-.upload-btn-wrapper2 {
-    position: absolute;
-    overflow: hidden;
-    display: inline-block;
-    bottom: -3px;
-    left: -1px;
-		cursor: pointer;
-		right:;
-}
-
 
 
 /*------------------ preview Listing -------------------*/

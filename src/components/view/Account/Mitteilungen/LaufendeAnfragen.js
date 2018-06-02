@@ -66,7 +66,7 @@ deleteAnfrage(){
 
                       <div style={{marginRight:"10px"}} className="pull-right">
                         {
-                          this.props.bestätigt ?(<Link to={{
+                          this.props.bestätigt ?(<div>{this.props.zahlungImGang?(<span className="pricetag1">BEZAHLUNG BESTÄTIGT</span>):(<Link to={{
                                pathname: `/reservierung=${this.props.cardId}/payment`,
                                query: {
                                  merchantReference: this.props.snapId,
@@ -74,7 +74,7 @@ deleteAnfrage(){
                                  anfrage: this.props.anfrage,
                                }
                          }}>
-                         <span  className="btn theme-btn"> Bezahlen</span></Link>)
+                         <span  className="btn theme-btn"> Bezahlen</span></Link>)}</div>)
                         :(<span className="pricetag">nicht bestätig</span>)
                         }
                       </div>

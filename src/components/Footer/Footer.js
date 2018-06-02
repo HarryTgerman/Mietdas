@@ -46,7 +46,7 @@ class Footer extends Component{
                           <ul className="footer-social">
                             <li><a target="_blank" href="https://www.facebook.com/mietdasde"><i className="ti-facebook"></i></a></li>
                             <li><a target="_blank" href="https://www.instagram.com/mietdas"><i className="ti-instagram"></i></a></li>
-                            <li><a target="_blank"  href="#"><i className="ti-youtube"></i></a></li>
+                            <li><a target="_blank"  href="https://www.youtube.com/channel/UCd-jsl31DVxfkYKzilovnzw?view_as=subscriber"><i className="ti-youtube"></i></a></li>
                           </ul>
                         </div>
                       </div>

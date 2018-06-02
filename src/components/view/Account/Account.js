@@ -128,7 +128,7 @@ firedata() {
         anfrage: childSnapshot.val().anfrage,
         bestätigt: childSnapshot.val().bestätigt,
         cardId: childSnapshot.val().cardId,
-
+        zahlungImGang: childSnapshot.val().zahlungImGang,
       })
       this.setState ({
         mitteilungen: mitteilung,
@@ -254,7 +254,7 @@ editBankData(){
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="meineAnfragen">
                     {this.state.mitteilungen?(this.state.mitteilungen.map((mit)=>{
-                                  return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} snapId={mit.id} uid={this.state.uid}/>)
+                                  return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} snapId={mit.id} uid={this.state.uid} zahlungImGang={mit.zahlungImGang}/>)
                                 })):(<h3>Du hast keine laufenden Anfragen</h3>)
                     }
                     </div>
