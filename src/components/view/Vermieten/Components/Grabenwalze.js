@@ -270,8 +270,8 @@ onDrop(imageFiles) {
                                   </div>
 
                                   <div className="col-sm-12">
-                                    <label>Artikelbeschreibung</label>
-                                    <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
+                                    <label>Artikelbeschreibung/Mietbedienungen</label>
+                                    <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Mach Angaben z.B über Transport, Versicherung, Betankung und Reinigung"></textarea>
                                   </div>
 
                                 </div>

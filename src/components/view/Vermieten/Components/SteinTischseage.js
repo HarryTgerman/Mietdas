@@ -19,7 +19,6 @@ class SteinTischseage extends Component{
     }
 }
 
-c
 
 onDrop(imageFiles) {
 
@@ -242,10 +241,11 @@ onDrop(imageFiles) {
                                 <input type="text" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
                               </div>
 
-            									<div className="col-sm-12">
-            										<label>Artikelbeschreibung</label>
-            										<textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
-            									</div>
+                              <div className="col-sm-12">
+                                <label>Artikelbeschreibung/Mietbedienungen</label>
+                                <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Beschreibe deinen Artikel und nenne deine Mietbedienungen "></textarea>
+                              </div>
+
 
                               <div className="col-sm-12">
             										<label>Mietbedingungen</label>

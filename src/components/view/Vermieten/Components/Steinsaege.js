@@ -223,9 +223,10 @@ artikelHochladen(event) {
                                   </div>
 
                                   <div className="col-sm-12">
-                                    <label>Artikelbeschreibung</label>
-                                    <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder="Beschreibe deinen Artikel"></textarea>
+                                    <label>Artikelbeschreibung/Mietbedienungen</label>
+                                    <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Beschreibe deinen Artikel und nenne deine Mietbedienungen "></textarea>
                                   </div>
+
 
 
                                 </div>
