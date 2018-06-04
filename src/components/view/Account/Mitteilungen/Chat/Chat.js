@@ -12,9 +12,11 @@ class Chat extends Component{
       authenticated: false,
       controll: true,
       loaded:false,
+      data: false,
       messages: [],
       chatMessages:[],
-      showInbox: true,
+      showMessages: false,
+      showInbox: false,
     }
 }
 
@@ -23,7 +25,7 @@ getChats(){
   firebase.database().ref().child('app/').child('messages').orderByChild('receiverUid').equalTo(this.state.uid)
   .once('child_added', snap=>{
 
-    if(snap.val() !== null){
+    if(snap.val()){
          const message = {
          receiver: snap.val().receiver,
          senderUid: snap.val().senderUid,
@@ -36,7 +38,7 @@ getChats(){
          key: snap.key,
        }
 
-     this.setState(prevState =>({messages: [message, ...prevState.messages]}))
+     this.setState(prevState =>({messages: [message, ...prevState.messages], loaded: true,showMessages:true}))
 
  }else{
    console.log('snap ist null');
@@ -45,7 +47,7 @@ getChats(){
 firebase.database().ref().child('app/').child('messages').orderByChild('senderUid').equalTo(this.state.uid)
 .once('child_added', snap=>{
 
-if(snap.val() !== null){
+if(snap.val()){
      const message = {
      receiver: snap.val().receiver,
      senderUid: snap.val().senderUid,
@@ -58,12 +60,11 @@ if(snap.val() !== null){
      key: snap.key,
    }
 
- this.setState(prevState =>({messages: [message, ...prevState.messages]}))
+ this.setState(prevState =>({messages: [message, ...prevState.messages], loaded: true,showMessages:true}))
 
-}else{
-console.log('snap ist null');
 }
 })
+
 }
 
 componentWillMount(){
@@ -113,18 +114,20 @@ getChatData(data){
 
           return(
             //chat Übersicht
-            <div id="wrapper">
-
-                   <div  className="row">
-                    <div  className="col-md-12">
-{this.state.showInbox?(<div  className="card">
+            <div>
+            {this.state.showInbox?(
+                <div  className="row">
+                  <button type="button" onClick={()=>{this.setState({showInbox:false, data: null,showMessages: true, chatMessages: [], messages: []},this.getChats)}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachrichten Anzeigen</button>
+                  <ChatContainer data={this.state.data} chatMessages={this.state.chatMessages} uid={this.state.uid} name={this.state.name}/>
+                </div>):(null
+          )}
+{this.state.showMessages?(<div  className="card">
                         <div  className="card-header">
 
                           <div  className="right-box">
-                            <div  className="filter-search-box text-right">
-                              <input type="search"  className="form-control input-sm" placeholder=""/>
-                            </div>
+
                           </div>
+
                         </div>
                         <div  className="inbox-message">
                           <ul>
@@ -140,7 +143,7 @@ getChatData(data){
                                       name=msg.SenderName
                                     }
                                     return(
-                                    <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:false},this.getChatData(msg.key))}}>
+                                    <li style={{cursor: "pointer"}} onClick={()=>{this.setState({data:msg, showInbox:true, showMessages: false},this.getChatData(msg.key))}}>
                                       <a>
                                         <div  className="message-avatar">
                                           <img src="assets/img/img-3.jpg" alt=""/>
@@ -162,22 +165,7 @@ getChatData(data){
                           </ul>
                         </div>
                       </div>):(null)}
-                    </div>
-                    <div  className="col-md-12 col-sm-12 message_section" id="messageView">
-                      <div  className="row">
-                      {this.state.showInbox?(null):(
-                        <button type="button" onClick={()=>{this.setState({showInbox:true, data: null, chatMessages: [], messages: []},this.getChats)}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachricht Anzeigen</button>)}
-                        <ChatContainer data={this.state.data} chatMessages={this.state.chatMessages} uid={this.state.uid} name={this.state.name}/>
-                      </div>
-                </div>
-
-
-
-
-
-
-
-                </div>
+                      {this.state.loaded?(null):(<h3>Du hast noch keine Nachrichten empfangen</h3>)}
 
             </div>
 

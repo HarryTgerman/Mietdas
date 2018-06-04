@@ -29,7 +29,6 @@ componentWillMount(){
   firebase.auth().onAuthStateChanged((user)=>{
     const userProfile = firebase.auth().currentUser;
     if(user){
-      console.log(userProfile, 'aus account.js')
       this.setState(
         {
         authenticated: true,
@@ -83,59 +82,62 @@ firedata() {
 
 
   loadAnfragen(){
+    const mitteilung = [];
     const uid = this.state.uid;
-    firebase.database().ref('app/').child('users/'+uid).child('anfragen')
+    firebase.database().ref('app/').child('users/'+uid)
     .once('value', snap => {
         if(snap.val()){
-          if(snap.val() == undefined){
           this.setState({
-            anfragen: false,
-            loader: false,
+            cardId: snap.val().cardId,
+            url: snap.val().url,
+            nachName: snap.val().nachName,
+            adresse: snap.val().address,
+            geboren: snap.val().geburtsDatum,
+            telefon: snap.val().telefon,
+            stadt: snap.val().stadt,
+            plz: snap.val().plz,
+            straße: snap.val().straße,
+            profileInfo: snap.val()
           })
-      }else{
+          if(snap.val().bankData == undefined){
             this.setState({
-            anfragen: snap.val(),
+              showEditBankData: true
+            })
+          }
+          if (snap.val().anfragen){
+            this.setState({
+            anfragen: snap.val().anfragen,
             loader: false,
+            })
+          }else{
+            this.setState({
+              anfragen: false,
+              loader: false,
+            })
+          }
+        firebase.database().ref('app/users/'+uid).child('mitteilung').once('value',snap=>{
+          snap.forEach(childSnapshot => {
+          mitteilung.push ({
+            id: childSnapshot.key,
+            anfrage: childSnapshot.val().anfrage,
+            bestätigt: childSnapshot.val().bestätigt,
+            cardId: childSnapshot.val().cardId,
+            zahlungImGang: childSnapshot.val().zahlungImGang,
+            timestamp:childSnapshot.val().timestamp,
           })
-        }
-        if(snap.val().bankData == undefined){
-          this.setState({
-            showEditBankData: true
+          this.setState ({
+            mitteilungen: mitteilung,
+            })
           })
-        }
-        this.setState({
-          cardId: snap.val().cardId,
-          url: snap.val().url,
-          nachName: snap.val().nachName,
-          adresse: snap.val().address,
-          geboren: snap.val().geburtsDatum,
-          telefon: snap.val().telefon,
-          stadt: snap.val().stadt,
-          plz: snap.val().plz,
-          straße: snap.val().straße,
-          profileInfo: snap.val()
         })
-      }
+        }else{
+            alert('vervollstädige zuerst deine Profielinformationen')
+          return <Redirect to="/account-erstellen"/>
 
+        }
 
-  })
-  const mitteilung = [];
-    firebase.database().ref().child('app').child('users/').child(this.state.uid)
-    .child('mitteilung').once('value' ,snap => {
-      snap.forEach(childSnapshot => {
-      mitteilung.push ({
-        id: childSnapshot.key,
-        anfrage: childSnapshot.val().anfrage,
-        bestätigt: childSnapshot.val().bestätigt,
-        cardId: childSnapshot.val().cardId,
-        zahlungImGang: childSnapshot.val().zahlungImGang,
-        timestamp:childSnapshot.val().timestamp,
       })
-      this.setState ({
-        mitteilungen: mitteilung,
-      })
-    })
-  })
+
 
 }
 
@@ -224,7 +226,7 @@ editBankData(){
                   {/* Nav tabs */}
                   <ul className="nav nav-tabs" role="tablist">
                     <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Übersicht Anfragen</a></li>
-                    <li role="presentation"><a href="#meineAnfragen" aria-controls="meineAnfragen" role="tab" data-toggle="tab">meine Anfragen</a></li>
+                    <li role="presentation"><a href="#meineAnfragen" aria-controls="meineAnfragen" role="tab" data-toggle="tab">Gestellte Mietanfragen</a></li>
                     <li role="presentation"><a href="#meinGerätepark" aria-controls="meinGerätepark" role="tab" data-toggle="tab">mein Gerätepark</a></li>
                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
                     <li role="presentation"><a href="#nachrichten" aria-controls="nachrichten" role="tab" data-toggle="tab">Nachrichten</a></li>

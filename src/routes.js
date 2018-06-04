@@ -52,8 +52,8 @@ checkCaptcha(response) {
   // from https://itsolutionstuff.com/post/php-how-to-implement-google-new-recaptcha-code-example-with-demoexample.html
 
   let captcha = document.querySelector('#g-recaptcha-response').value;
-
-  fetch("https://mietdas.de/Backend/recaptcha.php", {
+  https://mietdas.de/Backend/recaptcha.php
+  fetch("Backend/recaptcha.php", {
   method: "post",
   headers: {
     'Accept': 'application/json',

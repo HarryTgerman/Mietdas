@@ -4252,6 +4252,24 @@ button.btn.remove-field.light-gray-btn {
 		cursor: pointer;
 		right:;
 }
+.upload-btn-wrapper2 {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    bottom: -3px;
+    left: 1px;
+		cursor: pointer;
+		right:;
+}
+.upload-btn-wrapper2 input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+	right:0;
+  top: 0;
+	cursor: pointer;
+  opacity: 0;
+}
 .loader {
 	display:block;
 	margin: 0px auto;
