@@ -44,8 +44,7 @@ class SoGehtMieten extends Component{
           return(
 
             <div>
-              <div className="wrapper">
-                <div className="clearfix"></div>
+              <div >
 
                 {/* Start Navigation */}
                 <div  className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
@@ -89,20 +88,95 @@ class SoGehtMieten extends Component{
                 {/* End Navigation */}
 
                 {/* ================ Start Page Title ======================= */}
-                <section className="title-transparent page-title" style={{ background:`url(${backgroundImg})`,backgroundRepeat:"noRepeat"}}>
+                <section className="title-transparent page-title" style={{ background:`url(${backgroundImg})`}}>
                   <div className="container">
                     <div className="title-content">
-                      <h1>Reservieren Sie etzt einfach und unverbindlich</h1>
-                      <div className="breadcrumbs">
-                        <a href="#">Wählen Sie Ihre</a>
-                        <span className="gt3_breadcrumb_divider"></span>
-                        <span className="current">Bezahloption</span>
-                      </div>
+                      <h1>Das Mieten von Baumaschinen war noch nie so einfach!</h1>
                     </div>
                   </div>
                 </section>
                 <div className="clearfix"></div>
                 {/* ================ End Page Title ======================= */}
+
+                <section className="features-sec">
+                  <div className="container">
+                    <div className="col-md-4 col-sm-6">
+                      <div className="service-box">
+                        <div className="service-icon">
+                          <i className="ti-search"></i>
+                        </div>
+                        <div className="service-content">
+                          <h3>
+                            <a href="#">Produkt auswählen</a>
+                          </h3>
+                        </div>
+                        <p className="text-center">Suche über die Suchleiste nich der gewünschten Maschine. Gebe den Eins+tzort und die Kategorien an.</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-sm-6">
+                      <div className="service-box">
+                        <div className="service-icon">
+                          <i className="ti-list"></i>
+                        </div>
+                        <div className="service-content">
+                          <h3>
+                            <a href="#">Produkt auswählen</a>
+                          </h3>
+                        </div>
+                        <p className="text-center">Wähle aus den Suchergebnissen nach der passenden Maschine und sende dem Vermieter eine Anfrage.</p>
+                      </div>
+                    </div>
+
+                    <div className="col-md-4 col-sm-6" ref={(section) => { this.section4 = section; }}>
+                      <div className="service-box">
+                        <div className="service-icon">
+                          <i className="ti-email"></i>
+                        </div>
+                        <div className="service-content">
+                          <h3>
+                            <a href="#">Angebot erhalten</a>
+                          </h3>
+                        </div>
+                        <p className="text-center">Einloggen, Buchung bestätigen, bezahlen.</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section className="container" style={{textAlign:"center"}}>
+                  <Link to="/mieten"><button className="btn theme-btn">jetzt passende Maschine suchen</button></Link>
+                </section>
+                <h2 style={{textAlign:"center"}}>Die Online-Miete bei MietDas einfach erklärt</h2>
+                <section className="container" >
+                  <div className="text-center frow lrow">&nbsp;<iframe width="556" height="310" src="https://www.youtube.com/embed/ZyrPhaxIwaQ" allowfullscreen="allowfullscreen"></iframe></div>
+                </section>
+                <section className="small-pad">
+          				<div className="container">
+
+                    <div className="col-md-4 col-sm-4" ref={(section) => { this.section2 = section; }}>
+                      <div className="feature-box" >
+                        <span className="ti-info"></span>
+                        <h4>Über MietDas</h4>
+                        <p>MietDas ist ein StartUp aus Speyer mit dem langfristigen Ziel, die Online-Miete im Bereich Bauwirtschaft zu revolutionieren. Besitzer können ihre M8schinen in Zeiten geringer Auslastung zur Miete anbieten und damit Geld verdienen.
+                          Mieter profitieren von dem breiten Angebot und der sofortigen Verfügbarkeit hochwertiger Baumaschinen & - GerLte.</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-sm-4">
+                      <div className="feature-box">
+                        <span className="ti-check"></span>
+                        <h4>Geräte Sortiment</h4>
+                        <p>Für die unterschiedlichsten Ansprüche & Projekte finden Sie in unseren zahlreichen Kategorien sofort verfügbare Mietmaschinen und Geräte: Vom Mobilbagger über die Gartenfräse bis hin zur Arbeitsbühne.</p>
+                      </div>
+                    </div>
+                    <div className="col-md-4 col-sm-4">
+                      <div className="feature-box">
+                        <span className="ti-money"></span>
+                        <h4>Kosten</h4>
+                        <p>Inserieren Sie Kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei Kosten für den Miter an es bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
+                      </div>
+                    </div>
+
+          				</div>
+          			</section>
 
                 {/* ================ Payment Methode Section ======================= */}
                 </div>

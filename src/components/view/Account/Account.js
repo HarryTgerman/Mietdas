@@ -83,6 +83,7 @@ firedata() {
 
   loadAnfragen(){
     const mitteilung = [];
+    let anfragen = [];
     const uid = this.state.uid;
     firebase.database().ref('app/').child('users/'+uid)
     .once('value', snap => {
@@ -104,9 +105,22 @@ firedata() {
               showEditBankData: true
             })
           }
+
           if (snap.val().anfragen){
+            Object.keys(snap.val().anfragen).map(function(key, index) {
+               anfragen.push(snap.val().anfragen[key]);
+            });
+            anfragen.sort(function(a, b){
+                var keyA = new Date(a.timestamp),
+                    keyB = new Date(b.timestamp);
+                // Compare the 2 dates
+                if(keyA > keyB) return -1;
+                if(keyA < keyB) return 1;
+                return 0;
+            });
+
             this.setState({
-            anfragen: snap.val().anfragen,
+            anfragen: anfragen,
             loader: false,
             })
           }else{
@@ -125,6 +139,14 @@ firedata() {
             zahlungImGang: childSnapshot.val().zahlungImGang,
             timestamp:childSnapshot.val().timestamp,
           })
+          mitteilung.sort(function(a, b){
+              var keyA = new Date(a.timestamp),
+                  keyB = new Date(b.timestamp);
+              // Compare the 2 dates
+              if(keyA > keyB) return -1;
+              if(keyA < keyB) return 1;
+              return 0;
+          });
           this.setState ({
             mitteilungen: mitteilung,
             })
@@ -160,8 +182,7 @@ editBankData(){
 
 
         render(){
-          const { anfragen } = this.state
-          const keys = Object.keys(anfragen)
+
 
           if(this.state.redirect === true){
             return (<Redirect to="/"/>)
@@ -237,8 +258,8 @@ editBankData(){
                     <div role="tabpanel" className="tab-pane fade in active" id="home">
                     {this.state.loader?(<div className="loader"></div>):(
                       <div>
-                      { this.state.anfragen ? (keys.map((key) => {
-                         const anfrage = anfragen[key]
+                      { this.state.anfragen ? (this.state.anfragen.map((key) => {
+                         const anfrage = key
                            return(<Anfragen
                            anfrage={anfrage} name={anfrage.name} url={anfrage.url}
                            cardHeading={anfrage.cardHeading} mietbeginn={anfrage.mietbeginn}

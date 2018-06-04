@@ -404,9 +404,7 @@ scrollToSection4(){
                                     <h3>
                                       <a href="#">Inserieren Sie Ihre Maschinen und Ihr Werkzeug</a>
                                     </h3>
-
                                   </div>
-
                                 </div>
                               </div>
                             </div>

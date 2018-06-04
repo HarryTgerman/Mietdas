@@ -163,7 +163,7 @@ barPayment(){
     .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
     firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
     .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
-    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet')
+    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet, dies könnte einige minuten dauern')
     this.setState({redirect: true})
   }
 }
@@ -196,7 +196,7 @@ paypalPayment(){
     .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
     firebase.database().ref().child('app/users').child(this.state.uid).child('mitteilung')
     .child(this.props.location.query.merchantReference).update({zahlungImGang: true})
-    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet')
+    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet, dies könnte einige minuten dauern')
     window.open("https://"+this.state.paypal,"_blank")
     this.setState({redirect: true})
   }
@@ -230,7 +230,7 @@ ueberweisungPayment(){
       rechnungsAdresse: this.props.location.query.anfrage.RechnungsAdresse,
       telefon: this.props.location.query.anfrage.telefon,
     })
-    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet')
+    alert('Es wurde ein Mietbestätigung mit allen notwendigen Informationen an deine Email versendet, dies könnte einige minuten dauern')
     this.setState({redirect: true})
   }
 }
@@ -294,7 +294,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
             <section className="title-transparent page-title" style={{ background:`url(${backgroundImg})`}}>
               <div className="container">
                 <div className="title-content">
-                  <h1>Reservieren Sie etzt einfach und unverbindlich</h1>
+                  <h1>Schnell und einfach bezahlen</h1>
                   <div className="breadcrumbs">
                     <a href="#">Wählen Sie Ihre</a>
                     <span className="gt3_breadcrumb_divider"></span>

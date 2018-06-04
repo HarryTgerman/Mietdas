@@ -270,7 +270,9 @@ whenGeoCode.then(() =>{
                          {/*Collect the nav links, forms, and other content for toggling*/}
                         <div className="collapse navbar-collapse" id="navbar-menu">
                           <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
+                          <li className="dropdown">
+                            <NavLink to="/so-geht-mieten">So geht mieten</NavLink>
+                          </li>
                           <li className="dropdown">
                             <NavLink to="/mieten" >Mieten</NavLink>
                           </li>

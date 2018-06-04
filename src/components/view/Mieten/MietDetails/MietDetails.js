@@ -1015,29 +1015,7 @@ componentWillMount(){
                   										<h4><i className="ti-calendar padd-r-10"></i>Book A Reservation</h4>
                   									</div>
                                     <div className="widget-boxed-body">
-                                      <DateRangePicker
-                                            startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                                            endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                                            onDatesChange={({ startDate, endDate }) => {
-                                              const startDateString = startDate._d;
-                                              const endDateString = endDate._d;
-                                              var a = moment(startDateString);
-                                              var b = moment(endDateString);
-                                             const diff =  b.diff(a, 'days');
-                                             var  Gesamtsumme = 0 * diff ;
-                                              this.setState({ endDate, startDate,
-                                                startDateString: startDateString,
-                                                endDateString: endDateString,
-                                                numberOfDays: diff+" Tage",
-                                                Diff: diff,
-                                                Gesamtsumme: Gesamtsumme})}} // PropTypes.func.isRequired,
-                                            focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                            onFocusChange={focusedInput => this.setState({ focusedInput }) } // PropTypes.func.isRequired,
-                                            endDatePlaceholderText={"Bis"}
-                                            startDatePlaceholderText={"Ab"}
-                                            displayFormat={"DD/MM/YYYY"}
-                                            showDefaultInputIcon={false}
-                                        />
+                                      
                                         <div className="widget-boxed-body">
                                           <div className="side-list">
                                             <ul>
