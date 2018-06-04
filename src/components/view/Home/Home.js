@@ -120,7 +120,9 @@ scrollToSection4(){
                                {/*Collect the nav links, forms, and other content for toggling*/}
                               <div className="collapse navbar-collapse" id="navbar-menu">
                                 <ul className="nav navbar-nav navbar-center">
-
+                                <li className="dropdown">
+                                  <NavLink to="/so-geht-mieten">So geht mieten</NavLink>
+                                </li>
                                 <li className="dropdown">
                                   <NavLink to="/mieten" >Mieten</NavLink>
                                 </li>
@@ -191,13 +193,10 @@ scrollToSection4(){
                                             { value: 'kippanhänger', label: 'Kippanhänger' },
                                             { value: 'planenanhänger', label: 'Planenanhänger' },
                                             { value: 'autotransportanhänger', label: 'Autotransportanhänger' },
-                                            { value: 'autotransportanhänger', label: 'Autotransportanhänger' },
-                                            { value: 'motorradanhänger', label: 'Motorradanhänger' },
                                             { value: 'tieflader', label: 'Tieflader' },
                                             { value: '', label: <strong>BAUGERÄTE :</strong>},
-                                            { value: 'planenanhänger', label: 'Planenanhänger' },
                                             { value: 'abbruchhammer', label: 'Abbruchhammer' },
-                                            { value: 'betonglaeter', label: 'Betongläter' },
+                                            { value: 'betonglaetter', label: 'Betonglätter' },
                                             { value: 'betoninnenruettler', label: 'Betoninnenrüttler' },
                                             { value: 'betonmischer', label: 'Betonmischer' },
                                             { value: 'bohrhammer', label: 'Bohrhammer' },
@@ -230,10 +229,11 @@ scrollToSection4(){
                                         <button type="submit" className="btn theme-btn btn-default">Suchen</button>
                                       </div>
                                     </form>
-                                    <div className="col-md-12 col-sm-12 banner-text">
-                                    <span className="arrow-down-white" onClick={this.scrollToSection2.bind(this)}></span>
-                                    </div>
                                   </div>
+
+                              </div>
+                              <div className="col-md-12 col-sm-12 banner-text">
+                              <span className="arrow-down-white" onClick={this.scrollToSection2.bind(this)}></span>
                               </div>
                             </div>
                           </div>
@@ -247,7 +247,7 @@ scrollToSection4(){
 
                           <section className="features">
                             <div className="container">
-                            
+
                               <div className="row">
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading" >

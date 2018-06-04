@@ -27,7 +27,7 @@ import Pritschenwagen from './Components/Pritschenwagen'
 import Umzugstransporter from './Components/Umzugstransporter'
 import Planenanhänger from './Components/Planenanhänger'
 import Autotransportanhänger from './Components/Autotransportanhänger'
-import Betonglaeter from './Components/Betonglaeter'
+import Betonglaetter from './Components/Betonglaetter'
 import Bohrhammer from './Components/Bohrhammer'
 import Abbruchhammer from './Components/Abbruchhammer'
 import Erdbohrgeraet from './Components/Erdbohrgeraet'
@@ -382,7 +382,7 @@ onDrop(imageFiles) {
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="betonglaeter">
-                      <Betonglaeter user={this.state.uid} address={this.state.address}
+                      <Betonglaetter user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>

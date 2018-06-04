@@ -87,7 +87,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('betonglaeter');
+        const db = firebase.database().ref('app').child('cards').child('betonglaetter');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
@@ -140,7 +140,7 @@ onDrop(imageFiles) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"betonglaeter",
+                         kategorie:"betonglaetter",
 
                          email: this.props.email,
                          hersteller: hersteller,

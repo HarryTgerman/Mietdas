@@ -20,6 +20,8 @@ import Reservierung from './components/view/Mieten/MietDetails/Reservierung'
 import Vermieten from './components/view/Vermieten/Vermieten'
 import AccountErstellen from './components/view/AccountErstellen/AccountErstellen'
 import Payment from './components/PaymentMethod/Payment'
+import SoGehtMieten from './components/view/Home/SoGehtMieten'
+
 
 
 
@@ -52,8 +54,8 @@ checkCaptcha(response) {
   // from https://itsolutionstuff.com/post/php-how-to-implement-google-new-recaptcha-code-example-with-demoexample.html
 
   let captcha = document.querySelector('#g-recaptcha-response').value;
-  https://mietdas.de/Backend/recaptcha.php
-  fetch("Backend/recaptcha.php", {
+
+  fetch("https://mietdas.de/Backend/recaptcha.php", {
   method: "post",
   headers: {
     'Accept': 'application/json',
@@ -256,7 +258,8 @@ sendPwReset(){
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
                       <Route name= 'MashineDetails' path='/mashineDetails/search=:type/:id' component={MashineDetails}/>
                       <Route name= 'Impressum' path='/impressum' component={Impressum}/>
-                      <Route name= 'Impressum' path='/agb' component={AGB}/>
+                      <Route name= 'Impressum' path='/impressum' component={Impressum}/>
+                      <Route name= 'SoGehtMieten' path='/so-geht-mieten' component={SoGehtMieten}/>
                       {this.state.registerRedirect ?
                         (<Redirect to='/account-erstellen' />):(null)
                       }

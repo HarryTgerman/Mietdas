@@ -1,0 +1,76 @@
+<div>
+<div className="how-it-works-wrapper">
+  <div className="banner-heading">
+    <img className="" src={backgroundImg}/>
+    <div className="banner-heading-text">
+      <p>Einfach und Schnell -  Maschinen mieten über klickrent</p>
+    </div>
+  </div>
+  <div className="white-wrapper">
+    <div className="container">
+      <div className="row">
+        <div className="col-xs-12 frow lrow">
+          <div className="heading-3 text-center">Alles aus einer Hand von unseren zuverlässigen Partnern</div>
+          </div>
+          <div className="col-xs-12">
+          <div className="row">
+            <div className="col-xs-12 col-sm-4">
+              <div className="about-us-image-item"><img className="img-responsive center-block" src="https://picsum.photos/200"/></div>
+                <div className="heading-5 text-center jobs-image-title">Produkt auswählen</div>
+                <div className="jobs-image-description">
+                  <p className="text-center">Wählen Sie aus einem großen Sortiment an Produkten das Passende für Ihr Projekt aus. Bestimmen Sie den Mietzeitraum und -ort. Vergleichen Sie in sekundenschnelle die Preise und wählen das beste Angebot für Sie aus.</p>
+                </div>
+              </div>
+              <div className="col-xs-12 col-sm-4">
+                <div className="about-us-image-item"><img className="img-responsive center-block" src="https://picsum.photos/200"/></div>
+                <div className="heading-5 text-center jobs-image-title">Mietanfrage stellen</div>
+                <div className="jobs-image-description">
+                  <p className="text-center">Registrieren und durchstarten. In nur wenigen Schritten durchlaufen Sie unseren Mietprozess und stellen die Mietanfrage für Ihre Maschine. Wenn Sie bereits ein Konto bei uns haben, loggen Sie sich ganz einfach mit Ihren Daten ein.</p>
+                </div>
+              </div>
+              <div className="col-xs-12 col-sm-4">
+                <div className="about-us-image-item"><img className="img-responsive center-block" src="https://picsum.photos/200"/></div>
+                <div className="heading-5 text-center jobs-image-title">Angebot erhalten</div>
+                <div className="jobs-image-description">
+                  <p className="text-center">Erhalten Sie umgehend ein unverbindliches Angebot, ganz nach Ihren Wünschen, vom ausgewählten Vermieter. Dank unserer professionellen Partner garantieren wir Ihnen immer beste Qualität und erstklassigen Service.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-xs-12 text-center frow"><a className="btn btn-primary" href="https://www.klickrent.de/"> Jetzt passende Maschine suchen </a></div>
+          <div className="col-xs-12 text-center frow">
+            <h2><span style={{fontSize: "24pt", color: "#000000"}}>Die Online-Miete bei klickrent einfach erklärt</span></h2>
+          </div>
+          <div className="col-xs-12 text-center frow lrow">&nbsp;<iframe src="//www.youtube.com/embed/ueMtkfDRLT4" width="560" height="314" allowfullscreen="allowfullscreen"></iframe></div>
+          &nbsp;
+          <div className="heading-3 text-center text-uppercase">Sie haben weitere Fragen? Hier finden Sie die Antworten</div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="faq-section">
+          <div className="col-xs-12">
+            <div className="heading-5">
+              <h3 className="faq-title" style={{textAlign: "left", paddingLeft: "150px"}}><span style={{color: "#00aeff"}}><b>&nbsp; &nbsp;Anbieter / Vermieter / Angebot</b></span></h3>
+            </div>
+          </div>
+        <div className="col-xs-12" style={{textAlign: "left", paddingLeft: "60px"}}>
+      <div className="heading-5" style={{paddingLeft: "60px"}}>
+        <p className="faq-title" style={{paddingLeft: "60px"}}>+ Wie stellen wir die Qualität der Maschinen sicher?</p>
+      </div>
+        <p className="faq-description" style={{paddingLeft: "120px", display: "none"}}>Professionelle Vermieter, die wir alle persönlich kennen.</p>
+      <div className="heading-5">
+        <p className="faq-title" style={{paddingLeft: "120px"}}>+ Wie viele Anbieter hat klickrent?</p>
+      </div>
+      <p className="faq-description" style={{paddingLeft: "120px", display: "none"}}>klickrent arbeitet heute mit über 50 professionellen und geprüften Vermietern zusammen. Unser Netzwerk wächst laufend, so dass wir in der Lage sind, Mietanfragen aus ganz Deutschland zu bedienen.</p>
+      </div>
+      <div className="col-xs-12" style={{textAlign: "left", paddingLeft: "60px"}}>
+        <div className="heading-5" style={{paddingLeft: "60px"}}>
+          <p className="faq-title" style={{paddingLeft: "60px"}}>+ Wie prüfen wir die Anbieter?</p>
+        </div>
+        <p className="faq-description" style={{paddingLeft: "120px", display: "none"}}>Bevor ein Anbieter bei uns auf die Plattform kommt, führen wir persönliche Gespräche und lernen ihn so genau kennen.</p>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
