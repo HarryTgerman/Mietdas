@@ -209,10 +209,13 @@ loadUser(){
         const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
         const endDate = moment(this.props.location.query.endDate).format("DD-MM-YYYY");
 
+
+
           return(
               <div>
                 <div className="wrapper">
                   <div className="clearfix"></div>
+
 
                   {/* Start Navigation */}
                   <div  className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
@@ -356,7 +359,7 @@ loadUser(){
                               {/* Total Cost */}
                               <div className="booking-price-detail side-list no-border">
                                 <ul>
-                                  <li>Endpreis<strong className="theme-cl pull-right">{this.props.location.query.Gesamtsumme}€</strong></li>
+                                  <li>Endpreis<strong className="theme-cl pull-right">{this.state.Gesamtsumme}€</strong></li>
                                 </ul>
                               </div>
 

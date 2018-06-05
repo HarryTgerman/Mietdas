@@ -15,6 +15,7 @@ class MietDetails extends Component{
   constructor (props){
   super(props)
   this.state={
+  Gesamtsumme: "Zeitraum auswählen",
       endDate: "",
     startDate: "",
     focusedInput: "",
@@ -818,7 +819,7 @@ componentWillMount(){
                                   </div>
                                 </div>
                               </div>
-                              <div className="detail-wrapper">
+                            {this.state.snap.rabattStaffelung?(  <div className="detail-wrapper">
                 								<div className="detail-wrapper-header">
           							         <h4>Rabattstaffelung</h4>
                 								</div>
@@ -852,7 +853,7 @@ componentWillMount(){
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              </div>):(null)}
 
                               <div className="detail-wrapper">
                 								<div className="detail-wrapper-header">
@@ -897,13 +898,21 @@ componentWillMount(){
                                             const endDateString = endDate._d;
                                             var a = moment(startDateString);
                                             var b = moment(endDateString);
-                                           const diff =  b.diff(a, 'days');
-                                           var  Gesamtsumme = this.state.snap.cardPreis * diff ;
+                                           let diff =  b.diff(a, 'days');
+                                           let rabatt = 'kein Rabatt';
+                                           let  Gesamtsumme = this.state.snap.cardPreis * diff ;
+                                           if(this.state.snap.rabattStaffelung){
+                                           if (diff >= 3 && diff< 4){  Gesamtsumme = Math.round(Gesamtsumme*((100-this.state.snap.rabattStaffelung.dreiTage)/100)*100)/100;rabatt= this.state.snap.rabattStaffelung.dreiTage+"%"; }
+                                           else if (diff >= 5 && diff < 10){Gesamtsumme = Math.round(Gesamtsumme*((100-this.state.snap.rabattStaffelung.fünfTage)/100)*100)/100; rabatt=this.state.snap.rabattStaffelung.fünfTage+"%"}
+                                           else if (diff >=10 && diff < 21){Gesamtsumme = Math.round(Gesamtsumme*((100-this.state.snap.rabattStaffelung.zehnTage)/100)*100)/100; rabatt=this.state.snap.rabattStaffelung.zehnTage+"%"}
+                                           else if (diff >= 21){Gesamtsumme = Math.round(Gesamtsumme*((100-this.state.snap.rabattStaffelung.einundzwanzigTage)/100)*100)/100; rabatt=this.state.snap.rabattStaffelung.einundzwanzigTage+"%"}
+                                           else if(diff < 3){rabatt='kein Rabatt'}}
                                             this.setState({ endDate, startDate,
                                               startDateString: startDateString,
                                               endDateString: endDateString,
                                               numberOfDays: diff+" Tage",
                                               Diff: diff,
+                                              rabatt: rabatt,
                                               Gesamtsumme: Gesamtsumme})}} // PropTypes.func.isRequired,
                                           focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                                           onFocusChange={focusedInput => this.setState({ focusedInput }) } // PropTypes.func.isRequired,
@@ -917,8 +926,11 @@ componentWillMount(){
                                           <ul>
                     												<li>Standort  <span>{this.state.snap.ort}</span></li>
                                             <li>Mietdauer  <span>{this.state.numberOfDays}</span></li>
-                    												<li>Ihr Preis <span>{this.state.snap.cardPreis * this.state.Diff},00€</span></li>
-        												            <li>Gesamtsumme <span>{this.state.snap.cardPreis * this.state.Diff},00€</span></li>
+                    												<li>Preis pro Tag<span>{this.state.snap.cardPreis},00€</span></li>
+                                            {this.state.rabatt?(
+                                              <li>Rabatt {this.state.numberOfDays}<span className="theme-cl">{this.state.rabatt}</span></li>
+                                            ):(null)}
+        												            <li><strong>Gesamtsumme <span>{this.state.Gesamtsumme}{this.state.rabatt?('€'):(null)}</span></strong></li>
 								                         </ul>
                                         </div>
                                       </div>
