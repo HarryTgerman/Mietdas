@@ -23,7 +23,7 @@ class Mieten extends Component{
       gebiet: "",
       cards: [],
       markers : [],
-      selectValue:  { value: '', label: 'wähle Kategorie' },
+      selectValue:  { value: '', label: 'wähle/tippe Kategorie' },
     };
     this.onChange = (address) => this.setState({ address })
     }
@@ -141,6 +141,7 @@ whenGeoCode.then(() =>{
               return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.previousCards.snap.cords);
            });
             this.setState ({
+              kat: this.state.selectValue.label,
               cards: previousCards,
               markers: previousMarker
             })
@@ -228,6 +229,7 @@ whenGeoCode.then(() =>{
            return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
         });
          this.setState ({
+           kat: this.state.selectValue.label,
            cards: previousCards,
            markers: previousMarker
          })
@@ -334,12 +336,12 @@ whenGeoCode.then(() =>{
                                     placeholder={this.state.selectValue.label}
                                     options={[
 
-                                      { value: '', label: <strong>BAGGER :</strong>},
+                                      { value: '', label: <strong>BAGGER</strong>},
                                       { value: 'minibagger', label: 'Minibagger' },
                                       { value: 'kompaktbagger', label: 'Kompaktbagger' },
                                       { value: 'raupenbagger', label: 'Raupenbagger' },
                                       { value: 'mobilbagger', label: 'Mobilbagger' },
-                                      { value: '', label: <strong>RADLADER :</strong>},
+                                      { value: '', label: <strong>RADLADER</strong>},
                                       { value: 'radlader', label: 'Radlader' },
                                       { value: 'kettendumper', label: 'Kettendumper' },
                                       { value: 'raddumper', label: 'Raddumper' },
@@ -357,25 +359,34 @@ whenGeoCode.then(() =>{
                                       { value: 'bohrhammer', label: 'Bohrhammer' },
                                       { value: 'erdbohrgeraet', label: 'Erdbohrgerät' },
                                       { value: 'kernbohrmaschiene', label: 'Kernbohrmaschiene' },
-                                      { value: '', label: <strong>VERDICHTUNGSTECHNIK :</strong>},
+                                      { value: '', label: <strong>VERDICHTUNGSTECHNIK</strong>},
                                       { value: 'stampfer', label: 'Stampfer' },
                                       { value: 'vibrationsplatte', label: 'Vibrationsplatte' },
                                       { value: 'grabenwalze', label: 'Grabenwalze' },
                                       { value: 'vibrationswalze', label: 'Vibrationswalze' },
-                                      { value: '', label: <strong>LANDSCHAFTSTECHNIK :</strong>},
+                                      { value: '', label: <strong>LANDSCHAFTSTECHNIK</strong>},
                                       { value: 'bodenfraese', label: 'Bodenfräse' },
                                       { value: 'holzhaecksler', label: 'Holzhäcksler' },
-                                      { value: '', label: <strong>SÄGEN UND SCHNEIDER :</strong>},
+                                      { value: '', label: <strong>SÄGEN UND SCHNEIDER</strong>},
                                       { value: 'trennschleifer', label: 'Trennschleifer' },
                                       { value: 'bausteinBandseage', label: 'Baustein Bandsäge' },
                                       { value: 'blocksteinsaege', label: 'Blocksteinsäge' },
                                       { value: 'fugenschneider', label: 'Fugenschneider' },
                                       { value: 'steinsaege', label: 'Steinsäge' },
-                                      { value: '', label: <strong>RAUMSYSTEME:</strong>},
+                                      { value: '', label: <strong>RAUMSYSTEME</strong>},
                                       { value: 'materialContainer', label: 'Materialcontainer' },
-                                      { value: '', label: <strong>FAHRZEUGE:</strong>},
+                                      { value: '', label: <strong>FAHRZEUGE</strong>},
                                       { value: 'pritschenwagen', label: 'Pritschenwagen' },
                                       { value: 'umzugstransporter', label: 'Umzugstransporter' },
+                                      { value: '', label: <strong>HEBETECHNIK</strong>},
+                                      { value: 'teleskopstapler', label: 'Teleskopstapler' },
+                                      { value: 'teleskopmastbühne', label: 'Teleskopmastbühne' },
+                                      { value: 'teleskopArbeitsbühne', label: 'Teleskop-Arbeitsbühne' },
+                                      { value: 'selbstfahrendeScherenbühne', label: 'Selbstfahrende Scherenbühne' },
+                                      { value: 'gelenkteleskoparbeitsbühneAufGummiketten', label: 'Gelenkteleskoparbeitsbühne auf Gummiketten' },
+                                      { value: 'lkwArbeitsbühne', label: 'LKW Arbeitsbühne' },
+                                      { value: 'gelenkteleskopArbeitsbühne', label: 'Gelenkteleskop-Arbeitsbühne' },
+
                                  ]}
                                   />
                                 </div>
@@ -390,7 +401,7 @@ whenGeoCode.then(() =>{
                           {/* All Listing */}
                           <div className="row mrg-bot-20">
                             <div className="col-md-12">
-                              <h5>{this.state.cards.length} Ergebnisse {this.state.selectValue.value?('für '+this.state.selectValue.label):(null)}</h5>
+                              <h5>{this.state.cards.length} Ergebnisse {this.state.kat?('für '+this.state.kat):(null)}</h5>
                             </div>
                           </div>
 

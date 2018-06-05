@@ -105,7 +105,7 @@ onDrop(imageFiles) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('TeleskopArbeitsbühne');
+        const db = firebase.database().ref('app').child('cards').child('teleskopArbeitsbühne');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;

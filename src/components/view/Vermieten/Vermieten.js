@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom';
+import logo from '../../../img/logo.png'
 //import Bagger from './Components/Bagger'
 import Minibagger from './Components/Minibagger'
 import Kompaktbagger from './Components/Kompaktbagger'
@@ -156,8 +157,8 @@ onDrop(imageFiles) {
                    {/*Start Header Navigation*/}
                     <div className="navbar-header">
                       <NavLink to="/">
-                        <img src="../assets/img/logo.png" className="logo logo-display" alt=""/>
-                        <img src="../assets/img/logo.png" className="logo logo-scrolled" alt=""/>
+                        <img src={logo} className="logo logo-display" alt=""/>
+                        <img src={logo} className="logo logo-scrolled" alt=""/>
                       </NavLink>
                     </div>
 

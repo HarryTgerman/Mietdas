@@ -110,7 +110,7 @@ class SoGehtMieten extends Component{
                             <a href="#">Produkt auswählen</a>
                           </h3>
                         </div>
-                        <p className="text-center">Suche über die Suchleiste nich der gewünschten Maschine. Gebe den Eins+tzort und die Kategorien an.</p>
+                        <p className="text-center">Suche über die Suchleiste nich der gewünschten Maschine. Gebe den Einsatzort und die Kategorien an.</p>
                       </div>
                     </div>
                     <div className="col-md-4 col-sm-6">
@@ -156,7 +156,7 @@ class SoGehtMieten extends Component{
                       <div className="feature-box" >
                         <span className="ti-info"></span>
                         <h4>Über MietDas</h4>
-                        <p>MietDas ist ein StartUp aus Speyer mit dem langfristigen Ziel, die Online-Miete im Bereich Bauwirtschaft zu revolutionieren. Besitzer können ihre M8schinen in Zeiten geringer Auslastung zur Miete anbieten und damit Geld verdienen.
+                        <p>MietDas ist ein StartUp aus Speyer mit dem langfristigen Ziel, die Online-Miete im Bereich Bauwirtschaft zu revolutionieren. Besitzer können ihre Maschinen in Zeiten geringer Auslastung zur Miete anbieten und damit Geld verdienen.
                           Mieter profitieren von dem breiten Angebot und der sofortigen Verfügbarkeit hochwertiger Baumaschinen & - GerLte.</p>
                       </div>
                     </div>
