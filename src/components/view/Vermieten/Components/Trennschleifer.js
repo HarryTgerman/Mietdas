@@ -228,23 +228,23 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Breite</label>
-                                  <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
 
                                 <div className="col-sm-6">
                                   <label>Höhe</label>
-                                  <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Schnitttiefe</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.schnitttiefeInput = input}} placeholder="in mm"/>
+                                  <input type="number" className="form-control" ref={(input) => { this.schnitttiefeInput = input}} placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Durchmesser</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="in mm"/>
+                                  <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">

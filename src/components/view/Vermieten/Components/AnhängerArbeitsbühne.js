@@ -262,7 +262,7 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Arbeitshöhe</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.ArbeitshöheInput = input}} placeholder="in m"/>
+                                  <input type="number" className="form-control" ref={(input) => { this.ArbeitshöheInput = input}} placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
@@ -288,22 +288,22 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Gesamtbreite</label>
-                                  <input type="number" ref={(input) => { this.GesamtbreiteInput = input}} className="form-control" placeholder="in m"/>
+                                  <input type="number" ref={(input) => { this.GesamtbreiteInput = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Gesamthöhe</label>
-                                  <input type="number" ref={(input) => { this.GesamthoeheInput  = input}} className="form-control" placeholder="in m"/>
+                                  <input type="number" ref={(input) => { this.GesamthoeheInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Abstüzbreite</label>
-                                  <input type="number" ref={(input) => { this.AbstüzbreiteInput = input}} className="form-control" placeholder="in m"/>
+                                  <input type="number" ref={(input) => { this.AbstüzbreiteInput = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Abstüzlänge</label>
-                                  <input type="number" ref={(input) => { this.AbstüzlängeInput  = input}} className="form-control" placeholder="in m"/>
+                                  <input type="number" ref={(input) => { this.AbstüzlängeInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">

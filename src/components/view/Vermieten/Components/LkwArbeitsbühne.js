@@ -255,12 +255,12 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Arbeitshöhe</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.ArbeitshöheInput = input}} placeholder="in m"/>
+                                  <input type="number" className="form-control" ref={(input) => { this.ArbeitshöheInput = input}} placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Reichweite</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.ReichweiteInput = input}} placeholder="in m"/>
+                                  <input type="number" className="form-control" ref={(input) => { this.ReichweiteInput = input}} placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
@@ -286,12 +286,12 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Breite</label>
-                                  <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in m"/>
+                                  <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Höhe</label>
-                                  <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in m"/>
+                                  <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">

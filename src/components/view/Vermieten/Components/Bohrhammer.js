@@ -222,13 +222,13 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Breite</label>
-                                  <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
 
                                 <div className="col-sm-6">
                                   <label>Länge</label>
-                                  <input type="number" ref={(input) => { this.laengeInput  = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.laengeInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">

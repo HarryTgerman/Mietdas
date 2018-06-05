@@ -287,11 +287,11 @@ artikelHochladen(event) {
 
 
                                     <label>Transportbreite</label>
-                                    <input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.transportbreiteVonInput = input}} className="form-control" placeholder="in cm"/>
                                   </div>
                                   <div className="col-sm-6">
                                     <label>Transporthöhe</label>
-                                    <input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.transporthoeheVonInput  = input}} className="form-control" placeholder="in cm"/>
                                   </div>
                                   <div className="col-sm-6">
                                     <label>Abmessungen</label>

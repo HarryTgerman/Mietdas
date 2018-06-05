@@ -258,22 +258,22 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Ladeboardwand</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.GesamthoeheLadeboarddesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Gesamtbreite</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Gesamtlänge</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Ladehöhe</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.LadehoehedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">

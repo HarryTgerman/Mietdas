@@ -238,7 +238,7 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Arbeitsbreite</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.ArbeitsbreitedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
@@ -253,12 +253,12 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Breite</label>
-                                    <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Höhe</label>
-                                    <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.hoeheInput  = input}} className="form-control" placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">

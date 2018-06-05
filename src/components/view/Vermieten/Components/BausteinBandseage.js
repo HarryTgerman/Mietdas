@@ -213,15 +213,15 @@ artikelHochladen(event) {
 
                                 <div className="col-sm-6">
                                   <label>Schnittlänge</label>
-                                  <input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
                                 <div className="col-sm-6">
                                   <label>Schnittbreite</label>
-                                  <input type="number" ref={(input) => { this.schnittbreiteInput  = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.schnittbreiteInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
                                 <div className="col-sm-6">
                                   <label>Schnitttiefe</label>
-                                  <input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in mm"/>
+                                  <input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in cm"/>
                                 </div>
                                 <div className="col-sm-6">
                                   <label>Gewicht</label>

@@ -238,7 +238,7 @@ onDrop(imageFiles) {
 
                                 <div className="col-sm-6">
                                   <label>Hubhöhe</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.HubhöheInput = input}} placeholder="in m"/>
+                                  <input type="number" className="form-control" ref={(input) => { this.HubhöheInput = input}} placeholder="in cm"/>
                                 </div>
 
                                 <div className="col-sm-6">
