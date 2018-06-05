@@ -25,7 +25,7 @@ class Account extends Component{
       messages: [{}]
     }
 }
-componentWillMount(){
+componentDidMount(){
   firebase.auth().onAuthStateChanged((user)=>{
     const userProfile = firebase.auth().currentUser;
     if(user){

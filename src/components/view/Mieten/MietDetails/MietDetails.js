@@ -763,7 +763,7 @@ componentWillMount(){
                                           Auffahrampe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.inklAuffahrampen} cm</p>
+                                          <p>{this.state.snap.inklAuffahrampen}</p>
                                         </div>
                                       </React.Fragment>
                                       ):(null)}
@@ -773,7 +773,7 @@ componentWillMount(){
                                           Anhängerplane
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.inklAnhängerplane} cm</p>
+                                          <p>{this.state.snap.inklAnhängerplane}</p>
                                         </div>
                                       </React.Fragment>
                                       ):(null)}
@@ -783,7 +783,7 @@ componentWillMount(){
                                           Dreiseitenkipper
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.dreiseitenkipper} cm</p>
+                                          <p>{this.state.snap.dreiseitenkipper}</p>
                                         </div>
                                       </React.Fragment>
                                       ):(null)}

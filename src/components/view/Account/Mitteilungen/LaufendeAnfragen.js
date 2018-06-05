@@ -40,7 +40,7 @@ deleteAnfrage(){
                 <div className="verticle-listing-caption">
 
                   <div className="listing-shot-caption">
-                    <div className="right ">
+                    <div className="right">
                       <Popover>
                       <i className="ti-info LaufendeAnfragen-info"></i>
                       <div className="tooltipbox" ><a onClick={this.deleteAnfrage.bind(this)}> Anfrage rückgängig machen ?</a></div>
