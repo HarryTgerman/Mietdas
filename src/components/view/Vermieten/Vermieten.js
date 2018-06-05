@@ -39,7 +39,15 @@ import Vibrationswalze from './Components/Vibrationswalze'
 import Betoninnenruettler from './Components/Betoninnenruettler'
 import Steinsaege from './Components/Steinsaege'
 import Betonmischer from './Components/Betonmischer'
-import Logo from'../../../img/logo.png'
+import LkwArbeitsbühne from './Components/LkwArbeitsbühne'
+import SelbstfahrendeScherenbühne from './Components/SelbstfahrendeScherenbühne'
+import Teleskopmastbühne from './Components/Teleskopmastbühne'
+import GelenkteleskopArbeitsbühne from './Components/GelenkteleskopArbeitsbühne'
+import TeleskopArbeitsbühne from './Components/TeleskopArbeitsbühne'
+import AnhängerArbeitsbühne from './Components/AnhängerArbeitsbühne'
+import GelenkteleskoparbeitsbühneAufGummiketten from './Components/GelenkteleskoparbeitsbühneAufGummiketten'
+import Teleskopstapler from './Components/Teleskopstapler'
+
 
 import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
 
@@ -148,8 +156,8 @@ onDrop(imageFiles) {
                    {/*Start Header Navigation*/}
                     <div className="navbar-header">
                       <NavLink to="/">
-                        <img src={logo} className="logo logo-display" alt=""/>
-                        <img src={logo} className="logo logo-scrolled" alt=""/>
+                        <img src="../assets/img/logo.png" className="logo logo-display" alt=""/>
+                        <img src="../assets/img/logo.png" className="logo logo-scrolled" alt=""/>
                       </NavLink>
                     </div>
 
