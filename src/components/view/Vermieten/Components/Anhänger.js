@@ -100,6 +100,7 @@ onDrop(imageFiles) {
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
+      return 0
     }
     if (this.inklAnhängerplaneInput.value == "") {
     const alert = "Geben Sie Auskunft über Auffahrrampen"

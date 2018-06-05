@@ -759,7 +759,7 @@ componentWillMount(){
                                       {this.state.snap.inklAuffahrampen?
                                       (<React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Frästiefe
+                                          Auffahrampe
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.inklAuffahrampen} cm</p>
@@ -769,7 +769,7 @@ componentWillMount(){
                                       {this.state.snap.inklAnhängerplane?
                                       (<React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Frästiefe
+                                          Anhängerplane
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.inklAnhängerplane} cm</p>
@@ -779,7 +779,7 @@ componentWillMount(){
                                       {this.state.snap.dreiseitenkipper?
                                       (<React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Frästiefe
+                                          Dreiseitenkipper
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.dreiseitenkipper} cm</p>
@@ -814,6 +814,41 @@ componentWillMount(){
                                       <div className="col-sm-5 col-md-5">
                                         <p>{this.state.snap.cardDesc} </p>
                                       </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="detail-wrapper">
+                								<div className="detail-wrapper-header">
+          							         <h4>Rabattstaffelung</h4>
+                								</div>
+                                <div className="widget-boxed-body">
+                                  <div className="side-list">
+                                    <div className="reviews-box">
+                                    <div className="detailsCategory col-sm-5 col-md-5">
+                                      ab Drei Tagen
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.rabattStaffelung.dreiTage}%</p>
+                                    </div>
+                                    <div className="detailsCategory col-sm-5 col-md-5">
+                                      ab Fünf Tagen
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.rabattStaffelung.fünfTage}%</p>
+                                    </div>
+                                    <div className="detailsCategory col-sm-5 col-md-5">
+                                      ab Zehn Tagen
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.rabattStaffelung.zehnTage}%</p>
+                                    </div>
+                                    <div className="detailsCategory col-sm-5 col-md-5">
+                                      ab 21 Tagen
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.rabattStaffelung.einundzwanzigTage}%</p>
+                                    </div>
                                     </div>
                                   </div>
                                 </div>

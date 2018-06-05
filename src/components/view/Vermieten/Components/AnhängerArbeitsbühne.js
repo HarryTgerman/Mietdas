@@ -113,6 +113,7 @@ onDrop(imageFiles) {
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
+      return 0
     }
 
         const db = firebase.database().ref('app').child('cards').child('anhängerArbeitsbühne');
