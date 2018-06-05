@@ -296,6 +296,8 @@ onDrop(imageFiles) {
                                   <label>Artikelbeschreibung/Mietbedienungen</label>
                                   <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Beschreibe deinen Artikel und nenne deine Mietbedienungen "></textarea>
                                 </div>
+
+
                                 <div className="col-sm-12">
                                   <label>Rabattstaffelung</label>
                                 </div>
@@ -315,6 +317,8 @@ onDrop(imageFiles) {
                                   <p>ab 21 Tagen</p>
                                   <input  type="number" className="h-100 form-control" ref={(input) => { this.rabatt21Input = input}} placeholder="in %"/>
                                 </div>
+
+
 
                                 <div className="col-sm-12">
                                   <label>Preis</label>

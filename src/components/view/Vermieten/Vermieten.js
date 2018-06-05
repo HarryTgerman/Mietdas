@@ -233,7 +233,7 @@ onDrop(imageFiles) {
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
                             <li role="presentation" className=""><a href="#betoninnenruettler" aria-controls="betoninnenruettler" role="tab" data-toggle="tab">Betoninnenrüttler</a></li>
-                            <li role="presentation" className=""><a href="#betonglaeter" aria-controls="betonglaeter" role="tab" data-toggle="tab">Betongläter</a></li>
+                            <li role="presentation" className=""><a href="#betonglaetter" aria-controls="betonglaetter" role="tab" data-toggle="tab">Betonglätter</a></li>
                             <li role="presentation" className=""><a href="#abbruchhammer" aria-controls="abbruchhammer" role="tab" data-toggle="tab">Abbruchhammer</a></li>
                             <li role="presentation" className=""><a href="#betonmischer" aria-controls="betonmischer" role="tab" data-toggle="tab">Betonmischer</a></li>
                             <li role="presentation" className=""><a href="#bohrhammer" aria-controls="bohrhammer" role="tab" data-toggle="tab">Bohrhammer</a></li>

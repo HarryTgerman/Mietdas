@@ -81,6 +81,26 @@ artikelHochladen(event) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
+    if (this.rabattDreiInput.value == "") {
+      const alert = "Fülle Die Rabattstaffelung aus"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
+    if (this.rabattFünfInput.value == "") {
+      const alert = "Fülle Die Rabattstaffelung aus"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
+    if (this.rabattZehnInput.value == "") {
+      const alert = "Fülle Die Rabattstaffelung aus"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
+    if (this.rabatt21Input.value == "") {
+      const alert = "Fülle Die Rabattstaffelung aus"
+      this.setState({alert: alert, showAlert: true})
+      return 0
+    }
     this.setState({
       loading: true,
       imageUpload: false,
@@ -97,6 +117,11 @@ artikelHochladen(event) {
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
+
+        let dreiTage = this.rabattDreiInput.value;
+        let fünfTage = this.rabattFünfInput.value;
+        let zehnTage = this.rabattZehnInput.value;
+        let einundzwanzigTage = this.rabatt21Input.value;
 
         const timeInMs = Date.now();
 
@@ -138,6 +163,12 @@ artikelHochladen(event) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
+                         rabattStaffelung: {
+                           dreiTage: dreiTage,
+                           fünfTage:fünfTage,
+                           zehnTage:zehnTage,
+                           einundzwanzigTage:einundzwanzigTage,
+                         },
                          kategorie:"blocksteinsaege",
                          email: this.props.email,
                          hersteller: hersteller,
@@ -246,6 +277,26 @@ artikelHochladen(event) {
                               <div className="col-sm-12">
                                 <label>Artikelbeschreibung/Mietbedienungen</label>
                                 <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Beschreibe deinen Artikel und nenne deine Mietbedienungen "></textarea>
+                              </div>
+
+                              <div className="col-sm-12">
+                                <label>Rabattstaffelung</label>
+                              </div>
+                              <div className="col-sm-12 col-md-3">
+                                <p>ab Drei Tagen</p>
+                                <input  type="number" className="h-100 form-control" ref={(input) => { this.rabattDreiInput = input}} placeholder="in %"/>
+                              </div>
+                              <div className="col-sm-12 col-md-3">
+                                <p>ab Fünf Tagen</p>
+                                <input  type="number" className="h-100 form-control" ref={(input) => { this.rabattFünfInput = input}} placeholder="in %"/>
+                              </div>
+                              <div className="col-sm-12 col-md-3">
+                                <p>ab 10 Tagen</p>
+                                <input  type="number" className="h-100 form-control" ref={(input) => { this.rabattZehnInput = input}} placeholder="in %"/>
+                              </div>
+                              <div className="col-sm-12 col-md-3">
+                                <p>ab 21 Tagen</p>
+                                <input  type="number" className="h-100 form-control" ref={(input) => { this.rabatt21Input = input}} placeholder="in %"/>
                               </div>
 
 

@@ -208,11 +208,38 @@ handleAuflaufbremse(e){
 handleGesamthoeheLadeboard(e){
   this.setState({ snap: { ...this.state.snap, gesamthoeheLadeboard: e.target.value} })
 }
+handleArbeitshoehe(e){
+  this.setState({ snap: { ...this.state.snap, arbeitshoehe: e.target.value} })
+}
 handleGesamthoeheSpriegel(e){
   this.setState({ snap: { ...this.state.snap, gesamthoeheSpriegel: e.target.value} })
 }
 handleGesamtbreite(e){
   this.setState({ snap: { ...this.state.snap, gesamtbreite: e.target.value} })
+}
+handleAbstuetzlaenge(e){
+  this.setState({ snap: { ...this.state.snap, abstuetzlaenge: e.target.value} })
+}
+handleAbstuetzbreite(e){
+  this.setState({ snap: { ...this.state.snap, abstuetzbreite: e.target.value} })
+}
+handleTransportmasse(e){
+  this.setState({ snap: { ...this.state.snap, transportmasse: e.target.value} })
+}
+handleHubhoehe(e){
+  this.setState({ snap: { ...this.state.snap, hubhoehe: e.target.value} })
+}
+handleAntrieb(e){
+  this.setState({ snap: { ...this.state.snap, antrieb: e.target.value} })
+}
+handleTraglast(e){
+  this.setState({ snap: { ...this.state.snap, traglast: e.target.value} })
+}
+handlePlattform(e){
+  this.setState({ snap: { ...this.state.snap, plattform: e.target.value} })
+}
+handleGesamthoehe(e){
+  this.setState({ snap: { ...this.state.snap, gesamthoehe: e.target.value} })
 }
 handleGesamtlaengeesamtbreite(e){
   this.setState({ snap: { ...this.state.snap, gesamtlaenge: e.target.value} })
@@ -262,8 +289,8 @@ handleLaderaumvolumen(e){
 handleVolumenstrom(e){
   this.setState({ snap: { ...this.state.snap, volumenstrom: e.target.value} })
 }
-handleLeerGewicht(e){
-  this.setState({ snap: { ...this.state.snap, leerGewicht: e.target.value} })
+handleLeergewicht(e){
+  this.setState({ snap: { ...this.state.snap, leergewicht: e.target.value} })
 }
 handleGesamtGewicht(e){
   this.setState({ snap: { ...this.state.snap, gesamtGewicht: e.target.value} })
@@ -699,6 +726,87 @@ handleFuehrerschein(e){
                                           <p>{this.state.snap.gesamtbreite} mm</p>
                                         </div>
                                       </React.Fragment>):(null)}
+                                      {this.state.snap.abstuetzlaenge?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Abstüzlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.abstuetzlaenge} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.abstuetzbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Abstüzbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.abstuetzbreite} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.transportmasse?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Transportmaße
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.transportmasse} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.hubhoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Hubhöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.hubhoehe} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.antrieb?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Antrieb
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.antrieb} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.traglast?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Traglast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.traglast} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.plattform?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Plattform
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.plattform} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamthoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.gesamthoehe} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.arbeitshoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Arbeitshöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <p>{this.state.snap.arbeitshoehe} mm</p>
+                                        </div>
+                                      </React.Fragment>):(null)}
                                       {this.state.snap.gesamtlaenge?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
@@ -852,13 +960,13 @@ handleFuehrerschein(e){
                                           <p>{this.state.snap.volumenstrom} m³/min</p>
                                         </div>
                                       </React.Fragment>):(null)}
-                                      {this.state.snap.leerGewicht?(
+                                      {this.state.snap.leergewicht?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
                                           Leergewicht
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <p>{this.state.snap.leerGewicht} kg</p>
+                                          <p>{this.state.snap.leergewicht} kg</p>
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamtGewicht?(
@@ -1221,6 +1329,15 @@ handleFuehrerschein(e){
                                           <input type="text" className="form-control" onChange={this.handleGesamthoeheLadeboard.bind(this)} value={this.state.snap.gesamthoeheLadeboard} />
                                         </div>
                                       </React.Fragment>):(null)}
+                                      {this.state.snap.arbeitshoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Arbeitshöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleArbeitshoehe.bind(this)} value={this.state.snap.arbeitshoehe} />
+                                        </div>
+                                      </React.Fragment>):(null)}
                                       {this.state.snap.gesamthoeheSpriegel?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
@@ -1237,6 +1354,78 @@ handleFuehrerschein(e){
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <input type="text" className="form-control" onChange={this.handleGesamtbreite.bind(this)} value={this.state.snap.gesamtbreite} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.abstuetzlaenge?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Abstützlänge
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleAbstuetzlaenge.bind(this)} value={this.state.snap.abstuetzlaenge} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.abstuetzbreite?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Abstüzbreite
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleAbstuetzbreite.bind(this)} value={this.state.snap.abstuetzbreite} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.transportmasse?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Transportmaße
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleTransportmasse.bind(this)} value={this.state.snap.transportmasse} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.hubhoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Hubhöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleHubhoehe.bind(this)} value={this.state.snap.hubhoehe} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.antrieb?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Antrieb
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleAntrieb.bind(this)} value={this.state.snap.antrieb} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.traglast?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Traglast
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleTraglast.bind(this)} value={this.state.snap.traglast} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.plattform?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Plattform
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handlePlattform.bind(this)} value={this.state.snap.plattform} />
+                                        </div>
+                                      </React.Fragment>):(null)}
+                                      {this.state.snap.gesamthoehe?(
+                                      <React.Fragment>
+                                        <div className="detailsCategory col-sm-5 col-md-5">
+                                          Gesamthöhe
+                                        </div>
+                                        <div className="col-sm-5 col-md-5">
+                                          <input type="text" className="form-control" onChange={this.handleGesamthoehe.bind(this)} value={this.state.snap.gesamthoehe} />
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamtlaenge?(
@@ -1383,13 +1572,13 @@ handleFuehrerschein(e){
                                           <input type="text" className="form-control" onChange={this.handleVolumenstrom.bind(this)} value={this.state.snap.volumenstrom} />
                                         </div>
                                       </React.Fragment>):(null)}
-                                      {this.state.snap.leerGewicht?(
+                                      {this.state.snap.leergewicht?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
                                           Leergewicht
                                         </div>
                                         <div className="col-sm-5 col-md-5">
-                                          <input type="text" className="form-control" onChange={this.handleLeerGewicht.bind(this)} value={this.state.snap.leerGewicht} />
+                                          <input type="text" className="form-control" onChange={this.handleLeergewicht.bind(this)} value={this.state.snap.leergewicht} />
                                         </div>
                                       </React.Fragment>):(null)}
                                       {this.state.snap.gesamtGewicht?(
