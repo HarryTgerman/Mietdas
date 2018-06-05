@@ -176,6 +176,9 @@ a:hover{
 .gm-style-lw{
 	padding: 0;
 }
+.right{
+	float: right;
+}
 
 .arrow-down-white{
 	position: absolute;
@@ -2619,6 +2622,10 @@ listing Category Style
  /* Position the tooltip text - see examples below! */
 }
 .tooltipbox a:hover{
+	color: #f64625;
+	cursor: pointer;
+}
+.LaufendeAnfragen-info:hover{
 	color: #f64625;
 	cursor: pointer;
 }
