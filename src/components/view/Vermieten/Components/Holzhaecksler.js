@@ -30,11 +30,7 @@ onDrop(imageFiles) {
  artikelHochladen(event) {
 
    event.preventDefault();
-     this.setState({
-       loading: true,
-       imageUpload: false,
 
-     })
 
      if (this.titelInput.value == "") {
       const alert = "Geben Sie den Namen des Artikels ein"
@@ -85,8 +81,13 @@ onDrop(imageFiles) {
     if (this.state.imageFiles == []) {
       const alert = "Laden Sie mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
+      return 0
     }
+    this.setState({
+      loading: true,
+      imageUpload: false,
 
+    })
         const db = firebase.database().ref('app').child('cards').child('holzhaecksler');
         const userId = this.props.user;
         const titel = this.titelInput.value;

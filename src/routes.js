@@ -11,7 +11,6 @@ import Mieten from './components/view/Mieten/Mieten'
 import Logout from './components/Logout/Logout'
 import Account from './components/view/Account/Account'
 import Bezahlung from './components/PaymentMethod/Bezahlung'
-import Artikelbearbeiten from './components/view/Account/Artikelbearbeiten/Artikelbearbeiten'
 import MietDetails from './components/view/Mieten/MietDetails/MietDetails'
 import Footer from './components/Footer/Footer'
 import Impressum from './components/Footer/Impressum'
@@ -250,7 +249,6 @@ sendPwReset(){
                       <Route path='/logout' exact component={Logout}/>
                       <Route path='/benutzeraccount' exact component={Account}/>
                       <Route path='/bezahlung' exact component={Bezahlung}/>
-                      <Route name= 'artikelbearbeiten' path='/artikelbearbeiten/:cardId' component={Artikelbearbeiten}/>
                       <Route name= 'details' path='/details/search=:type/:id' component={MietDetails}/>
                       <Route name= 'anfragen' path='/anfragen/:cardId' component={Reservierung}/>
                       <Route name= 'Vermieten' path='/vermieten' component={Vermieten}/>
