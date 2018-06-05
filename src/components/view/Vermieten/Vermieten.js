@@ -262,6 +262,20 @@ onDrop(imageFiles) {
                            </ul>
                         </li>
                         <li className="dropdown">
+                          <a className="dropdown-toggle" data-toggle="dropdown" href="#">Hebetechnik
+                          <span className="caret"></span></a>
+                          <ul className="dropdown-menu">
+                            <li role="presentation" className=""><a href="#lkwArbeitsbühne" aria-controls="lkwArbeitsbühne" role="tab" data-toggle="tab">LKW-Arbeitsbühne</a></li>
+                            <li role="presentation" className=""><a href="#selbstfahrendeScherenbühne" aria-controls="selbstfahrendeScherenbühne" role="tab" data-toggle="tab">Selbstfahrende-Scherenbühne</a></li>
+                            <li role="presentation" className=""><a href="#teleskopmastbühne" aria-controls="teleskopmastbühne" role="tab" data-toggle="tab">Teleskopmastbühne</a></li>
+                            <li role="presentation" className=""><a href="#gelenkteleskopArbeitsbühne" aria-controls="gelenkteleskopArbeitsbühne" role="tab" data-toggle="tab">Gelenkteleskop-Arbeitsbühne</a></li>
+                            <li role="presentation" className=""><a href="#teleskopArbeitsbühne" aria-controls="teleskopArbeitsbühne" role="tab" data-toggle="tab">Teleskop-Arbeitsbühne</a></li>
+                            <li role="presentation" className=""><a href="#anhängerArbeitsbühne" aria-controls="anhängerArbeitsbühne" role="tab" data-toggle="tab">Anhänger-Arbeitsbühne</a></li>
+                            <li role="presentation" className=""><a href="#gelenkteleskoparbeitsbühneAufGummiketten" aria-controls="gelenkteleskoparbeitsbühneAufGummiketten" role="tab" data-toggle="tab">Gelenkteleskoparbeitsbühne auf Gummiketten</a></li>
+                            <li role="presentation" className=""><a href="#teleskopstapler" aria-controls="teleskopstapler" role="tab" data-toggle="tab">Teleskopstapler</a></li>
+                         </ul>
+                        </li>
+                        <li className="dropdown">
                           <a className="dropdown-toggle" data-toggle="dropdown" href="#">Raumsysteme
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
@@ -282,6 +296,46 @@ onDrop(imageFiles) {
 
                   {/* Tab panes */}
                   <div className="tab-content tabs">
+                    <div role="tabpanel" className="tab-pane fade" id="teleskopstapler">
+                      <Teleskopstapler user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="gelenkteleskoparbeitsbühneAufGummiketten">
+                      <GelenkteleskoparbeitsbühneAufGummiketten user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="anhängerArbeitsbühne">
+                      <AnhängerArbeitsbühne user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="teleskopArbeitsbühne">
+                      <TeleskopArbeitsbühne user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="gelenkteleskopArbeitsbühne">
+                      <GelenkteleskopArbeitsbühne user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="teleskopmastbühne">
+                      <Teleskopmastbühne user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="selbstfahrendeScherenbühne">
+                      <SelbstfahrendeScherenbühne user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
+                    <div role="tabpanel" className="tab-pane fade" id="lkwArbeitsbühne">
+                      <LkwArbeitsbühne user={this.state.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                    </div>
                     <div role="tabpanel" className="tab-pane fade" id="vibrationswalze">
                       <Vibrationswalze user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
@@ -382,7 +436,7 @@ onDrop(imageFiles) {
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
                     </div>
-                    <div role="tabpanel" className="tab-pane fade" id="betonglaeter">
+                    <div role="tabpanel" className="tab-pane fade" id="betonglaetter">
                       <Betonglaetter user={this.state.uid} address={this.state.address}
                         ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
                         bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>

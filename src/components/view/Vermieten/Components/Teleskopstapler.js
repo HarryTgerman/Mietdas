@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class BausteinBandseage extends Component{
+class Teleskopstapler extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -26,7 +26,12 @@ onDrop(imageFiles) {
    })
  }
 
-artikelHochladen(event) {
+
+
+
+
+
+ artikelHochladen(event) {
 
    event.preventDefault();
      this.setState({
@@ -45,24 +50,33 @@ artikelHochladen(event) {
       this.setState({alert: alert, showAlert: true})
       return 0
     }
-
-    if (this.schnittlaengeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnittlänge"
+    if (this.leergewichtInput.value == "") {
+    const alert = "Geben Sie Auskunft über das Leergewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
-    if (this.schnitttiefeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnitttiefe"
-    this.setState({alert: alert, showAlert: true})
-    return 0
-    }
-    if (this.schnittbreiteInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnittbreite"
+    if (this.HubhöheInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Hubhöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GewichtdesArtikelsInput.value == "") {
     const alert = "Geben Sie Auskunft über das Gewicht"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.AntriebInput.value == "") {
+    const alert = "Geben Sie Auskunft über den Antrieb"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.TransportmaßeInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Transportmaße"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
+    if (this.TraglastInput.value == "") {
+    const alert = "Geben Sie Auskunft über die Traglast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -72,7 +86,7 @@ artikelHochladen(event) {
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Legen Sie eine Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
@@ -81,18 +95,25 @@ artikelHochladen(event) {
       this.setState({alert: alert, showAlert: true})
     }
 
-        const db = firebase.database().ref('app').child('cards').child('bausteinBandseage');
+        const db = firebase.database().ref('app').child('cards').child('teleskopstapler');
         const userId = this.props.user;
         const titel = this.titelInput.value;
         const hersteller = this.herstellerInput.value;
-        const schnittlaenge = this.schnittlaengeInput.value;
-        const schnitttiefe = this.schnitttiefeInput.value;
-        const schnittbreite = this.schnittbreiteInput.value;
+        const gesamtbreite = this.GesamtbreiteInput.value;
+        const gesamthoehe = this.GesamthoeheInput.value;
+        const abstuetzbreite = this.AbstüzbreiteInput.value;
+        const abstuetzlaenge = this.AbstüzlängeInput.value;
         const gewicht = this.GewichtdesArtikelsInput.value;
         const preis = this.priceInput.value;
         const desc = this.descInput.value;
+        const hubhoehe = this.HubhöheInput.value;
+        const transportmasse = this.TransportmaßeInput.value;
+        const traglast = this.TraglastInput.value;
+        const antrieb = this.AntriebInput.value;
+        const leergewicht = this.leergewichtInput.value;
 
         const timeInMs = Date.now();
+
 
         const array = []
         const imageFiles = this.state.imageFiles
@@ -132,16 +153,17 @@ artikelHochladen(event) {
                const images = this.state.Arr;
                const imageUrl = this.state.Arr[0]
                db.push({
-                         kategorie:"bausteinBandseage",
+                         kategorie:"teleskopstapler",
                          email: this.props.email,
                          hersteller: hersteller,
-                         schnittlaenge: schnittlaenge,
-                         schnitttiefe: schnitttiefe,
-                         schnittbreite: schnittbreite,
+                         transportmasse: transportmasse,
+                         traglast: traglast,
+                         antrieb: antrieb,
+                         hubhoehe: hubhoehe,
                          cardHeading:titel ,
                          cardPreis: preis,
                          cardDesc: desc,
-                         gewicht: gewicht,
+                         leergewicht: leergewicht,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,
@@ -160,7 +182,7 @@ artikelHochladen(event) {
                          redirect: true
                        })
                      })
-               }
+       }
 
 
 
@@ -181,13 +203,12 @@ artikelHochladen(event) {
 
                    {/* /. ROW  */}
                   <div id="page-inner">
-                    {this.state.loading?(<div className="loader"></div>):(
-                      <div className="row bott-wid">
+  {this.state.loading?(<div className="loader"></div>):(<div className="row bott-wid">
                         <div className="col-md-12 col-sm-12">
                           <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
                             <div className="listing-box-header">
                               <i className="ti-write theme-cl"></i>
-                              <h3>Baustein-Bandsäge Inserieren</h3>
+                              <h3>Teleskopstapler Inserieren</h3>
                               <p>Fülle das Formular vollständig aus</p>
                             </div>
                             <form onSubmit={this.artikelHochladen.bind(this)}>
@@ -202,30 +223,42 @@ artikelHochladen(event) {
                               <div className="row mrg-r-10 mrg-l-10">
                                 <div className="col-sm-6">
                                   <label>Model</label>
-                                  <input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Name des Artikels" />
+                                  <input type="text" className="form-control"  ref={(input) => { this.titelInput = input}} placeholder="Bsp: Apollo 25,6" />
                                 </div>
 
                                 <div className="col-sm-6">
                                   <label>Hersteler</label>
-                                  <input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Zagro" />
+                                  <input type="text" className="form-control"  ref={(input) => { this.herstellerInput = input}} placeholder="Bsp: Kramer" />
                                 </div>
 
-
-                                <div className="col-sm-6">
-                                  <label>Schnittlänge</label>
-                                  <input type="number" ref={(input) => { this.schnittlaengeInput  = input}} className="form-control" placeholder="in cm"/>
-                                </div>
-                                <div className="col-sm-6">
-                                  <label>Schnittbreite</label>
-                                  <input type="number" ref={(input) => { this.schnittbreiteInput  = input}} className="form-control" placeholder="in cm"/>
-                                </div>
-                                <div className="col-sm-6">
-                                  <label>Schnitttiefe</label>
-                                  <input type="number" ref={(input) => { this.schnitttiefeInput  = input}} className="form-control" placeholder="in cm"/>
-                                </div>
                                 <div className="col-sm-6">
                                   <label>Gewicht</label>
                                   <input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Hubhöhe</label>
+                                  <input type="number" className="form-control" ref={(input) => { this.HubhöheInput = input}} placeholder="in cm"/>
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Transportmaße</label>
+                                  <input type="text" className="form-control" ref={(input) => { this.TransportmaßeInput = input}} placeholder="Bsp: Länge: 4,09 m Breite: 1,80 m Höhe: 1,95 m"/>
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Traglast</label>
+                                  <input type="number" className="form-control" ref={(input) => { this.TraglastInput = input}} placeholder="in kg"/>
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Antrieb</label>
+                                  <input type="text" className="form-control" ref={(input) => { this.AntriebInput = input}} placeholder="Bsp: Diesel"/>
+                                </div>
+
+                                <div className="col-sm-6">
+                                  <label>Leergewicht</label>
+                                  <input type="number" className="form-control" ref={(input) => { this.leergewichtInput = input}} placeholder="in kg"/>
                                 </div>
 
                                 <div className="col-sm-6">
@@ -237,7 +270,6 @@ artikelHochladen(event) {
                                   <label>Artikelbeschreibung/Mietbedienungen</label>
                                   <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Beschreibe deinen Artikel und nenne deine Mietbedienungen "></textarea>
                                 </div>
-
 
                               </div>
                               <div className="listing-box-header">
@@ -270,8 +302,7 @@ artikelHochladen(event) {
                             </form>
                           </div>
                         </div>
-                      </div>
-                    )}
+                      </div>)}
 
                   </div>
                 </div>
@@ -280,4 +311,4 @@ artikelHochladen(event) {
         }
     }
 
-export default BausteinBandseage;
+export default Teleskopstapler;

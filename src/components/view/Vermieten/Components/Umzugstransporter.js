@@ -311,32 +311,32 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Länge</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.LaengedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.LaengedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Breite</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.BreitedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Höhe</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.HoehedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Länge der Ladefläche</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.LaengeDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.LaengeDerLadeflaechedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Breite der Ladefläche</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.BreiteDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.BreiteDerLadeflaechedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Höhe der Ladefläche</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.HoeheDerLadeflaechedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.HoeheDerLadeflaechedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
@@ -399,7 +399,7 @@ onDrop(imageFiles) {
                                     <label>Artikelbeschreibung/Mietbedienungen</label>
                                     <textarea className="h-100 form-control" ref={(input) => { this.descInput = input}} placeholder=" Mach Angaben z.B über Transport, Versicherung, Betankung und Reinigung"></textarea>
                                   </div>
-                                  
+
                                 </div>
                                 <div className="listing-box-header">
                                   <i className="ti-gallery theme-cl"></i>

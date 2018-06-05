@@ -265,17 +265,17 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Gesamthöhe (inkl. Spriegel)</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamthoeheSpriegeldesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.GesamthoeheSpriegeldesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Gesamtbreite</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.GesamtbreitedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
                                     <label>Gesamtlänge</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.GesamtlaengedesArtikelsInput = input}} placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">

@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 
 
 
-class Betonglaeter extends Component{
+class Betonglaetter extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -196,7 +196,7 @@ onDrop(imageFiles) {
                             <div className=" full-detail mrg-bot-25 padd-bot-30 padd-top-25">
                               <div className="listing-box-header">
                                 <i className="ti-write theme-cl"></i>
-                                <h3>Betongläter Inserieren</h3>
+                                <h3>Betonglätter Inserieren</h3>
                                 <p>Fülle das Formular vollständig aus</p>
                               </div>
                               <form onSubmit={this.artikelHochladen.bind(this)}>
@@ -222,13 +222,13 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Breite</label>
-                                    <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.breiteInput = input}} className="form-control" placeholder="in cm"/>
                                   </div>
 
 
                                   <div className="col-sm-6">
                                     <label>Länge</label>
-                                    <input type="number" ref={(input) => { this.laengeInput  = input}} className="form-control" placeholder="in mm"/>
+                                    <input type="number" ref={(input) => { this.laengeInput  = input}} className="form-control" placeholder="in cm"/>
                                   </div>
 
                                   <div className="col-sm-6">
@@ -238,7 +238,7 @@ onDrop(imageFiles) {
 
                                   <div className="col-sm-6">
                                     <label>Durchmesser</label>
-                                    <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="in mm"/>
+                                    <input type="number" className="form-control" ref={(input) => { this.durchmesserInput = input}} placeholder="in cm"/>
                                   </div>
 
                                      <div className="col-sm-6">
@@ -296,4 +296,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Betonglaeter;
+export default Betonglaetter;
