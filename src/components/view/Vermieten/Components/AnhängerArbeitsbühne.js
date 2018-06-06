@@ -205,6 +205,7 @@ onDrop(imageFiles) {
                            zehnTage:zehnTage,
                            einundzwanzigTage:einundzwanzigTage,
                          },
+                         gewicht:gewicht,
                          kategorie:"anhängerArbeitsbühne",
                          email: this.props.email,
                          hersteller: hersteller,

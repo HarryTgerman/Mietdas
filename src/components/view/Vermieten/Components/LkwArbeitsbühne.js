@@ -200,6 +200,7 @@ onDrop(imageFiles) {
                            zehnTage:zehnTage,
                            einundzwanzigTage:einundzwanzigTage,
                          },
+                         gewicht:gewicht,
                          kategorie:"lkwArbeitsbühne",
                          email: this.props.email,
                          hersteller: hersteller,

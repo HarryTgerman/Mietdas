@@ -65,9 +65,9 @@ changeLocation(){
                 </div>
               </div>
             </div>):(
-              <div className="listing-shot-info " style={{marginRight:"15px"}}>
+              <div className="listing-shot-info " >
                   <span><label>Adresse eingeben</label></span>
-                  <span ><input style={{width: "70%"}} ref={(input) => { this.inputRef = input}}/><button onClick={this.changeLocation.bind(this)}>aktualisieren</button></span>
+                  <span ><input style={{width: "100%"}} ref={(input) => { this.inputRef = input}} placeholder="bitte vollsständige Adresse eingeben"/><button onClick={this.changeLocation.bind(this)}>aktualisieren</button></span>
               </div>
             )}
             <div className="listing-shot-info rating">

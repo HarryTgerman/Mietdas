@@ -194,6 +194,7 @@ onDrop(imageFiles) {
                            zehnTage:zehnTage,
                            einundzwanzigTage:einundzwanzigTage,
                          },
+                          gewicht:gewicht,
                          kategorie:"TeleskopArbeitsbühne",
                          email: this.props.email,
                          hersteller: hersteller,

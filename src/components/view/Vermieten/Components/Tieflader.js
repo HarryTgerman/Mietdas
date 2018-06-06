@@ -296,6 +296,7 @@ onDrop(imageFiles) {
                                         <option value="Ja">Ja</option>
                                       </select>
                                   </div>
+                                
 
 
                                   <div className="col-sm-6">

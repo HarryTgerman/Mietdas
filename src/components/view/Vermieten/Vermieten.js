@@ -232,9 +232,9 @@ onDrop(imageFiles) {
                           <a className="dropdown-toggle" data-toggle="dropdown" href="#">Baugeräte
                           <span className="caret"></span></a>
                           <ul className="dropdown-menu">
+                          <li role="presentation" className=""><a href="#abbruchhammer" aria-controls="abbruchhammer" role="tab" data-toggle="tab">Abbruchhammer</a></li>
                             <li role="presentation" className=""><a href="#betoninnenruettler" aria-controls="betoninnenruettler" role="tab" data-toggle="tab">Betoninnenrüttler</a></li>
                             <li role="presentation" className=""><a href="#betonglaetter" aria-controls="betonglaetter" role="tab" data-toggle="tab">Betonglätter</a></li>
-                            <li role="presentation" className=""><a href="#abbruchhammer" aria-controls="abbruchhammer" role="tab" data-toggle="tab">Abbruchhammer</a></li>
                             <li role="presentation" className=""><a href="#betonmischer" aria-controls="betonmischer" role="tab" data-toggle="tab">Betonmischer</a></li>
                             <li role="presentation" className=""><a href="#bohrhammer" aria-controls="bohrhammer" role="tab" data-toggle="tab">Bohrhammer</a></li>
                             <li role="presentation" className=""><a href="#erdbohrgeraet" aria-controls="erdbohrgeraet" role="tab" data-toggle="tab">Erdbohrgerät</a></li>

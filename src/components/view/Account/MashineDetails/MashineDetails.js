@@ -12,6 +12,7 @@ class MashineDetails extends Component{
   super(props)
   this.state={
     editBeschreibung:true,
+    editRabatt:true,
     bearbeiten:true,
     loading: false,
     textShort: true,
@@ -35,7 +36,11 @@ componentWillMount(){
             cardId: snap.key,
             imageUrl: snap.val().imageUrl
           },()=>{
-            const images =[{original:this.state.imageUrl, thumbnail:this.state.imageUrl}]
+            if (snap.val().rabattStaffelung == undefined){
+              let noRabatt = {dreiTage: "0",fünfTage: "0",zehnTage: "0",einundzwanzigTage: "0"}
+              this.setState({ snap: { ...this.state.snap, rabattStaffelung: noRabatt } })
+            }
+            const images =[]
               this.state.snap.imageArr.map(img =>{
                 images.push({
                   original: img,
@@ -43,18 +48,10 @@ componentWillMount(){
                 })
               })
               this.setState({
-                images: images
-              })
-            if (this.state.numberOfDays == undefined) {this.setState({numberOfDays : "1 Tag", Diff: 1}) }
-            firebase.database().ref().child('app').child('users/' +this.state.snap.uid)
-            .once('value', snap =>{
-              this.setState({
+                images: images,
                 vermieterLoading: false,
-                vermieter: snap.val().name,
-                vermieterUrl: snap.val().url,
                 loading: true,
               },resolve())
-            })
           })
       })
     })
@@ -105,6 +102,16 @@ saveArtikel(){
 saveBeschreibung(){
   firebase.database().ref('app').child('cards').child(this.state.urlId).child('cardDesc').set(this.state.snap.cardDesc)
   this.setState({editBeschreibung:true})
+}
+
+saveRabatt(){
+  firebase.database().ref('app').child('cards').child(this.state.urlId).child('rabattStaffelung').update({
+    dreiTage:this.state.snap.rabattStaffelung.dreiTage,
+    fünfTage:this.state.snap.rabattStaffelung.fünfTage,
+    zehnTage:this.state.snap.rabattStaffelung.zehnTage,
+    einundzwanzigTage:this.state.snap.rabattStaffelung.einundzwanzigTage,
+  })
+  this.setState({editRabatt:true})
 }
 
 handleInklAnhängerplane(e){
@@ -316,6 +323,44 @@ handleStuetzlast(e){
 handleFuehrerschein(e){
   this.setState({ snap: { ...this.state.snap, fuehrerschein: e.target.value} })
 }
+handleRabattDreiTage(e){
+  let obj = {
+    dreiTage: e.target.value,
+    fünfTage: this.state.snap.rabattStaffelung.fünfTage,
+    zehnTage: this.state.snap.rabattStaffelung.zehnTage,
+    einundzwanzigTage: this.state.snap.rabattStaffelung.einundzwanzigTage,
+  }
+  this.setState({ snap: { ...this.state.snap, rabattStaffelung: obj} })
+}
+handleRabattFünfTage(e){
+  let obj = {
+    dreiTage: this.state.snap.rabattStaffelung.dreiTage,
+    fünfTage: e.target.value,
+    zehnTage: this.state.snap.rabattStaffelung.zehnTage,
+    einundzwanzigTage: this.state.snap.rabattStaffelung.einundzwanzigTage,
+  }
+  this.setState({ snap: { ...this.state.snap, rabattStaffelung: obj} })
+}
+handleRabattZehnTage(e){
+  let obj = {
+    dreiTage: this.state.snap.rabattStaffelung.dreiTage,
+    fünfTage: this.state.snap.rabattStaffelung.fünfTage,
+    zehnTage: e.target.value,
+    einundzwanzigTage: this.state.snap.rabattStaffelung.einundzwanzigTage,
+  }
+  this.setState({ snap: { ...this.state.snap, rabattStaffelung: obj} })
+}
+handleRabattEinundzwanzigTage(e){
+  let obj = {
+    dreiTage: this.state.snap.rabattStaffelung.dreiTage,
+    fünfTage: this.state.snap.rabattStaffelung.fünfTage,
+    zehnTage: this.state.snap.rabattStaffelung.zehnTage,
+    einundzwanzigTage: e.target.value,
+  }
+  this.setState({ snap: { ...this.state.snap, rabattStaffelung: obj} })
+}
+
+
 
 
 
@@ -427,18 +472,18 @@ handleFuehrerschein(e){
                                 <div className="widget-boxed-body">
                                   <div className="side-list">
                                     {this.state.bearbeiten?(<div className="reviews-box">
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Gewicht
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.gewicht} kg</p>
-                                      </div>
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Hersteller
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.hersteller}</p>
-                                      </div>
+                                    {this.state.snap.gewicht?(<div><div className="detailsCategory col-sm-5 col-md-5">
+                                      Gewicht
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.gewicht} kg</p>
+                                    </div></div>):(null)}
+                                  {this.state.snap.hersteller?(<div><div className="detailsCategory col-sm-5 col-md-5">
+                                      Hersteller
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.hersteller}</p>
+                                    </div></div>):(null)}
                                       <div>
                                         {this.state.snap.laenge?
                                         (<React.Fragment>
@@ -447,6 +492,36 @@ handleFuehrerschein(e){
                                           </div>
                                           <div className="col-sm-5 col-md-5">
                                             <p>{this.state.snap.laenge} mm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.materialConLaenge?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Länge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.materialConLaenge} cm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.materialConHoehe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Breite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.materialConHoehe} cm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.materialConBreite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Höhe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.materialConBreite} cm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}
@@ -837,7 +912,7 @@ handleFuehrerschein(e){
                                       {this.state.snap.inklAnhängerplane?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Innenladehöhe
+                                          Inklusive Anhängerplane
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.inklAnhängerplane} mm</p>
@@ -1026,7 +1101,7 @@ handleFuehrerschein(e){
                                       {this.state.snap.dreiseitenkipper?(
                                       <React.Fragment>
                                         <div className="detailsCategory col-sm-5 col-md-5">
-                                          Anhängerlast Gebremst
+                                          Dreiseitenkipper
                                         </div>
                                         <div className="col-sm-5 col-md-5">
                                           <p>{this.state.snap.dreiseitenkipper} kg</p>
@@ -1713,29 +1788,63 @@ handleFuehrerschein(e){
                                   </div>
                                 </div>
                               </div>
-
+                              <div className="editProfile">
+                              <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
+                                  return {editRabatt: !prevState.editRabatt};
+                                })}}>{this.state.editRabatt?("bearbeiten"):("abbrechen")}</a><a> </a>
+    {this.state.editRabatt?(null):(<a className="editProfile" onClick={this.saveRabatt.bind(this)}>speichern</a>)}
+                            </div>
                               <div className="detail-wrapper">
-                								<div className="detail-wrapper-header">
-          							         <h4>Vermieter</h4>
-                								</div>
-                                <div className="widget-boxed-body deatilsBody">
+                                <div className="detail-wrapper-header">
+                                 <h4>Rabattstaffelung</h4>
+                                </div>
+                                <div className="widget-boxed-body">
                                   <div className="side-list">
                                     <div className="reviews-box">
-                                      <div className="review-body">
-                                        <div className="detailsCategory col-sm-12 col-md-5">
-                                          <div className="review-avatar">
-                														<img alt="" src={this.state.vermieterUrl} className=""/>
-                													</div>
+
+                                      {this.state.editRabatt?(
+                                        <div>
+                                          <div className="col-sm-12 col-md-3">
+                                            <p>ab Drei Tagen</p>
+                                            <p>{this.state.snap.rabattStaffelung.dreiTage}%</p>
+                                          </div>
+                                          <div className="col-sm-12 col-md-3">
+                                            <p>ab Fünf Tagen</p>
+                                            <p>{this.state.snap.rabattStaffelung.fünfTage}%</p>
+                                          </div>
+                                          <div className="col-sm-12 col-md-3">
+                                            <p>ab 10 Tagen</p>
+                                            <p>{this.state.snap.rabattStaffelung.zehnTage}%</p>
+                                          </div>
+                                          <div className="col-sm-12 col-md-3">
+                                            <p>ab 21 Tagen</p>
+                                            <p>{this.state.snap.rabattStaffelung.einundzwanzigTage}%</p>
+                                          </div>
                                         </div>
-                                        <div className="col-sm-12 col-md-5">
-                                          <a>{this.state.vermieter}</a>
-                                        </div>
-                                      </div>
+                                          ):(
+                                            <div>
+                                              <div className="col-sm-12 col-md-3">
+                                                <p>ab Drei Tagen</p>
+                                                <input type="number" className="form-control" value={this.state.snap.rabattStaffelung.dreiTage} onChange={this.handleRabattDreiTage.bind(this)}/>
+                                              </div>
+                                              <div className="col-sm-12 col-md-3">
+                                                <p>ab Fünf Tagen</p>
+                                                <input type="number" className="form-control" value={this.state.snap.rabattStaffelung.fünfTage} onChange={this.handleRabattFünfTage.bind(this)}/>
+                                              </div>
+                                              <div className="col-sm-12 col-md-3">
+                                                <p>ab 10 Tagen</p>
+                                                <input type="number" className="form-control" value={this.state.snap.rabattStaffelung.zehnTage} onChange={this.handleRabattZehnTage.bind(this)}/>
+                                              </div>
+                                              <div className="col-sm-12 col-md-3">
+                                                <p>ab 21 Tagen</p>
+                                                <input type="number" className="form-control" value={this.state.snap.rabattStaffelung.einundzwanzigTage} onChange={this.handleRabattEinundzwanzigTage.bind(this)}/>
+                                              </div>
+                                            </div>
+                                      )}
                                     </div>
                                   </div>
                                 </div>
                               </div>
-
 
                 						</div>
                 						{/* End: Listing Detail Wrapper */}

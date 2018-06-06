@@ -180,18 +180,18 @@ componentWillMount(){
                                 <div className="widget-boxed-body">
                                   <div className="side-list">
                                     <div className="reviews-box">
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Gewicht
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.gewicht} kg</p>
-                                      </div>
-                                      <div className="detailsCategory col-sm-5 col-md-5">
-                                        Hersteller
-                                      </div>
-                                      <div className="col-sm-5 col-md-5">
-                                        <p>{this.state.snap.hersteller}</p>
-                                      </div>
+                                    {this.state.snap.gewicht?(<div><div className="detailsCategory col-sm-5 col-md-5">
+                                      Gewicht
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.gewicht} kg</p>
+                                    </div></div>):(null)}
+                                  {this.state.snap.hersteller?(<div><div className="detailsCategory col-sm-5 col-md-5">
+                                      Hersteller
+                                    </div>
+                                    <div className="col-sm-5 col-md-5">
+                                      <p>{this.state.snap.hersteller}</p>
+                                    </div></div>):(null)}
                                       <div>
                                         {this.state.snap.laenge?
                                         (<React.Fragment>
@@ -200,6 +200,36 @@ componentWillMount(){
                                           </div>
                                           <div className="col-sm-5 col-md-5">
                                             <p>{this.state.snap.laenge} cm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.materialConLaenge?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Länge
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.materialConLaenge} cm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.materialConHoehe?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Breite
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.materialConHoehe} cm</p>
+                                          </div>
+                                        </React.Fragment>
+                                        ):(null)}
+                                        {this.state.snap.materialConBreite?
+                                        (<React.Fragment>
+                                          <div className="detailsCategory col-sm-5 col-md-5">
+                                            Höhe
+                                          </div>
+                                          <div className="col-sm-5 col-md-5">
+                                            <p>{this.state.snap.materialConBreite} cm</p>
                                           </div>
                                         </React.Fragment>
                                         ):(null)}

@@ -291,6 +291,10 @@ onDrop(imageFiles) {
               										<label>Gewicht</label>
               										<input type="number" className="form-control" ref={(input) => { this.GewichtdesArtikelsInput = input}} placeholder="in kg"/>
               									</div>
+                                <div className="col-sm-6">
+                                  <label>Preis</label>
+                                  <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
+                                </div>
 
                                 <div className="col-sm-12">
                                   <label>Artikelbeschreibung/Mietbedienungen</label>
@@ -320,10 +324,7 @@ onDrop(imageFiles) {
 
 
 
-                                <div className="col-sm-12">
-                                  <label>Preis</label>
-                                  <input type="number" className="form-control" ref={(input) => { this.priceInput = input}} placeholder="€ Pro Tag"/>
-                                </div>
+
 
 
               								</div>

@@ -195,6 +195,7 @@ onDrop(imageFiles) {
                            zehnTage:zehnTage,
                            einundzwanzigTage:einundzwanzigTage,
                          },
+                         gewicht:gewicht,
                          kategorie:"gelenkteleskopArbeitsbühne",
                          email: this.props.email,
                          hersteller: hersteller,
