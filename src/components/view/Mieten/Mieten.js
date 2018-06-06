@@ -103,9 +103,478 @@ class Mieten extends Component{
 whenGeoCode.then(() =>{
          let previousCards = this.state.cards
          const previousMarker = this.state.markers;
-         let lat = this.state.center.lat - 0.1
+         let lat = this.state.center.lat - 0.5
          let searchCords = this.state.center.lat + this.state.center.lng;
-         firebase.database().ref().child('app').child('cards').child(type).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+
+         if(type == "BAGGER/"){
+           let arr =['minibagger','kompaktbagger','raupenbagger','mobilbagger']
+           arr.map(i=>{
+             firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+              .once('value', snap => {
+               snap.forEach(childSnapshot =>{
+                 previousMarker.push({
+                   kategorie: childSnapshot.val().kategorie,
+                   id: childSnapshot.key,
+                   standOrt: childSnapshot.val().ort,
+                   cardHeading: childSnapshot.val().cardHeading,
+                   cardBewertung: childSnapshot.val().bewertung,
+                   cardImage: childSnapshot.val().imageUrl,
+                   latitude: childSnapshot.val().cords.lat,
+                   longitude: childSnapshot.val().cords.lng,
+                   price: childSnapshot.val().cardPreis,
+                   key: snap.key,
+                   })
+                 previousCards.push ({
+                   id: childSnapshot.key,
+                   kategorie: childSnapshot.val().kategorie,
+                   cardPreis: childSnapshot.val().cardPreis,
+                   cardHeading: childSnapshot.val().cardHeading,
+                   cardBewertung: childSnapshot.val().bewertung,
+                   cardImage: childSnapshot.val().imageUrl,
+                   standOrt: childSnapshot.val().ort,
+                   gewicht: childSnapshot.val().gewicht,
+                   snap: childSnapshot.val(),
+                 })
+               })
+               previousCards.map(i => {
+                 i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+               })
+               previousCards = previousCards.sort(function(a, b){
+                 return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+              });
+               this.setState ({
+                 kat: 'Bagger',
+                 cards: previousCards,
+                 markers: previousMarker
+               })
+             })
+           })
+       }
+       else if(type == "RADLADER/"){
+         let arr =['radlader','kettendumper','raddumper']
+
+         arr.map(i=>{
+           firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+            .once('value', snap => {
+             snap.forEach(childSnapshot =>{
+               previousMarker.push({
+                 kategorie: childSnapshot.val().kategorie,
+                 id: childSnapshot.key,
+                 standOrt: childSnapshot.val().ort,
+                 cardHeading: childSnapshot.val().cardHeading,
+                 cardBewertung: childSnapshot.val().bewertung,
+                 cardImage: childSnapshot.val().imageUrl,
+                 latitude: childSnapshot.val().cords.lat,
+                 longitude: childSnapshot.val().cords.lng,
+                 price: childSnapshot.val().cardPreis,
+                 key: snap.key,
+                 })
+               previousCards.push ({
+                 id: childSnapshot.key,
+                 kategorie: childSnapshot.val().kategorie,
+                 cardPreis: childSnapshot.val().cardPreis,
+                 cardHeading: childSnapshot.val().cardHeading,
+                 cardBewertung: childSnapshot.val().bewertung,
+                 cardImage: childSnapshot.val().imageUrl,
+                 standOrt: childSnapshot.val().ort,
+                 gewicht: childSnapshot.val().gewicht,
+                 snap: childSnapshot.val(),
+               })
+             })
+             previousCards.map(i => {
+               i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+             })
+             previousCards = previousCards.sort(function(a, b){
+               return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+            });
+             this.setState ({
+               kat: 'Radlader',
+               cards: previousCards,
+               markers: previousMarker
+             })
+           })
+         })
+     }
+     else if(type == "ANHÄNGER/"){
+       let arr =['anhänger','kippanhänger','planenanhänger','autotransportanhänger','tieflader']
+
+       arr.map(i=>{
+         firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+          .once('value', snap => {
+           snap.forEach(childSnapshot =>{
+             previousMarker.push({
+               kategorie: childSnapshot.val().kategorie,
+               id: childSnapshot.key,
+               standOrt: childSnapshot.val().ort,
+               cardHeading: childSnapshot.val().cardHeading,
+               cardBewertung: childSnapshot.val().bewertung,
+               cardImage: childSnapshot.val().imageUrl,
+               latitude: childSnapshot.val().cords.lat,
+               longitude: childSnapshot.val().cords.lng,
+               price: childSnapshot.val().cardPreis,
+               key: snap.key,
+               })
+             previousCards.push ({
+               id: childSnapshot.key,
+               kategorie: childSnapshot.val().kategorie,
+               cardPreis: childSnapshot.val().cardPreis,
+               cardHeading: childSnapshot.val().cardHeading,
+               cardBewertung: childSnapshot.val().bewertung,
+               cardImage: childSnapshot.val().imageUrl,
+               standOrt: childSnapshot.val().ort,
+               gewicht: childSnapshot.val().gewicht,
+               snap: childSnapshot.val(),
+             })
+           })
+           previousCards.map(i => {
+             i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+           })
+           previousCards = previousCards.sort(function(a, b){
+             return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+          });
+           this.setState ({
+             kat: 'Anhänger',
+             cards: previousCards,
+             markers: previousMarker
+           })
+         })
+       })
+   }
+   else if(type == "BAUGERÄTE/"){
+     let arr =['abbruchhammer','betonglaetter','betoninnenruettler','betonmischer','bohrhammer','erdbohrgeraet','kernbohrmaschiene',]
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Baugeräte',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+   else if(type == "VERDICHTUNGSTECHNIK/"){
+     let arr =['stampfer',
+   'vibrationsplatte',
+   'grabenwalze',
+   'vibrationswalze']
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Verdichtungstechnik',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+   else if(type == "LANDSCHAFTSTECHNIK/"){
+     let arr =['bodenfraese',
+   'holzhaecksler']
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Landschaftstechnik',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+   else if(type == "SÄGEN UND SCHNEIDER/"){
+     let arr =['trennschleifer',
+   'bausteinBandseage',
+   'blocksteinsaege',
+   'fugenschneider',
+   'steinsaege']
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Sägen und Schneider',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+   else if(type == "RAUMSYSTEME/"){
+     let arr =['materialContainer']
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Raumsysteme',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+   else if(type == "FAHRZEUGE/"){
+     let arr =['pritschenwagen',
+   'umzugstransporter']
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Fahrzeuge',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+   else if(type == "HEBETECHNIK/"){
+     let arr =['teleskopstapler',
+   'teleskopmastbühne',
+   'teleskopArbeitsbühne',
+   'selbstfahrendeScherenbühne',
+   'gelenkteleskoparbeitsbühneAufGummiketten',
+   'lkwArbeitsbühne',
+   'gelenkteleskopArbeitsbühne',
+   'anhängerArbeitsbühne']
+
+     arr.map(i=>{
+       firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+        .once('value', snap => {
+         snap.forEach(childSnapshot =>{
+           previousMarker.push({
+             kategorie: childSnapshot.val().kategorie,
+             id: childSnapshot.key,
+             standOrt: childSnapshot.val().ort,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             latitude: childSnapshot.val().cords.lat,
+             longitude: childSnapshot.val().cords.lng,
+             price: childSnapshot.val().cardPreis,
+             key: snap.key,
+             })
+           previousCards.push ({
+             id: childSnapshot.key,
+             kategorie: childSnapshot.val().kategorie,
+             cardPreis: childSnapshot.val().cardPreis,
+             cardHeading: childSnapshot.val().cardHeading,
+             cardBewertung: childSnapshot.val().bewertung,
+             cardImage: childSnapshot.val().imageUrl,
+             standOrt: childSnapshot.val().ort,
+             gewicht: childSnapshot.val().gewicht,
+             snap: childSnapshot.val(),
+           })
+         })
+         previousCards.map(i => {
+           i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+         })
+         previousCards = previousCards.sort(function(a, b){
+           return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+        });
+         this.setState ({
+           kat: 'Hebetechnik',
+           cards: previousCards,
+           markers: previousMarker
+         })
+       })
+     })
+   }
+
+
+       else{
+           firebase.database().ref().child('app').child('cards').child(type).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
           .once('value', snap => {
             console.log("hier die Liste", snap.val());
             snap.forEach(childSnapshot =>{
@@ -147,8 +616,18 @@ whenGeoCode.then(() =>{
             })
           })
 
-       })
+       }
+     })
 }
+
+
+
+
+
+
+
+
+
 
   handleFormSubmit1 = (e) => {
     e.preventDefault();
@@ -193,8 +672,476 @@ whenGeoCode.then(() =>{
 whenGeoCode.then(() =>{
       let previousCards = this.state.cards
       const previousMarker = this.state.markers;
-      let lat = this.state.center.lat - 0.1
+      let lat = this.state.center.lat -0.5
       let searchCords = this.state.center.lat + this.state.center.lng;
+
+      if(this.state.selectValue.value == "BAGGER"){
+        let arr =['minibagger','kompaktbagger','raupenbagger','mobilbagger']
+
+        arr.map(i=>{
+          firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+           .once('value', snap => {
+            snap.forEach(childSnapshot =>{
+              previousMarker.push({
+                kategorie: childSnapshot.val().kategorie,
+                id: childSnapshot.key,
+                standOrt: childSnapshot.val().ort,
+                cardHeading: childSnapshot.val().cardHeading,
+                cardBewertung: childSnapshot.val().bewertung,
+                cardImage: childSnapshot.val().imageUrl,
+                latitude: childSnapshot.val().cords.lat,
+                longitude: childSnapshot.val().cords.lng,
+                price: childSnapshot.val().cardPreis,
+                key: snap.key,
+                })
+              previousCards.push ({
+                id: childSnapshot.key,
+                kategorie: childSnapshot.val().kategorie,
+                cardPreis: childSnapshot.val().cardPreis,
+                cardHeading: childSnapshot.val().cardHeading,
+                cardBewertung: childSnapshot.val().bewertung,
+                cardImage: childSnapshot.val().imageUrl,
+                standOrt: childSnapshot.val().ort,
+                gewicht: childSnapshot.val().gewicht,
+                snap: childSnapshot.val(),
+              })
+            })
+            previousCards.map(i => {
+              i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+            })
+            previousCards = previousCards.sort(function(a, b){
+              return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+           });
+            this.setState ({
+              kat: 'Bagger',
+              cards: previousCards,
+              markers: previousMarker
+            })
+          })
+        })
+    }
+    else if(this.state.selectValue.value == "RADLADER"){
+      let arr =['radlader','kettendumper','raddumper']
+
+      arr.map(i=>{
+        firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+         .once('value', snap => {
+          snap.forEach(childSnapshot =>{
+            previousMarker.push({
+              kategorie: childSnapshot.val().kategorie,
+              id: childSnapshot.key,
+              standOrt: childSnapshot.val().ort,
+              cardHeading: childSnapshot.val().cardHeading,
+              cardBewertung: childSnapshot.val().bewertung,
+              cardImage: childSnapshot.val().imageUrl,
+              latitude: childSnapshot.val().cords.lat,
+              longitude: childSnapshot.val().cords.lng,
+              price: childSnapshot.val().cardPreis,
+              key: snap.key,
+              })
+            previousCards.push ({
+              id: childSnapshot.key,
+              kategorie: childSnapshot.val().kategorie,
+              cardPreis: childSnapshot.val().cardPreis,
+              cardHeading: childSnapshot.val().cardHeading,
+              cardBewertung: childSnapshot.val().bewertung,
+              cardImage: childSnapshot.val().imageUrl,
+              standOrt: childSnapshot.val().ort,
+              gewicht: childSnapshot.val().gewicht,
+              snap: childSnapshot.val(),
+            })
+          })
+          previousCards.map(i => {
+            i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+          })
+          previousCards = previousCards.sort(function(a, b){
+            return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+         });
+          this.setState ({
+            kat: 'Radlader',
+            cards: previousCards,
+            markers: previousMarker
+          })
+        })
+      })
+  }
+  else if(this.state.selectValue.value == "ANHÄNGER"){
+    let arr =['anhänger','kippanhänger','planenanhänger','autotransportanhänger','tieflader']
+
+    arr.map(i=>{
+      firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+       .once('value', snap => {
+        snap.forEach(childSnapshot =>{
+          previousMarker.push({
+            kategorie: childSnapshot.val().kategorie,
+            id: childSnapshot.key,
+            standOrt: childSnapshot.val().ort,
+            cardHeading: childSnapshot.val().cardHeading,
+            cardBewertung: childSnapshot.val().bewertung,
+            cardImage: childSnapshot.val().imageUrl,
+            latitude: childSnapshot.val().cords.lat,
+            longitude: childSnapshot.val().cords.lng,
+            price: childSnapshot.val().cardPreis,
+            key: snap.key,
+            })
+          previousCards.push ({
+            id: childSnapshot.key,
+            kategorie: childSnapshot.val().kategorie,
+            cardPreis: childSnapshot.val().cardPreis,
+            cardHeading: childSnapshot.val().cardHeading,
+            cardBewertung: childSnapshot.val().bewertung,
+            cardImage: childSnapshot.val().imageUrl,
+            standOrt: childSnapshot.val().ort,
+            gewicht: childSnapshot.val().gewicht,
+            snap: childSnapshot.val(),
+          })
+        })
+        previousCards.map(i => {
+          i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+        })
+        previousCards = previousCards.sort(function(a, b){
+          return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+       });
+        this.setState ({
+          kat: 'Anhänger',
+          cards: previousCards,
+          markers: previousMarker
+        })
+      })
+    })
+}
+else if(this.state.selectValue.value == "BAUGERÄTE"){
+  let arr =['abbruchhammer','betonglaetter','betoninnenruettler','betonmischer','bohrhammer','erdbohrgeraet','kernbohrmaschiene',]
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Baugeräte',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+else if(this.state.selectValue.value == "VERDICHTUNGSTECHNIK"){
+  let arr =['stampfer',
+'vibrationsplatte',
+'grabenwalze',
+'vibrationswalze']
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Verdichtungstechnik',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+else if(this.state.selectValue.value == "LANDSCHAFTSTECHNIK"){
+  let arr =['bodenfraese',
+'holzhaecksler']
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Landschaftstechnik',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+else if(this.state.selectValue.value == "SÄGEN UND SCHNEIDER"){
+  let arr =['trennschleifer',
+'bausteinBandseage',
+'blocksteinsaege',
+'fugenschneider',
+'steinsaege']
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Sägen und Schneider',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+else if(this.state.selectValue.value == "RAUMSYSTEME"){
+  let arr =['materialContainer']
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Raumsysteme',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+else if(this.state.selectValue.value == "FAHRZEUGE"){
+  let arr =['pritschenwagen',
+'umzugstransporter']
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Fahrzeuge',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+else if(this.state.selectValue.value == "HEBETECHNIK"){
+  let arr =['teleskopstapler',
+'teleskopmastbühne',
+'teleskopArbeitsbühne',
+'selbstfahrendeScherenbühne',
+'gelenkteleskoparbeitsbühneAufGummiketten',
+'lkwArbeitsbühne',
+'gelenkteleskopArbeitsbühne',
+'anhängerArbeitsbühne']
+
+  arr.map(i=>{
+    firebase.database().ref().child('app').child('cards').child(i).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
+     .once('value', snap => {
+      snap.forEach(childSnapshot =>{
+        previousMarker.push({
+          kategorie: childSnapshot.val().kategorie,
+          id: childSnapshot.key,
+          standOrt: childSnapshot.val().ort,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          latitude: childSnapshot.val().cords.lat,
+          longitude: childSnapshot.val().cords.lng,
+          price: childSnapshot.val().cardPreis,
+          key: snap.key,
+          })
+        previousCards.push ({
+          id: childSnapshot.key,
+          kategorie: childSnapshot.val().kategorie,
+          cardPreis: childSnapshot.val().cardPreis,
+          cardHeading: childSnapshot.val().cardHeading,
+          cardBewertung: childSnapshot.val().bewertung,
+          cardImage: childSnapshot.val().imageUrl,
+          standOrt: childSnapshot.val().ort,
+          gewicht: childSnapshot.val().gewicht,
+          snap: childSnapshot.val(),
+        })
+      })
+      previousCards.map(i => {
+        i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
+      })
+      previousCards = previousCards.sort(function(a, b){
+        return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+     });
+      this.setState ({
+        kat: 'Hebetechnik',
+        cards: previousCards,
+        markers: previousMarker
+      })
+    })
+  })
+}
+      else{
       firebase.database().ref().child('app').child('cards').child(this.state.selectValue.value).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
        .once('value', snap => {
          snap.forEach(childSnapshot =>{
@@ -234,8 +1181,8 @@ whenGeoCode.then(() =>{
            markers: previousMarker
          })
        })
-    })
-
+     }
+  })
 }
 
 
@@ -336,22 +1283,22 @@ whenGeoCode.then(() =>{
                                     placeholder={this.state.selectValue.label}
                                     options={[
 
-                                      { value: '', label: <strong>BAGGER</strong>},
+                                      { value: 'BAGGER', label: <strong>BAGGER</strong>},
                                       { value: 'minibagger', label: 'Minibagger' },
                                       { value: 'kompaktbagger', label: 'Kompaktbagger' },
                                       { value: 'raupenbagger', label: 'Raupenbagger' },
                                       { value: 'mobilbagger', label: 'Mobilbagger' },
-                                      { value: '', label: <strong>RADLADER</strong>},
+                                      { value: 'RADLADER', label: <strong>RADLADER</strong>},
                                       { value: 'radlader', label: 'Radlader' },
                                       { value: 'kettendumper', label: 'Kettendumper' },
                                       { value: 'raddumper', label: 'Raddumper' },
-                                      { value: '', label: <strong>ANHÄNGER :</strong>},
+                                      { value: 'ANHÄNGER', label: <strong>ANHÄNGER</strong>},
                                       { value: 'anhänger', label: 'Anhänger' },
                                       { value: 'kippanhänger', label: 'Kippanhänger' },
                                       { value: 'planenanhänger', label: 'Planenanhänger' },
                                       { value: 'autotransportanhänger', label: 'Autotransportanhänger' },
                                       { value: 'tieflader', label: 'Tieflader' },
-                                      { value: '', label: <strong>BAUGERÄTE :</strong>},
+                                      { value: 'BAUGERÄTE', label: <strong>BAUGERÄTE</strong>},
                                       { value: 'abbruchhammer', label: 'Abbruchhammer' },
                                       { value: 'betonglaetter', label: 'Betonglätter' },
                                       { value: 'betoninnenruettler', label: 'Betoninnenrüttler' },
@@ -359,26 +1306,26 @@ whenGeoCode.then(() =>{
                                       { value: 'bohrhammer', label: 'Bohrhammer' },
                                       { value: 'erdbohrgeraet', label: 'Erdbohrgerät' },
                                       { value: 'kernbohrmaschiene', label: 'Kernbohrmaschiene' },
-                                      { value: '', label: <strong>VERDICHTUNGSTECHNIK</strong>},
+                                      { value: 'VERDICHTUNGSTECHNIK', label: <strong>VERDICHTUNGSTECHNIK</strong>},
                                       { value: 'stampfer', label: 'Stampfer' },
                                       { value: 'vibrationsplatte', label: 'Vibrationsplatte' },
                                       { value: 'grabenwalze', label: 'Grabenwalze' },
                                       { value: 'vibrationswalze', label: 'Vibrationswalze' },
-                                      { value: '', label: <strong>LANDSCHAFTSTECHNIK</strong>},
+                                      { value: 'LANDSCHAFTSTECHNIK', label: <strong>LANDSCHAFTSTECHNIK</strong>},
                                       { value: 'bodenfraese', label: 'Bodenfräse' },
                                       { value: 'holzhaecksler', label: 'Holzhäcksler' },
-                                      { value: '', label: <strong>SÄGEN UND SCHNEIDER</strong>},
+                                      { value: 'SÄGEN UND SCHNEIDER', label: <strong>SÄGEN UND SCHNEIDER</strong>},
                                       { value: 'trennschleifer', label: 'Trennschleifer' },
                                       { value: 'bausteinBandseage', label: 'Baustein Bandsäge' },
                                       { value: 'blocksteinsaege', label: 'Blocksteinsäge' },
                                       { value: 'fugenschneider', label: 'Fugenschneider' },
                                       { value: 'steinsaege', label: 'Steinsäge' },
-                                      { value: '', label: <strong>RAUMSYSTEME</strong>},
+                                      { value: 'RAUMSYSTEME', label: <strong>RAUMSYSTEME</strong>},
                                       { value: 'materialContainer', label: 'Materialcontainer' },
-                                      { value: '', label: <strong>FAHRZEUGE</strong>},
+                                      { value: 'FAHRZEUGE', label: <strong>FAHRZEUGE</strong>},
                                       { value: 'pritschenwagen', label: 'Pritschenwagen' },
                                       { value: 'umzugstransporter', label: 'Umzugstransporter' },
-                                      { value: '', label: <strong>HEBETECHNIK</strong>},
+                                      { value: 'HEBETECHNIK', label: <strong>HEBETECHNIK</strong>},
                                       { value: 'teleskopstapler', label: 'Teleskopstapler' },
                                       { value: 'teleskopmastbühne', label: 'Teleskopmastbühne' },
                                       { value: 'teleskopArbeitsbühne', label: 'Teleskop-Arbeitsbühne' },
