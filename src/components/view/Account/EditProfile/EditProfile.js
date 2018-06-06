@@ -115,6 +115,7 @@ handleChangeName(event) {
       }
     }
     checkIban(e) {
+
       if (this.ibanInput.value.length != 22){
         const error = "Iban muss 22 Zeichen lang sein.";
         this.setState({ibanError: error, isError: true, iban: e.target.value})
@@ -131,7 +132,7 @@ handleChangeName(event) {
       }
     }
     checkInhaber(e) {
-      if (this.inhaberInput.value.length < 4){
+       if (this.inhaberInput.value.length < 4){
         const error = "Bitte geben Sie den vollstädigen Namen des Konotinhabers ein.";
         this.setState({inhaberError: error, isError: true,inhaber: e.target.value})
      }else{
@@ -139,16 +140,23 @@ handleChangeName(event) {
       }
     }
     checkBankName(e) {
+
       if (this.inhaberInput.value.length < 2){
-        const error = "Bitte geben Sie den vollstädigen Namen des Konotinhabers ein.";
+        const error = "Bitte geben Sie den Namen der Bank ein.";
         this.setState({bankNameError: error, isError: true,bankName: e.target.value})
      }else{
         this.setState({bankNameError: '', isError: false,bankName: e.target.value})
       }
     }
     checkPaypal(e) {
-
-        this.setState({paypal: e.target.value})
+      var str = e.target.value;
+      var n = str.includes("paypal.me/")
+      if (n){
+        this.setState({paypalError: '', isError: false,paypal: e.target.value})
+     }else{
+       const error = "bitte geben den PayPal.Me Link im folgenden Format an: paypal.me/mustename";
+       this.setState({paypalError: error, isError: true,paypal: e.target.value})
+      }
 
     }
 
@@ -191,29 +199,51 @@ saveLocation(){
 
 }
 saveBankData(){
-  if (this.state.paypal == "optional angeben"){
-    firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
-      iban: this.state.iban,
-      bic: this.state.bic,
-      kontoinhaber: this.state.inhaber,
-      bankName: this.state.bankName,
-    })
-    this.setState({
-        editBankData: false,
-    })
-  }else {
-    firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
-      iban: this.state.iban,
-      bic: this.state.bic,
-      kontoinhaber: this.state.inhaber,
-      bankName: this.state.bankName,
-      paypal: this.state.paypal
-    })
-    this.setState({
-        editBankData: false,
-    })
+  if(this.state.kontoinhaber == 'bitte angeben'){
+    const error = "Bitte geben Sie den vollstädigen Namen des Konotinhabers ein.";
+    this.setState({inhaberError: error, isError: true})
+    return 0
   }
-
+  else if(this.state.bic == 'bitte angeben'){
+    const error = "BIC muss zwischen 8 und 11 zeichen lang sein.";
+    this.setState({bicError: error, isError: true})
+    return 0
+  }
+  else if(this.state.bankName == 'bitte angeben'){
+    const error = "Bitte geben Sie den Namen der Bank ein.";
+    this.setState({bankNameError: error, isError: true})
+    return 0
+  }
+  else if(this.state.iban == 'bitte angeben'){
+    const error = "Iban muss 22 Zeichen lang sein.";
+    this.setState({ibanError: error, isError: true})
+    return 0
+  }
+  if(this.state.isError){return 0}
+  else{
+      if (this.state.paypal == "optional angeben"){
+      firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
+        iban: this.state.iban,
+        bic: this.state.bic,
+        kontoinhaber: this.state.inhaber,
+        bankName: this.state.bankName,
+      })
+      this.setState({
+          editBankData: false,
+      })
+    }else {
+      firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
+        iban: this.state.iban,
+        bic: this.state.bic,
+        kontoinhaber: this.state.inhaber,
+        bankName: this.state.bankName,
+        paypal: this.state.paypal
+      })
+      this.setState({
+          editBankData: false,
+      })
+    }
+  }
 }
 componentDidMount(){
   if (this.props.showBankData){
@@ -281,15 +311,11 @@ componentDidMount(){
                         <form>
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-sm-6">
-                              <label>Straße</label>
+                              <label>Straße + Hausnummer</label>
                               {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.straßeInput = input; }} onChange={this.checkStrasse.bind(this)} value={this.state.straße}/><p className="errorMessage">{this.state.strasseError}</p></div>)
                               :(<p>{this.state.straße}</p>)}
                             </div>
-                            <div className="col-sm-6">
-                              <label>Rechnungsadresse (Straße Plz Stadt)</label>
-                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsadresse.bind(this)} value={this.state.rechnungsadresse} /><p className="errorMessage">{this.state.rechnungsadresseError}</p></div>)
-                              :(<p>{this.state.rechnungsadresse}</p>)}
-                            </div>
+
                             <div className="col-sm-6">
                               <label>Stadt</label>
                               {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt.bind(this)} value={this.state.stadt} /><p className="errorMessage">{this.state.stadtError}</p></div>)
@@ -300,10 +326,15 @@ componentDidMount(){
                               {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.plzInput = input; }} onChange={this.checkPlz.bind(this)} value={this.state.plz}/><p className="errorMessage">{this.state.plzError}</p></div>)
                               :(<p>{this.state.plz}</p>)}
                             </div>
-                            <div className="col-sm-12">
+                            <div className="col-sm-6">
                               <label>Bundesland</label>
                               {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.bundeslandInput = input; }} onChange={this.checkBundesland.bind(this)} value={this.state.bundesLand} /><p className="errorMessage">{this.state.bundeslandError}</p></div>)
                               :(<p>{this.state.bundesLand}</p>)}
+                            </div>
+                            <div className="col-sm-6">
+                              <label>Rechnungsadresse (Straße Plz Stadt)</label>
+                              {this.state.editLocation ?(<div><input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }} onChange={this.checkRechnungsadresse.bind(this)} value={this.state.rechnungsadresse} /><p className="errorMessage">{this.state.rechnungsadresseError}</p></div>)
+                              :(<p>{this.state.rechnungsadresse}</p>)}
                             </div>
                             <div className="editProfile">
                             <a className="editProfile" onClick={()=>{  this.setState((prevState)=>{
@@ -383,6 +414,7 @@ componentDidMount(){
                                         <input onChange={this.checkPaypal.bind(this)} ref={(input) => { this.paypalInput = input; }} type="text" className="form-control" placeholder="z.b. paypal.me/maxmustermann" />
                                         <span className="input-group-addon"><span className="glyphicon glyphicon-lock"></span></span>
                                       </div>
+                                       <p className="errorMessage">{this.state.paypalError}</p>
                                       <div >
                                         <div className="card card-body">
                                           Mit einem PayPal.Me-Link können Sie persönliche oder geschäftliche Zahlungen von anderen über PayPal anfordern und empfangen.

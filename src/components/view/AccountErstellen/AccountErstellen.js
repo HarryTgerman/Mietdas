@@ -134,7 +134,7 @@ createUserProfil(event){
     const name = this.nameInput.value;
     const email = this.emailInput.value;
     const date = this.dateInput.value;
-    const straße = this.straßeInput.value;
+    const straße = this.straßeInput.value +" "+ this.hausNummerInput.value;
     const stadt = this.stadtInput.value;
     const plz = this.plzInput.value
     const rechnungadresse = this.rechnungsadresseInput.value;
@@ -143,7 +143,6 @@ createUserProfil(event){
     const telefon = this.nummerInput.value;
     const userImage =  this.profilePic.files[0];
     const userId = this.state.uid;
-    const land = this.landInput.value;
     const bundesLand = this.bundeslandInput.value;
     const user = firebase.auth().currentUser;
 
@@ -171,7 +170,6 @@ createUserProfil(event){
                           straße: straße,
                           stadt: stadt,
                           plz:plz,
-                          land: land,
                           bundesLand: bundesLand,
                           ort: ort,
                           telefon: telefon,
@@ -204,7 +202,6 @@ createUserProfil(event){
                           straße: straße,
                           stadt: stadt,
                           plz:plz,
-                          land: land,
                           bundesLand: bundesLand,
                           ort: ort,
                           telefon: telefon,
@@ -357,9 +354,11 @@ handleChange(event){
                                 <p className="errorMessage">{this.state.strasseError}</p>
                               </div>
                               <div className="col-sm-6">
-                                <label>Rechnungsadresse</label>
-                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }}  placeholder="Vollständige Adresse"/>
+                                <label>Hausnummer</label>
+                                <input type="number" className="form-control" ref={(input) => { this.hausNummerInput = input; }} placeholder="Hausnummer"/>
+                                <p className="errorMessage">{this.state.hausNummern}</p>
                               </div>
+
                               <div className="col-sm-6">
                                 <label>Stadt</label>
                                 <input type="text" className="form-control" ref={(input) => { this.stadtInput = input; }} onChange={this.checkStadt.bind(this)} placeholder="Stadt"/>
@@ -394,9 +393,8 @@ handleChange(event){
                                   <p className="errorMessage">{this.state.bundeslandError}</p>
                               </div>
                               <div className="col-sm-6">
-                                <label>Land</label>
-                                <input type="text" className="form-control" ref={(input) => { this.landInput = input; }} onChange={this.checkLand.bind(this)} placeholder="Deutschland"/>
-                                <p className="errorMessage">{this.state.landError}</p>
+                                <label>Rechnungsadresse</label>
+                                <input type="text" className="form-control" ref={(input) => { this.rechnungsadresseInput = input; }}  placeholder="Vollständige Adresse"/>
                               </div>
                             </div>
                           </form>

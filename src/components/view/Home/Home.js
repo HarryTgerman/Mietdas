@@ -229,6 +229,9 @@ scrollToSection4(){
                                             { value: 'gelenkteleskoparbeitsbühneAufGummiketten', label: 'Gelenkteleskoparbeitsbühne auf Gummiketten' },
                                             { value: 'lkwArbeitsbühne', label: 'LKW Arbeitsbühne' },
                                             { value: 'gelenkteleskopArbeitsbühne', label: 'Gelenkteleskop-Arbeitsbühne' },
+                                            { value: 'anhängerArbeitsbühne', label: 'Anhänger-Arbeitsbühne' },
+
+
                                        ]}
 
                                         />
@@ -307,17 +310,17 @@ scrollToSection4(){
                                   <div ref={(section) => { this.section3 = section; }} className="col-md-4 col-sm-12">
                                     <div className="listing-shot grid-style">
                                       <div className="listing-shot-img">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2FJErCZbfivYS4jpWsPqqi0xAuUPx2%2Fartikel%2FTB%20250%2F465cbee7-afc6-457a-a072-6f2fc5dcf6dd.jpg?alt=media&token=e70c0013-f6e4-4359-86bc-27126c320b54"  className="img-responsive" alt=""/>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2F38pcAMH9VNTSNBTa7WDTjh5sMq12%2Fartikel%2FXt260%2FIMG_20170425_181736.jpg?alt=media&token=e519664d-3019-40b8-a409-a4a5dca473bf"  className="img-responsive" alt=""/>
                                         <span className="listing-price">160€</span>
                                       </div>
                                       <div className="listing-shot-caption">
-                                        <h4 style={{marginBottom: "10px"}}>Takeuchi TB 250 4965Kg</h4>
-                                        <p className="listing-location">76726 Germersheim</p>
+                                        <h4 style={{marginBottom: "10px"}}>Dino Xt260</h4>
+                                        <p className="listing-location">77694 Kehl</p>
                                       </div>
                                       <div className="listing-shot-info rating">
                                         <div className="row extra">
                                           <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                            <Link Link style={{ textDecoration: 'none' }} to='/details/search=kompaktbagger/-LDGM3hU1fQGagvbQ86l'><a href="#" className="detail-link">Gehe zu</a></Link>
+                                            <Link Link style={{ textDecoration: 'none' }} to='/details/search=anhängerArbeitsbühne/-LEItX9SBIv78x1nUKjQ'><a href="#" className="detail-link">Gehe zu</a></Link>
                                           </div>
                                         </div>
                                       </div>
@@ -346,17 +349,17 @@ scrollToSection4(){
                                 <div className="col-md-4 col-sm-12">
                                   <div className="listing-shot grid-style">
                                     <div className="listing-shot-img">
-                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2FJErCZbfivYS4jpWsPqqi0xAuUPx2%2Fartikel%2FU%2010-3%2FKubota%20U%2010%20.JPG?alt=media&token=db1f941d-0b12-451e-9755-ca4c26e3df54"  className="img-responsive" alt=""/>
-                                      <span className="listing-price">90€</span>
+                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2F5pBpsl0Tr0YFhrIoYEjuZsBaOjH2%2Fartikel%2FTB%20215%20R%2FTB%20215%20R.JPG?alt=media&token=e04d4af6-024f-4a4b-826b-63abb43e7619"  className="img-responsive" alt=""/>
+                                      <span className="listing-price">95€</span>
                                     </div>
                                     <div className="listing-shot-caption">
-                                      <h4 style={{marginBottom: "10px"}}>Kubota U 10-3 1000Kg</h4>
-                                      <p className="listing-location">76726 Germersheim</p>
+                                      <h4 style={{marginBottom: "10px"}}>Takeuchi TB 215 R 1500Kg</h4>
+                                      <p className="listing-location">64319 Pfungstadt</p>
                                     </div>
                                     <div className="listing-shot-info rating">
                                       <div className="row extra">
                                         <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                                          <Link Link style={{ textDecoration: 'none' }} to='/details/search=minibagger/-LDGfSd8oC7Evl_X4Bpj'><a href="#" className="detail-link">Gehe zu</a></Link>
+                                          <Link Link style={{ textDecoration: 'none' }} to='details/search=minibagger/-LEErNPPW3oPOQGXNK6F'><a href="#" className="detail-link">Gehe zu</a></Link>
                                         </div>
                                       </div>
                                     </div>

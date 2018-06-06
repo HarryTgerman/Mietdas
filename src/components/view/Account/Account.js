@@ -59,7 +59,7 @@ firedata() {
             "blocksteinsaege","bodenfraese","bohrhammer","erdbohrgeraet","fugenschneider","grabenwalze","holzhaecksler",
           "kernbohrmaschiene","kompressor","materialContainer","motorradanhänger","planenanhänger","pritschenwagen",
         "steinsaege","stromerzeuger","trennschleifer","umzugstransporter","vibrationswalze", "teleskopstapler","teleskopmastbühne",
-        "teleskopArbeitsbühne","selbstfahrendeScherenbühne",
+        "teleskopArbeitsbühne","selbstfahrendeScherenbühne","betonglaetter",
         "lkwArbeitsbühne","gelenkteleskoparbeitsbühneAufGummiketten","gelenkteleskopArbeitsbühne","anhängerArbeitsbühne"]
   const previousCards = [];
   array.map((i) =>

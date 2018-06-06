@@ -386,7 +386,7 @@ whenGeoCode.then(() =>{
                                       { value: 'gelenkteleskoparbeitsbühneAufGummiketten', label: 'Gelenkteleskoparbeitsbühne auf Gummiketten' },
                                       { value: 'lkwArbeitsbühne', label: 'LKW Arbeitsbühne' },
                                       { value: 'gelenkteleskopArbeitsbühne', label: 'Gelenkteleskop-Arbeitsbühne' },
-
+                                      { value: 'anhängerArbeitsbühne', label: 'Anhänger-Arbeitsbühne' },
                                  ]}
                                   />
                                 </div>
