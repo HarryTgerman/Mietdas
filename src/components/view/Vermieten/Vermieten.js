@@ -148,6 +148,7 @@ onDrop(imageFiles) {
 
           return(
               <div>
+              <title>Mietdas  Baugeräte vermieten</title>
                 <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
                   <div style={{paddingBottom: "0"}}  className="container">
                     <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">

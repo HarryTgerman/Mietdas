@@ -44,6 +44,7 @@ class SoGehtMieten extends Component{
           return(
 
             <div>
+            <title>Mietdas so geht mieten</title>
               <div >
 
                 {/* Start Navigation */}
