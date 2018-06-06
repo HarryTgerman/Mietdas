@@ -112,7 +112,7 @@ scrollToSection4(){
                                {/*Start Header Navigation*/}
                               <div className="navbar-header">
                                 <NavLink to="/">
-                                  <img src={Logo} className="logo logo-scrolled" alt=""/>
+                                  <img src={Logo} style={{marginLeft: "35px"}} className="logo logo-scrolled" alt=""/>
                                   <img src={LogoWhite} className="logo logo-display" alt=""/>
                                 </NavLink>
                               </div>
