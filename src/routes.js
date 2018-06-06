@@ -140,7 +140,7 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
     }
 
 register(){
-  if(this.state.agb === false || this.state.dae === false){return 0}
+  if(this.state.agb === false || this.state.dae === false){alert('Bitte bestätigen Sie unsere Bedienungen'); return 0}
   if(this.createPassword.value.length > 8){
 
     if(this.state.isCaptcha){
