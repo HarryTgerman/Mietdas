@@ -1199,6 +1199,7 @@ else if(this.state.selectValue.value == "HEBETECHNIK"){
 
           return(
               <div>
+                <title>Mietdas Baugeräte mieten</title>
                 <div>
                 <div className="wrapper">
                     {/* Start Navigation */}
