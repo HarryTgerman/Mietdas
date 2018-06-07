@@ -302,7 +302,7 @@ editBankData(){
                          {this.state.editProfile ?(<div><EditProfile snap={this.state.profileInfo} uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
                      :(<div >
 
-                         <div className="col-md-10 col-sm-12 col-md-offset-1">
+                         <div style={{marginBottom:"30px"}} className="col-md-10 col-sm-12 col-md-offset-1">
                            <div className="edit-info mrg-bot-25 padd-bot-30 ">
                              <div className="edit-info">
                                <div className="listing-box-header">

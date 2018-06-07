@@ -219,9 +219,11 @@ saveBankData(){
     this.setState({ibanError: error, isError: true})
     return 0
   }
-  if(this.state.isError){return 0}
-  else{
-      if (this.state.paypal == "optional angeben"){
+
+  let checkPaypal  = this.state.paypal;
+    var n = checkPaypal.includes("paypal.me/")
+
+      if (this.state.paypal == "optional angeben" || n === false){
       firebase.database().ref().child('app/users').child(this.props.uid).child('bankData').set({
         iban: this.state.iban,
         bic: this.state.bic,
@@ -244,7 +246,6 @@ saveBankData(){
       })
     }
   }
-}
 componentDidMount(){
   if (this.props.showBankData){
   scrollToComponent(this.bankData)
