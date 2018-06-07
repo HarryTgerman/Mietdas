@@ -73,7 +73,7 @@ handleChangeName(event) {
     }
     checkStrasse (e) {
       if (this.straßeInput.value.length < 3){
-        const error = "Bitte geben Sie Ihre Strasse ein";
+        const error = "Bitte gebe deine Strasse ein";
         this.setState({strasseError: error, isError: true,straße: e.target.value})
      }else{
         this.setState({strasseError: '', isError: false, straße: e.target.value})
@@ -82,7 +82,7 @@ handleChangeName(event) {
 
     checkStadt(e) {
       if (this.stadtInput.value.length < 3){
-        const error = "Bitte geben Sie Ihre Stadt ein";
+        const error = "Bitte gebe deine Stadt ein";
         this.setState({stadtError: error, isError: true,stadt: e.target.value})
      }else{
         this.setState({stadtError: '', isError: false, stadt: e.target.value})
@@ -91,7 +91,7 @@ handleChangeName(event) {
 
     checkPlz(e) {
       if (this.plzInput.value.length < 5){
-        const error = "Bitte geben Sie Ihre PLZ ein. Eine Postleitzahl hat mindestens 5 Ziffern.";
+        const error = "Bitte gebe deine PLZ ein. Eine Postleitzahl hat mindestens 5 Ziffern.";
         this.setState({plzError: error, isError: true,plz: e.target.value})
      }else{
         this.setState({plzError: '', isError: false, plz: e.target.value})
@@ -100,7 +100,7 @@ handleChangeName(event) {
 
     checkBundesland (e) {
       if (this.bundeslandInput.value.length < 2){
-        const error = "Bitte geben Sie Ihr Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
+        const error = "Bitte gebe dein Bundesland ein. Es können auch Abkürzungen wie 'BW' eingegeben werden.";
         this.setState({bundeslandError: error, isError: true,bundesLand: e.target.value})
      }else{
         this.setState({bundeslandError: '', isError: false,bundesLand: e.target.value})
@@ -108,7 +108,7 @@ handleChangeName(event) {
     }
     checkRechnungsadresse(e) {
       if (this.bundeslandInput.value.length < 2){
-        const error = "Bitte geben Sie ihre vollstädinge Rechnungsadresse an";
+        const error = "Bitte gebe deine vollstädinge Rechnungsadresse an";
         this.setState({rechnungsAdresseError: error, isError: true,rechnungsadresse: e.target.value})
      }else{
         this.setState({rechnungsAdresseError: '', isError: false,rechnungsadresse: e.target.value})
@@ -133,7 +133,7 @@ handleChangeName(event) {
     }
     checkInhaber(e) {
        if (this.inhaberInput.value.length < 4){
-        const error = "Bitte geben Sie den vollstädigen Namen des Konotinhabers ein.";
+        const error = "Bitte gebe deinen vollstädigen Namen des Konotinhabers ein.";
         this.setState({inhaberError: error, isError: true,inhaber: e.target.value})
      }else{
         this.setState({inhaberError: '', isError: false,inhaber: e.target.value})
@@ -142,7 +142,7 @@ handleChangeName(event) {
     checkBankName(e) {
 
       if (this.inhaberInput.value.length < 2){
-        const error = "Bitte geben Sie den Namen der Bank ein.";
+        const error = "Bitte gebe den Namen der Bank ein.";
         this.setState({bankNameError: error, isError: true,bankName: e.target.value})
      }else{
         this.setState({bankNameError: '', isError: false,bankName: e.target.value})
@@ -200,7 +200,7 @@ saveLocation(){
 }
 saveBankData(){
   if(this.state.kontoinhaber == 'bitte angeben'){
-    const error = "Bitte geben Sie den vollstädigen Namen des Konotinhabers ein.";
+    const error = "Bitte gebe den vollstädigen Namen des Konotinhabers ein.";
     this.setState({inhaberError: error, isError: true})
     return 0
   }
@@ -210,7 +210,7 @@ saveBankData(){
     return 0
   }
   else if(this.state.bankName == 'bitte angeben'){
-    const error = "Bitte geben Sie den Namen der Bank ein.";
+    const error = "Bitte gebe den Namen der Bank ein.";
     this.setState({bankNameError: error, isError: true})
     return 0
   }
@@ -351,7 +351,7 @@ componentDidMount(){
                         <div  className="listing-box-header">
                           <i className="ti-wallet theme-cl"></i>
                           <h3>Bank Daten</h3>
-                          <p>Füllen Sie Ihre Bankdaten aus</p>
+                          <p> Bitte fülle deine Bankdaten aus</p>
                         </div>
                           <div className="row mrg-r-10 mrg-l-10">
                             <div className="col-md-12">
@@ -417,7 +417,7 @@ componentDidMount(){
                                        <p className="errorMessage">{this.state.paypalError}</p>
                                       <div >
                                         <div className="card card-body">
-                                          Mit einem PayPal.Me-Link können Sie persönliche oder geschäftliche Zahlungen von anderen über PayPal anfordern und empfangen.
+                                          Mit einem PayPal.Me-Link kannst du persönliche oder geschäftliche Zahlungen von anderen über PayPal anfordern und empfangen.
                                         <a target="_blank" className="theme-cl" href="https://www.paypal.com/paypalme/grab?locale.x=de_DE&country.x=CH">  Jetzt kostenlos PayPal.Me Link generieren </a>
                                         </div>
                                       </div>

@@ -32,43 +32,43 @@ artikelHochladen(event) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.herstellerInput.value == "") {
-      const alert = "Geben Sie den Hersteller des Artikels ein"
+      const alert = "Gebe den Hersteller des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
 
     if (this.schnittlaengeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnittlänge"
+    const alert = "Gebe Auskunft über die Schnittlänge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.schnitttiefeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnitttiefe"
+    const alert = "Gebe Auskunft über die Schnitttiefe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
+    const alert = "Gebe Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }

@@ -165,14 +165,14 @@ class SoGehtMieten extends Component{
                       <div className="feature-box">
                         <span className="ti-check"></span>
                         <h4>Geräte Sortiment</h4>
-                        <p>Für die unterschiedlichsten Ansprüche & Projekte finden Sie in unseren zahlreichen Kategorien sofort verfügbare Mietmaschinen und Geräte: Vom Mobilbagger über die Gartenfräse bis hin zur Arbeitsbühne.</p>
+                        <p>Für die unterschiedlichsten Ansprüche & Projekte findest du in unseren zahlreichen Kategorien sofort verfügbare Mietmaschinen und Geräte: Vom Mobilbagger über die Gartenfräse bis hin zur Arbeitsbühne.</p>
                       </div>
                     </div>
                     <div className="col-md-4 col-sm-4">
                       <div className="feature-box">
                         <span className="ti-money"></span>
                         <h4>Kosten</h4>
-                        <p>Inseriere kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei zusätliche Kosten für den Mieter an! Bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
+                        <p>Inseriere Kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei Kosten für den Miter an! Bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
                       </div>
                     </div>
 

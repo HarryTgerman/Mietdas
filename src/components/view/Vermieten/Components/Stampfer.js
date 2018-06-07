@@ -37,53 +37,53 @@ onDrop(imageFiles) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.herstellerInput.value == "") {
-      const alert = "Geben Sie den Hersteller des Artikels ein"
+      const alert = "Gebe den Hersteller des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
 
     if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
+    const alert = "Gebe Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.ArbeitsbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Arbeitsbreite"
+    const alert = "Gebe Auskunft über die Arbeitsbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.KraftstoffdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Kraftstoff"
+    const alert = "Gebe Auskunft über den Kraftstoff"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.hoeheInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe"
+    const alert = "Gebe Auskunft über die Höhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.breiteInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite"
+    const alert = "Gebe Auskunft über die Breite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }

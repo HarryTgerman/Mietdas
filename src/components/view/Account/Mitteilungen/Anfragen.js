@@ -20,7 +20,7 @@ class Anfragen extends Component{
   Zusagen(){
     this.setState({zugesagt:true})
     let ref = this.props.name.split(' ').join('-') + this.props.num;
-    alert('Sie haben '+ this.props.name+ ' zugesagt ' +this.props.cardHeading + ' im Zeitraum von '+this.props.mietbeginn + " - " +this.props.mietende+" zu vermieten")
+    alert('Du hast '+ this.props.name+ ' zugesagt ' +this.props.cardHeading + ' im Zeitraum von '+this.props.mietbeginn + " - " +this.props.mietende+" zu vermieten")
     firebase.database().ref().child('app').child('users/' + this.props.anfrage.uid)
     .child('mitteilung').child(ref)
     .update({ bestätigt: true,

@@ -134,15 +134,15 @@ onDrop(imageFiles) {
  }
         render(){
           if(this.state.redirect === true) {
-            alert('Sie müssen sich zuerst Registrieren')
+            alert('Du musst dich zuerst Registrieren')
             return  <Redirect to="/"/>
           }
           if(this.state.bankDataRedirect === true) {
-            alert('Sie müssen zuerst Ihre Bankdataten ergänzen damit wir Ihnen Ihr Geld überweisen können \nunter Profil->Bankdaten hinzufügen')
+            alert('Du musst zuerst deine Bankdataten ergänzen damit die Mieter dir Geld überweisen können \nunter Profil->Bankdaten hinzufügen')
             return  <Redirect to="/benutzeraccount"/>
           }
           if(this.state.accoutDataRedirect === true){
-            alert('Sie müssen Ihre Daten ergänzen')
+            alert('Du musst deine Daten ergänzen')
             return <Redirect to='/account-erstellen' />
             }
 

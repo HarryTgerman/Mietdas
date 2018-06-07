@@ -57,7 +57,7 @@ componentWillMount(){
 handleSubmit(event){
   event.preventDefault();
 if (this.state.selectValue.value == "") {
-    const alert = "wählen Sie ein Kategorie aus"
+    const alert = "wähle ein Kategorie aus"
     this.setState({alert: alert, showAlert: true})
     return 0
   }else {this.setState({kat:true})}
@@ -154,8 +154,8 @@ scrollToSection4(){
 
                               <div className="banner-caption">
                                 <div className="col-md-12 col-sm-12 banner-text">
-                                  <h1><span stlye={{color: "#ff431e"}}>Baumaschinen</span> in Ihrer Umgebung</h1>
-                                  <p>Mieten Sie Baumaschinen in Ihrer Umgebung.</p>
+                                  <h1><span stlye={{color: "#ff431e"}}>Baumaschinen</span> in deiner Umgebung</h1>
+                                  <p>Miete Baumaschinen in deiner Umgebung.</p>
                                     <form className="form-verticle col-sm-12" onSubmit={this.handleSubmit.bind(this)}>
                                     {
                                       this.state.showAlert ?
@@ -263,29 +263,29 @@ scrollToSection4(){
                                 <div className="col-md-10 col-md-offset-1">
                                 <div className="heading" >
                                   <h2>Baumaschinen &  <span> Geräte </span></h2>
-                                  <p>Mieten Sie sofort Baumaschinen in Ihrer Umgebung. Schnell. Einfach. Kostenlos.</p>
+                                  <p>Miete sofort Baumaschinen in deiner Umgebung. Schnell. Einfach. Kostenlos.</p>
                                 </div>
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4" ref={(section) => { this.section2 = section; }}>
                                 <div className="feature-box" >
                                   <span className="ti-map-alt"></span>
-                                  <h4>In Ihrer Nähe</h4>
-                                  <p>Suchen Sie in jedem Umkreis nach benötigten Maschinen & Geräten.</p>
+                                  <h4>In deiner Nähe</h4>
+                                  <p>Suche in jedem Umkreis nach benötigten Maschinen & Geräten.</p>
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4">
                                 <div className="feature-box">
                                   <span className="ti-email"></span>
                                   <h4>Kontaktaufnahme</h4>
-                                  <p>Setzen Sie sich mit dem Vermieter in Verbindung.</p>
+                                  <p>Setze dich mit dem Vermieter in Verbindung.</p>
                                 </div>
                               </div>
                               <div className="col-md-4 col-sm-4">
                                 <div className="feature-box">
                                   <span className="ti-user"></span>
                                   <h4>Unkompliziert persönlich</h4>
-                                  <p>Klären Sie die Abholung oder Lieferung Ihrer Maschinen.</p>
+                                  <p>Kläre die Abholung oder Lieferung deiner Maschinen.</p>
                                 </div>
                               </div>
                               <div className="col-md-12 col-sm-12 banner-text"  >
@@ -383,7 +383,7 @@ scrollToSection4(){
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Vermieten Sie Ihre Maschinen in Ihrer Umgebung</a>
+                                      <a href="#">Vermieten  Maschinen in deiner Umgebung</a>
                                     </h3>
 
                                   </div>
@@ -398,7 +398,7 @@ scrollToSection4(){
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Unkomplizierte verwaltung für Ihr Smartphone</a>
+                                      <a href="#">Unkomplizierte verwaltung für dein Smartphone</a>
                                     </h3>
 
                                   </div>
@@ -413,7 +413,7 @@ scrollToSection4(){
                                   </div>
                                   <div className="service-content">
                                     <h3>
-                                      <a href="#">Inserieren Sie Ihre Maschinen und Ihr Werkzeug</a>
+                                      <a href="#">Inseriere deine Maschinen und Werkzeug</a>
                                     </h3>
                                   </div>
                                 </div>

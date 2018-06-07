@@ -139,7 +139,7 @@ barPayment(){
   artikelName = artikelName.replace('undefined ', '')
   artikelName = artikelName.replace(' undefinedKg', '')
   if(this.state.bar === false){
-    alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
+    alert('Du musst die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
   } else {
     firebase.database().ref('app/payments').push({
@@ -172,7 +172,7 @@ paypalPayment(){
   artikelName = artikelName.replace('undefined ', '')
   artikelName = artikelName.replace(' undefinedKg', '')
   if(this.state.paypalAgb  === false){
-    alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
+    alert('Du musst die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
   } else {
     firebase.database().ref('app/payments').push({
@@ -206,7 +206,7 @@ ueberweisungPayment(){
   artikelName = artikelName.replace('undefined ', '')
   artikelName = artikelName.replace(' undefinedKg', '')
   if(this.state.überweisung === false){
-    alert('Sie müssen die Bedingung Akzeptieren um fortfahren zu können')
+    alert('Du musst die Bedingung Akzeptieren um fortfahren zu können')
     return 0;
   } else {
     firebase.database().ref().child('app/users').child(this.props.location.query.anfrage.ArtikelOwnerId).child('anfragen')
@@ -296,7 +296,7 @@ let timeStemp = moment().format('YYYY-MM-DDThh:mm:ss.sssTZD');
                 <div className="title-content">
                   <h1>Schnell und einfach bezahlen</h1>
                   <div className="breadcrumbs">
-                    <a href="#">Wählen Sie Ihre</a>
+                    <a href="#">Wähle deine</a>
                     <span className="gt3_breadcrumb_divider"></span>
                     <span className="current">Bezahloption</span>
                   </div>

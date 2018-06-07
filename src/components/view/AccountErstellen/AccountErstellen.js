@@ -54,7 +54,7 @@ componentWillMount(){
 
   checkName =(e) =>{
     if (this.nameInput.value.length < 4 ){
-      const error = "Geben Sie bitte Ihren Namen ein"
+      const error = "Bitte gib deinen Namen ein"
       this.setState({vornameError: error, isError: true, name: e.target.value})
     }else{
       this.setState({vornameError: '', isError: false, name: e.target.value})
@@ -63,7 +63,7 @@ componentWillMount(){
 
  checkNummer = () =>{
    if (this.nummerInput.value.length < 11){
-     const error = "Ihre Telefonnummer muss mindestens 11 Ziffern haben"
+     const error = "Deine Telefonnummer muss mindestens 11 Ziffern haben"
      this.setState({telefonError: error, isError: true})
    }else{
      this.setState({telefonError: '', isError: false})
@@ -72,7 +72,7 @@ componentWillMount(){
 
   checkGeburtstag = () =>{
     if (this.dateInput.value.length < 10){
-      const error = "Bitte geben Sie Ihr Gebrutsdatum im diesem Format 'TT.MM.JJJJ' ein";
+      const error = "Bitte gebe dein Gebrutsdatum im diesem Format 'TT.MM.JJJJ' ein";
       this.setState({geburtstagError: error, isError: true})
    }else{
       this.setState({geburtstagError: '', isError: false})
@@ -81,7 +81,7 @@ componentWillMount(){
 
   checkStrasse = () =>{
     if (this.straßeInput.value.length < 3){
-      const error = "Bitte geben Sie Ihre Strasse ein";
+      const error = "Bitte gebe deine Strasse ein";
       this.setState({strasseError: error, isError: true})
    }else{
       this.setState({strasseError: '', isError: false})
@@ -90,7 +90,7 @@ componentWillMount(){
 
   checkStadt = () =>{
     if (this.stadtInput.value.length < 3){
-      const error = "Bitte geben Sie Ihre Stadt ein";
+      const error = "Bitte gebe deine Stadt ein";
       this.setState({stadtError: error, isError: true})
    }else{
       this.setState({stadtError: '', isError: false})
@@ -99,7 +99,7 @@ componentWillMount(){
 
   checkPlz = () =>{
     if (this.plzInput.value.length < 5){
-      const error = "Bitte geben Sie Ihre PLZ ein. Eine Postleitzahl hat mindestens 5 Ziffern.";
+      const error = "Bitte gebe deine PLZ ein. Eine Postleitzahl hat mindestens 5 Ziffern.";
       this.setState({plzError: error, isError: true})
    }else{
       this.setState({plzError: '', isError: false})
@@ -108,7 +108,7 @@ componentWillMount(){
 
   checkBundesland = () =>{
     if (this.bundeslandInput.value ==" "){
-      const error = "Bitte wählen Sie ein Bundesland";
+      const error = "Bitte wähle ein Bundesland";
       this.setState({bundeslandError: error, isError: true})
    }else{
       this.setState({bundeslandError: '', isError: false})
@@ -117,7 +117,7 @@ componentWillMount(){
 
   checkLand = () =>{
     if (this.landInput.value.length < 2){
-      const error = "Bitte geben Sie Ihr Land ein.";
+      const error = "Bitte gebe dein Land ein.";
       this.setState({landError: error, isError: true})
    }else{
       this.setState({landError: '', isError: false})
@@ -147,7 +147,7 @@ createUserProfil(event){
     const user = firebase.auth().currentUser;
 
     if(this.state.isError){
-      const alert = "Bitte füllen Sie alle Felder richtig aus."
+      const alert = "Bitte fülle alle Felder richtig aus."
       this.setState({alert: alert, showAlert: true})
     }else{
 
