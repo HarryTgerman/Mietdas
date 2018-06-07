@@ -259,10 +259,11 @@ componentDidMount(){
 
           return(
               <div>
-                {this.state.loading?(<h1>Lade Daten</h1>):(<section className="">
-                  <div className="container" >
-                    <div className="col-md-10 translateY-60 col-sm-12 col-md-offset-1">
-                      <div className="  edit-info mrg-bot-25 padd-bot-30 padd-top-25">
+                {this.state.loading?(<h1>Lade Daten</h1>):(<div>
+                  <div >
+                    <div className="col-md-10 col-sm-12 col-md-offset-1">
+                      <div className="edit-info mrg-bot-25 padd-bot-30">
+                       <div className="edit-info">
                         <div className="listing-box-header">
                           <div className="avater-box">
                           <img style={{height:"130px" ,width:"130px"}} src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />
@@ -436,13 +437,11 @@ componentDidMount(){
                               </form>
                             </div>
                           </div>
+                        </div>
                       </div>
-
-
-
                     </div>
                   </div>
-                </section>)}
+                </div>)}
               </div>
             )
         }

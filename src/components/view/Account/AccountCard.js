@@ -60,7 +60,7 @@ changeLocation(){
                 <div className="col-md-12">
                   <div className="listing-detail-info">
                     <span></span>
-                    <span><a>{this.state.adresse}</a></span>
+                    <span><i className="ti-location-pin mrg-r-5"></i><a>{this.state.adresse}</a></span>
                   </div>
                 </div>
               </div>

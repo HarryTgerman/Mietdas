@@ -42,6 +42,7 @@ class Routes extends Component{
       forgottPw: false,
       isCaptcha: false,
       agb: false,
+      dae: false,
 
     }
 }
@@ -256,7 +257,7 @@ sendPwReset(){
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
                       <Route name= 'MashineDetails' path='/mashineDetails/search=:type/:id' component={MashineDetails}/>
                       <Route name= 'Impressum' path='/impressum' component={Impressum}/>
-                      <Route name= 'Impressum' path='/impressum' component={Impressum}/>
+                      <Route name= 'AGB' path='/agb' component={AGB}/>
                       <Route name= 'SoGehtMieten' path='/so-geht-mieten' component={SoGehtMieten}/>
                       {this.state.registerRedirect ?
                         (<Redirect to='/account-erstellen' />):(null)

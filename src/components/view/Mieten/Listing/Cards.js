@@ -45,7 +45,7 @@ class  Cards extends Component {
               </div>
               <div className="listing-shot-caption">
                 <h4 style={{marginBottom: "10px"}}>{this.props.snap.hersteller?(this.props.snap.hersteller+" "):(null)}{this.props.snap.cardHeading}{this.props.snap.gewicht?(" "+this.props.snap.gewicht+"Kg"):(null)}</h4>
-                <p className="listing-location">{this.standOrt}</p>
+                <p className="listing-location"><i className="ti-location-pin mrg-r-5"></i>{this.props.standOrt}</p>
               </div>
 
 
@@ -53,7 +53,7 @@ class  Cards extends Component {
               <div className="row extra">
                 <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                <a href={`/details/search=${this.props.kategorie+"/"+this.props.id}`} className="detail-link" target="_blank" >Gehe zu</a>
+                <a href={`/details/search=${this.props.snap.kategorie+"/"+this.props.id}`} className="detail-link" target="_blank" >Gehe zu</a>
                 </div>
               </div>
             </div>

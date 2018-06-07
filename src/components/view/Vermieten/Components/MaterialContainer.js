@@ -56,6 +56,11 @@ onDrop(imageFiles) {
     this.setState({alert: alert, showAlert: true})
     return 0
     }
+    if (this.descInput.value == "") {
+    const alert = "Beschreibe den Artikel"
+    this.setState({alert: alert, showAlert: true})
+    return 0
+    }
     if (this.priceInput.value == "") {
     const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
@@ -99,6 +104,7 @@ onDrop(imageFiles) {
         const hoehe = this.hoeheInput.value;
         const laenge = this.laengeInput.value;
         const preis = this.priceInput.value;
+        let beschreibung = this.descInput.value;
 
         let dreiTage = this.rabattDreiInput.value;
         let fünfTage = this.rabattFünfInput.value;
@@ -159,6 +165,7 @@ onDrop(imageFiles) {
                          materialConLaenge: laenge,
                          cardHeading:titel ,
                          cardPreis: preis,
+                         cardDesc: beschreibung,
                          address: this.props.address,
                          ort: this.props.ort,
                          gemietet: 0,

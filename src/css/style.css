@@ -111,6 +111,23 @@ Font Links
 general setting
 ========================================================================== */
 /*------ General: Common Style ---------*/
+.slick-slide.slick-center img { margin-left: auto; margin-right: auto;}
+.slick-slide.slick-center a {
+	padding-left: auto; padding-right: auto;
+}
+.slick-slide.slick-center .left-radius {
+	border-radius: 50px 0px 0px 50px;
+}
+.slick-slide.slick-center  .right-radius {
+	border-radius: 0px 0px 0px 0px;
+}
+.slick-slide.slick-center a:hover{
+	color: #f64625;
+	cursor: pointer;
+}
+
+
+
 .forgottPW{
 	margin: 20px; color:#428bca;
 	margin-bottom: 20px;
@@ -4135,12 +4152,8 @@ Slick Slider
 .slick-prev {
     left: -35px;
 }
-.slick-prev:before {
-    content: '\f060';
-}
-.slick-next:before {
-    content: '\f061';
-}
+
+
 /*==================================================
 Pages Settings
 =================================================*/
@@ -4790,6 +4803,7 @@ p#invoice-info {
 /*==========================================
 # Style
 ==========================================*/
+
 .sidebar{
 	z-index: 5;
 }

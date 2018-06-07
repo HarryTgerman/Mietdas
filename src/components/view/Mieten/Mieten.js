@@ -1373,12 +1373,11 @@ this.setState({cards:sorted})
 
                           {/* All Listing */}
                           <div className="row mrg-bot-20">
-                            <div className="col-md-5">
+                            <div className="col-md-6">
                               <h5>{this.state.cards.length} Ergebnisse {this.state.kat?('für '+this.state.kat):(null)}</h5>
                             </div>
-                            <div className="col-md-7">
-                              {this.state.kat?(<div><h5>Sortieren nach Preis: <i onClick={this.sortierenNachPreisUp.bind(this)} className="ti-arrow-up LaufendeAnfragen-info"></i><i className="ti-arrow-down LaufendeAnfragen-info" onClick={this.sortierenNachPreisDown.bind(this)}></i>
-                              Gewicht: <i className="ti-arrow-up LaufendeAnfragen-info" onClick={this.sortierenNachGewichtUp.bind(this)}></i><i className="ti-arrow-down LaufendeAnfragen-info" onClick={this.sortierenNachGewichtDown.bind(this)}></i></h5></div>):(null)}
+                            <div className="col-md-6">
+                              {this.state.kat?(<div><h5>Sortieren nach Preis: <i onClick={this.sortierenNachPreisUp.bind(this)} className="ti-arrow-up LaufendeAnfragen-info"></i><i className="ti-arrow-down LaufendeAnfragen-info" onClick={this.sortierenNachPreisDown.bind(this)}></i> Gewicht: <i className="ti-arrow-up LaufendeAnfragen-info" onClick={this.sortierenNachGewichtUp.bind(this)}></i><i className="ti-arrow-down LaufendeAnfragen-info" onClick={this.sortierenNachGewichtDown.bind(this)}></i></h5></div>):(null)}
                             </div>
 
                           </div>

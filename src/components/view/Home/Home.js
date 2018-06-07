@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {NavLink, Redirect,Link} from 'react-router-dom'
 import firebase from 'firebase'
-import Slider from 'react-slick'
 import Select from 'react-select';
 import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
 import scrollToComponent from 'react-scroll-to-component';
+import HomeSlider from './HomeSlider'
 
 
 
@@ -256,6 +256,12 @@ scrollToSection4(){
 
                            {/*Services Section*/}
 
+                           <div ref={(section) => { this.section2 = section; }}>
+                             <div className="container">
+                              <HomeSlider/>
+                             </div>
+                           </div>
+
                           <section className="features">
                             <div className="container">
 
@@ -267,7 +273,7 @@ scrollToSection4(){
                                 </div>
                                 </div>
                               </div>
-                              <div className="col-md-4 col-sm-4" ref={(section) => { this.section2 = section; }}>
+                              <div className="col-md-4 col-sm-4" >
                                 <div className="feature-box" >
                                   <span className="ti-map-alt"></span>
                                   <h4>In deiner Nähe</h4>
@@ -311,7 +317,7 @@ scrollToSection4(){
                                     <div className="listing-shot grid-style">
                                       <div className="listing-shot-img">
                                         <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fartikelimgaes%2F38pcAMH9VNTSNBTa7WDTjh5sMq12%2Fartikel%2FXt260%2FIMG_20170425_181736.jpg?alt=media&token=e519664d-3019-40b8-a409-a4a5dca473bf"  className="img-responsive" alt=""/>
-                                        <span className="listing-price">160€</span>
+                                        <span className="listing-price">200€</span>
                                       </div>
                                       <div className="listing-shot-caption">
                                         <h4 style={{marginBottom: "10px"}}>Dino Xt260</h4>

@@ -292,18 +292,19 @@ editBankData(){
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="profile">
                       <div>
-                        <div style={{float:"right", marginRight:"20px", marginBottom:"40px",marginTop: "10px"}} >
+                        <div style={{float:"right", marginRight:"20px", marginBottom:"40px",marginTop: "10px", position: "relative"}} >
                           {this.state.showEditBankData?(<button className="btn btn-default" style={{marginRight:"5px"}} onClick={this.editBankData.bind(this)}>Bankdaten hinzufügen</button>):(null)}
                           <button type="button" onClick={this.editProfile.bind(this)}  className="btn theme-btn">
                           {this.state.editProfile ?("Zurück"):("Profil bearbeiten")}</button>
-                      </div>
+                        </div>
+                      <div style={{paddingTop:"100px"}}>
                          {/* General Information */}
                          {this.state.editProfile ?(<div><EditProfile snap={this.state.profileInfo} uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
-                     :(<div className="container">
+                     :(<div >
 
-                         <div className="col-md-10 translateY-60 col-sm-12 col-md-offset-1">
-                           <div className="  edit-info mrg-bot-25 padd-bot-30 padd-top-25">
-                             <div className=" edit-info">
+                         <div className="col-md-10 col-sm-12 col-md-offset-1">
+                           <div className="edit-info mrg-bot-25 padd-bot-30 ">
+                             <div className="edit-info">
                                <div className="listing-box-header">
                                  <div className="avater-box">
                                  { this.state.url ?(<img style={{height:"130px",width:"130px"}} src={this.state.url} className="img-responsive img-circle" alt="" />)
@@ -355,6 +356,7 @@ editBankData(){
                           </div>
                         </div>)}
                          {/* End General Information */}
+                       </div>
                       </div>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="nachrichten">

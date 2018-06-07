@@ -138,7 +138,7 @@ onDrop(imageFiles) {
             return  <Redirect to="/"/>
           }
           if(this.state.bankDataRedirect === true) {
-            alert('Du musst zuerst deine Bankdataten ergänzen damit die Mieter dir Geld überweisen können \nunter Profil->Bankdaten hinzufügen')
+            alert('Du musst zuerst deine Bankdaten ergänzen damit die Mieter dir Geld überweisen können \nunter Profil->Bankdaten hinzufügen')
             return  <Redirect to="/benutzeraccount"/>
           }
           if(this.state.accoutDataRedirect === true){
