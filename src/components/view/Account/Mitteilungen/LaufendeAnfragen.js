@@ -40,12 +40,13 @@ deleteAnfrage(){
                 <div className="verticle-listing-caption">
 
                   <div className="listing-shot-caption">
+                    {this.props.zahlungImGang?(null):(
                     <div className="right">
                       <Popover>
-                      <i className="ti-info LaufendeAnfragen-info"></i>
-                      <div className="tooltipbox" ><a onClick={this.deleteAnfrage.bind(this)}> Anfrage rückgängig machen ?</a></div>
-                     </Popover>
-                   </div>
+                        <i className="ti-info LaufendeAnfragen-info"></i>
+                        <div className="tooltipbox" ><a onClick={this.deleteAnfrage.bind(this)}> Anfrage rückgängig machen ?</a></div>
+                      </Popover>
+                    </div>)}
 
                     <h4>{this.props.anfrage.hersteller?(this.props.anfrage.hersteller+" "):(null)}{this.props.anfrage.cardHeading}{this.props.anfrage.gewicht?(" "+this.props.anfrage.gewicht+"Kg"):(null)}</h4>
                   </div>

@@ -576,7 +576,6 @@ whenGeoCode.then(() =>{
        else{
            firebase.database().ref().child('app').child('cards').child(type).orderByChild('cords/lat').startAt(lat).limitToFirst(100)
           .once('value', snap => {
-            console.log("hier die Liste", snap.val());
             snap.forEach(childSnapshot =>{
               previousMarker.push({
                id: childSnapshot.key,
@@ -607,8 +606,8 @@ whenGeoCode.then(() =>{
               i.snap.cords = i.snap.cords.lat + i.snap.cords.lng;
             })
             previousCards = previousCards.sort(function(a, b){
-              return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.previousCards.snap.cords);
-           });
+              return Math.abs(searchCords-a.snap.cords) - Math.abs(searchCords-b.snap.cords);
+           });;
             this.setState ({
               kat: this.state.selectValue.label,
               cards: previousCards,
@@ -1185,8 +1184,34 @@ else if(this.state.selectValue.value == "HEBETECHNIK"){
   })
 }
 
-
-
+sortierenNachPreisUp(e){
+e.preventDefault()
+let sorted = this.state.cards.sort(function(a, b){
+    return a.cardPreis-b.cardPreis
+})
+this.setState({cards:sorted})
+}
+sortierenNachPreisDown(e){
+e.preventDefault()
+let sorted = this.state.cards.sort(function(a, b){
+    return b.cardPreis-a.cardPreis
+})
+this.setState({cards:sorted})
+}
+sortierenNachGewichtUp(e){
+e.preventDefault()
+let sorted = this.state.cards.sort(function(a, b){
+    return a.gewicht-b.gewicht
+})
+this.setState({cards:sorted})
+}
+sortierenNachGewichtDown(e){
+e.preventDefault()
+let sorted = this.state.cards.sort(function(a, b){
+    return b.gewicht-a.gewicht
+})
+this.setState({cards:sorted})
+}
 
       render(){
         if (this.state.redirect === true) {
@@ -1348,14 +1373,20 @@ else if(this.state.selectValue.value == "HEBETECHNIK"){
 
                           {/* All Listing */}
                           <div className="row mrg-bot-20">
-                            <div className="col-md-12">
+                            <div className="col-md-5">
                               <h5>{this.state.cards.length} Ergebnisse {this.state.kat?('für '+this.state.kat):(null)}</h5>
                             </div>
+                            <div className="col-md-7">
+                              {this.state.kat?(<div><h5>Sortieren nach Preis: <i onClick={this.sortierenNachPreisUp.bind(this)} className="ti-arrow-up LaufendeAnfragen-info"></i><i className="ti-arrow-down LaufendeAnfragen-info" onClick={this.sortierenNachPreisDown.bind(this)}></i>
+                              Gewicht: <i className="ti-arrow-up LaufendeAnfragen-info" onClick={this.sortierenNachGewichtUp.bind(this)}></i><i className="ti-arrow-down LaufendeAnfragen-info" onClick={this.sortierenNachGewichtDown.bind(this)}></i></h5></div>):(null)}
+                            </div>
+
                           </div>
 
                           <div  className="row">
                             {/* Single Listing- */}
-                            <Listing gebiet={this.state.gebiet} cards={this.state.cards} />
+                            {this.state.kat?(<Listing gebiet={this.state.gebiet} cards={this.state.cards} />):
+                            (<div style={{marginTop:"30px", marginBottom:"50px"}} className='loader'></div>)}
                           </div>
 
                         </div>

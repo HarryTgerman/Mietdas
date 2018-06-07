@@ -111,7 +111,7 @@ class SoGehtMieten extends Component{
                             <a href="#">Produkt auswählen</a>
                           </h3>
                         </div>
-                        <p className="text-center">Suche über die Suchleiste nich der gewünschten Maschine. Gebe den Einsatzort und die Kategorien an.</p>
+                        <p className="text-center">Suche über die Suchleiste nach der gewünschten Maschine. Gebe den Einsatzort und die Kategorien an.</p>
                       </div>
                     </div>
                     <div className="col-md-4 col-sm-6">
@@ -172,7 +172,7 @@ class SoGehtMieten extends Component{
                       <div className="feature-box">
                         <span className="ti-money"></span>
                         <h4>Kosten</h4>
-                        <p>Inserieren Sie Kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei Kosten für den Miter an! Bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
+                        <p>Inseriere kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei zusätliche Kosten für den Mieter an! Bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
                       </div>
                     </div>
 

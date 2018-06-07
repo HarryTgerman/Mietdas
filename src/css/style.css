@@ -1668,6 +1668,10 @@ sidebar-collapse .nav > li > a:hover, .sidebar-collapse .nav > li > a:focus {
     color: #e61b55;
     outline: 0;
 }
+
+style={{marginLeft: "35px"}}
+
+
 .sidebar-collapse > .nav > li > a {
     padding: 17px 10px;
 }
@@ -4808,6 +4812,17 @@ p#invoice-info {
     padding: 20px;
 
   }
+}
+
+@media screen and (max-width: 400px) {
+  .navbar.bootsnav .navbar-header .active .logo .logo-scrolled {
+  margin-left: 35px;
+  }
+}
+@media (max-width: 767px){
+.navbar.bootsnav .navbar-header .logo {
+      margin-left: 35px;
+		}
 }
 
 
