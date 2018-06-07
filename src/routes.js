@@ -140,7 +140,7 @@ let whenSignIn = firebase.auth().signInWithEmailAndPassword(email, password).cat
     }
 
 register(){
-  if(this.state.agb === false || this.state.dae === false){alert('Bitte bestätigen Sie unsere Bedienungen'); return 0}
+  if(this.state.agb === false || this.state.dae === false){alert('Bitte bestätigen dich unsere Bedienungen'); return 0}
   if(this.createPassword.value.length > 8){
 
     if(this.state.isCaptcha){
@@ -170,7 +170,7 @@ register(){
       .then(()=>{
          const userProfile = firebase.auth().currentUser
         userProfile.sendEmailVerification().then(function() {
-          alert('Es wurde eine bestätigungs Email an Sie versendet')
+          alert('Es wurde eine bestätigungs Email an dich versendet')
         }).catch(function(error) {
           // An error happened.
         })
@@ -181,7 +181,7 @@ register(){
     }
 
   }else{
-    alert("Ihr Passwort muss mehr als 8 Zeichen lang sein")
+    alert("Dein Passwort muss mehr als 8 Zeichen lang sein")
   }
 }
 
@@ -195,7 +195,7 @@ registerWithFacebook(){
       } else {
         const userProfile = firebase.auth().currentUser
         userProfile.sendEmailVerification().then(function() {
-          alert('Es wurde eine bestätigungs Email an Sie versendet')
+          alert('Es wurde eine bestätigungs Email an dich versendet')
         }).catch(function(error) {
           // An error happened.
         })
@@ -215,7 +215,7 @@ registerWithGmail(){
       } else {
         const userProfile = firebase.auth().currentUser
         userProfile.sendEmailVerification().then(function() {
-          alert('Es wurde eine bestätigungs Email an Sie versendet')
+          alert('Es wurde eine bestätigungs Email an dich versendet')
         }).catch(function(error) {
           // An error happened.
         })

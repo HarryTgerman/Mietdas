@@ -1170,7 +1170,7 @@ componentWillMount(){
                                             <ul>
                       												<li>Standort  <span>...</span></li>
                                               <li>Mietdauer  <span>...</span></li>
-                      												<li>Ihr Preis <span>...,00€</span></li>
+                      												<li>Dein Preis <span>...,00€</span></li>
           												            <li>Gesamtsumme <span>...,00€</span></li>
   								                         </ul>
                                           </div>

@@ -37,32 +37,32 @@ onDrop(imageFiles) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.laengeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Länge"
+    const alert = "Gebe Auskunft über die Länge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.breiteInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite"
+    const alert = "Gebe Auskunft über die Breite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.hoeheInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe"
+    const alert = "Gebe Auskunft über die Höhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }

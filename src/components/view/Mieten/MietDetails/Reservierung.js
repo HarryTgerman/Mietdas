@@ -17,7 +17,7 @@ class Reservierung extends Component{
       redirectProfile: false,
       rabatt: false,
       Gesamtsumme: this.props.location.query.Gesamtsumme,
-      value: "Sehr geehrter "+this.props.location.query.snap.vermieter+". Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätigen Sie meine Anfrage!",
+      value: "Hallo "+this.props.location.query.snap.vermieter+". Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätige meine Anfrage!",
     }
 }
 handleChange(event) {
@@ -203,7 +203,7 @@ loadUser(){
               return  <Redirect to="/benutzeraccount"/>
             }
             if(this.state.redirect === true) {
-              alert("Sie müssen sich zuerst einloggen oder registeren")
+              alert("Du musst dich zuerst einloggen oder registeren")
                 return  <Redirect  to={{pathname:`${this.props.location.query.browserHistory}`}}/>
             }
         const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
@@ -262,9 +262,9 @@ loadUser(){
                   <section className="title-transparent page-title" style={{ background:`url(${backgroundImg})`}}>
                     <div className="container">
                       <div className="title-content">
-                        <h1>Reservieren Sie Jetzt einfach und unverbindlich</h1>
+                        <h1>Reserviere jetzt einfach und unverbindlich</h1>
                         <div className="breadcrumbs">
-                          <a href="#">Wählen Sie Ihre</a>
+                          <a href="#">Wähle deine</a>
                           <span className="gt3_breadcrumb_divider"></span>
                           <span className="current">Bezahloption</span>
                         </div>

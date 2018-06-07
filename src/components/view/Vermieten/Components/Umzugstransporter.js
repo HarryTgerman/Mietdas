@@ -37,112 +37,112 @@ onDrop(imageFiles) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.herstellerInput.value == "") {
-      const alert = "Geben Sie den Hersteller des Artikels ein"
+      const alert = "Gebe den Hersteller des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
+    const alert = "Gebe Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.LaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Länge"
+    const alert = "Gebe Auskunft über die Länge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.BreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite"
+    const alert = "Gebe Auskunft über die Breite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.HoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe"
+    const alert = "Gebe Auskunft über die Höhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.LaengeDerLadeflaechedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Länge der Ladefläche"
+    const alert = "Gebe Auskunft über die Länge der Ladefläche"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.BreiteDerLadeflaechedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Breite der Ladefläche"
+    const alert = "Gebe Auskunft über die Breite der Ladefläche"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.HoeheDerLadeflaechedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Höhe der Ladefläche"
+    const alert = "Gebe Auskunft über die Höhe der Ladefläche"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.LaderaumvolumendesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Laderaumvolumen"
+    const alert = "Gebe Auskunft über das Laderaumvolumen"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.LeergewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Leergewicht"
+    const alert = "Gebe Auskunft über das Leergewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamtgewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
+    const alert = "Gebe Auskunft über das zulässige Gesamtgewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.NutzlastdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Nutzlast"
+    const alert = "Gebe Auskunft über die Nutzlast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.StzplaetzedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Sitzplätze"
+    const alert = "Gebe Auskunft über die Sitzplätze"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.LeistungdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Leistung des Fahrzeugs"
+    const alert = "Gebe Auskunft über die Leistung des Fahrzeugs"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.AnhaengelastUngebremstdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Anhängelast ungebremst"
+    const alert = "Gebe Auskunft über die Anhängelast ungebremst"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.AnhaengelastGebremstdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Anhängelast gebremst"
+    const alert = "Gebe Auskunft über die Anhängelast gebremst"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.StützlastdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Stützlast"
+    const alert = "Gebe Auskunft über die Stützlast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.FührerscheinklassedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Führerscheinklasse"
+    const alert = "Gebe Auskunft über die Führerscheinklasse"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }

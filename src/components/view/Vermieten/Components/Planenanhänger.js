@@ -38,92 +38,92 @@ onDrop(imageFiles) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.herstellerInput.value == "") {
-      const alert = "Geben Sie den Hersteller des Artikels ein"
+      const alert = "Gebe den Hersteller des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.GesamtgewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
+    const alert = "Gebe Auskunft über das zulässige Gesamtgewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.NutzlastdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Nutzlast"
+    const alert = "Gebe Auskunft über die Nutzlast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.AuflaufbremsedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Auflaufbremse"
+    const alert = "Gebe Auskunft über die Auflaufbremse"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamthoeheLadeboarddesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamthöhe (Ladeboardwand)"
+    const alert = "Gebe Auskunft über die Gesamthöhe (Ladeboardwand)"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamthoeheSpriegeldesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamthöhe (inkl. Spriegel)"
+    const alert = "Gebe Auskunft über die Gesamthöhe (inkl. Spriegel)"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamtbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamtbreite"
+    const alert = "Gebe Auskunft über die Gesamtbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamtlaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamtlänge"
+    const alert = "Gebe Auskunft über die Gesamtlänge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.InnenhoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenhöhe (Ladeboardwandhöhe)"
+    const alert = "Gebe Auskunft über die Innenhöhe (Ladeboardwandhöhe)"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.InnenladehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenladehöhe"
+    const alert = "Gebe Auskunft über die Innenladehöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.InnenbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenbreite"
+    const alert = "Gebe Auskunft über die Innenbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.InnenlaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Innenlänge"
+    const alert = "Gebe Auskunft über die Innenlänge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.LadehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Ladehöhe"
+    const alert = "Gebe Auskunft über die Ladehöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.HundertkmhdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die 100 km/h Zulassung"
+    const alert = "Gebe Auskunft über die 100 km/h Zulassung"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }

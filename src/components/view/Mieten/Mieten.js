@@ -632,7 +632,7 @@ whenGeoCode.then(() =>{
   handleFormSubmit1 = (e) => {
     e.preventDefault();
     if (this.state.selectValue.value == "") {
-        const alert = "wählen Sie ein Kategorie aus"
+        const alert = "wähle eine Kategorie aus"
         this.setState({alert: alert, showAlert: true})
         return 0
       }else {this.setState({alert: "", showAlert: false})}

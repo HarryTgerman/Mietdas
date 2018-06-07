@@ -32,94 +32,94 @@ artikelHochladen(event) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.herstellerInput.value == "") {
-      const alert = "Geben Sie den Hersteller des Artikels ein"
+      const alert = "Gebe den Hersteller des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.transporthoeheVonInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Transporthöhe"
+    const alert = "Gebe Auskunft über die Transporthöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
 
     if (this.transportbreiteVonInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Transportbreite"
+    const alert = "Gebe Auskunft über die Transportbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.schnittlaengeInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnittlänge"
+    const alert = "Gebe Auskunft über die Schnittlänge"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.schnitttiefe.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnitttiefe"
+    const alert = "Gebe Auskunft über die Schnitttiefe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.schnittbreite.value == "") {
-    const alert = "Geben Sie Auskunft über die Schnittbreite"
+    const alert = "Gebe Auskunft über die Schnittbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
 
     if (this.GewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das Gewicht"
+    const alert = "Gebe Auskunft über das Gewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.mietbedingungenInput.value == "") {
-    const alert = "Legen Sie ihre Mietbedingungen fest"
+    const alert = "Lege ihre Mietbedingungen fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.abmessungenInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Abmessungen"
+    const alert = "Gebe Auskunft über die Abmessungen"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.leistungkvaInput.value == "") {
-    const alert = "Geben Sie Auskunft über Leistung (kVA)"
+    const alert = "Gebe Auskunft über Leistung (kVA)"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.leistungkwaInput.value == "") {
-    const alert = "Geben Sie Auskunft über Leistung kW/A"
+    const alert = "Gebe Auskunft über Leistung kW/A"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.tankinhaltInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Tankinhalt"
+    const alert = "Gebe Auskunft über den Tankinhalt"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.verbrauchInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Verbrauch unter Vollast"
+    const alert = "Gebe Auskunft über den Verbrauch unter Vollast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.kraftstoffInput.value == "") {
-    const alert = "Geben Sie Auskunft über den Kraftstoff"
+    const alert = "Gebe Auskunft über den Kraftstoff"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }

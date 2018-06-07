@@ -38,64 +38,64 @@ onDrop(imageFiles) {
 
 
      if (this.titelInput.value == "") {
-      const alert = "Geben Sie den Namen des Artikels ein"
+      const alert = "Gebe den Namen des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.herstellerInput.value == "") {
-      const alert = "Geben Sie den Hersteller des Artikels ein"
+      const alert = "Gebe den Hersteller des Artikels ein"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.GesamtgewichtdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über das zulässige Gesamtgewicht"
+    const alert = "Gebe Auskunft über das zulässige Gesamtgewicht"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.NutzlastdesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Nutzlast"
+    const alert = "Gebe Auskunft über die Nutzlast"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamthoeheLadeboarddesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamthöhe (Ladeboardwand)"
+    const alert = "Gebe Auskunft über die Gesamthöhe (Ladeboardwand)"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamtbreitedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamtbreite"
+    const alert = "Gebe Auskunft über die Gesamtbreite"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.GesamtlaengedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Gesamtlänge"
+    const alert = "Gebe Auskunft über die Gesamtlänge"
     this.setState({alert: alert, showAlert: true})
     return 0
   }
 
     if (this.LadehoehedesArtikelsInput.value == "") {
-    const alert = "Geben Sie Auskunft über die Ladehöhe"
+    const alert = "Gebe Auskunft über die Ladehöhe"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
 
     if (this.priceInput.value == "") {
-    const alert = "Legen Sie einen Preis fest"
+    const alert = "Lege einen Preis fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.descInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }
     if (this.state.imageFiles == []) {
-      const alert = "Laden Sie mindestens ein Bild hoch"
+      const alert = "Lade mindestens ein Bild hoch"
       this.setState({alert: alert, showAlert: true})
       return 0
     }
     if (this.dreiseitenkipperInput.value == "") {
-    const alert = "Legen Sie einen Beschreibung fest"
+    const alert = "Lege einen Beschreibung fest"
     this.setState({alert: alert, showAlert: true})
     return 0
     }

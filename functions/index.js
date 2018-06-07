@@ -42,7 +42,7 @@ exports.makeNewRentrequest =  functions.database.ref('app/users/{wildCard}/anfra
 return   transporter.sendMail({
       from: 'noreply@mietdas.com', // sender address
       to: sendToMail, // list of receivers
-      subject: 'Sie haben eine neue Anfrage',
+      subject: 'Du hast eine neue Anfrage',
       template: 'index',
       context: {
         name: name,
