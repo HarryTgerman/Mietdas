@@ -7,8 +7,42 @@ import firebase from 'firebase'
 import Logo from '../../../img/logo.png'
 import {NavLink, Redirect,Link} from 'react-router-dom'
 import Select from 'react-select';
+import Geosuggest from 'react-geosuggest';
 
 
+const geoStyel=
+  { 'input':
+  {height: "50px",
+  width: "100%",
+  border: "1px solid #dde6ef",
+  marginBottom: "1px",
+  borderRadius: "0",
+  background: "#fbfdff",
+  fontSize: "15px",
+  color: "#445461",
+  fontWeight: "400",
+  padding: "6px 12px 6px 12px",
+  borderRadius: "50px 0px 0px 50px",
+
+  },
+ 'suggests': {
+   borderBottomRightRadius:"4px",
+   VborderBottomLeftRadius:"4px",
+   backgroundColor:"#fff",
+   border:"1pxsolid#CCC",
+   VborderTopColor:"#e6e6e6",
+   marginTop:"-1px",
+   maxHeight:"200px",
+   position:'absolute',
+   Vleft:"0",
+   top:"100%",
+   width:"95%",
+   VzIndex:"1",
+},
+'suggestItem': {
+
+}
+ }
 class Mieten extends Component{
   constructor(props){
     super(props)
@@ -56,10 +90,9 @@ class Mieten extends Component{
 
     }
 
-    handleChange(event) {
-       this.setState({cityValue: event.target.value});
-     }
-
+     handleChange = (city) => {
+                this.setState({cityValue: city});
+            }
 
     clickLi = (selectValue) => {
    this.setState({ selectValue });
@@ -630,48 +663,37 @@ whenGeoCode.then(() =>{
 
   handleFormSubmit1 = (e) => {
     e.preventDefault();
+    this.setState({
+      markers:[],
+      cards:[]
+    })
+
     if (this.state.selectValue.value == "") {
         const alert = "wähle eine Kategorie aus"
         this.setState({alert: alert, showAlert: true})
         return 0
       }else {this.setState({alert: "", showAlert: false})}
 
-    if(this.state.markers && this.state.cards != null){
-    this.setState({
-      markers:[],
-      cards:[]
-    })
-  }
-  let whenGeoCode = geocodeByAddress(this.state.cityValue)
-  .then(results =>{
-    getLatLng(results[0])
-    .then(latLng =>{
-      this.setState({
-          center: latLng,
-          position: latLng
-          })
-      })
-    .catch(error => console.error('Error', error))
-    this.setState({
-      gebiet: this.state.address,
-      address:   this.state.cityValue,
-    })
-    const res = results[0]
-    let arr =  res.formatted_address.split(",")
-    let ort = arr[0]
-
-    console.log(results[0]);
-    this.setState({
-      ort: ort,
-      gebiet: res.address_components[1].long_name,
-    })
-  })
 
 
-whenGeoCode.then(() =>{
-      let previousCards = this.state.cards
-      const previousMarker = this.state.markers;
-      let lat = this.state.center.lat -0.5
+      let previousCards = []
+      const previousMarker = [];
+      let lat;
+      if (this.state.cityValue.location){
+        lat = this.state.cityValue.location.lat -0.5
+      }
+      else{
+        geocodeByAddress(this.state.cityValue)
+        .then(results =>{
+          getLatLng(results[0])
+          .then(latLng =>{
+            lat = latLng.lat
+            this.setState({
+                center: latLng,
+                })
+            })
+        })
+      }
       let searchCords = this.state.center.lat + this.state.center.lng;
 
       if(this.state.selectValue.value == "BAGGER"){
@@ -1181,7 +1203,6 @@ else if(this.state.selectValue.value == "HEBETECHNIK"){
          })
        })
      }
-  })
 }
 
 sortierenNachPreisUp(e){
@@ -1297,7 +1318,7 @@ this.setState({cards:sorted})
                             }
                               <div className="row mrg-0">
                                 <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                                  <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
+                                  <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onChange={this.handleChange.bind(this)} onSuggestSelect={this.handleChange.bind(this)}/>
                                 </div>
                                 <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
 

@@ -10,7 +10,9 @@ class EditProfile extends Component{
     super(props)
     this.state={
       loading: false,
-      redirect: false
+      redirect: false,
+      edtiPic: true,
+      imgLoad: true,
 
     }
 }
@@ -58,6 +60,7 @@ this.setState({
 
 
 }
+
 
 handleChangeName(event) {
    this.setState({name: event.target.value});
@@ -165,20 +168,48 @@ handleChangeName(event) {
 handleChange(event){
   event.preventDefault()
   if (event.target.files && event.target.files[0]) {
+      this.setState({
+        image:event.target.files[0]
+      })
             let reader = new FileReader();
             reader.onload = (e) => {
-                this.setState({avatarImg: e.target.result});
+                this.setState({url: e.target.result,  edtiPic:false});
             };
             reader.readAsDataURL(event.target.files[0]);
         }
 }
+savePic(){
+  const userImage =  this.state.image;
+  this.setState({imgLoad: false,})
+  firebase.storage().ref('images/pimgaes/').child(this.props.uid).child('pimage').put(userImage)
+  .then(()=>{
+  firebase.storage().ref('images/pimgaes/').child(this.props.uid).child('pimage')
+  .getDownloadURL().then((url) => {
+      const Url = url
+      firebase.auth().currentUser.updateProfile({
+        photoURL: Url,
+      }).catch(function(error) {
+      console.error(error);
+      })
+      firebase.database().ref().child('app/users').child(this.props.uid).update({
+        url:Url,
+      })
+    }).then(()=>{
+      this.setState({
+        edtiPic: true,
+        redirectsave:true,
+      })
+    })
 
+
+  })
+}
 savePersonel(){
   firebase.database().ref().child('app/users').child(this.props.uid).update({
     telefon: this.state.telefon,
     geburtsDatum: this.state.geburtsDatum,
   })
-  this.setState({editProfile: false})
+  this.setState({editPersonel: false})
 
 }
 saveLocation(){
@@ -200,22 +231,22 @@ saveLocation(){
 }
 saveBankData(){
   if(this.state.kontoinhaber == 'bitte angeben'){
-    const error = "Bitte gebe den vollstädigen Namen des Konotinhabers ein.";
+    const error = "Bitte gebe den vollstädigen Namen des Konotinhabers an.";
     this.setState({inhaberError: error, isError: true})
     return 0
   }
   else if(this.state.bic == 'bitte angeben'){
-    const error = "BIC muss zwischen 8 und 11 zeichen lang sein.";
+    const error = "Bitte gebe deinen BIC an.";
     this.setState({bicError: error, isError: true})
     return 0
   }
   else if(this.state.bankName == 'bitte angeben'){
-    const error = "Bitte gebe den Namen der Bank ein.";
+    const error = "Bitte gebe den Namen der Bank an.";
     this.setState({bankNameError: error, isError: true})
     return 0
   }
   else if(this.state.iban == 'bitte angeben'){
-    const error = "Iban muss 22 Zeichen lang sein.";
+    const error = "Bitte gebe deine Iban an.";
     this.setState({ibanError: error, isError: true})
     return 0
   }
@@ -254,6 +285,10 @@ componentDidMount(){
 
         render(){
           if (this.state.redirect === true){return <Redirect to="/account-erstellen"/>}
+          if (this.state.redirectsave === true){
+            setTimeout(function() {
+              window.location.reload()
+            }, 1000)}
 
 
 
@@ -266,13 +301,14 @@ componentDidMount(){
                       <div className="edit-info mrg-bot-25 padd-bot-30">
                        <div className="edit-info">
                         <div className="listing-box-header">
-                          <div className="avater-box">
+                          {this.state.imgLoad?(<div className="avater-box">
                           <img style={{height:"130px" ,width:"130px"}} src={this.state.url} className="img-responsive img-circle edit-avater" alt="" />
                           <div style={{marginLeft:"12px"}} className="upload-btn-wrapper2">
-                            <button className="btn theme-btn" >Profilbild</button>
-                            <input type="file" name="myfile"  style={{cursor:"pointer"}} ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>
+                            {this.state.edtiPic?(<button className="btn theme-btn" >Profilbild</button>):(
+                            <button type="button" className="btn theme-btn" onClick={this.savePic.bind(this)}>Speichern</button>)}
+                            {this.state.edtiPic?(<input type="file" name="myfile"  style={{cursor:"pointer"}} ref={(input) => { this.profilePic = input; }} onChange={this.handleChange.bind(this)}/>):(null)}
                           </div>
-                          </div>
+                          </div>):(<div className="loader"></div>)}
                           <h3>{this.state.name}</h3>
                         </div>
                         <form>

@@ -10,6 +10,8 @@ import LogoWhite from'../../../img/logo-white.png'
 import AvatarImg from'../../../img/avatar.jpg'
 import Chat from './Mitteilungen/Chat/Chat'
 import EditProfile from './EditProfile/EditProfile'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
 class Account extends Component{
   constructor(props){
     super(props)
@@ -243,23 +245,23 @@ editBankData(){
                 </div>
               </div>
               <div className="clearfix"></div>
+
               {/* Tab Style 1 */}
               <div className="container" style={{minHeight:"600px"}}>
-                <div className="tab style-2" role="tabpanel">
-                  {/* Nav tabs */}
-                  <ul className="nav nav-tabs" role="tablist">
-                    <li role="presentation" className="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Übersicht Anfragen</a></li>
-                    <li role="presentation"><a href="#meineAnfragen" aria-controls="meineAnfragen" role="tab" data-toggle="tab">Gestellte Mietanfragen</a></li>
-                    <li role="presentation"><a href="#meinGerätepark" aria-controls="meinGerätepark" role="tab" data-toggle="tab">mein Gerätepark</a></li>
-                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
-                    <li role="presentation"><a href="#nachrichten" aria-controls="nachrichten" role="tab" data-toggle="tab">Nachrichten</a></li>
+                <Tabs className="tab style-2  " >
+                  <TabList className="nav nav-tabs">
+                    <Tab><a className="nav-active" style={{cursor: "pointer"}}>Übersicht Anfragen</a></Tab>
+                    <Tab><a className="nav-active" style={{cursor: "pointer"}}>Gestellte Mietanfragen</a></Tab>
+                    <Tab><a className="nav-active" style={{cursor: "pointer"}}>mein Gerätepark</a></Tab>
+                    <Tab><a className="nav-active" style={{cursor: "pointer"}}>Profil</a></Tab>
+                    <Tab><a className="nav-active" style={{cursor: "pointer"}}>Nachrichten</a></Tab>
+                  </TabList>
 
-                  </ul>
-                  {/* Tab panes */}
-                  <div className="tab-content tabs">
-                    <div role="tabpanel" className="tab-pane fade in active" id="home">
+
+                  <div className="tab-content container">
+                    <TabPanel >
                     {this.state.loader?(<div className="loader"></div>):(
-                      <div>
+                      <div className="tabs">
                       { this.state.anfragen ? (this.state.anfragen.map((key) => {
                          const anfrage = key
                            return(<Anfragen
@@ -274,24 +276,23 @@ editBankData(){
                       }
                       </div>
                     )}
-
-
-
-                    </div>
-                    <div role="tabpanel" className="tab-pane fade" id="meineAnfragen">
+                    </TabPanel>
+                    <TabPanel>
+                    <div className="tabs">
                     {this.state.mitteilungen?(this.state.mitteilungen.map((mit)=>{
-                                  return(<LaufendeAnfragen anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} snapId={mit.id} uid={this.state.uid} zahlungImGang={mit.zahlungImGang}/>)
+                                  return(<LaufendeAnfragen  anfrage={mit.anfrage} bestätigt={mit.bestätigt} cardId={mit.cardId} snapId={mit.id} uid={this.state.uid} zahlungImGang={mit.zahlungImGang}/>)
                                 })):(<h3>Du hast keine laufenden Anfragen</h3>)
                     }
                     </div>
-                    <div role="tabpanel" className="tab-pane fade" id="meinGerätepark">
+                    </TabPanel>
+                    <TabPanel >
                     {this.state.cards?(this.state.cards.map((card) => {
                              return(<AccountCards snap={card.snap} cardId={card.id} firebase={firebase.database().ref().child('app')}/>)
                            })):(<h3>Du hast keine Geräte inseriert</h3>)
                        }
-                    </div>
-                    <div role="tabpanel" className="tab-pane fade" id="profile">
-                      <div>
+                    </TabPanel>
+                    <TabPanel>
+                      <div className="tabs">
                         <div style={{float:"right", marginRight:"20px", marginBottom:"40px",marginTop: "10px", position: "relative"}} >
                           {this.state.showEditBankData?(<button className="btn btn-default" style={{marginRight:"5px"}} onClick={this.editBankData.bind(this)}>Bankdaten hinzufügen</button>):(null)}
                           <button type="button" onClick={this.editProfile.bind(this)}  className="btn theme-btn">
@@ -300,9 +301,9 @@ editBankData(){
                       <div style={{paddingTop:"100px"}}>
                          {/* General Information */}
                          {this.state.editProfile ?(<div><EditProfile snap={this.state.profileInfo} uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
-                     :(<div >
+                     :(<div style={{marginBottom:"30px"}}>
 
-                         <div style={{marginBottom:"30px"}} className="col-md-10 col-sm-12 col-md-offset-1">
+                         <div className="col-md-10 col-sm-12 col-md-offset-1">
                            <div className="edit-info mrg-bot-25 padd-bot-30 ">
                              <div className="edit-info">
                                <div className="listing-box-header">
@@ -358,12 +359,14 @@ editBankData(){
                          {/* End General Information */}
                        </div>
                       </div>
-                    </div>
-                    <div role="tabpanel" className="tab-pane fade" id="nachrichten">
-                      <Chat name={this.state.name} uid={this.state.uid}/>
-                    </div>
+                    </TabPanel>
+                    <TabPanel>
+                      <div className="tabs">
+                        <Chat   name={this.state.name} uid={this.state.uid}/>
+                      </div>
+                    </TabPanel>
                   </div>
-                </div>
+                </Tabs>
             </div>
           </div>
 
