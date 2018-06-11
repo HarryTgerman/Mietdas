@@ -56,6 +56,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "generate-robotstxt": "^5.0.7",
     "nodemon": "^1.17.3"
   }
 }
