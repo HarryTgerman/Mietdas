@@ -6,6 +6,41 @@ import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
 import scrollToComponent from 'react-scroll-to-component';
 import HomeSlider from './HomeSlider'
+import Geosuggest from 'react-geosuggest';
+
+const geoStyel=
+  { 'input':
+  {height: "55px",
+  width: "100%",
+  border: "1px solid #dde6ef",
+  marginBottom: "1px",
+  borderRadius: "0",
+  background: "#fbfdff",
+  fontSize: "15px",
+  color: "#445461",
+  fontWeight: "400",
+  padding: "6px 12px 6px 12px",
+  borderRadius: "50px 0px 0px 50px",
+
+  },
+ 'suggests': {
+   borderBottomRightRadius:"4px",
+   VborderBottomLeftRadius:"4px",
+   backgroundColor:"#fff",
+   border:"1pxsolid#CCC",
+   VborderTopColor:"#e6e6e6",
+   marginTop:"-1px",
+   maxHeight:"200px",
+   position:'absolute',
+   Vleft:"0",
+   top:"100%",
+   width:"95%",
+   VzIndex:"1",
+},
+'suggestItem': {
+
+}
+ }
 
 
 
@@ -15,6 +50,7 @@ class Home extends Component{
 
   constructor(props){
     super(props)
+    this.handleChange=this.handleChange.bind(this)
     this.state = {
        authenticated: false,
        redirect: false,
@@ -23,13 +59,13 @@ class Home extends Component{
        showAlert: false,
        alert: "",
        kat:false,
+       cityValue: "",
     }
 }
 
-
-handleChange(event) {
-   this.setState({cityValue: event.target.value});
- }
+handleChange = (city) => {
+           this.setState({cityValue: city});
+       }
  clickLi = (selectValue) => {
 this.setState({ selectValue });
 console.log(`Selected: ${selectValue.label}`);
@@ -74,6 +110,8 @@ scrollToSection4(){
   scrollToComponent(this.section4)
 }
 
+
+
         render(){
           if (this.state.redirect === true) {
             return <Redirect to='/benutzeraccount' />
@@ -95,7 +133,11 @@ scrollToSection4(){
             const { selectedOption } = this.state;
             const value = selectedOption && selectedOption.value
             if (this.state.kat === true){
-               return <Redirect to={{pathname: `/mieten/city=${this.state.cityValue+"/type="+this.state.selectValue.value+"/"}`}}/>
+              if(this.state.cityValue.label)
+               {return <Redirect to={{pathname: `/mieten/city=${this.state.cityValue.label+"/type="+this.state.selectValue.value+"/"}`}}/>}
+               else{
+                  return <Redirect to={{pathname: `/mieten/city=${this.state.cityValue+"/type="+this.state.selectValue.value+"/"}`}}/>
+               }
               }
                   return(
                 <div>
@@ -164,11 +206,14 @@ scrollToSection4(){
                                         </div>)
                                       :(null)
                                     }
+
                                       <div className="col-md-5 col-sm-5 no-padd">
                                         <i className="banner-icon icon-map-pin"></i>
-                                        <input type="text" className="form-control left-radius right-br" onChange={this.handleChange.bind(this)} placeholder="Ort..."/>
+                                        <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleChange} onChange={this.handleChange}/>
                                       </div>
                                       <div className="col-md-5 col-sm-5 no-padd">
+
+
 
                                       <Select
 

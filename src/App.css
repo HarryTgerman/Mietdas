@@ -20,9 +20,15 @@
 
 
 
+.tab.style-2 .nav-tabs li.react-tabs__tab--selected>a{
+  color: #ffffff ;
+  background: #f64625 ;
+}
 
-
-
+.tab .style-2 .nav .nav-tabs .react-tabs__tab .react-tabs__tab--selected a{
+ color: #ffffff ;
+ background: #f64625 ;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

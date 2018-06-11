@@ -111,6 +111,53 @@ Font Links
 general setting
 ========================================================================== */
 /*------ General: Common Style ---------*/
+.geosuggest__item {
+    font-size: 14px;
+    padding: .5em .65em;
+    cursor: pointer;
+
+}
+.geosuggest__item:hover {
+    background:#e5f0f9 ;
+		color: black;
+
+}
+
+.geosuggest__item :before, :after {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;
+}
+.geosuggest__suggests--hidden {
+    max-height: 0;
+    overflow: hidden;
+    border-width: 0;
+  display: none;
+
+
+}
+.geosuggest__suggests {
+	z-index: 1;
+	position: absolute;
+	 border-top:2px solid #8995a2;
+	margin-left: 20px;
+	cursor: pointer;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 25em;
+    padding: 0;
+    background: #fff;
+    border-top-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    list-style: none;
+    -webkit-transition: max-height 0.2s, border 0.2s;
+    transition: max-height 0.2s, border 0.2s;
+}
+
 .slick-slide.slick-center img { margin-left: auto; margin-right: auto;}
 .slick-slide.slick-center a {
 	padding-left: auto; padding-right: auto;
@@ -4804,6 +4851,9 @@ p#invoice-info {
 # Style
 ==========================================*/
 
+.tabs{
+	padding: 1em 1em;
+}
 .sidebar{
 	z-index: 5;
 }

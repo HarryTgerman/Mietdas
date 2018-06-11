@@ -2,7 +2,41 @@ import React, {Component} from 'react';
 import Slider from 'react-slick'
 import logo from '../../../img/logo.png'
 import {Redirect} from 'react-router-dom'
+import Geosuggest from 'react-geosuggest';
 
+const geoStyel=
+  { 'input':
+  {height: "50px",
+  width: "100%",
+  border: "1px solid #dde6ef",
+  marginBottom: "1px",
+  borderRadius: "0",
+  background: "#fbfdff",
+  fontSize: "15px",
+  color: "#445461",
+  fontWeight: "400",
+  padding: "6px 12px 6px 12px",
+  borderRadius: "50px 0px 0px 50px",
+
+  },
+ 'suggests': {
+   borderBottomRightRadius:"4px",
+   VborderBottomLeftRadius:"4px",
+   backgroundColor:"#fff",
+   border:"1pxsolid#CCC",
+   VborderTopColor:"#e6e6e6",
+   marginTop:"-1px",
+   maxHeight:"200px",
+   position:'absolute',
+   Vleft:"0",
+   top:"100%",
+   width:"95%",
+   VzIndex:"1",
+},
+'suggestItem': {
+
+}
+ }
 
 class HomeSlider extends Component{
   constructor(props){
@@ -10,9 +44,8 @@ class HomeSlider extends Component{
     this.state = {city: ""}
 }
 
-handleCity(e){
-  e.preventDefault();
-  this.setState({city: e.target.value})
+handleCity = (city) => {
+           this.setState({city: city});
 }
 
 
@@ -31,34 +64,75 @@ handleCity(e){
 
       };
       if(this.state.bagger){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.baggerInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.baggerInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.baggerInput.value+"/"}`}}/>
+        }
       }
       if(this.state.radlader){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.radladerInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.radladerInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.radladerInput.value+"/"}`}}/>
+        }
       }
       if(this.state.anhänger){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.anhängerInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.anhängerInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.anhängerInput.value+"/"}`}}/>
+        }
       }
       if(this.state.baugeräte){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.baugeräteInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.baugeräteInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.baugeräteInput.value+"/"}`}}/>
+        }
       }
       if(this.state.verdichtunstechnik){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.verdichtunstechnikInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.verdichtunstechnikInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.verdichtunstechnikInput.value+"/"}`}}/>
+        }
       }
       if(this.state.landschaftstechnik){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.landschaftstechnikInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.landschaftstechnikInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.landschaftstechnikInput.value+"/"}`}}/>
+        }
       }
       if(this.state.sägenUndSchneider){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.sägenUndSchneiderInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.sägenUndSchneiderInput.value+"/"}`}}/>}
+        else{
+           <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.sägenUndSchneiderInput.value+"/"}`}}/>
+        }
+
       }
       if(this.state.raumsysteme){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.raumsystemeInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.raumsystemeInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.raumsystemeInput.value+"/"}`}}/>
+        }
       }
       if(this.state.fahrzeuge){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.fahrzeugeInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.fahrzeugeInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.fahrzeugeInput.value+"/"}`}}/>
+        }
       }
       if(this.state.hebetechnik){
-        return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.hebetechnikInput.value+"/"}`}}/>
+        if(this.state.city.label)
+        {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.hebetechnikInput.value+"/"}`}}/>}
+        else{
+          return <Redirect to={{pathname: `/mieten/city=${this.state.city+"/type="+this.hebetechnikInput.value+"/"}`}}/>
+        }
       }
       return (
               <Slider {...settings}>
@@ -69,8 +143,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}}  onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
-                        </div>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>                        </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.baggerInput = select}  >
                           <option value="BAGGER"><strong>BAGGER</strong></option>
@@ -94,7 +167,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.radladerInput = select}  >
@@ -118,7 +191,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.anhängerInput = select}  >
@@ -144,7 +217,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.baugeräteInput = select}  >
@@ -172,7 +245,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.verdichtunstechnikInput = select}  >
@@ -197,7 +270,7 @@ handleCity(e){
                     <form className="form-verticle ">
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.landschaftstechnikInput = select}  >
@@ -220,7 +293,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.sägenUndSchneiderInput = select}  >
@@ -246,7 +319,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.raumsystemeInput = select}  >
@@ -268,7 +341,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.fahrzeugeInput = select}  >
@@ -291,7 +364,7 @@ handleCity(e){
                     <form className="form-verticle " >
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
-                          <input type="text" className="form-control left-radius" ref={(input) => { this.cityInput = input}} onChange={this.handleCity.bind(this)} value={this.state.city} placeholder="Ort..."/>
+                          <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
                         </div>
                         <div  className="col-md-5 col-sm-12 col-xs-12 no-padd" >
                         <select  className="form-control right-radius" ref={select => this.hebetechnikInput = select}  >
