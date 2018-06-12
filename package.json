@@ -58,7 +58,10 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "envify": "^4.1.0",
     "generate-robotstxt": "^5.0.7",
-    "nodemon": "^1.17.3"
+    "nodemon": "^1.17.3",
+    "uglify-js": "^3.4.0",
+    "uglifyify": "^5.0.0"
   }
 }
