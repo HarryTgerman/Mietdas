@@ -361,7 +361,7 @@ scrollToSection4(){
                                   <div ref={(section) => { this.section3 = section; }} className="col-md-4 col-sm-5 col-xs-12">
                                     <div className="listing-shot grid-style">
                                       <div className="listing-shot-img">
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeimages%2FAnha%CC%88ngerHome.jpg?alt=media&token=e1ca4042-1dd7-449c-ac93-f0761dc6fa59"  className="img-responsive" alt=""/>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeimages%2FAnha%CC%88ngerHome.jpeg?alt=media&token=3d3a9e0a-3e73-49a4-864e-1a168097f3ee"  className="img-responsive" alt=""/>
                                         <span className="listing-price">200€</span>
                                       </div>
                                       <div className="listing-shot-caption">
@@ -381,7 +381,7 @@ scrollToSection4(){
                                 <div className="col-md-4 col-sm-5 col-xs-12">
                                   <div className="listing-shot grid-style">
                                     <div className="listing-shot-img">
-                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeimages%2FRadlader.jpg?alt=media&token=da395639-6d90-4b2d-a800-db3c05dada3e"  className="img-responsive" alt=""/>
+                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeimages%2FRadlader%20(1).jpeg?alt=media&token=b13493be-ddd4-411a-8e12-253150081b00"  className="img-responsive" alt=""/>
                                       <span className="listing-price">160€</span>
                                     </div>
                                     <div className="listing-shot-caption">
@@ -400,7 +400,7 @@ scrollToSection4(){
                                 <div className="col-md-4 col-sm-5 col-xs-12">
                                   <div className="listing-shot grid-style">
                                     <div className="listing-shot-img">
-                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeimages%2FminiBagger.JPG?alt=media&token=49226954-9239-4689-b6c6-13413459e633"  className="img-responsive" alt=""/>
+                                      <img src="https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeimages%2FminiBagger%20(1).jpeg?alt=media&token=44bcf3d4-3008-46a8-a23d-289574eb5b16"  className="img-responsive" alt=""/>
                                       <span className="listing-price">95€</span>
                                     </div>
                                     <div className="listing-shot-caption">

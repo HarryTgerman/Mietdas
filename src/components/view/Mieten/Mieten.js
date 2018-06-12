@@ -57,6 +57,7 @@ class Mieten extends Component{
       gebiet: "",
       cards: [],
       markers : [],
+      loadingData: false,
       selectValue:  { value: '', label: 'wähle/tippe Kategorie' },
     };
     this.onChange = (address) => this.setState({ address })
@@ -88,7 +89,7 @@ class Mieten extends Component{
       if(this.props.location.pathname.length > 8){this.handleFormSubmit()}
       else{
         this.setState({
-          kat:true
+          loadingData: true,
         })
       }
 
@@ -183,6 +184,7 @@ whenGeoCode.then(() =>{
               });
                this.setState ({
                  kat: 'Bagger',
+                 loadingData: true,
                  cards: previousCards,
                  markers: previousMarker
                })
@@ -228,6 +230,7 @@ whenGeoCode.then(() =>{
             });
              this.setState ({
                kat: 'Radlader',
+               loadingData: true,
                cards: previousCards,
                markers: previousMarker
              })
@@ -273,6 +276,7 @@ whenGeoCode.then(() =>{
           });
            this.setState ({
              kat: 'Anhänger',
+             loadingData: true,
              cards: previousCards,
              markers: previousMarker
            })
@@ -318,6 +322,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Baugeräte',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -366,6 +371,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Verdichtungstechnik',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -412,6 +418,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Landschaftstechnik',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -461,6 +468,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Sägen und Schneider',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -506,6 +514,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Raumsysteme',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -552,6 +561,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Fahrzeuge',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -604,6 +614,7 @@ whenGeoCode.then(() =>{
         });
          this.setState ({
            kat: 'Hebetechnik',
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -649,6 +660,7 @@ whenGeoCode.then(() =>{
            });;
             this.setState ({
               kat: this.state.selectValue.label,
+              loadingData: true,
               cards: previousCards,
               markers: previousMarker
             })
@@ -741,6 +753,7 @@ whenGeoCode.then(() =>{
            });
             this.setState ({
               kat: 'Bagger',
+              loadingData: true,
               cards: previousCards,
               markers: previousMarker
             })
@@ -786,6 +799,7 @@ whenGeoCode.then(() =>{
          });
           this.setState ({
             kat: 'Radlader',
+            loadingData: true,
             cards: previousCards,
             markers: previousMarker
           })
@@ -831,6 +845,7 @@ whenGeoCode.then(() =>{
        });
         this.setState ({
           kat: 'Anhänger',
+          loadingData: true,
           cards: previousCards,
           markers: previousMarker
         })
@@ -876,6 +891,7 @@ else if(this.state.selectValue.value == "BAUGERÄTE"){
      });
       this.setState ({
         kat: 'Baugeräte',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -924,6 +940,7 @@ else if(this.state.selectValue.value == "VERDICHTUNGSTECHNIK"){
      });
       this.setState ({
         kat: 'Verdichtungstechnik',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -970,6 +987,7 @@ else if(this.state.selectValue.value == "LANDSCHAFTSTECHNIK"){
      });
       this.setState ({
         kat: 'Landschaftstechnik',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -1019,6 +1037,7 @@ else if(this.state.selectValue.value == "SÄGEN UND SCHNEIDER"){
      });
       this.setState ({
         kat: 'Sägen und Schneider',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -1064,6 +1083,7 @@ else if(this.state.selectValue.value == "RAUMSYSTEME"){
      });
       this.setState ({
         kat: 'Raumsysteme',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -1110,6 +1130,7 @@ else if(this.state.selectValue.value == "FAHRZEUGE"){
      });
       this.setState ({
         kat: 'Fahrzeuge',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -1162,6 +1183,7 @@ else if(this.state.selectValue.value == "HEBETECHNIK"){
      });
       this.setState ({
         kat: 'Hebetechnik',
+        loadingData: true,
         cards: previousCards,
         markers: previousMarker
       })
@@ -1204,6 +1226,7 @@ else if(this.state.selectValue.value == "HEBETECHNIK"){
         });
          this.setState ({
            kat: this.state.selectValue.label,
+           loadingData: true,
            cards: previousCards,
            markers: previousMarker
          })
@@ -1410,7 +1433,7 @@ this.setState({cards:sorted})
 
                           <div  className="row">
                             {/* Single Listing- */}
-                            {this.state.kat?(<Listing gebiet={this.state.gebiet} cards={this.state.cards} />):
+                            {this.state.loadingData?(<Listing gebiet={this.state.gebiet} cards={this.state.cards} />):
                             (<div style={{marginTop:"30px", marginBottom:"50px"}} className='loader'></div>)}
                           </div>
 
