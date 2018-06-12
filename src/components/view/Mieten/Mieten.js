@@ -86,6 +86,11 @@ class Mieten extends Component{
         }
       })
       if(this.props.location.pathname.length > 8){this.handleFormSubmit()}
+      else{
+        this.setState({
+          kat:true
+        })
+      }
 
 
     }
@@ -106,7 +111,8 @@ class Mieten extends Component{
    const strCity = ref[1];
    const city = strCity.replace(/\/type/i, "")
    const type = ref[2]
-   this.setState({type:type})
+
+   this.setState({type:type, cityValue:city})
    let whenGeoCode = geocodeByAddress(city)
    .then(results =>{
      getLatLng(results[0])
@@ -1245,7 +1251,6 @@ this.setState({cards:sorted})
 
           return(
               <div>
-                <title>Mietdas Baugeräte mieten</title>
                 <div>
                 <div className="wrapper">
                     {/* Start Navigation */}
