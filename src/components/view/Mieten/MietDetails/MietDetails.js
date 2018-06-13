@@ -15,8 +15,8 @@ class MietDetails extends Component{
   constructor (props){
   super(props)
   this.state={
-  Gesamtsumme: "Zeitraum auswählen",
-      endDate: "",
+    Gesamtsumme: "Zeitraum auswählen",
+    endDate: "",
     startDate: "",
     focusedInput: "",
     loading: false,
@@ -87,6 +87,7 @@ componentWillMount(){
 
 
         render(){
+          moment.locale('de')
           let path = this.props.location.pathname
           return(
               <div>
@@ -917,7 +918,7 @@ componentWillMount(){
                 								{/* Start: Book A Reservation */}
                 								<div className="widget-boxed ">
                 									<div className="widget-boxed-header">
-                										<h4><i className="ti-calendar padd-r-10"></i>Book A Reservation</h4>
+                										<h4><i className="ti-calendar padd-r-10"></i>Datum auswählen</h4>
                 									</div>
                                   <div className="widget-boxed-body">
                                     <DateRangePicker
@@ -1161,7 +1162,7 @@ componentWillMount(){
                   								{/* Start: Book A Reservation */}
                   								<div className="widget-boxed ">
                   									<div className="widget-boxed-header">
-                  										<h4><i className="ti-calendar padd-r-10"></i>Book A Reservation</h4>
+                  										<h4><i className="ti-calendar padd-r-10"></i>Datum auswählen</h4>
                   									</div>
                                     <div className="widget-boxed-body">
 

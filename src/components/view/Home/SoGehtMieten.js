@@ -172,7 +172,7 @@ class SoGehtMieten extends Component{
                       <div className="feature-box">
                         <span className="ti-money"></span>
                         <h4>Kosten</h4>
-                        <p>Inseriere Kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei Kosten für den Miter an! Bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
+                        <p>Inseriere kostenlos und unverbindlich Geräte und Maschienen auf MietDas. Es fallen keinerlei zusätzliche Kosten für den Mieter an! Bei einer abgeschlossenen Miete werden dem Vermieter 10% des Mietbetrags in Rechnung gestellt.</p>
                       </div>
                     </div>
 
