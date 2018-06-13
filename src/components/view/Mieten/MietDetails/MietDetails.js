@@ -87,7 +87,6 @@ componentWillMount(){
 
 
         render(){
-          moment.locale('de')
           let path = this.props.location.pathname
           return(
               <div>
