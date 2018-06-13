@@ -45,7 +45,7 @@ class  Cards extends Component {
               </div>
               <div className="listing-shot-caption">
                 <h4 style={{marginBottom: "10px"}}>{this.props.snap.hersteller?(this.props.snap.hersteller+" "):(null)}{this.props.snap.cardHeading}{this.props.snap.gewicht?(" "+this.props.snap.gewicht+"Kg"):(null)}</h4>
-                <p className="listing-location"><i className="ti-location-pin mrg-r-5"></i>{this.props.standOrt}</p>
+                <p className="listing-location"><i className="ti-location-pin mrg-r-5"></i>{this.props.snap.ort}</p>
               </div>
 
 

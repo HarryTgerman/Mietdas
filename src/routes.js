@@ -20,7 +20,7 @@ import Vermieten from './components/view/Vermieten/Vermieten'
 import AccountErstellen from './components/view/AccountErstellen/AccountErstellen'
 import Payment from './components/PaymentMethod/Payment'
 import SoGehtMieten from './components/view/Home/SoGehtMieten'
-
+import ProfilView from './components/view/ProfilView/ProfilView'
 
 
 
@@ -257,6 +257,7 @@ sendPwReset(){
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
                       <Route name= 'MashineDetails' path='/mashineDetails/search=:type/:id' component={MashineDetails}/>
                       <Route name= 'Impressum' path='/impressum' component={Impressum}/>
+                      <Route name= 'ProfilView' path='/profil/:id/:name' component={ProfilView}/>
                       <Route name= 'AGB' path='/agb' component={AGB}/>
                       <Route name= 'SoGehtMieten' path='/so-geht-mieten' component={SoGehtMieten}/>
                       {this.state.registerRedirect ?

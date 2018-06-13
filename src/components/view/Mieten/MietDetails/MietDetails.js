@@ -896,11 +896,11 @@ componentWillMount(){
                                       <div className="review-body">
                                         <div className="detailsCategory col-sm-12 col-md-5">
                                           <div className="review-avatar">
-                														<img alt="" src={this.state.vermieterUrl} className=""/>
+                														<Link to={`/profil/${this.state.snap.uid}/${this.state.snap.vermieter}`} ><img alt="" src={this.state.vermieterUrl} className=""/></Link>
                 													</div>
                                         </div>
                                         <div className="col-sm-12 col-md-5">
-                                          <a>{this.state.snap.vermieter}</a>
+                                          <Link to={`/profil/${this.state.snap.uid}/${this.state.snap.vermieter}`} ><a>{this.state.snap.vermieter}</a></Link>
                                         </div>
                                       </div>
                                     </div>

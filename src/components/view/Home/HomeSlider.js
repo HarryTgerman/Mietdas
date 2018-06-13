@@ -138,7 +138,7 @@ handleCity = (city) => {
               <Slider {...settings}>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Bagger</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FBagger.jpg?alt=media&token=a86846cd-94a7-4f83-a596-9347ea2a2506'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FBagger.jpg?alt=media&token=77fb498f-1a9a-4d0f-b000-b01e7cc0b6b2'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -162,7 +162,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Radlader</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FRadlader.jpg?alt=media&token=9ccf5218-1dc8-4ff8-b17a-023503519796'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FRadlader.jpg?alt=media&token=4b4fd4a0-a156-4445-a54c-765a7c3ba4e6'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -186,7 +186,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Anhänger</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FAnha%CC%88nger.jpg?alt=media&token=1eb559e0-a9b8-433c-af38-96fbf69535d5'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FAnha%CC%88nger.jpg?alt=media&token=dd88ee3d-ccd5-44dc-99aa-f306e18f07e9'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -212,7 +212,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Baugeräte</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FBaugera%CC%88te.jpg?alt=media&token=70964fda-fdd6-46d2-ae5c-1f7dc682ba8b'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FBaugera%CC%88te.jpg?alt=media&token=07f80169-519f-41b4-9253-626bcaf90228'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -240,7 +240,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Verdichtungstechnik</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FVerdichtungstechnik.jpg?alt=media&token=510725c8-eb31-4ccf-b126-ce474fb0fad5'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FVerdichtungstechnik.jpg?alt=media&token=e17d83f3-394e-4822-bbea-f25a836c8a5e'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -265,7 +265,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Landschaftstechnik</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FLandschaftstechnik.jpg?alt=media&token=1e2a1948-0290-456b-9cb2-3d0f76d1832d'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FLandschaftstechnik.jpg?alt=media&token=9da0be8b-0cf3-45b9-b23f-180f22d39648'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle ">
                       <div className="row mrg-0">
@@ -288,7 +288,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Sägen und Schneider</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FSa%CC%88gen%20und%20Schneider.jpg?alt=media&token=43e4da53-80ca-4a62-a30d-336938fb3601'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FSa%CC%88gen%20und%20Schneider.jpg?alt=media&token=25ae62fa-6b90-4eb6-8495-43d0ba7f97ba'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -314,7 +314,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Raumsysteme</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FRaumsysteme.jpg?alt=media&token=2b4d66dd-06f1-41b3-93e7-9a8d49341af9'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FRaumsysteme.jpg?alt=media&token=b0b6e491-c23a-4d90-b7f7-04285b11c5b0'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -336,7 +336,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Fahrzeuge</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FTransport.jpg?alt=media&token=f461fdeb-8691-4dc1-8bfb-4a151bd0320e'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FTransport.jpg?alt=media&token=de687ed5-8b59-4e5d-b7d8-c9c716df743d'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
@@ -359,7 +359,7 @@ handleCity = (city) => {
                 </div>
                 <div style={{paddingLeft: "60px", paddingRight: "60px"}}>
                   <h1 className="center">Hebetechnik</h1>
-                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FHebetechnik.jpg?alt=media&token=fae45489-9125-4574-bce0-0b158f968fe3'/>
+                  <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FHebetechnik.jpg?alt=media&token=adb6594c-4320-4c0e-aaa6-3693e9affcf4'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
                       <div className="row mrg-0">
