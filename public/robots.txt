@@ -1,7 +1,11 @@
 User-agent: Googlebot
+Disallow: /details/
+Disallow: /search/
 Disallow: /admin/
 
 User-agent: *
+Disallow: /details/
+Disallow: /search/
 Allow: /
 
 Sitemap: https://mietdas.de/sitemap.xml
