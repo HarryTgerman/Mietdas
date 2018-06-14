@@ -96,7 +96,12 @@ if (this.state.selectValue.value == "") {
     const alert = "wähle ein Kategorie aus"
     this.setState({alert: alert, showAlert: true})
     return 0
-  }else {this.setState({kat:true})}
+  }else if(this.state.cityValue == ""){
+    const alert = "tippe eine Stadt ein"
+    this.setState({alert: alert, showAlert: true})
+    return 0;
+  }
+  else {this.setState({kat:true})}
 }
 
 scrollToSection2(){

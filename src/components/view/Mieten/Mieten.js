@@ -58,6 +58,7 @@ class Mieten extends Component{
       cards: [],
       markers : [],
       loadingData: false,
+      cityValue: "",
       selectValue:  { value: '', label: 'wähle/tippe Kategorie' },
     };
     this.onChange = (address) => this.setState({ address })
@@ -688,6 +689,10 @@ whenGeoCode.then(() =>{
 
     if (this.state.selectValue.value == "") {
         const alert = "wähle eine Kategorie aus"
+        this.setState({alert: alert, showAlert: true})
+        return 0
+      }else if(this.state.cityValue == ""){
+        const alert = "tippe eine Stadt ein"
         this.setState({alert: alert, showAlert: true})
         return 0
       }else {this.setState({alert: "", showAlert: false})}
