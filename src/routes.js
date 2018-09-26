@@ -4,6 +4,8 @@ import firebase from 'firebase'
 import Logo from'./img/logo.png'
 import ReCAPTCHA from 'react-google-recaptcha';
 import request from 'request';
+import { connect} from 'react-redux';
+
 
 import MashineDetails from './components/view/Account/MashineDetails/MashineDetails'
 import Home from './components/view/Home/Home'
@@ -12,6 +14,7 @@ import Logout from './components/Logout/Logout'
 import Account from './components/view/Account/Account'
 import Bezahlung from './components/PaymentMethod/Bezahlung'
 import MietDetails from './components/view/Mieten/MietDetails/MietDetails'
+import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
 import Impressum from './components/Footer/Impressum'
 import AGB from './components/Footer/AGB'
@@ -241,9 +244,10 @@ sendPwReset(){
         render(){
           const agbs = "AGB's"
           return(
-                <BrowserRouter>
+                <BrowserRouter >
                   <div >
                     <div className='app'>
+                      <Navbar navState={this.props.navState}/>
                       <Route path='/' exact component={Home}/>
                       <Route path='/mieten' exact component={Mieten}/>
                       <Route path='/mieten/city=:id/type=:id/' exact component={Mieten}/>
@@ -257,7 +261,7 @@ sendPwReset(){
                       <Route name= 'Bezahlen' path='/reservierung:id/payment' component={Payment}/>
                       <Route name= 'MashineDetails' path='/mashineDetails/search=:type/:id' component={MashineDetails}/>
                       <Route name= 'Impressum' path='/impressum' component={Impressum}/>
-                      <Route name= 'ProfilView' path='/profil/:id/:name' component={ProfilView}/>
+                      <Route name= 'ProfilView' path='/profil/:id/name=:name' component={ProfilView}/>
                       <Route name= 'AGB' path='/agb' component={AGB}/>
                       <Route name= 'SoGehtMieten' path='/so-geht-mieten' component={SoGehtMieten}/>
                       {this.state.registerRedirect ?
@@ -356,4 +360,6 @@ sendPwReset(){
         }
     }
 
-export default Routes;
+
+export default connect(null,  null) (Routes);
+// export default Routes;

@@ -6,6 +6,8 @@ import Logo from'../../../img/logo.png'
 import LogoWhite from'../../../img/logo-white.png'
 import scrollToComponent from 'react-scroll-to-component';
 import HomeSlider from './HomeSlider'
+import { fetchNavbar } from '../../../actions/navbarAction'
+import { connect } from 'react-redux';
 import Geosuggest from 'react-geosuggest';
 
 const geoStyel=
@@ -63,6 +65,13 @@ class Home extends Component{
     }
 }
 
+
+
+componentWillMount(){
+  this.props.fetchNavbar('home-2')
+
+  }
+
 handleChange = (city) => {
            this.setState({cityValue: city});
        }
@@ -70,25 +79,6 @@ handleChange = (city) => {
 this.setState({ selectValue });
 console.log(`Selected: ${selectValue.label}`);
 }
-
-componentWillMount(){
-    this.removeAuthListener = firebase.auth().onAuthStateChanged((user)=>{
-      const userProfile = firebase.auth().currentUser;
-      if(user){
-        this.setState({
-          authenticated: true,
-          name : userProfile.displayName,
-          email : userProfile.email,
-          uid : userProfile.uid,
-        })
-      } else {
-        this.setState({
-          authenticated: false,
-        },()=>{if (this.state.photoUrl == null){this.setState({showPhotoUrl:false})}else {this.setState({showPhotoUrl:true})}}
-        )
-      }
-    })
-  }
 
 handleSubmit(event){
   event.preventDefault();
@@ -147,52 +137,9 @@ scrollToSection4(){
                   return(
                 <div>
 
-                      <body className="home-2">
-                        <div className="wrapper">
-                           {/*Start Navigation*/}
-                          <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                            <div style={{paddingBottom: "0"}}  className="container">
-                              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                                <i className="ti-align-left"></i>
-                              </button>
-
-                               {/*Start Header Navigation*/}
-                              <div className="navbar-header">
-                                <NavLink to="/">
-                                  <img src={Logo}  className="logo logo-scrolled" alt=""/>
-                                  <img src={LogoWhite} className="logo logo-display" alt=""/>
-                                </NavLink>
-                              </div>
-
-                               {/*Collect the nav links, forms, and other content for toggling*/}
-                              <div className="collapse navbar-collapse" id="navbar-menu">
-                                <ul className="nav navbar-nav navbar-center">
-                                <li className="dropdown">
-                                  <NavLink to="/so-geht-mieten">So geht mieten</NavLink>
-                                </li>
-                                <li className="dropdown">
-                                  <NavLink to="/mieten" >Mieten</NavLink>
-                                </li>
-                                <li className="dropdown">
-                                  <NavLink to="/vermieten" >Vermieten</NavLink>
-                                </li>
-                                  {this.state.authenticated ?(<li className="dropdown">
-                                      <NavLink to="/logout" >Logout</NavLink>
-                                    </li>)
-                                  :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                                </ul>
-                                <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                                { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
-                                {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
-                                :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
-                                :(null)
-                                }
-                                </ul>
-                              </div>
-                               {/*.navbar-collapse*/}
-                            </div>
-                          </div>
-                           {/*End Navigation*/}
+                      <body >
+                           <div className="wrapper">
+                        
                           <div className="clearfix"></div>
 
                            {/*Main Banner Section Start*/}
@@ -489,4 +436,6 @@ scrollToSection4(){
         }
     }
 
-export default Home;
+
+
+export default connect(null, { fetchNavbar })(Home);

@@ -3,6 +3,12 @@ import firebase from 'firebase'
 import moment from 'moment'
 import ChatContainer from './ChatContainer'
 import {Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
+
+const mapStateToProps = state => ({
+  authState: state.authState.items
+})
+
 class Chat extends Component{
   constructor(props){
     super(props)
@@ -20,16 +26,19 @@ class Chat extends Component{
     }
 }
 
+componentDidMount(){
+    this.getChats()
+  }
 
 getChats(){
-  firebase.database().ref().child('app/').child('messages').orderByChild('receiverUid').equalTo(this.state.uid)
+  firebase.database().ref().child('app/').child('messages').orderByChild('receiverUid').equalTo(this.props.authState.uid)
   .once('child_added', snap=>{
 
     if(snap.val()){
          const message = {
          receiver: snap.val().receiver,
          senderUid: snap.val().senderUid,
-         uid: this.state.uid,
+         uid: this.props.authState.uid,
          read: snap.val().read,
          SenderName:snap.val().sender,
          time: snap.val().time,
@@ -44,14 +53,14 @@ getChats(){
    console.log('snap ist null');
  }
 })
-firebase.database().ref().child('app/').child('messages').orderByChild('senderUid').equalTo(this.state.uid)
+firebase.database().ref().child('app/').child('messages').orderByChild('senderUid').equalTo(this.props.authState.uid)
 .once('child_added', snap=>{
 
 if(snap.val()){
      const message = {
      receiver: snap.val().receiver,
      senderUid: snap.val().senderUid,
-     uid: this.state.uid,
+     uid: this.props.authState.uid,
      read: snap.val().read,
      SenderName:snap.val().sender,
      time: snap.val().time,
@@ -67,24 +76,7 @@ if(snap.val()){
 
 }
 
-componentWillMount(){
-    let messages = []
-    this.removeAuthListener = firebase.auth().onAuthStateChanged((user)=>{
-      const userProfile = firebase.auth().currentUser;
-      if(user){
-        this.setState({
-          authenticated: true,
-          name : userProfile.displayName,
-          email : userProfile.email,
-          uid : userProfile.uid,
-        },this.getChats)
 
-
-      }
-    })
-
-
-  }
 
 getChatData(data){
   let query = data
@@ -118,7 +110,7 @@ getChatData(data){
             {this.state.showInbox?(
                 <div  className="row">
                   <button type="button" onClick={()=>{this.setState({showInbox:false, data: null,showMessages: true, chatMessages: [], messages: []},this.getChats)}} style={{float:"right", marginRight:"20px", marginBottom:"40px"}} className="btn theme-btn">Nachrichten Anzeigen</button>
-                  <ChatContainer data={this.state.data} chatMessages={this.state.chatMessages} uid={this.state.uid} name={this.state.name}/>
+                  <ChatContainer data={this.state.data} chatMessages={this.state.chatMessages} uid={this.props.authState.uid} name={this.props.authState.name}/>
                 </div>):(null
           )}
 {this.state.showMessages?(<div  className="card">
@@ -176,4 +168,4 @@ getChatData(data){
         }
     }
 
-export default Chat;
+export default connect(mapStateToProps, null) (Chat);

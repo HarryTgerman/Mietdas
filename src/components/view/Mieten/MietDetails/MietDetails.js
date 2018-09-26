@@ -8,7 +8,9 @@ import firebase from 'firebase';
 import {Redirect, NavLink, Link} from 'react-router-dom'
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from 'react-image-gallery';
-import Logo from '../../../../img/logo.png'
+import { connect } from 'react-redux';
+import { fetchNavbar } from '../../../../actions/navbarAction';
+
 
 
 class MietDetails extends Component{
@@ -28,6 +30,8 @@ class MietDetails extends Component{
 
 
 componentWillMount(){
+    this.props.fetchNavbar(false)
+    
     const url = this.props.location.pathname;
     const ref = url.split('=');
     const cardId = ref[1];
@@ -63,24 +67,7 @@ componentWillMount(){
       })
     })
 
-    urlPromis.then(()=>{firebase.auth().onAuthStateChanged((user)=>{
-
-      const userProfile = firebase.auth().currentUser;
-      if(user){
-        this.setState(
-          {
-          authenticated: true,
-          name : userProfile.displayName,
-          email : userProfile.email,
-          uid : userProfile.uid,
-          })
-      } else {
-        this.setState({
-          authenticated: false,
-        })
-      }
-    })
-  })
+    urlPromis.then(()=>{})
   }
 
 
@@ -90,53 +77,9 @@ componentWillMount(){
           let path = this.props.location.pathname
           return(
               <div>
-                		{this.state.loading ?(<div className="wrapper">
-                			{/* Start Navigation */}
-                      <div  className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                        <div style={{paddingBottom: "0"}}  className="container">
-                          <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i className="ti-align-left"></i>
-                          </button>
-
-                           {/*Start Header Navigation*/}
-                          <div className="navbar-header">
-                            <NavLink to="/">
-                              <img src={Logo} className="logo logo-display" alt=""/>
-                              <img src={Logo} className="logo logo-scrolled" alt=""/>
-                            </NavLink>
-                          </div>
-
-                           {/*Collect the nav links, forms, and other content for toggling*/}
-                          <div className="collapse navbar-collapse" id="navbar-menu">
-                            <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
-                            <li className="dropdown">
-                              <NavLink to="/mieten" >Mieten</NavLink>
-                            </li>
-                            <li className="dropdown">
-                              <NavLink to="/vermieten" >Vermieten</NavLink>
-                            </li>
-                            {this.state.authenticated ?(<li className="dropdown">
-                                <NavLink to="/logout" >Logout</NavLink>
-                              </li>)
-                            :(<li><a  href="javascript:void(2)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                          </ul>
-                          <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                          { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
-                          {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
-                          :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
-                          :(null)
-                          }
-                            </ul>
-                          </div>
-                           {/*.navbar-collapse*/}
-                        </div>
-                      </div>
-                      {/* End Navigation */}
+                		{this.state.loading ?(
+                    <div>
                 			<div className="clearfix"></div>
-
-
-
 
                 			{/* ================ Listing Detail Full Information ======================= */}
                 			<section className="list-detail">
@@ -147,6 +90,8 @@ componentWillMount(){
                 							<div className="detail-wrapper">
                 								<div className="detail-wrapper-body">
                 									<div className="listing-title-bar">
+                                  {this.props.location.querry ? (<div className="theme-cl">Mieten-><a style={{cursor: 'pointer'}} className="theme-cl" onClick={()=>{this.props.history.goBack()}}>{this.props.location.querry.kat}</a></div>):(null)}
+
                 										<h3>{this.state.snap.hersteller?(this.state.snap.hersteller+" "):(null)}{this.state.snap.cardHeading}{this.state.snap.gewicht?(" "+this.state.snap.gewicht+"Kg"):(null)}</h3>
                 										<div className="row">
                 											<a href="#listing-location" className="listing-address col-sm-5">
@@ -895,11 +840,11 @@ componentWillMount(){
                                       <div className="review-body">
                                         <div className="detailsCategory col-sm-12 col-md-5">
                                           <div className="review-avatar">
-                														<Link to={`/profil/${this.state.snap.uid}/${this.state.snap.vermieter}`} ><img alt="" src={this.state.vermieterUrl} className=""/></Link>
+                														<Link to={`/profil/${this.state.snap.uid}/name=${this.state.snap.vermieter}`} ><img alt="" src={this.state.vermieterUrl} className=""/></Link>
                 													</div>
                                         </div>
                                         <div className="col-sm-12 col-md-5">
-                                          <Link to={`/profil/${this.state.snap.uid}/${this.state.snap.vermieter}`} ><a>{this.state.snap.vermieter}</a></Link>
+                                          <Link to={`/profil/${this.state.snap.uid}/name=${this.state.snap.vermieter}`} ><a>{this.state.snap.vermieter}</a></Link>
                                         </div>
                                       </div>
                                     </div>
@@ -992,47 +937,10 @@ componentWillMount(){
 
                 			{/* ================== Login & Sign Up Window ================== */}
 
-                    </div>):(
+                    </div>)
+                    :(
                       <div className="wrapper">
-                  			{/* Start Navigation */}
-                        <div  className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                          <div style={{paddingBottom: "0"}}  className="container">
-                            <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                              <i className="ti-align-left"></i>
-                            </button>
 
-                             {/*Start Header Navigation*/}
-                            <div className="navbar-header">
-                              <NavLink to="/">
-                                <img src={Logo} className="logo logo-display" alt=""/>
-                                <img src={Logo} className="logo logo-scrolled" alt=""/>
-                              </NavLink>
-                            </div>
-
-                             {/*Collect the nav links, forms, and other content for toggling*/}
-                            <div className="collapse navbar-collapse" id="navbar-menu">
-                              <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
-                              <li className="dropdown">
-                                <NavLink to="/mieten" >Mieten</NavLink>
-                              </li>
-                              <li className="dropdown">
-                                <NavLink to="/vermieten" >Vermieten</NavLink>
-                              </li>
-                                {this.state.authenticated ?(<li className="dropdown">
-                                    <NavLink to="/logout" >Logout</NavLink>
-                                  </li>)
-                                :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                              </ul>
-                              <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                              { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist"><i className="ti-user"></i>{this.state.name}</NavLink></li>)
-                              :(<p></p>)
-                              }
-                              </ul>
-                            </div>
-                             {/*.navbar-collapse*/}
-                          </div>
-                        </div>
                         {/* End Navigation */}
                   			<div className="clearfix"></div>
 
@@ -1195,4 +1103,4 @@ componentWillMount(){
         }
     }
 
-export default MietDetails;
+export default connect(null, { fetchNavbar }) (MietDetails);

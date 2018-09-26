@@ -60,10 +60,7 @@ return   transporter.sendMail({
 exports.artikelZugesagt =  functions.database.ref('app/users/{wildCard}/mitteilung/{wildcardMessge}')
 .onUpdate((snapshot, context) => {
   let bestätigt = snapshot.val().bestätigt;
-  if (bestätigt === false){
-    console.log('nicht bestätigt');
-    return 0
-  }
+  
   let sendToMail =snapshot.val().anfrage.email
   let name = snapshot.val().anfrage.name;
   let article = snapshot.val().anfrage.cardHeading;

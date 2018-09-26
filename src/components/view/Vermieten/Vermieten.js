@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
 import {Redirect, NavLink} from 'react-router-dom';
-import logo from '../../../img/logo.png'
+import { connect } from 'react-redux';
+import { fetchNavbar } from '../../../actions/navbarAction'
+
+
 //import Bagger from './Components/Bagger'
 import Minibagger from './Components/Minibagger'
 import Kompaktbagger from './Components/Kompaktbagger'
@@ -52,6 +55,9 @@ import Teleskopstapler from './Components/Teleskopstapler'
 
 import PlacesAutocomplete, { geocodeByAddress ,getLatLng } from 'react-places-autocomplete';
 
+const mapStateToProps = state => ({
+  authState: state.authState.items
+})
 
 class Vermieten extends Component{
   constructor(props){
@@ -66,19 +72,12 @@ class Vermieten extends Component{
 }
 
 componentWillMount(){
-  firebase.auth().onAuthStateChanged((user)=>{
-    const userProfile = firebase.auth().currentUser;
+  this.props.fetchNavbar(false)
+}
 
-
-    if(user){
-      this.setState(
-        {
-        authenticated: true,
-        name : userProfile.displayName,
-        email : userProfile.email,
-        uid : userProfile.uid,
-      },()=>{
-         this.auth.child(this.state.uid)
+componentDidMount(){
+    if(this.props.authState.authenticated){
+         this.auth.child(this.props.authState.uid)
            .on('value', snapshot => {
              if(snapshot.val().bankData == undefined){this.setState({bankDataRedirect: true})}
              if(snapshot.val()){var adresse = snapshot.val().adresse;
@@ -111,8 +110,6 @@ componentWillMount(){
              })
            }
          })
-      }
-    )
 
     } else {
       this.setState({
@@ -123,7 +120,6 @@ componentWillMount(){
       }
     )
     }
-  })
 
 }
 onDrop(imageFiles) {
@@ -149,44 +145,7 @@ onDrop(imageFiles) {
           return(
               <div>
               <title>Mietdas  Baugeräte vermieten</title>
-                <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                  <div style={{paddingBottom: "0"}}  className="container">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                      <i className="ti-align-left"></i>
-                    </button>
-
-                   {/*Start Header Navigation*/}
-                    <div className="navbar-header">
-                      <NavLink to="/">
-                        <img src={logo} className="logo logo-display" alt=""/>
-                        <img src={logo} className="logo logo-scrolled" alt=""/>
-                      </NavLink>
-                    </div>
-
-                     {/*Collect the nav links, forms, and other content for toggling*/}
-                    <div className="collapse navbar-collapse" id="navbar-menu">
-                      <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
-                      <li className="dropdown">
-                        <NavLink to="/mieten" >Mieten</NavLink>
-                      </li>
-                      <li className="dropdown">
-                        <NavLink to="/vermieten" >Vermieten</NavLink>
-                      </li>
-                        {this.state.authenticated ?(<li className="dropdown">
-                            <NavLink to="/logout" >Logout</NavLink>
-                          </li>)
-                        :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                      </ul>
-                      <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                      { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist"><i className="ti-user"></i>{this.state.name}</NavLink></li>)
-                      :(<p></p>)
-                      }
-                      </ul>
-                    </div>
-                   {/*.navbar-collapse*/}
-                </div>
-              </div>
+        
               {/* Tab Style 1 */}
               <div className="container">
               <div style={{marginTop: "70px"}} className=" col-md-12 col-sm-12">
@@ -307,227 +266,227 @@ onDrop(imageFiles) {
                   {/* Tab panes */}
                   <div className="tab-content tabs">
                     <div role="tabpanel" className="tab-pane fade" id="teleskopstapler">
-                      <Teleskopstapler user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Teleskopstapler user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="gelenkteleskoparbeitsbühneAufGummiketten">
-                      <GelenkteleskoparbeitsbühneAufGummiketten user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <GelenkteleskoparbeitsbühneAufGummiketten user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="anhängerArbeitsbühne">
-                      <AnhängerArbeitsbühne user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <AnhängerArbeitsbühne user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="teleskopArbeitsbühne">
-                      <TeleskopArbeitsbühne user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <TeleskopArbeitsbühne user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="gelenkteleskopArbeitsbühne">
-                      <GelenkteleskopArbeitsbühne user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <GelenkteleskopArbeitsbühne user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="teleskopmastbühne">
-                      <Teleskopmastbühne user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Teleskopmastbühne user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="selbstfahrendeScherenbühne">
-                      <SelbstfahrendeScherenbühne user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <SelbstfahrendeScherenbühne user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="lkwArbeitsbühne">
-                      <LkwArbeitsbühne user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <LkwArbeitsbühne user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="vibrationswalze">
-                      <Vibrationswalze user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Vibrationswalze user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="betonmischer">
-                      <Betonmischer user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Betonmischer user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="trennschleifer">
-                      <Trennschleifer user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Trennschleifer user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="stromerzeuger">
-                      <Stromerzeuger user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Stromerzeuger user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="steinsaege">
-                      <Steinsaege user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Steinsaege user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="raddumper">
-                      <Raddumper user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Raddumper user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="pritschenwagen">
-                      <Pritschenwagen user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Pritschenwagen user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="materialContainer">
-                      <MaterialContainer user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <MaterialContainer user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="kompressor">
-                      <Kompressor user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Kompressor user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="kettendumper">
-                      <Kettendumper user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Kettendumper user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="kernbohrmaschiene">
-                      <Kernbohrmaschiene user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Kernbohrmaschiene user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="holzhaecksler">
-                      <Holzhaecksler user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Holzhaecksler user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="grabenwalze">
-                      <Grabenwalze user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Grabenwalze user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="fugenschneider">
-                      <Fugenschneider user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Fugenschneider user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="erdbohrgeraet">
-                      <Erdbohrgeraet user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Erdbohrgeraet user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="abbruchhammer">
-                      <Abbruchhammer user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Abbruchhammer user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="bohrhammer">
-                      <Bohrhammer user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Bohrhammer user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="bodenfraese">
-                      <Bodenfraese user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Bodenfraese user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="blocksteinsaege">
-                      <Blocksteinsaege user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Blocksteinsaege user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="betoninnenruettler">
-                      <Betoninnenruettler user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Betoninnenruettler user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="betonglaetter">
-                      <Betonglaetter user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Betonglaetter user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="bausteinBandseage">
-                      <BausteinBandseage user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <BausteinBandseage user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade in active" id="minibagger">
-                      <Minibagger user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Minibagger user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="kompaktbagger">
-                      <Kompaktbagger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Kompaktbagger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="raupenbagger">
-                      <Raupenbagger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Raupenbagger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="mobilbagger">
-                      <Mobilbagger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Mobilbagger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
 
                     <div role="tabpanel" className="tab-pane fade" id="radlader">
-                      <Radlader  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Radlader  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="stampfer">
-                      <Stampfer  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Stampfer  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="vibrationsplatte">
-                      <Vibrationsplatte  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Vibrationsplatte  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     <div role="tabpanel" className="tab-pane fade" id="kippanhänger">
-                      <Kippanhänger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Kippanhänger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     {/*<div role="tabpanel" className="tab-pane fade" id="motorradanhänger">
-                      <Motorradanhänger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Motorradanhänger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>*/}
                     <div role="tabpanel" className="tab-pane fade" id="umzugstransporter">
-                      <Umzugstransporter  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Umzugstransporter  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                     {/*<div role="tabpanel" className="tab-pane fade" id="planenanhänger">
-                      <Planenanhänger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Planenanhänger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>*/}
                     <div role="tabpanel" className="tab-pane fade" id="autotransportanhänger">
-                      <Autotransportanhänger  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Autotransportanhänger  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
 
                     <div role="tabpanel" className="tab-pane fade" id="tieflader">
-                      <Tieflader  user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Tieflader  user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
 
                     <div role="tabpanel" className="tab-pane fade" id="messages">
-                      <Anhänger user={this.state.uid} address={this.state.address}
-                        ort={this.state.ort} telefon={this.state.telefon} email={this.state.email}
-                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.state.name} cords={this.state.cords}/>
+                      <Anhänger user={this.props.authState.uid} address={this.state.address}
+                        ort={this.state.ort} telefon={this.state.telefon} email={this.props.authState.email}
+                        bundesland={this.state.bundesland} gebiet={this.state.gebiet} vermieter={this.props.authState.authenticated} cords={this.state.cords}/>
                     </div>
                   </div>
                 </div>
@@ -538,4 +497,4 @@ onDrop(imageFiles) {
         }
     }
 
-export default Vermieten;
+export default connect(mapStateToProps, { fetchNavbar })(Vermieten);

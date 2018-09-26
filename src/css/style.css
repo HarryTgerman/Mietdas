@@ -137,6 +137,11 @@ general setting
 
 
 }
+
+.geosuggest__input{
+
+}
+
 .geosuggest__suggests {
 	z-index: 1;
 	position: absolute;
@@ -669,27 +674,7 @@ button.btn.dropdown-toggle.btn-default {
 	color:#f64625;
 }
 
-.theme-overlap{
-	background:url(../img/Home.jpg);
-	background-position:center  ;
-	background-size:cover  ;
-	position:relative;
-}
-.theme-overlap:before{
-	background:#f64625;
-}
-.theme-overlap:before{
-	opacity:0.8;
-	content:"";
-	display:block;
-	left:0;
-	right:0;
-	top:0;
-	bottom:0;
-	height:100%;
-	width:100%;
-	position:absolute;
-}
+
 /*---------- Global Settings: Custom Button -----------*/
 .btn-radius{
 	border-radius:50px;
@@ -2226,6 +2211,9 @@ img.detailsImg {
 
 
 @media (max-width: 991px){
+
+
+
 .side-full-map{
     height: 500px;
     position: relative;
@@ -4858,6 +4846,8 @@ p#invoice-info {
 	z-index: 5;
 }
 @media screen and (min-width: 1000px) {
+
+
   .sidebar {
     position: fixed;
     max-width: 400px;

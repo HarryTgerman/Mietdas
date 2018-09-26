@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import Routes from './routes'
+import { Provider } from 'react-redux'
 import moment from 'moment'
+
+import store from './store';
 
 class App extends Component {
 
@@ -9,8 +12,10 @@ class App extends Component {
      moment.locale('de')
     return (
       <div>
+      <Provider store={store}>
         <Routes/>
-        </div>
+      </Provider>
+    </div>
     )
   }
 }

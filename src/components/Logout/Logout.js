@@ -1,6 +1,9 @@
 import React,  {Component} from 'react';
 import {Redirect} from  'react-router-dom';
-import firebase from 'firebase'
+import firebase from 'firebase';
+import { fetchAuthState } from '../../actions/authAction';
+import { connect } from 'react-redux';
+
 class Logout extends Component {
 
 constructor(props){
@@ -13,6 +16,8 @@ constructor(props){
 componentWillMount(){
   firebase.auth().signOut()
   .then((user) => {
+    this.props.fetchAuthState()
+  }).then(()=>{
     this.setState({
       redirect: true
     })
@@ -31,4 +36,5 @@ componentWillMount(){
       }
   }
 
-export default Logout;
+
+export default connect(null, { fetchAuthState })(Logout);

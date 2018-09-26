@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import firebase from 'firebase';
 import {NavLink, Redirect} from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchNavbar } from '../../../actions/navbarAction'
 
 
 class AccountErstellen extends Component{
@@ -12,6 +14,8 @@ class AccountErstellen extends Component{
     }
 }
 componentWillMount(){
+
+  this.props.fetchNavbar('home-2')
 
   firebase.auth().onAuthStateChanged((user)=>{
     const userProfile = firebase.auth().currentUser;
@@ -239,47 +243,8 @@ handleChange(event){
           if(this.state.showAlert === true)
           {window.scrollTo(0, 0)}
           return(
-              <div className="home-2">
-                <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                  <div style={{paddingBottom: "0"}}  className="container">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                      <i className="ti-align-left"></i>
-                    </button>
+              <div >
 
-                     {/*Start Header Navigation*/}
-                    <div className="navbar-header">
-                      <NavLink to="/">
-                        <img src="assets/img/logo.png" className="logo logo-scrolled" alt=""/>
-                        <img src="assets/img/logo-white.png" className="logo logo-display" alt=""/>
-                      </NavLink>
-                    </div>
-
-                     {/*Collect the nav links, forms, and other content for toggling*/}
-                    <div className="collapse navbar-collapse" id="navbar-menu">
-                      <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
-                      <li className="dropdown">
-                        <NavLink to="/mieten" >Mieten</NavLink>
-                      </li>
-                      <li className="dropdown">
-                        <NavLink to="/vermieten" >Vermieten</NavLink>
-                      </li>
-                        {this.state.authenticated ?(<li className="dropdown">
-                            <NavLink to="/logout" >Logout</NavLink>
-                          </li>)
-                        :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                      </ul>
-                      <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                      { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
-                      {this.state.showPhotoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
-                      :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
-                      :(null)
-                      }
-                      </ul>
-                    </div>
-                     {/*.navbar-collapse*/}
-                  </div>
-                </div>
                  {/*End Navigation*/}
               {/* ================ Start Page Title ======================= */}
                   <section className="title-transparent page-title" style={{background:"url(http://via.placeholder.com/1920x850)"}}>
@@ -413,4 +378,4 @@ handleChange(event){
         }
     }
 
-export default AccountErstellen;
+export default connect(null, { fetchNavbar })(AccountErstellen);

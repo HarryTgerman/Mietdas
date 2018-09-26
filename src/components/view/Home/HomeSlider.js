@@ -63,6 +63,7 @@ handleCity = (city) => {
         slidesToScroll: 1,
 
       };
+
       if(this.state.bagger){
         if(this.state.city.label)
         {return <Redirect to={{pathname: `/mieten/city=${this.state.city.label+"/type="+this.baggerInput.value+"/"}`}}/>}
@@ -141,6 +142,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FBagger.jpg?alt=media&token=77fb498f-1a9a-4d0f-b000-b01e7cc0b6b2'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>                        </div>
@@ -154,7 +162,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({bagger:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({bagger:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -165,6 +177,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FRadlader.jpg?alt=media&token=4b4fd4a0-a156-4445-a54c-765a7c3ba4e6'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -178,7 +197,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({radlader:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({radlader:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -189,6 +212,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FAnha%CC%88nger.jpg?alt=media&token=dd88ee3d-ccd5-44dc-99aa-f306e18f07e9'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -204,7 +234,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({anhänger:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({anhänger:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -215,6 +249,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FBaugera%CC%88te.jpg?alt=media&token=07f80169-519f-41b4-9253-626bcaf90228'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -232,7 +273,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({baugeräte:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({baugeräte:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -243,6 +288,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FVerdichtungstechnik.jpg?alt=media&token=e17d83f3-394e-4822-bbea-f25a836c8a5e'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -257,7 +309,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({verdichtunstechnik:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({verdichtunstechnik:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -268,6 +324,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FLandschaftstechnik.jpg?alt=media&token=9da0be8b-0cf3-45b9-b23f-180f22d39648'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle ">
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -280,7 +343,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}}  type='button' onClick={()=>{this.setState({landschaftstechnik:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}}  type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({landschaftstechnik:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -291,6 +358,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FSa%CC%88gen%20und%20Schneider.jpg?alt=media&token=25ae62fa-6b90-4eb6-8495-43d0ba7f97ba'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -306,7 +380,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({sägenUndSchneider:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({sägenUndSchneider:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -317,6 +395,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FRaumsysteme.jpg?alt=media&token=b0b6e491-c23a-4d90-b7f7-04285b11c5b0'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -328,7 +413,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({raumsysteme:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({raumsysteme:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -339,6 +428,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FTransport.jpg?alt=media&token=de687ed5-8b59-4e5d-b7d8-c9c716df743d'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -351,7 +447,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({fahrzeuge:true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({fahrzeuge:true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>
@@ -362,6 +462,13 @@ handleCity = (city) => {
                   <img src='https://firebasestorage.googleapis.com/v0/b/mietdas-93abf/o/images%2Fhomeslider%2FHebetechnik.jpg?alt=media&token=adb6594c-4320-4c0e-aaa6-3693e9affcf4'/>
                   <div className="col-md-12 col-xs-12" >
                     <form className="form-verticle " >
+                    {
+                      this.state.showAlert ?
+                       (<div ref="alert" className="alert alert-danger" role="alert">
+                          <strong>Achtung</strong> {this.state.alert}
+                        </div>)
+                      :(null)
+                    }
                       <div className="row mrg-0">
                         <div className="col-md-5 col-sm-12 col-xs-12 no-padd">
                           <Geosuggest  className="left-radius right-br" placeholder="Ort..." style={geoStyel} onSuggestSelect={this.handleCity.bind(this)} onChange={this.handleCity.bind(this)}/>
@@ -380,7 +487,11 @@ handleCity = (city) => {
                         </select>
                         </div>
                         <div className="col-md-2 col-sm-12 col-xs-12 no-padd" >
-                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{this.setState({hebetechnik: true})}} className="btn theme-btn">Suche</button>
+                          <button style={{padding: "15px 40px", width: "100%"}} type='button' onClick={()=>{if(this.state.city == ""){
+                            const alert = "tippe eine Stadt ein"
+                            this.setState({alert: alert, showAlert: true})
+                            return 0
+                          }this.setState({hebetechnik: true})}} className="btn theme-btn">Suche</button>
                         </div>
                       </div>
                     </form>

@@ -17,8 +17,9 @@ class  Cards extends Component {
       this.standOrt = props.snap.standOrt
       this.url = props.snap.image;
       this.imageArr = props.snap.imageArr;
-      this.gewicht = props.snap.gewicht,
+      this.gewicht = props.snap.gewicht;
       this.snap = props.snap;
+      this.kat = props.kat;
 
       this.state ={
         kategorie:"",
@@ -53,7 +54,10 @@ class  Cards extends Component {
               <div className="row extra">
                 <Rating/>
                 <div className="col-md-5 col-sm-5 col-xs-6 pull-right">
-                <a href={`/details/search=${this.props.snap.kategorie+"/"+this.props.id}`} className="detail-link" target="_blank" >Gehe zu</a>
+                <Link className="detail-link"  to={{
+                 pathname: `/details/search=${this.props.snap.kategorie+"/"+this.props.id}`, querry: {kat: this.props.kat}}}>
+               Gehe zu</Link>
+
                 </div>
               </div>
             </div>

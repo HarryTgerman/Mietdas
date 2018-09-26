@@ -5,12 +5,18 @@ import AccountCards from './AccountCard'
 import Anfragen from './Mitteilungen/Anfragen'
 import LaufendeAnfragen from './Mitteilungen/LaufendeAnfragen'
 import AccountImg from'../../../img/account.jpg'
-import Logo from'../../../img/logo.png'
-import LogoWhite from'../../../img/logo-white.png'
 import AvatarImg from'../../../img/avatar.jpg'
 import Chat from './Mitteilungen/Chat/Chat'
 import EditProfile from './EditProfile/EditProfile'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+
+import { connect } from 'react-redux';
+import { fetchNavbar } from '../../../actions/navbarAction';
+import { fetchAuthState } from '../../../actions/authAction';
+
+const mapStateToProps = state => ({
+  authState: state.authState.items
+})
 
 class Account extends Component{
   constructor(props){
@@ -27,32 +33,19 @@ class Account extends Component{
       messages: [{}]
     }
 }
-componentDidMount(){
-  firebase.auth().onAuthStateChanged((user)=>{
-    const userProfile = firebase.auth().currentUser;
-    if(user){
-      this.setState(
-        {
-        authenticated: true,
-        photoUrl: userProfile.photoURL,
-        name : userProfile.displayName,
-        email : userProfile.email,
-        stadt: userProfile.stadt,
-        uid : userProfile.uid,
-      },()=>{ this.firedata();
-              this.loadAnfragen();
-      }
-    )
 
-    } else {
-      this.setState({
-        authenticated: false,
-        redirect: true,
-      })
-    }
-  })
-
+componentWillMount(){
+  this.props.fetchAuthState();
+  this.props.fetchNavbar('home-2');
 }
+
+componentWillReceiveProps(nextProps){
+  if(nextProps.authState){
+    this.firedata();
+    this.loadAnfragen();
+  }
+}
+
 firedata() {
   let array = ["minibagger","kompaktbagger","raupenbagger","mobilbagger","radlader",
               "stampfer","vibrationsplatte","anhänger",
@@ -67,7 +60,7 @@ firedata() {
   array.map((i) =>
   {
     firebase.database().ref().child('app').child('cards/'+i)
-    .orderByChild('uid').equalTo(this.state.uid)
+    .orderByChild('uid').equalTo(this.props.authState.uid)
     .on('value', snap => {
       snap.forEach(childSnapshot => {
         previousCards.push ({
@@ -88,9 +81,10 @@ firedata() {
   loadAnfragen(){
     const mitteilung = [];
     let anfragen = [];
-    const uid = this.state.uid;
+    const uid = this.props.authState.uid;
     firebase.database().ref('app/').child('users/'+uid)
     .once('value', snap => {
+      console.log('loadAnfragen !!!');
         if(snap.val()){
           this.setState({
             cardId: snap.val().cardId,
@@ -169,7 +163,6 @@ firedata() {
 
 
 editProfile() {
-
 		this.setState((prevState)=>{
 			return {editProfile: !prevState.editProfile};
 		});
@@ -193,48 +186,8 @@ editBankData(){
           }
 
           return(
-            <div className="home-2 wrapper">
-                {/* Start Navigation */}
-                <div className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                  <div style={{paddingBottom: "0"}}  className="container">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                      <i className="ti-align-left"></i>
-                    </button>
+            <div className="wrapper">
 
-                     {/*Start Header Navigation*/}
-                    <div className="navbar-header">
-                      <NavLink to="/">
-                      <img src={Logo} className="logo logo-scrolled" alt=""/>
-                      <img src={LogoWhite} className="logo logo-display" alt=""/>
-                      </NavLink>
-                    </div>
-
-                     {/*Collect the nav links, forms, and other content for toggling*/}
-                    <div className="collapse navbar-collapse" id="navbar-menu">
-                      <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
-                      <li className="dropdown">
-                        <NavLink to="/mieten" >Mieten</NavLink>
-                      </li>
-                      <li className="dropdown">
-                        <NavLink to="/vermieten" >Vermieten</NavLink>
-                      </li>
-                        {this.state.authenticated ?(<li className="dropdown">
-                            <NavLink to="/logout" >Logout</NavLink>
-                          </li>)
-                        :(null)}
-                      </ul>
-                      <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                      { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist">
-                      {this.state.photoUrl ? (<img src={this.state.photoUrl} className="avater-img" alt=""/>)
-                      :(<i className="ti-user"></i>)}{this.state.name}</NavLink></li>)
-                      :(null)
-                      }
-                      </ul>
-                    </div>
-                     {/*.navbar-collapse*/}
-                  </div>
-                </div>
                 {/* End Navigation */}
                 <div className="clearfix"></div>
 
@@ -292,7 +245,7 @@ editBankData(){
                        }
                     </TabPanel>
                     <TabPanel>
-                      <div className="tabs">
+                      <div className="tabs" >
                         <div style={{float:"right", marginRight:"20px", marginBottom:"40px",marginTop: "10px", position: "relative"}} >
                           {this.state.showEditBankData?(<button className="btn btn-default" style={{marginRight:"5px"}} onClick={this.editBankData.bind(this)}>Bankdaten hinzufügen</button>):(null)}
                           <button type="button" onClick={this.editProfile.bind(this)}  className="btn theme-btn">
@@ -300,7 +253,7 @@ editBankData(){
                         </div>
                       <div style={{paddingTop:"100px"}}>
                          {/* General Information */}
-                         {this.state.editProfile ?(<div><EditProfile snap={this.state.profileInfo} uid={this.state.uid} name={this.state.name} showBankData={this.state.showBankData}/></div>)
+                         {this.state.editProfile ?(<div><EditProfile snap={this.state.profileInfo} uid={this.props.authState.uid} name={this.props.authState.name} showBankData={this.state.showBankData}/></div>)
                      :(<div style={{marginBottom:"30px"}}>
 
                          <div className="col-md-10 col-sm-12 col-md-offset-1">
@@ -322,7 +275,7 @@ editBankData(){
                                     <div className="preview-info-body">
                                       <ul className="info-list">
                                         <li>
-                                          <label><i className="ti-email preview-icon new mrg-r-10"></i>{this.state.email}</label>
+                                          <label><i className="ti-email preview-icon new mrg-r-10"></i>{this.props.authState.email}</label>
                                         </li>
                                         <li>
                                           <label><i className="ti-mobile preview-icon new mrg-r-10"></i>{this.state.telefon}</label>
@@ -336,7 +289,7 @@ editBankData(){
                                     <div className="preview-info-body">
                                       <ul className="info-list">
                                         <li>
-                                          <label><i className="ti-user preview-icon call mrg-r-10"></i>{this.state.name}</label>
+                                          <label><i className="ti-user preview-icon call mrg-r-10"></i>{this.props.authState.name}</label>
                                         </li>
                                         <li>
                                           <label><i className="ti-location-pin preview-icon call mrg-r-10"></i>Ort: {this.state.stadt}</label>
@@ -362,7 +315,7 @@ editBankData(){
                     </TabPanel>
                     <TabPanel>
                       <div className="tabs">
-                        <Chat   name={this.state.name} uid={this.state.uid}/>
+                        <Chat   name={this.props.authState.name} uid={this.props.authState.uid}/>
                       </div>
                     </TabPanel>
                   </div>
@@ -370,13 +323,12 @@ editBankData(){
             </div>
           </div>
 
-
-
-
-
-
             )
         }
     }
 
-export default Account;
+
+
+
+
+export default connect(mapStateToProps, { fetchNavbar, fetchAuthState }) (Account);

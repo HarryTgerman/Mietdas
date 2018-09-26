@@ -16,7 +16,7 @@ class  Listing extends Component {
     return(
           <div style={{minHeight:"500px"}}>
               {this.props.cards.map((card) => {
-                return(<Cards  snap={card.snap} id={card.id} standOrt={card.standOrt}/>)
+                return(<Cards  snap={card.snap} id={card.id} standOrt={card.standOrt} kat={this.props.kat}/>)
               })
             }
           </div>

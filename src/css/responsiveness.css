@@ -26,6 +26,9 @@
 }
 
 @media only screen  and (min-width : 993px) {
+
+
+
 	ul.nav.navbar-nav.navbar-right>li {
 		position: fixed;
 		top: 0;
@@ -213,8 +216,15 @@
 
 @media only screen and (max-width: 992px) and (min-width: 768px){
 
+
 }
 @media screen and (max-width: 992px) {
+
+	.geosuggest__input {
+		border-radius: 0px !important;
+		margin-bottom: 10px !important;
+	}
+
 	body.home-2 .navbar.bootsnav.navbar-transparent {
 		background-color: #ffffff;
 		border-bottom: 1px solid rgba(255,255,255,0.10);

@@ -638,7 +638,6 @@ Chatting STYLES
   border: 1px solid #e8eef1;
 }
 .chat_area {
-  float: left;
   height:280px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -654,6 +653,7 @@ Chatting STYLES
 }
 .chat_area .chat-body1 {
   margin-left: 50px;
+  margin-right: 50px;
 }
 .admin_chat .chat-body1 p {
     background: rgb(240, 243, 245) none repeat scroll 0 0;
@@ -677,6 +677,8 @@ Chatting STYLES
   border-top: 1px solid #e8eef1;
   padding: 15px;
   width: 100%;
+  padding-right: 75px;
+  padding-left: 50px;
 }
 
 .message_write textarea.form-control {

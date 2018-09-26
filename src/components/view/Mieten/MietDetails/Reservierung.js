@@ -5,6 +5,9 @@ import backgroundImg from '../../../../img/backgroundPayment.jpg';
 import moment from 'moment';
 import diff from 'moment';
 import Logo from '../../../../img/logo.png'
+import { connect } from 'react-redux';
+import { fetchNavbar } from '../../../../actions/navbarAction';
+
 
 
 class Reservierung extends Component{
@@ -20,35 +23,20 @@ class Reservierung extends Component{
       value: "Hallo "+this.props.location.query.snap.vermieter+". Ich möchte gerne den Artikel "+this.props.location.query.snap.cardHeading+" im angegebenen Zeitraum anmieten. Bitte bestätige meine Anfrage!",
     }
 }
-handleChange(event) {
-   this.setState({value: event.target.value});
- }
+
 componentWillMount(){
-  firebase.auth().onAuthStateChanged((user)=>{
-    const userProfile = firebase.auth().currentUser;
-    if(user){
-
-      this.setState(
-        {
-        authenticated: true,
-        name : userProfile.name,
-        email : userProfile.email,
-        uid : userProfile.uid
-        })
-        this.loadUser();
-    } else {
-      this.setState({
-        authenticated: false,
-        redirect:true,
-      })
-
-      }
-    })
+this.props.fetchNavbar(false)
 
 }
 
+handleChange(event) {
+   this.setState({value: event.target.value});
+ }
+
+
+
 loadUser(){
-    const uid = this.state.uid;
+    const uid = this.props.authState.uid;
     firebase.database().ref('app/').child('users/'+uid)
     .on('value', snap => {
         if(snap.val()){
@@ -103,7 +91,7 @@ loadUser(){
     const startDate = moment(this.props.location.query.startDate).format("DD-MM-YYYY");
     const endDate = moment(this.props.location.query.endDate).format("DD-MM-YYYY");
     const num = Math.floor((Math.random() * 5000) + 1)
-    let ref = this.state.name.split(' ').join('-') + num
+    let ref = this.props.authState.name.split(' ').join('-') + num
     let randomeKey = ""
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (var i = 0; i < 28; i++){
@@ -114,13 +102,13 @@ loadUser(){
       bestätigt: false,
       RechnungsAdresse: this.rechnungsadresseInput.value,
       cardId: this.props.location.query.cardId,
-      name: this.state.name,
+      name: this.props.authState.name,
       url: this.props.location.query.snap.imageUrl,
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
       mietende: endDate,
       ArtikelOwnerId: this.props.location.query.snap.uid,
-      uid: this.state.uid,
+      uid: this.props.authState.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
       num : num,
@@ -134,14 +122,14 @@ loadUser(){
       gewicht: gewicht,
     }
 
-    firebase.database().ref().child('app').child('users/' + this.state.uid)
+    firebase.database().ref().child('app').child('users/' + this.porps.authState.uid)
     .child('/mitteilung/').child(ref)
     .set({ bestätigt: false,
               cardId: this.props.location.query.cardId,
               anfrage: anfObj,
               timestamp: timestamp
             })
-    firebase.database().ref().child('app').child('users/' + this.state.uid)
+    firebase.database().ref().child('app').child('users/' + this.props.authState.uid)
     .child('/gestellteAnfragen/').child(ref)
     .set({ cardHeading:this.props.location.query.snap.cardHeading,
             mietbeginn:startDate,
@@ -158,7 +146,7 @@ loadUser(){
       bestätigt: false,
       RechnungsAdresse: this.rechnungsadresseInput.value,
       cardId: this.props.location.query.cardId,
-      name: this.state.name,
+      name: this.props.authState.name,
       url: this.props.location.query.snap.imageUrl,
       cardHeading: this.props.location.query.snap.cardHeading,
       mietbeginn: startDate,
@@ -166,7 +154,7 @@ loadUser(){
       ArtikelOwnerId: this.props.location.query.snap.uid,
       ArtikelOwnerEmail: this.props.location.query.snap.email,
       telefon: this.props.location.query.snap.telefon,
-      uid: this.state.uid,
+      uid: this.props.authState.uid,
       tage: this.props.location.query.numberOfDays,
       umsatz: this.props.location.query.Gesamtsumme,
       num : num,
@@ -181,12 +169,12 @@ loadUser(){
 
     firebase.database().ref().child('app').child('messages').push({
       senderUid: this.props.location.query.snap.uid,
-      receiverUid:this.state.uid,
-      sender: this.state.name,
+      receiverUid:this.props.authState.uid,
+      sender: this.props.authState.name,
       receiver: this.props.location.query.snap.vermieter,
       read: false,
       message:{"-AAAAAAAAAAAAAAAAAAAA":{message: message,
-                          sender: this.state.name,
+                          sender: this.props.authState.name,
                           time: Time,
                           date: Date}
               }
@@ -202,7 +190,7 @@ loadUser(){
           if(this.state.redirectProfile === true) {
               return  <Redirect to="/benutzeraccount"/>
             }
-            if(this.state.redirect === true) {
+            if(this.props.authState.authenticated == false) {
               alert("Du musst dich zuerst einloggen oder registeren")
                 return  <Redirect  to={{pathname:`${this.props.location.query.browserHistory}`}}/>
             }
@@ -214,48 +202,7 @@ loadUser(){
           return(
               <div>
                 <div className="wrapper">
-                  <div className="clearfix"></div>
 
-
-                  {/* Start Navigation */}
-                  <div  className="navbar navbar-default navbar-fixed navbar-transparent white bootsnav">
-                    <div style={{paddingBottom: "0"}}  className="container">
-                      <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i className="ti-align-left"></i>
-                      </button>
-
-                       {/*Start Header Navigation*/}
-                      <div className="navbar-header">
-                        <NavLink to="/">
-                          <img src={Logo} className="logo logo-display" alt=""/>
-                          <img src={Logo} className="logo logo-scrolled" alt=""/>
-                        </NavLink>
-                      </div>
-
-                       {/*Collect the nav links, forms, and other content for toggling*/}
-                      <div className="collapse navbar-collapse" id="navbar-menu">
-                        <ul className="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-
-                        <li className="dropdown">
-                          <NavLink to="/mieten" >Mieten</NavLink>
-                        </li>
-                        <li className="dropdown">
-                          <NavLink to="/vermieten" >Vermieten</NavLink>
-                        </li>
-                          {this.state.authenticated ?(<li className="dropdown">
-                              <NavLink to="/logout" >Logout</NavLink>
-                            </li>)
-                          :(<li><a  href="javascript:void(0)"  data-toggle="modal" data-target="#signup">Log-In</a></li>)}
-                        </ul>
-                        <ul className="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        { this.state.authenticated ?(<li className="no-pd"><NavLink to="/benutzeraccount" className="addlist"><i className="ti-user"></i>{this.state.name}</NavLink></li>)
-                        :(<p></p>)
-                        }
-                        </ul>
-                      </div>
-                       {/*.navbar-collapse*/}
-                    </div>
-                  </div>
                   {/* End Navigation */}
 
                   {/* ================ Start Page Title ======================= */}
@@ -282,17 +229,17 @@ loadUser(){
                         {/* General Option  */}
                         <div className="detail-wrapper">
                           <div className="detail-wrapper-header">
-                            <h4><i className="ti-files theme-cl mrg-r-10"></i>General Information</h4>
+                            <h4><i className="ti-files theme-cl mrg-r-10"></i>Unverbindliche reservierungs Anfrage </h4>
                           </div>
                           <div className="detail-wrapper-body">
                             <div className="row mrg-r-10 mrg-l-10">
                               <div className="col-sm-12">
                                 <label>Name</label>
-                                <input ref={(input) => { this.nameInput = input; }} type="text" value={this.state.name} className="form-control" />
+                                <input ref={(input) => { this.nameInput = input; }} type="text" value={this.props.authState.name} className="form-control" />
                               </div>
                               <div className="col-sm-12">
                                 <label>Email</label>
-                                <input ref={(input) => { this.emailInput = input; }} value={this.state.email} type="email" className="form-control" />
+                                <input ref={(input) => { this.emailInput = input; }} value={this.props.authState.email} type="email" className="form-control" />
                               </div>
                               <div className="col-sm-12">
                                 <label>Telefon</label>
@@ -431,4 +378,8 @@ loadUser(){
         }
     }
 
-export default Reservierung;
+  const mapStateToProps = state => ({
+    authState: state.authState.items
+  })
+
+export default connect(mapStateToProps, { fetchNavbar }) (Reservierung);

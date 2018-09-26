@@ -41,7 +41,7 @@ sendMessage(event){
               {this.props.data?(
             <div>
               <div  className="row chat_area">
-                <ul  className="list-unstyled" id="chat-scroll">
+                <ul  className="list-unstyled" >
                   {this.props.chatMessages.slice(0).reverse().map((msg)=>{
                     if(msg.name == this.props.name)
                     {return(
@@ -70,7 +70,6 @@ sendMessage(event){
               <form  className="message_write" onSubmit={this.sendMessage}>
                 <input  ref={(input) => { this.messageInput = input}} className="form-control" placeholder="schreibe eine Nachricht" />
                 <div  className="clearfix"></div>
-
                 <button type="submit" className="pull-right btn btn-success" >Senden</button>
               </form>
              </div>
