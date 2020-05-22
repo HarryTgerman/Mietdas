@@ -5,12 +5,12 @@ import App from './App';
 import firebase from 'firebase'
 
 const config = {
-    apiKey: "AIzaSyCs7-kFe_LEpr71uN-F51Gmt7Mz8-SRrCY",
-    authDomain: "mietdas-93abf.firebaseapp.com",
-    databaseURL: "https://mietdas-93abf.firebaseio.com",
-    projectId: "mietdas-93abf",
-    storageBucket: "gs://mietdas-93abf",
-    messagingSenderId: "153684144787"
+    apiKey: "xx",
+    authDomain: "xx",
+    databaseURL: "xx",
+    projectId: "xx",
+    storageBucket: "xx",
+    messagingSenderId: "xx"
   };
  firebase.initializeApp(config);
 
